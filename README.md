@@ -1,16 +1,14 @@
 # heartbeat
 
 #### Description
-heartbeat
+my first uni-app project named heartbeat !
 
 #### Software Architecture
 Software architecture description
 
 #### Installation
 
-1. xxxx
-2. xxxx
-3. xxxx
+1. 克隆项目至本地,直接使用Hbuilderx运行即可
 
 #### Instructions
 
