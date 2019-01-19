@@ -71,6 +71,12 @@
         }
     },
     "h5" : {
-        "title" : "Heartbeat"
+        "title" : "Heartbeat",
+        "router" : {
+            "mode" : "history"
+        },
+        "devServer" : {
+            "https" : false
+        }
     }
 }

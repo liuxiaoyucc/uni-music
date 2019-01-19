@@ -1,0 +1,248 @@
+<template>
+	<view class="content">
+		
+		<view class="top">
+			<image class="logo" src="../../static/logo.png"></image>
+			<view>
+			    <text class="title">{{title}}</text>
+			</view>
+		</view>
+		<view class="uni-card">
+			<view class="input-group">
+			    <view class="input-row border">
+			        <!-- <text class="title"></text> -->
+			        <m-input :account="account" @clearAccount="clearAccount($event)" class="m-input" type="text" clearable focus v-model="account" placeholder="Phone,email or username"></m-input>
+			    </view>
+			    <view class="input-row">
+			        <!-- <text class="title"></text> -->
+			        <m-input type="password" displayable v-model="password" placeholder="Password"></m-input>
+			    </view>
+			</view>
+			<view class="btn-row">
+			    <button type="primary" class="primary" @tap="bindLogin">Log in</button>
+			</view>
+			<view class="action-row">
+			    <navigator url="../reg/reg">Sign up</navigator>
+			    <text>|</text>
+			    <navigator url="../pwd/pwd">Forgot password?</navigator>
+			</view>
+			
+		
+		</view>
+		
+		
+	</view>
+</template>
+
+<script>
+	import {mapState,mapMutations} from 'vuex'
+	import mInput from '../../components/m-input.vue'
+
+
+	export default {
+		computed: mapState(["forcedLogin","hasLogin","userName"]),
+
+		data() {
+			return {
+				title: 'Heartbeat for me',
+				account: '',
+				password: '',
+			}
+		},
+		components: {
+		    mInput
+		},
+		onLoad() {//判断是否是登录状态,如果是登录状态,跳转至希望的页面
+			if(this.hasLogin){
+				uni.reLaunch({
+				    url: '../index/index',
+				});
+			}
+		},
+		methods: {
+			...mapMutations(['login']),
+			bindLogin(){
+				if (this.account.length < 5) {
+				    uni.showToast({
+				        icon: 'none',
+				        title: '用户名不能少于5个字符'
+				    });
+				    return;
+				}
+				if (this.password.length < 6) {
+				    uni.showToast({
+				        icon: 'none',
+				        title: '密码不能少于5个字符'
+				    });
+				    return;
+				}
+				
+				this.login(this.account)
+				uni.reLaunch({
+				    url: '../index/index',
+				});
+			},
+			clearAccount(account){
+				this.account = account
+			}
+		}
+	}
+</script>
+
+<style scoped>
+	.uni-card{
+		margin-top: 50upx;
+		height: 100%;
+		background-color: #FFFFFF;
+	}
+	.top{
+		text-align: center;
+	}
+	
+    .logo{
+        height: 200upx;
+        width: 200upx;
+        margin-top: 200upx;
+    }
+	.title {
+		font-size: 28upx;
+		color: #000000;
+	}
+	.action-row {
+		font-size: 24upx;
+	    display: flex;
+	    flex-direction: row;
+	    justify-content: center;
+	}
+	
+	.action-row navigator {
+	    color: #007aff;
+	    padding: 0 20upx;
+	}
+	
+	.oauth-row {
+	    display: flex;
+	    flex-direction: row;
+	    justify-content: center;
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    width: 100%;
+	}
+	
+	.oauth-image {
+	    width: 100upx;
+	    height: 100upx;
+	    border: 1upx solid #dddddd;
+	    border-radius: 100upx;
+	    margin: 0 40upx;
+	    background-color: #ffffff;
+	}
+	
+	.oauth-image image {
+	    width: 60upx;
+	    height: 60upx;
+	    margin: 20upx;
+	}
+	
+	page {
+	    min-height: 100%;
+	    display: flex;
+	}
+	
+	/* #ifdef MP-BAIDU */
+	page {
+	    width: 100%;
+	    height: 100%;
+	    display: block;
+	}
+	
+	swan-template {
+	    width: 100%;
+	    min-height: 100%;
+	    display: flex;
+	}
+	
+	/* #endif */
+	
+	.content {
+	    display: flex;
+	    flex: 1;
+	    flex-direction: column;
+	    background-color: 	#FFFFFF;
+	    padding: 20upx;
+	}
+	
+	.input-group {
+	    /* background-color: #FFFFFF; */
+	    margin-top: 40upx;
+	    position: relative;
+	}
+	
+	.input-group::before {
+	    position: absolute;
+	    right: 0;
+	    top: 0;
+	    left: 0;
+	    height: 1upx;
+	    content: '';
+	    -webkit-transform: scaleY(.5);
+	    transform: scaleY(.5);
+	    background-color: #FFFFFF;
+	}
+	
+	.input-group::after {
+	    position: absolute;
+	    right: 0;
+	    bottom: 0;
+	    left: 0;
+	    height: 1upx;
+	    content: '';
+	    -webkit-transform: scaleY(.5);
+	    transform: scaleY(.5);
+	    background-color: #FFFFFF;
+	}
+	
+	.input-row {
+	    display: flex;
+	    flex-direction: row;
+	    position: relative;
+		/* border:1px solid #FFC125; */
+		-moz-border-radius:5px;/*Geckobrowsers*/
+		-webkit-border-radius:5px;/*Webkitbrowsers*/
+		border-radius:5px;
+		border: 1upx solid #FFFFFF;
+		padding: 5upx 5upx;
+		margin: 20upx 20upx;
+	}
+	
+	.input-row .title {
+	    width: 20%;
+	    height: 50upx;
+	    min-height: 50upx;
+	    padding: 15upx 0;
+	    padding-left: 30upx;
+	    line-height: 50upx;
+	}
+	
+	.input-row.border::after {
+	    position: absolute;
+	    right: 0;
+	    bottom: 0;
+	    left: 15upx;
+	    height: 1upx;
+	    content: '';
+	    -webkit-transform: scaleY(.5);
+	    transform: scaleY(.5);
+	    background-color: #FFFFFF;
+	}
+	
+	.btn-row {
+	    margin-top: 50upx;
+	    padding: 20upx;
+	}
+	
+	button.primary {
+	    background-color: #FFC125;
+	}
+</style>

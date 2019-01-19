@@ -1,5 +1,7 @@
 <script>
+
 	export default {
+		
 		onLaunch: function () {
 			console.log('App Launch')
 		},
@@ -10,8 +12,14 @@
 			console.log('App Hide')
 		}
 	}
+	
+
 </script>
 
-<style>
+<style scoped>
+	@import './common/uni.css';
 	/*每个页面公共css */
+	
+	
+	
 </style>
