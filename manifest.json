@@ -1,5 +1,5 @@
 {
-    "name" : "heartbeat",
+    "name" : "Heartbeat",
     "appid" : "__UNI__112FF25",
     "description" : "",
     "versionName" : "1.0.0",
@@ -43,21 +43,24 @@
             "sdkConfigs" : {},
             "icons" : {
                 "android" : {
-                    "mdpi" : "static/logo.png",
-                    "ldpi" : "static/logo.png",
-                    "hdpi" : "static/logo.png",
-                    "xhdpi" : "static/logo.png",
-                    "xxhdpi" : "static/logo.png",
-                    "xxxhdpi" : "static/logo.png"
+                    "mdpi" : "static/logo-jpg.jpg",
+                    "ldpi" : "static/logo-jpg.jpg",
+                    "hdpi" : "static/logo-jpg.jpg",
+                    "xhdpi" : "static/logo-jpg.jpg",
+                    "xxhdpi" : "static/logo-jpg.jpg",
+                    "xxxhdpi" : "static/logo-jpg.jpg"
                 }
             },
             "splashscreen" : {
                 "android" : {
-                    "hdpi" : "static/start.png",
-                    "xhdpi" : "static/start.png",
-                    "xxhdpi" : "static/start.png"
+                    "hdpi" : "",
+                    "xhdpi" : "",
+                    "xxhdpi" : ""
                 }
             }
+        },
+        "splashscreen" : {
+            "waiting" : true
         }
     },
     /* SDK配置 */

@@ -1,13 +1,19 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/login/login",
+    "pages/index/index",
+    "pages/reg/reg",
+    "pages/pwd/pwd"
   ],
   "subPackages": [],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "Home",
+    "navigationBarTitleText": "Heartbeat",
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
   },
-  "appname": "heartbeat"
+  "splashscreen": {
+    "autoclose": true
+  },
+  "appname": "Heartbeat"
 }

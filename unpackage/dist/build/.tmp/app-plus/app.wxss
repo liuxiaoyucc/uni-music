@@ -1,1 +1,2 @@
 @import './common/main.wxss';
+@import './common/vendor.wxss';

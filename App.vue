@@ -16,7 +16,7 @@
 
 </script>
 
-<style scoped>
+<style>
 	@import './common/uni.css';
 	/*每个页面公共css */
 	
