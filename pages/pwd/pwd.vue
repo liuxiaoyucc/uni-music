@@ -7,11 +7,12 @@
 			    <text class="title">{{title}}</text>
 			</view>
 		</view>
+		<text class="title">我们将向您的注册邮箱发送一封邮件,请注意查收</text>
 		<view class="uni-card">
 			<view class="input-group">
+				
 			    <view class="input-row border">
-			        <!-- <text class="title"></text> -->
-			        <m-input @clearAccount="clearAccount($event)"  type="text" clearable focus  v-model="email" placeholder="Email"></m-input>
+			        <m-input @clearAccount="clearAccount($event)"  type="text" clearable focus  v-model="email" placeholder="邮箱"></m-input>
 			    </view>
 			</view>
 			<view class="btn-row">
@@ -36,7 +37,7 @@
 	    },
 	    data() {
 	        return {
-				title: '我们将向您的注册邮箱发送一封邮件,请注意查收',
+				title: '',
 	            email: ''
 	        }
 	    },
@@ -83,6 +84,7 @@
 	.title {
 		font-size: 20upx;
 		color: #000000;
+		text-align: center;
 	}
 	.action-row {
 		font-size: 24upx;

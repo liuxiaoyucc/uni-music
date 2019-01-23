@@ -11,20 +11,20 @@
 			<view class="input-group">
 			    <view class="input-row border">
 			        <!-- <text class="title"></text> -->
-			        <m-input :account="account" @clearAccount="clearAccount($event)" class="m-input uni-input" type="text" clearable focus v-model="account" placeholder="Phone, email or username"></m-input>
+			        <m-input :account="account" @clearAccount="clearAccount($event)" class="m-input uni-input" type="text" clearable focus v-model="account" placeholder="手机号, 邮箱 或者 用户名"></m-input>
 			    </view>
 			    <view class="input-row">
 			        <!-- <text class="title"></text> -->
-			        <m-input type="password" displayable v-model="password" placeholder="Password"></m-input>
+			        <m-input type="password" displayable v-model="password" placeholder="密码"></m-input>
 			    </view>
 			</view>
 			<view class="btn-row">
-			    <button type="primary" class="primary" @tap="bindLogin">Log in</button>
+			    <button type="primary" class="primary" @tap="bindLogin">登录</button>
 			</view>
 			<view class="action-row">
-			    <navigator url="../reg/reg">Sign up</navigator>
+			    <navigator url="../reg/reg">注册</navigator>
 			    <text>|</text>
-			    <navigator url="../pwd/pwd">Forgot password?</navigator>
+			    <navigator url="../pwd/pwd">忘记密码?</navigator>
 			</view>
 			
 		

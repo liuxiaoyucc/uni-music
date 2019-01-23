@@ -11,15 +11,15 @@
 			<view class="input-group">
 			    <view class="input-row border">
 			        <!-- <text class="title"></text> -->
-			        <m-input :account="account" @clearAccount="clearAccount($event)" class="m-input" type="text" clearable focus v-model="account" placeholder="Email"></m-input>
+			        <m-input :account="account" @clearAccount="clearAccount($event)" class="m-input" type="text" clearable focus v-model="account" placeholder="邮箱"></m-input>
 			    </view>
 			    <view class="input-row">
 			        <!-- <text class="title"></text> -->
-			        <m-input type="password" displayable v-model="password" placeholder="Password"></m-input>
+			        <m-input type="password" displayable v-model="password" placeholder="密码"></m-input>
 			    </view>
 			</view>
 			<view class="btn-row">
-			    <button type="primary" class="primary" @tap="register">Sign up</button>
+			    <button type="primary" class="primary" @tap="register">注册</button>
 			</view>
 			
 			

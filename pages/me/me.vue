@@ -1,35 +1,25 @@
 <template>
 	<view class="content">
-	    <image class="logo" src="../../static/logo.png"></image>
+	    <image class="logo" src="../../static/me_200.png"></image>
 	    <view>
 	        <text class="title">{{title}}</text>
 	    </view>
 	    
 	</view>
-	
 </template>
 
 <script>
-	
 	export default {
-		
-
 		data() {
 			return {
-				title: '探索发现'
-			}
-		},
-		onLoad() {
-		    
-		},
-		methods: {
-
+				title:"我为什么如此迷人"
+			};
 		}
 	}
 </script>
 
 <style scoped>
-	.content {
+.content {
 		text-align: center;
 		height: 400upx;
 	}
