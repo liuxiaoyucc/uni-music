@@ -51,7 +51,7 @@
                 "pagePath" : "pages/index/index",
                 "text" : "探索",
                 "iconPath" : "./static/index_64_f.png", //icon图片路径
-                "selectedIconPath" : "./static/select_index_64.png" //选中时的图片路径
+                "selectedIconPath" : "./static/selected_index_64.png" //选中时的图片路径
             },
             {
                 "pagePath" : "pages/fascinate/fascinate",

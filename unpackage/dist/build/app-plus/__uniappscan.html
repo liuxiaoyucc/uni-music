@@ -94,10 +94,7 @@
             plus.key.addEventListener('backbutton', back);
             setTimeout(function () {
                 var webview = plus.webview.currentWebview();
-                scan = new plus.barcode.Barcode('scan', webview.__uniapp_scan_type, {
-                    frameColor: '#118CE9',
-                    scanbarColor: '#118CE9'
-                });
+                scan = new plus.barcode.Barcode('scan', webview.__uniapp_scan_type);
                 scan.onmarked = function (type, code, file) {
                     var res = {
                         type: type,

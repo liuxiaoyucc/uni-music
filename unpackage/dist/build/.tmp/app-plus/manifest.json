@@ -91,6 +91,12 @@
         }
       }
     },
-    "allowsInlineMediaPlayback": true
+    "allowsInlineMediaPlayback": true,
+    "safearea": {
+      "background": "#FFFFFF",
+      "bottom": {
+        "offset": "auto"
+      }
+    }
   }
 }
