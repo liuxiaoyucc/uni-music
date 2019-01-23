@@ -53,11 +53,7 @@
 		    mInput
 		},
 		onLoad() {//判断是否是登录状态,如果是登录状态,跳转至希望的页面
-			if(this.hasLogin){
-				uni.reLaunch({
-				    url: '../index/index',
-				});
-			}
+			
 		},
 		methods: {
 			...mapMutations(['login']),

@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-	    <image class="logo" src="../../static/logo.png"></image>
+	    <!-- <image class="logo" src="../../static/logo.png"></image> -->
 	    <view>
 	        <text class="title">{{title}}</text>
 	    </view>
@@ -35,8 +35,8 @@
     .logo{
         height: 100upx;
         width: 100upx;
-        margin-top: 20upx;
-		/* margin-bottom: 100upx; */
+        margin-top: 100upx;
+		
     }
 	.title {
 		font-size: 36upx;

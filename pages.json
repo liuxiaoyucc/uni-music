@@ -1,49 +1,69 @@
 {
     "pages" : [
         //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+		    "path" : "pages/index/index",
+		    "style" : {
+				"navigationBarTitleText" : "探索",
+				"h5" : {
+				    "titleNView" : false
+				}
+		    }
+		},
+		{
+		    "path" : "pages/fascinate/fascinate",
+		    "style" : {
+				"navigationBarTitleText" : "功能",
+				"enablePullDownRefresh" : true,
+				"h5" : {
+				    "titleNView" : false
+				}
+			}
+		},
+		{
+		    "path" : "pages/me/me",
+		    "style" : {
+				"navigationBarTitleText" : "我",
+				"h5" : {
+				    "titleNView" : false
+				}
+			}
+		},
         {
             "path" : "pages/login/login",
             "style" : {
-                "titleNView" : false //关闭此页面顶部导航栏
-            }
-        },
-        {
-            "path" : "pages/index/index",
-            "style" : {
-                "titleNView" : false
+				"h5" : {
+				    "titleNView" : false
+				},
+				"app-plus": {
+					
+				}
             }
         },
         {
             "path" : "pages/reg/reg",
             "style" : {
-                "navigationBarTitleText" : "Sign up"
+                "navigationBarTitleText" : "注册"
             }
         },
         {
             "path" : "pages/pwd/pwd",
             "style" : {
-                "navigationBarTitleText" : "Password Reset"
+                "navigationBarTitleText" : "重置密码"
             }
-        },
-        {
-            "path" : "pages/me/me",
-            "style" : {}
-        },
-        {
-            "path" : "pages/fascinate/fascinate",
-            "style" : {}
         }
     ],
     "globalStyle" : {
         "navigationBarTextStyle" : "black",
         "navigationBarTitleText" : "Heartbeat",
-        "navigationBarBackgroundColor" : "#F8F8F8",
-        "backgroundColor" : "#F8F8F8",
-        "navigationStyle" : "custom" //custom所有窗口都没有顶部导航栏
+        "navigationBarBackgroundColor" : "#ffffff",
+        "backgroundColor" : "#ffffff"
+        // "navigationStyle" : "custom" //custom所有窗口都没有顶部导航栏
+		
     },
     "tabBar" : {
         "color" : "#000000",
-        "selectedColor" : "#f8bb59",
+        "selectedColor" : "#EE2C2C",
         "backgroundColor" : "#FFFFFF",
         "borderStyle" : "black", //tabbar边框颜色,只支持黑 白
         "list" : [
@@ -51,19 +71,19 @@
                 "pagePath" : "pages/index/index",
                 "text" : "探索",
                 "iconPath" : "./static/index_64_f.png", //icon图片路径
-                "selectedIconPath" : "./static/selected_index_64.png" //选中时的图片路径
+                "selectedIconPath" : "./static/index_81.png" //选中时的图片路径
             },
             {
                 "pagePath" : "pages/fascinate/fascinate",
                 "text" : "功能",
                 "iconPath" : "./static/idea_f.png",
-                "selectedIconPath" : "./static/selected_idea.png"
+                "selectedIconPath" : "./static/idea_81.png"
             },
             {
                 "pagePath" : "pages/me/me",
                 "text" : "我",
                 "iconPath" : "./static/me_81_f.png",
-                "selectedIconPath" : "./static/selected_me_81.png"
+                "selectedIconPath" : "./static/me_81.png"
             }
         ]
     }

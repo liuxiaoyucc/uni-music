@@ -1,49 +1,10 @@
 <template>
 	<view class="content">
-	    <image class="logo" src="../../static/idea_200.png"></image>
+	    
+	    <text class="title">{{title}}</text>
 	    
 	    
-	    <view class="uni-padding-wrap uni-common-mt">
-	    	<view class="uni-flex uni-row">
-	    		<view class="text" style="flex: 1;color: #FFFFFF; font-size: 50upx;height: 250upx;display: flex; justify-content: center;align-items: center;background-color: #F76260;">吃啥?!</view>
-	    		<!-- <view class="text" style="flex: 1;font-size: 50upx;height: 250upx;display: flex; justify-content: center;align-items: center;">吃啥?!</view> -->
-	    		<view class="uni-flex uni-column" style="flex: 1;justify-content: space-between;">
-	    			<view class="text" style="display: flex;height: 120upx;justify-content: center;align-items: center;color: #FFFFFF;background-color: #F76260;">写文章</view>
-	    			<!-- <view class="text" style="flex: 1;">日程表</view> -->
-					<view class="text" style="display: flex;height: 100upx;justify-content: center;align-items: center;color: #FFFFFF;background-color: #F76260;">日程表</view>
-
-	    		</view>
-	    	</view>
-			
-			<view class="uni-flex uni-row">
-				<view class="uni-flex uni-column" style="flex: 1;justify-content: space-between;">
-					<view class="text" style="display: flex;height: 120upx;justify-content: center;align-items: center;background-color: #FFB400;color: #FFFFFF;">我的</view>
-					<!-- <view class="text" style="flex: 1;">日程表</view> -->
-					<view class="text" style="display: flex;height: 100upx;justify-content: center;align-items: center;background-color: #FFB400;color: #FFFFFF;">随便看看</view>
-							
-				</view>
-				<view class="text" style="flex: 1;font-size: 50upx;height: 250upx;display: flex; justify-content: center;align-items: center;background-color: #FFB400;color: #FFFFFF;">写文章</view>				
-			</view>
-	    	
-	    	<view class="uni-flex uni-row">
-	    		<view class="text" style="flex: 1;height: 250upx;display: flex; justify-content: center;align-items: center;">
-	    			
-	    		</view>
-	    	</view>
-			
-	    	
-	    	<view class="uni-flex uni-row">
-	    		<view class="text" style="flex: 1;height: 250upx;display: flex; justify-content: center;align-items: center;">
-	    		    <navigator url="../rice-editor/rice-editor"></navigator>	
-	    		</view>
-	    		<view class="text" style="flex: 1;height: 250upx;display: flex; justify-content: center;align-items: center;"></view>
-	    	</view>
-	    	
-	    	<view class="uni-flex uni-row">
-	    		<view class="text" style="flex: 1;height: 250upx;display: flex; justify-content: center;align-items: center;"></view>
-	    		<view class="text" style="flex: 1;height: 250upx;display: flex; justify-content: center;align-items: center;"></view>
-	    	</view>
-	    </view>
+		
 	</view>
 	
 </template>
@@ -55,14 +16,59 @@
 
 		data() {
 			return {
-				title: '探索发现'
+				title: '功能',
+				data: [],
+				loadMoreText: "加载中...",
+				showLoadMore: false,
+				max: 0
 			}
 		},
 		onLoad() {
-		    
+			this.initData();
+		},
+		onUnload() {
+			this.max = 0,
+			this.data = [],
+			this.loadMoreText = "加载更多",
+			this.showLoadMore = false;
+		},
+		onReachBottom() {
+			console.log("onReachBottom");
+			if (this.max > 40) {
+				this.loadMoreText = "没有更多数据了!"
+				return;
+			}
+			this.showLoadMore = true;
+			setTimeout(() => {
+				this.setDate();
+			}, 300);
+		},
+		onPullDownRefresh() {
+			console.log('onPullDownRefresh');
+			this.initData();
 		},
 		methods: {
-
+			initData(){
+				setTimeout(() => {
+					this.max = 0;
+					this.data = [];
+					let data = [];
+					this.max += 10;
+					for (var i = this.max - 9; i < this.max + 1; i++) {
+						data.push(i)
+					}
+					this.data = this.data.concat(data);
+					uni.stopPullDownRefresh();
+				}, 300);
+			},
+			setDate() {
+				let data = [];
+				this.max += 10;
+				for (var i = this.max - 9; i < this.max + 1; i++) {
+					data.push(i)
+				}
+				this.data = this.data.concat(data);
+			}
 		}
 	}
 </script>
@@ -75,7 +81,7 @@
     .logo{
         height: 100upx;
         width: 100upx;
-        margin-top: 20upx;
+        margin-top: 100upx;
     }
 	.title {
 		font-size: 36upx;
