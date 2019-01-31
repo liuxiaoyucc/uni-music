@@ -1,23 +1,22 @@
 {
   "pages": [
-    "pages/login/login",
     "pages/index/index",
-    "pages/reg/reg",
-    "pages/pwd/pwd",
+    "pages/fascinate/fascinate",
     "pages/me/me",
-    "pages/fascinate/fascinate"
+    "pages/login/login",
+    "pages/reg/reg",
+    "pages/pwd/pwd"
   ],
   "subPackages": [],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "Heartbeat",
-    "navigationBarBackgroundColor": "#F8F8F8",
-    "backgroundColor": "#F8F8F8",
-    "navigationStyle": "custom"
+    "navigationBarBackgroundColor": "#ffffff",
+    "backgroundColor": "#ffffff"
   },
   "tabBar": {
     "color": "#000000",
-    "selectedColor": "#f8bb59",
+    "selectedColor": "#EE2C2C",
     "backgroundColor": "#FFFFFF",
     "borderStyle": "black",
     "list": [
@@ -25,19 +24,19 @@
         "pagePath": "pages/index/index",
         "text": "探索",
         "iconPath": "./static/index_64_f.png",
-        "selectedIconPath": "./static/selected_index_64.png"
+        "selectedIconPath": "./static/index_81.png"
       },
       {
         "pagePath": "pages/fascinate/fascinate",
         "text": "功能",
         "iconPath": "./static/idea_f.png",
-        "selectedIconPath": "./static/selected_idea.png"
+        "selectedIconPath": "./static/idea_81.png"
       },
       {
         "pagePath": "pages/me/me",
         "text": "我",
         "iconPath": "./static/me_81_f.png",
-        "selectedIconPath": "./static/selected_me_81.png"
+        "selectedIconPath": "./static/me_81.png"
       }
     ]
   },

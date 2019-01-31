@@ -36,17 +36,17 @@
     "statusbar": {
       "immersed": "supportedDevice",
       "style": "dark",
-      "background": "#F8F8F8"
+      "background": "#ffffff"
     },
     "distribute": {
       "icons": {
         "android": {
-          "mdpi": "static/logo-jpg.jpg",
-          "ldpi": "static/logo-jpg.jpg",
-          "hdpi": "static/logo-jpg.jpg",
-          "xhdpi": "static/logo-jpg.jpg",
-          "xxhdpi": "static/logo-jpg.jpg",
-          "xxxhdpi": "static/logo-jpg.jpg"
+          "mdpi": "static/logo.png",
+          "ldpi": "static/logo.png",
+          "hdpi": "static/logo.png",
+          "xhdpi": "static/logo.png",
+          "xxhdpi": "static/logo.png",
+          "xxxhdpi": "static/logo.png"
         }
       },
       "splashscreen": {

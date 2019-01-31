@@ -1,14 +1,13 @@
 
-.content.data-v-00d35e74 {
+.content.data-v-703767aa {
 		text-align: center;
 }
-.logo.data-v-00d35e74{
+.logo.data-v-703767aa{
         height: 100rpx;
         width: 100rpx;
-        margin-top: 20rpx;
-		/* margin-bottom: 100upx; */
+        margin-top: 100rpx;
 }
-.title.data-v-00d35e74 {
+.title.data-v-703767aa {
 		font-size: 36rpx;
 		color: #000000;
 }
