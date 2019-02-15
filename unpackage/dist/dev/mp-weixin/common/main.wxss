@@ -5,6 +5,9 @@
 	src: url('https://img-cdn-qiniu.dcloud.net.cn/fonts/uni.ttf') format('truetype');
 }
 
+
+	
+
 /*通用 */
 view{
 	font-size:28rpx; 
@@ -77,6 +80,9 @@ view{
 	margin-left: 20rpx;
 }
 
+
+	
+
 /* page */
 .uni-page-head{
 	padding:35rpx; 
@@ -140,6 +146,10 @@ view{
 .uni-common-mt{
 	margin-top:30rpx;
 }
+
+
+	
+
 /* 背景色 */
 .uni-bg-red{
 	background:#F76260; color:#FFF;
@@ -150,6 +160,10 @@ view{
 .uni-bg-blue{
 	background:#007AFF; color:#FFF;
 }
+
+
+	
+
 /* 标题 */
 .uni-h1 {font-size: 80rpx; font-weight:700;}
 .uni-h2 {font-size: 60rpx; font-weight:700;}
@@ -159,14 +173,23 @@ view{
 .uni-h6 {font-size: 24rpx; color: #8f8f94;}
 .uni-bold{font-weight:bold;}
 
+
+	
+
 /* 文本溢出隐藏 */
 .uni-ellipsis {overflow: hidden; white-space: nowrap; -o-text-overflow: ellipsis; text-overflow: ellipsis;}
+
+
+	
 
 /* 竖向百分百按钮 */
 .uni-btn-v{
 	padding:10rpx 0;
 }
 .uni-btn-v ._button{margin:20rpx 0;}
+
+
+	
 
 /* 表单 */
 .uni-form-item{
@@ -222,6 +245,9 @@ radio-group ._label, checkbox-group ._label{
 	        flex-shrink:0;
 }
 
+
+	
+
 /* loadmore */
 .uni-loadmore{
 	height:80rpx;
@@ -229,6 +255,10 @@ radio-group ._label, checkbox-group ._label{
 	text-align:center;
 	padding-bottom:30rpx;
 }
+
+
+	
+
 /*数字角标*/
 .uni-badge,
 .uni-badge-default {
@@ -296,6 +326,9 @@ radio-group ._label, checkbox-group ._label{
 	background-color: transparent
 }
 
+
+	
+
 /*折叠面板 */
 .uni-collapse-content {
 	height: 0;
@@ -305,6 +338,9 @@ radio-group ._label, checkbox-group ._label{
 .uni-collapse-content.uni-active {
 	height: auto;
 }
+
+
+	
 
 /*卡片视图 */
 .uni-card {
@@ -410,6 +446,9 @@ radio-group ._label, checkbox-group ._label{
 .uni-card-link {
 	color: #007AFF;
 }
+
+
+	
 
 /* 列表 */
 .uni-list {
@@ -632,6 +671,9 @@ radio-group ._label, checkbox-group ._label{
 	height: auto;
 }
 
+
+	
+
 /* 三行列表 */
 .uni-triplex-row {
 	display: -webkit-box;
@@ -675,6 +717,9 @@ radio-group ._label, checkbox-group ._label{
 	width: 16%;
 	text-align: right;
 }
+
+
+	
 
 /* 图文列表 */
 .uni-media-list {
@@ -752,6 +797,9 @@ radio-group ._label, checkbox-group ._label{
 	color: #8f8f94;
 }
 
+
+	
+
 /* 九宫格 */
 .uni-grid-9 {
 	background: #f2f2f2;
@@ -813,6 +861,9 @@ radio-group ._label, checkbox-group ._label{
 .uni-grid-9-item-hover {
 	background: rgba(0, 0, 0, 0.1);
 }
+
+
+	
 
 /* 上传 */
 .uni-uploader {
@@ -914,6 +965,9 @@ radio-group ._label, checkbox-group ._label{
 	opacity: 0;
 }
 
+
+	
+
 /*问题反馈*/
 .feedback-title {
 	display: -webkit-box;
@@ -1005,6 +1059,9 @@ radio-group ._label, checkbox-group ._label{
 	margin: 20rpx;
 }
 
+
+	
+
 /* input group */
 .uni-input-group {
 	position: relative;
@@ -1070,6 +1127,9 @@ radio-group ._label, checkbox-group ._label{
 	line-height: 70rpx;
 }
 
+
+	
+
 /* textarea */
 .uni-textarea{
 	width:100%;
@@ -1082,6 +1142,9 @@ radio-group ._label, checkbox-group ._label{
 	font-size:28rpx;
 	height:150rpx;
 }
+
+
+	
 
 /* tab bar */
 .uni-tab-bar {
@@ -1134,6 +1197,9 @@ radio-group ._label, checkbox-group ._label{
 	padding:20rpx 0;
 }
 
+
+	
+
 /* steps */
 .uni-steps{padding:20rpx 30rpx; -webkit-box-flex: 1; -webkit-flex-grow: 1; -ms-flex-positive: 1; flex-grow: 1; display:-webkit-box; display:-webkit-flex; display:-ms-flexbox; display:flex; -webkit-flex-wrap:wrap; -ms-flex-wrap:wrap; flex-wrap:wrap;}
 .uni-steps view{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex; -webkit-flex-wrap:wrap; -ms-flex-wrap:wrap; flex-wrap:wrap; float:none;}
@@ -1144,6 +1210,9 @@ radio-group ._label, checkbox-group ._label{
 .uni-steps .current .step-circle{background:#00B26A; color:#FFFFFF;}
 .uni-steps .current .step-content{border-color:#00B26A;}
 .uni-steps .current .step-title{color:#00B26A;}
+
+
+	
 
 /* comment */
 .uni-comment{padding:5rpx 0; display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; -webkit-box-flex:1; -webkit-flex-grow:1; -ms-flex-positive:1; flex-grow:1; -webkit-box-orient: vertical; -webkit-box-direction: normal; -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column;}
@@ -1158,12 +1227,18 @@ radio-group ._label, checkbox-group ._label{
 .uni-comment-content{line-height:1.6em; font-size:28rpx; padding:8rpx 0;}
 .uni-comment-replay-btn{background:#FFF; font-size:24rpx; line-height:28rpx; padding:5rpx 20rpx; border-radius:30rpx; color:#333 !important; margin:0 10rpx;}
 
+
+	
+
 /* swiper msg */
 .uni-swiper-msg{width:100%; padding:12rpx 0; -webkit-flex-wrap:nowrap; -ms-flex-wrap:nowrap; flex-wrap:nowrap; display:-webkit-box; display:-webkit-flex; display:-ms-flexbox; display:flex;}
 .uni-swiper-msg-icon{width:50rpx; margin-right:20rpx;}
 .uni-swiper-msg-icon image{width:100%; -webkit-flex-shrink:0; -ms-flex-negative:0; flex-shrink:0;}
 .uni-swiper-msg swiper{width:100%; height:50rpx;}
 .uni-swiper-msg swiper-item{line-height:50rpx;}
+
+
+	
 
 /* product */
 .uni-product-list {
@@ -1235,6 +1310,9 @@ radio-group ._label, checkbox-group ._label{
     padding: 0 10rpx;
     border-radius: 5rpx;
 }
+
+
+	
 
 /* timeline */
 .uni-timeline {
@@ -1318,13 +1396,18 @@ radio-group ._label, checkbox-group ._label{
 .uni-timeline-item-content .datetime{
 		color: #CCCCCC;
 }
+
+
 	
-	/* 自定义节点颜色 */
+
+/* 自定义节点颜色 */
 .uni-timeline-last-item .uni-timeline-item-divider{
 		background-color: #1AAD19;
 }
-  
-  
+
+
+	
+
 /* uni-icon */
 .uni-icon {
 	font-family: uniicons;
@@ -1608,6 +1691,9 @@ radio-group ._label, checkbox-group ._label{
     content: "\E612";
 }
 
+
+	
+
 /* 分界线 */
 .uni-divider{
     height: 110rpx;
@@ -1645,6 +1731,9 @@ radio-group ._label, checkbox-group ._label{
         -ms-transform: translateY(50%);
             transform: translateY(50%);
 }
+
+
+	
 
 /*每个页面公共css */
 

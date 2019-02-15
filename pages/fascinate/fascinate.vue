@@ -1,9 +1,17 @@
 <template>
 	<view class="content">
-	    
-	    <text class="title">{{title}}</text>
-	    
-	    
+		
+        <view class="uni-padding-wrap uni-common-mt">
+            
+            <view class="uni-title uni-common-mt">
+                <text>\n纵向布局</text>
+            </view>
+            <view class="uni-flex uni-column">
+                <view class="flex-item flex-item-V uni-bg-red">发起请求</view>
+                <view class="flex-item flex-item-V uni-bg-green">上传,下载</view>
+                <view class="flex-item flex-item-V uni-bg-blue">...</view>
+            </view>
+        </view>
 		
 	</view>
 	

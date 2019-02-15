@@ -10,7 +10,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "",
 	"appid": "touristappid",
-	"projectname": "heartbeat",
+	"projectname": "Heartbeat",
 	"condition": {
 		"search": {
 			"current": -1,
