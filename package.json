@@ -1,0 +1,23 @@
+{
+  "name": "heartbeat",
+  "version": "1.0.0",
+  "description": "my first uni-app project named heartbeat !",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/yuxiaoliu/heartbeat.git"
+  },
+  "author": "liuxy",
+  "license": "ISC",
+  "dependencies": {
+    "konva": "^2.6.0",
+    "vue-konva": "^2.0.0"
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.2.3"
+  }
+}
