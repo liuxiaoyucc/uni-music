@@ -1,5 +1,5 @@
 {
-    "name" : "heartbeat",
+    "name" : "Heartbeat",
     "appid" : "__UNI__112FF25",
     "description" : "",
     "versionName" : "1.0.0",
@@ -53,11 +53,14 @@
             },
             "splashscreen" : {
                 "android" : {
-                    "hdpi" : "static/start.png",
-                    "xhdpi" : "static/start.png",
-                    "xxhdpi" : "static/start.png"
+                    "hdpi" : "",
+                    "xhdpi" : "",
+                    "xxhdpi" : ""
                 }
             }
+        },
+        "splashscreen" : {
+            "waiting" : true
         }
     },
     /* SDK配置 */
@@ -77,6 +80,7 @@
         },
         "devServer" : {
             "https" : false
-        }
+        },
+        "domain" : "pulsating.cn"
     }
 }

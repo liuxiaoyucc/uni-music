@@ -2,7 +2,7 @@
 	<view class="content">
 		
 		<view class="top">
-			<image class="logo" src="../../static/logo.png"></image>
+			<image class="logo" src="../../static/logof.png"></image>
 			<view>
 			    <text class="title">{{title}}</text>
 			</view>
@@ -11,20 +11,20 @@
 			<view class="input-group">
 			    <view class="input-row border">
 			        <!-- <text class="title"></text> -->
-			        <m-input :account="account" @clearAccount="clearAccount($event)" class="m-input" type="text" clearable focus v-model="account" placeholder="Phone,email or username"></m-input>
+			        <m-input :account="account" @clearAccount="clearAccount($event)" class="m-input uni-input" type="text" clearable focus v-model="account" placeholder="手机号, 邮箱 或者 用户名"></m-input>
 			    </view>
 			    <view class="input-row">
 			        <!-- <text class="title"></text> -->
-			        <m-input type="password" displayable v-model="password" placeholder="Password"></m-input>
+			        <m-input type="password" displayable v-model="password" placeholder="密码"></m-input>
 			    </view>
 			</view>
 			<view class="btn-row">
-			    <button type="primary" class="primary" @tap="bindLogin">Log in</button>
+			    <button type="primary" class="primary" @tap="bindLogin">登录</button>
 			</view>
 			<view class="action-row">
-			    <navigator url="../reg/reg">Sign up</navigator>
+			    <navigator url="../reg/reg">注册</navigator>
 			    <text>|</text>
-			    <navigator url="../pwd/pwd">Forgot password?</navigator>
+			    <navigator url="../pwd/pwd">忘记密码?</navigator>
 			</view>
 			
 		
@@ -44,7 +44,7 @@
 
 		data() {
 			return {
-				title: 'Heartbeat for me',
+				title: '',
 				account: '',
 				password: '',
 			}
@@ -53,11 +53,7 @@
 		    mInput
 		},
 		onLoad() {//判断是否是登录状态,如果是登录状态,跳转至希望的页面
-			if(this.hasLogin){
-				uni.reLaunch({
-				    url: '../index/index',
-				});
-			}
+			
 		},
 		methods: {
 			...mapMutations(['login']),
@@ -90,20 +86,21 @@
 </script>
 
 <style scoped>
+
 	.uni-card{
-		margin-top: 50upx;
-		height: 100%;
+		height:60vh;
 		background-color: #FFFFFF;
 	}
 	.top{
 		text-align: center;
+		height: 30vh;
 	}
 	
-    .logo{
-        height: 200upx;
-        width: 200upx;
-        margin-top: 200upx;
-    }
+	.logo{
+	    height: 120upx;
+	    width: 120upx;
+	    margin-top: 10vh;
+	}
 	.title {
 		font-size: 28upx;
 		color: #000000;
@@ -145,16 +142,13 @@
 	    margin: 20upx;
 	}
 	
-	page {
-	    min-height: 100%;
-	    display: flex;
-	}
-	
 	/* #ifdef MP-BAIDU */
 	page {
 	    width: 100%;
 	    height: 100%;
 	    display: block;
+		min-height: 100%;
+		display: flex;
 	}
 	
 	swan-template {

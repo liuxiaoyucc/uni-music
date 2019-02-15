@@ -1,0 +1,40 @@
+
+.content.data-v-4833e18c {
+		text-align: center;
+}
+.logo.data-v-4833e18c{
+        height: 100rpx;
+        width: 100rpx;
+        margin-top: 100rpx;
+}
+.title.data-v-4833e18c {
+		font-size: 36rpx;
+		color: #000000;
+}
+.flex-item.data-v-4833e18c {
+		width: 33.3%;
+		height: 250rpx;
+		text-align: center;
+		line-height: 250rpx;
+}
+.flex-item-V.data-v-4833e18c {
+		width: 100%;
+		height: 150rpx;
+		text-align: center;
+		line-height: 150rpx;
+}
+.text.data-v-4833e18c{
+		margin:15rpx 10rpx;
+		padding: 0 20rpx;
+		background-color: #ebebeb;
+		height: 70rpx;
+		line-height: 70rpx;
+		text-align: center;
+		color: #777;
+		font-size: 26rpx;
+		border-radius: 20rpx;
+}
+.desc.data-v-4833e18c{
+		/* text-indent: 40upx; */
+}
+

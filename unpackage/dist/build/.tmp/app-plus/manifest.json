@@ -5,7 +5,7 @@
     "iPad"
   ],
   "id": "__UNI__112FF25",
-  "name": "heartbeat",
+  "name": "Heartbeat",
   "version": {
     "name": "1.0.0",
     "code": "100"
@@ -36,7 +36,7 @@
     "statusbar": {
       "immersed": "supportedDevice",
       "style": "dark",
-      "background": "#F8F8F8"
+      "background": "#ffffff"
     },
     "distribute": {
       "icons": {
@@ -51,9 +51,9 @@
       },
       "splashscreen": {
         "android": {
-          "hdpi": "static/start.png",
-          "xhdpi": "static/start.png",
-          "xxhdpi": "static/start.png"
+          "hdpi": "",
+          "xhdpi": "",
+          "xxhdpi": ""
         }
       },
       "google": {
@@ -91,6 +91,12 @@
         }
       }
     },
-    "allowsInlineMediaPlayback": true
+    "allowsInlineMediaPlayback": true,
+    "safearea": {
+      "background": "#FFFFFF",
+      "bottom": {
+        "offset": "auto"
+      }
+    }
   }
 }
