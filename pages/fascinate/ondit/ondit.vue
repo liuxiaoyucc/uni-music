@@ -5,7 +5,7 @@
 			<view class="home-pic-base">
 				<view class="top-pic">
 					<!-- <img src="https://sinacloud.net/vue-wechat/images/headers/header01.png"> -->
-					<image class="header" src="https://sinacloud.net/vue-wechat/images/headers/header01.png"></image>
+					<image class="header" src="../../../static/fascinate/ondit/bear.jpg"></image>
 				</view>
 				<view class="top-name _ellipsis">Liuxy</view>
 			</view>
@@ -13,20 +13,29 @@
 
 		<view class="moments__post">
 			<view >
-				<image class="post_header" src="https://sinacloud.net/vue-wechat/images/headers/yehua.jpg"></image>
+				<image class="post_header" src="../../../static/fascinate/ondit/header01.jpg"></image>
 			</view>
 			<view class="post_right">
 				<text>张驰</text>
-				<view id="paragraph" class="paragraph">uni-app目前是比较好用的ui,在微信和手机中表现非常好。uni-app目前是比较好用的框架,在微信和手机中表现非常好</view>
+				<view id="paragraph" class="paragraph">uni-app目前是比较好</view>
 				<!-- 伸张链接 -->
 				<!-- <a id="paragraphExtender" class="paragraphExtender">显示全文</a> -->
 				<!-- 相册 -->
 				<view class="thumbnails my-gallery">
 					<view class="thumbnail">
-						<image class="gallery_img" src="https://sinacloud.net/vue-wechat/images/headers/yehua.jpg"></image>
+						<image class="gallery_img" src="../../../static/fascinate/ondit/header02.jpg"></image>
 					</view>
 					<view class="thumbnail">
-						<image class="gallery_img" src="https://sinacloud.net/vue-wechat/images/headers/yehua.jpg"></image>
+						<image class="gallery_img" src="../../../static/fascinate/ondit/header02.jpg"></image>
+					</view>
+					<view class="thumbnail">
+						<image class="gallery_img" src="../../../static/fascinate/ondit/header02.jpg"></image>
+					</view>
+					<view class="thumbnail">
+						<image class="gallery_img" src="../../../static/fascinate/ondit/header02.jpg"></image>
+					</view>
+					<view class="thumbnail">
+						<image class="gallery_img" src="../../../static/fascinate/ondit/header02.jpg"></image>
 					</view>
 				</view>
 				<!-- 资料条 -->
@@ -49,7 +58,7 @@
 		</view>
 		<view class="moments__post">
 			<view>
-				<image class="post_header" src="https://sinacloud.net/vue-wechat/images/headers/yehua.jpg"></image>
+				<image class="post_header" src="../../../static/fascinate/ondit/header02.jpg"></image>
 			</view>
 			<view class="post_right">
 				<!-- 人名链接 -->
@@ -63,10 +72,10 @@
 				<!-- 相册 -->
 				<view class="thumbnails my-gallery">
 					<view class="thumbnail">
-						<image class="gallery_img" src="https://sinacloud.net/vue-wechat/images/headers/yehua.jpg"></image>
+						<image class="gallery_img" src="../../../static/fascinate/ondit/header01.jpg"></image>
 					</view>
 					<view class="thumbnail">
-						<image class="gallery_img" src="https://sinacloud.net/vue-wechat/images/headers/yehua.jpg"></image>
+						<image class="gallery_img" src="../../../static/fascinate/ondit/header01.jpg"></image>
 					</view>
 
 				</view>
@@ -87,43 +96,44 @@
 			<!-- 结束 post -->
 		</view>
 
-		<!-- PhotoSwipe插件需要的元素， 一定要有类名 pswp -->
-		<view class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-			<view class="pswp__bg"></view>
-			<view class="pswp__scroll-wrap">
-				<view class="pswp__container">
-					<view class="pswp__item"></view>
-					<view class="pswp__item"></view>
-					<view class="pswp__item"></view>
+		<view class="moments__post">
+			<view>
+				<image class="post_header" src="../../../static/fascinate/ondit/header02.jpg"></image>
+			</view>
+			<view class="post_right">
+				<!-- 人名链接 -->
+				
+					<text>章德帥</text>
+				
+				<!-- post内容 -->
+				<view id="paragraph" class="paragraph">uni-app目前是比较好用的框架,在微信和手机中表现非常好。uni-app目前是比较好用的框架,在微信和手机中表现非常好</view>
+				<!-- 伸张链接 -->
+				<!-- <a id="paragraphExtender" class="paragraphExtender">显示全文</a> -->
+				<!-- 相册 -->
+				<view class="thumbnails my-gallery">
+					<view class="thumbnail">
+						<image class="gallery_img" src="../../../static/fascinate/ondit/header01.jpg"></image>
+					</view>
+					<view class="thumbnail">
+						<image class="gallery_img" src="../../../static/fascinate/ondit/header01.jpg"></image>
+					</view>
+		
 				</view>
-				<!-- 预览区域顶部的默认UI，可以修改 -->
-				<view class="pswp__ui pswp__ui--hidden">
-					<view class="pswp__top-bar">
-						<!--  与图片相关的操作 -->
-						<view class="pswp__counter"></view>
-						<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-						<!--将分享按钮去掉 -->
-						<!--<button class="pswp__button pswp__button--share" title="Share"></button>-->
-						<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-						<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-						<view class="pswp__preloader">
-							<view class="pswp__preloader__icn">
-								<view class="pswp__preloader__cut">
-									<view class="pswp__preloader__donut"></view>
-								</view>
-							</view>
+				<!-- 资料条 -->
+				<view class="toolbar">
+					<view class="timestamp">17小时前</view>
+					<view>
+						<view id="actionMenu" class="actionMenu slideIn">
+							<view class="actionBtn" id="btnLike"><i class="icon icon-96"></i></view>
+							<view class="actionBtn" id="btnComment"><i class="icon icon-3"></i></view>
 						</view>
 					</view>
-					<view class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-						<view class="pswp__share-tooltip"></view>
-					</view>
-					<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
-					<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
-					<view class="pswp__caption">
-						<view class="pswp__caption__center"></view>
-					</view>
+					<text id="actionToggle" class="actionToggle">..</text>
 				</view>
+				<!-- 赞／评论区 -->
+				<view class="liketext"><i class="icon icon-96"></i><text class="nickname">夜华</text>,<text class="nickname">孙尚香</text></view>
 			</view>
+			<!-- 结束 post -->
 		</view>
 	</view>
 
@@ -218,7 +228,7 @@ export default {
 		position: relative;
 		height: 370px;
 		z-index: 5;
-		background: url(https://sinacloud.net/vue-wechat/images/bg/cover.jpg) no-repeat center center;
+		background: url(../../../static/fascinate/ondit/bgi.jpg) no-repeat center center;
 		background-size: cover;
 		margin-bottom: 20px
 	}
@@ -276,7 +286,8 @@ export default {
 	#moments .moments__post .post_right {
 		font-size: 15px;
 		display: table-cell;
-		padding-left: 10px
+		padding-left: 10px;
+		width: 100%;
 	}
 
 	/* #moments .moments__post .post_right .paragraphExtender {
@@ -303,8 +314,8 @@ export default {
 	}
 
 	#moments .moments__post .thumbnails .thumbnail {
-		width: 80px;
-		height: 80px;
+		width: 150upx;
+		height: 150upx;
 		margin: 3px;
 		margin-left: 0px;
 		background: #757575;
