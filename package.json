@@ -15,7 +15,8 @@
   "license": "ISC",
   "dependencies": {
     "konva": "^2.6.0",
-    "vue-konva": "^2.0.0"
+    "vue-konva": "^2.0.0",
+    "weex-ui": "^0.6.11"
   },
   "devDependencies": {
     "webpack-cli": "^3.2.3"

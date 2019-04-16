@@ -1,18 +1,12 @@
 <template>
 	<view class="content">
-		
-        <view class="uni-padding-wrap uni-common-mt">
-            
-            <view class="uni-title uni-common-mt">
-                <text>\n纵向布局</text>
-            </view>
-            <view class="uni-flex uni-column">
-                <view class="flex-item flex-item-V uni-bg-red">发起请求</view>
-                <view class="flex-item flex-item-V uni-bg-green">上传,下载</view>
-                <view class="flex-item flex-item-V uni-bg-blue">...</view>
-            </view>
-        </view>
-		
+		<view class="uni-padding-wrap uni-common-mt">
+			<view class="uni-flex uni-column">
+				<view class="flex-item flex-item-V uni-bg-red">猿历</view>
+				<view class="flex-item flex-item-V uni-bg-green">饭点</view>
+				<view class="flex-item flex-item-V uni-bg-blue">...</view>
+			</view>
+		</view>
 	</view>
 	
 </template>
@@ -20,63 +14,25 @@
 <script>
 	
 	export default {
-		
-
 		data() {
 			return {
-				title: '功能',
-				data: [],
-				loadMoreText: "加载中...",
-				showLoadMore: false,
-				max: 0
+				
 			}
 		},
 		onLoad() {
-			this.initData();
+			
 		},
 		onUnload() {
-			this.max = 0,
-			this.data = [],
-			this.loadMoreText = "加载更多",
-			this.showLoadMore = false;
-		},
-		onReachBottom() {
-			console.log("onReachBottom");
-			if (this.max > 40) {
-				this.loadMoreText = "没有更多数据了!"
-				return;
-			}
-			this.showLoadMore = true;
-			setTimeout(() => {
-				this.setDate();
-			}, 300);
+			
 		},
 		onPullDownRefresh() {
 			console.log('onPullDownRefresh');
-			this.initData();
+			setTimeout(function() {
+				uni.stopPullDownRefresh();
+			}, 1000);
 		},
 		methods: {
-			initData(){
-				setTimeout(() => {
-					this.max = 0;
-					this.data = [];
-					let data = [];
-					this.max += 10;
-					for (var i = this.max - 9; i < this.max + 1; i++) {
-						data.push(i)
-					}
-					this.data = this.data.concat(data);
-					uni.stopPullDownRefresh();
-				}, 300);
-			},
-			setDate() {
-				let data = [];
-				this.max += 10;
-				for (var i = this.max - 9; i < this.max + 1; i++) {
-					data.push(i)
-				}
-				this.data = this.data.concat(data);
-			}
+			
 		}
 	}
 </script>

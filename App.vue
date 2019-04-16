@@ -3,7 +3,8 @@
 	export default {
 		
 		onLaunch: function () {
-			console.log('App Launch')
+			console.log('onLaunch');
+			uni.setStorageSync('_config', this.$config.systemInfo)
 		},
 		onShow: function () {
 			console.log('App Show')
@@ -18,8 +19,4 @@
 
 <style>
 	@import './common/uni.css';
-	/*每个页面公共css */
-	
-	
-	
 </style>

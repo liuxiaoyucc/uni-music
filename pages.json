@@ -1,97 +1,85 @@
 {
-    "pages" : [
-        //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-        {
-            "path" : "pages/index/index",
-            "style" : {
-                "navigationBarTitleText" : "探索",
-                "h5" : {
-                    "titleNView" : false
-                }
-            }
-        },
-        {
-            "path" : "pages/fascinate/fascinate",
-            "style" : {
-                "navigationBarTitleText" : "功能",
-                "enablePullDownRefresh" : true,
-                "h5" : {
-                    "titleNView" : false
-                }
-            }
-        },
-        {
-            "path" : "pages/me/me",
-            "style" : {
-                "navigationBarTitleText" : "我",
-                "h5" : {
-                    "titleNView" : false
-                }
-            }
-        },
-        {
-            "path" : "pages/login/login",
-            "style" : {
-                "h5" : {
-                    "titleNView" : false
-                },
-                "app-plus" : {}
-            }
-        },
-        {
-            "path" : "pages/reg/reg",
-            "style" : {
-                "navigationBarTitleText" : "注册"
-            }
-        },
-        {
-            "path" : "pages/pwd/pwd",
-            "style" : {
-                "navigationBarTitleText" : "重置密码"
-            }
-        },
-        {
-            "path" : "pages/fascinate/ondit/ondit",
-            "style" : {
-                "navigationBarTitleText" : "他她说",
+	"pages" : [
+		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path" : "pages/rattle/rattle",
+			"style" : {
+				"navigationBarTitleText" : "叨叨",
+				"titleNView" : false
+			}
+		},
+		{
+			"path" : "pages/fascinate/fascinate",
+			"style" : {
+				"navigationBarTitleText" : "实验室",
 				"enablePullDownRefresh" : true,
 				"h5" : {
-				    "titleNView" : false
+					"titleNView" : false
 				}
-            }
-        }
-    ],
-    "globalStyle" : {
-        "navigationBarTextStyle" : "black",
-        "navigationBarTitleText" : "Heartbeat",
-        "navigationBarBackgroundColor" : "#ffffff",
-        "backgroundColor" : "#ffffff"
-    },
-    // "navigationStyle" : "custom" //custom所有窗口都没有顶部导航栏
-    "tabBar" : {
-        "color" : "#000000",
-        "selectedColor" : "#EE2C2C",
-        "backgroundColor" : "#FFFFFF",
-        "borderStyle" : "black", //tabbar边框颜色,只支持黑 白
-        "list" : [
-            {
-                "pagePath" : "pages/index/index",
-                "text" : "探索",
-                "iconPath" : "./static/index_64_f.png", //icon图片路径
-                "selectedIconPath" : "./static/index_81.png" //选中时的图片路径
-            },
-            {
-                "pagePath" : "pages/fascinate/fascinate",
-                "text" : "功能",
-                "iconPath" : "./static/idea_f.png",
-                "selectedIconPath" : "./static/idea_81.png"
-            },
-            {
-                "pagePath" : "pages/me/me",
-                "text" : "我",
-                "iconPath" : "./static/me_81_f.png",
-                "selectedIconPath" : "./static/me_81.png"
-            }
-        ]
-    }
+			}
+		},
+		{
+			"path" : "pages/me/me",
+			"style" : {
+				"navigationBarTitleText" : "Home",
+				"h5" : {
+					"titleNView" : false
+				}
+			}
+		},
+		{
+			"path" : "pages/login/login",
+			"style" : {
+				"h5" : {
+					"titleNView" : false
+				},
+				"app-plus" : {}
+			}
+		},
+		{
+			"path" : "pages/reg/reg",
+			"style" : {
+				"navigationBarTitleText" : "注册"
+			}
+		},
+		{
+			"path" : "pages/pwd/pwd",
+			"style" : {
+				"navigationBarTitleText" : "重置密码"
+			}
+		}
+	],
+	"globalStyle" : {
+		"navigationBarTextStyle" : "black",
+		"navigationBarTitleText" : "Heartbeat",
+		"navigationBarBackgroundColor" : "#ffffff",
+		"backgroundColor" : "#ffffff"
+	}
+	// "navigationStyle" : "custom" //custom所有窗口都没有顶部导航栏
+// 	"tabBar" : {
+// 		"color" : "#000000",
+// 		"selectedColor" : "#EE2C2C",
+// 		"backgroundColor" : "#FFFFFF",
+// 		"borderStyle" : "black", //tabbar边框颜色,只支持黑 白
+// 		"list" : [
+// 			{
+// 				"pagePath" : "pages/rattle/rattle",
+// 				"text" : "叨叨",
+// 				"iconPath" : "/static/index_64_f.png", //icon图片路径
+// 				"selectedIconPath" : "/static/index_81.png" //选中时的图片路径
+// 			},
+// 			{
+// 				"pagePath" : "pages/fascinate/fascinate",
+// 				"text" : "实验室",
+// 				"iconPath" : "/static/idea_f.png",
+// 				"selectedIconPath" : "/static/idea_81.png"
+// 			},
+// 			{
+// 				"pagePath" : "pages/me/me",
+// 				"text" : "Home",
+// 				"iconPath" : "/static/me_81_f.png",
+// 				"selectedIconPath" : "/static/me_81.png"
+// 			}
+// 		]
+// 	}
 }

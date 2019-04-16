@@ -1,0 +1,85 @@
+<template>
+	<div class="page">
+		<uni-tabs @change="changeTab" :index="tabIndex">
+			<uni-tab-bar :drag="true" :tab-bars="tabBars" :tab-index="tabIndex"></uni-tab-bar>
+
+			<uni-tab-content>
+				<scroller>
+					<text>我的</text>
+				</scroller>
+				<scroller>
+					<text>发现</text>
+				</scroller>
+				<scroller>
+					<text>朋友</text>
+				</scroller>
+				<scroller>
+					<text>视频</text>
+				</scroller>
+			</uni-tab-content>
+		</uni-tabs>
+	</div>
+</template>
+
+<script>
+	import uniTabContent from '@/components/tab-nvue/tabContent.nvue'
+	import uniTabBar from '@/components/tab-nvue/tabBar.nvue'
+	import uniTabs from '@/components/tab-nvue/tabs.nvue'
+	import uniMediaList from '@/components/tab-nvue/mediaList.nvue'
+	const dom = weex.requireModule('dom')
+	export default {
+		components: {
+			uniTabContent,
+			uniTabBar,
+			uniTabs,
+			uniMediaList
+		},
+		data() {
+			return {
+				config: {},
+				tabIndex: 0,
+				tabBars: [{
+					name: '我的',
+					id: 'mine'
+				}, {
+					name: '发现',
+					id: 'find'
+				}, {
+					name: '朋友',
+					id: 'friend'
+				}, {
+					name: '视频',
+					id: 'video'
+				}]
+			}
+		},
+		created() {
+			setTimeout(() => {
+				uni.getStorage({
+					key: '_config',
+					success: (res) => {
+						this.config = res.data;
+					}
+				})
+			}, 100);
+		},
+		methods: {
+			async changeTab(e) {
+				this.tabIndex = e.index;
+			}
+		}
+	}
+</script>
+
+<style>
+	.page {
+		width: 750px;
+		background-color: #FF0000;
+	}
+
+	.page-background-image {
+		position: fixed;
+		width: 750px;
+		height: 750px;
+	}
+</style>
