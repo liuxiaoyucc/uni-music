@@ -19,6 +19,8 @@
     "weex-ui": "^0.6.11"
   },
   "devDependencies": {
-    "webpack-cli": "^3.2.3"
+    "babel-plugin-component": "^1.1.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "webpack-cli": "^3.3.0"
   }
 }

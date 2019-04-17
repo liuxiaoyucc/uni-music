@@ -1,5 +1,6 @@
 <script>
-	import uniTabContent from './tabContent.nvue'
+	import lxyTabContent from './lxy_tab_content.nvue'
+
 	export default {
 		props: {
 			index: {
@@ -13,7 +14,7 @@
 			}
 		},
 		components: {
-			uniTabContent,
+			lxyTabContent,
 		},
 		render(createElement) {
 			const vnodes = this.$slots.default;
@@ -24,9 +25,9 @@
 					if (!vnode || !vnode.componentOptions) {
 						continue
 					}
-					if (vnode.componentOptions.tag === 'uni-tab-content') {
+					if (vnode.componentOptions.tag === 'lxy-tab-content') {
 
-						const newVNode = createElement('uni-tab-content', {
+						const newVNode = createElement('lxy-tab-content', {
 							staticClass: vnode.data.staticClass,
 							'class': vnode.data['class'],
 							style: vnode.data.style
@@ -48,7 +49,7 @@
 						newVNode.data.on.change = this._change
 						newVNodes.push(newVNode)
 					}
-					if (vnode.componentOptions.tag === 'uni-tab-bar') {
+					if (vnode.componentOptions.tag === 'lxy-tab-bar') {
 						if (!vnode.componentOptions.listeners) { //监听子元素传递过来的事件
 							vnode.componentOptions.listeners = Object.create(null)
 						}

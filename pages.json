@@ -48,7 +48,13 @@
 				"navigationBarTitleText" : "重置密码"
 			}
 		}
-	],
+	    ,{
+            "path" : "pages/search/search",
+            "style" : {
+				"titleNView" : false
+			}
+        }
+    ],
 	"globalStyle" : {
 		"navigationBarTextStyle" : "black",
 		"navigationBarTitleText" : "Heartbeat",

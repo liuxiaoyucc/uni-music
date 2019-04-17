@@ -1,9 +1,12 @@
 <template>
 	<div class="page">
-		<uni-tabs @change="changeTab" :index="tabIndex">
-			<uni-tab-bar :drag="true" :tab-bars="tabBars" :tab-index="tabIndex"></uni-tab-bar>
+		<lxy-tabs @change="changeTab" :index="tabIndex">
+			
+			<lxy-tab-bar :statusBarHeight="config.statusBarHeight" :drag="true" :tab-bars="tabBars" :tab-index="tabIndex">
+				<div class="status-bar" :style="{height: config.statusBarHeight+'wx'}"></div>
+			</lxy-tab-bar>
 
-			<uni-tab-content>
+			<lxy-tab-content>
 				<scroller>
 					<text>我的</text>
 				</scroller>
@@ -16,28 +19,27 @@
 				<scroller>
 					<text>视频</text>
 				</scroller>
-			</uni-tab-content>
-		</uni-tabs>
+			</lxy-tab-content>
+			
+		</lxy-tabs>
 	</div>
 </template>
 
 <script>
-	import uniTabContent from '@/components/tab-nvue/tabContent.nvue'
-	import uniTabBar from '@/components/tab-nvue/tabBar.nvue'
-	import uniTabs from '@/components/tab-nvue/tabs.nvue'
-	import uniMediaList from '@/components/tab-nvue/mediaList.nvue'
+	import lxyTabContent from '@/components/lxy-tab-nvue/lxy_tab_content.nvue'
+	import lxyTabBar from '@/components/lxy-tab-nvue/lxy_tab_bar.nvue'
+	import lxyTabs from '@/components/lxy-tab-nvue/lxy_tabs.nvue'
 	const dom = weex.requireModule('dom')
 	export default {
 		components: {
-			uniTabContent,
-			uniTabBar,
-			uniTabs,
-			uniMediaList
+			lxyTabContent,
+			lxyTabBar,
+			lxyTabs
 		},
 		data() {
 			return {
 				config: {},
-				tabIndex: 0,
+				tabIndex: 1,
 				tabBars: [{
 					name: '我的',
 					id: 'mine'
@@ -58,7 +60,7 @@
 				uni.getStorage({
 					key: '_config',
 					success: (res) => {
-						this.config = res.data;
+						this.config = JSON.parse(res.data);
 					}
 				})
 			}, 100);
@@ -72,6 +74,11 @@
 </script>
 
 <style>
+	.test{
+		width: 500px;
+		height: 500px;
+		background-color: #0000FF;
+	}
 	.page {
 		width: 750px;
 		background-color: #FF0000;
@@ -81,5 +88,9 @@
 		position: fixed;
 		width: 750px;
 		height: 750px;
+	}
+	.status-bar {
+		width: 750px;
+		background-color: #FF0000;
 	}
 </style>
