@@ -1,6 +1,5 @@
 <template>
 	<div>
-		<div class="statusBar" :style="{height: statusBarHeight+'wx'}"></div>
 
 		<div v-if="drag" class="wrap tab-bar-scroll">
 			<div class="menu" @click="menuClick">
@@ -26,7 +25,7 @@
 			</div>
 		</div>
 
-		<wxc-popup width="650" stand-out="5" popup-color="#FF0000" :show="isBottomShow" @wxcPopupOverlayClicked="popupOverlayBottomClick" pos="left">
+		<wxc-popup :width="sideBarWidth" popupColor="rgba(0, 0, 0, 0.3)" :show="isBottomShow" @wxcPopupOverlayClicked="popupOverlayBottomClick" pos="left">
 			<slot></slot>
 		</wxc-popup>
 
@@ -45,9 +44,9 @@
 			WxcPopup
 		},
 		props: {
-			statusBarHeight: {
+			sideBarWidth: {
 				type: Number,
-				default:25
+				default: 200
 			},
 			drag: {
 				type: Boolean,
@@ -86,9 +85,7 @@
 			},
 			searchClick() {
 				uni.navigateTo({
-					url:'/pages/search/search',
-					animationType:'fade-in',
-					animationDuration:400
+					url:'/pages/search/search'
 				})
 			},
 			async change(index, e) {
@@ -170,11 +167,6 @@
 		color: #FFFFFF;
 		font-weight: bold;
 		font-size: 30px;
-	}
-
-	.statusBar {
-		width: 750px;
-		background-color: rgba(0, 0, 0, 0.3);
 	}
 
 	.menu {

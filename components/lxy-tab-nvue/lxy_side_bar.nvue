@@ -1,0 +1,51 @@
+<template>
+	<div class="content" :style="{width:width+'px'}">
+		<image resize="cover" :style="{width:width+'px',height:height+'wx'}" :src="bgi"></image>
+	</div>
+</template>
+
+<script>
+	
+
+
+	export default {
+		components: {
+
+		},
+		props: {
+			width: {
+				type: Number,
+				default: 650
+			},
+			height: {
+				type: Number,
+				default:0
+			},
+			bgi: {
+				type: String,
+				default:''
+			}
+		},
+		data() {
+			return {
+				
+			}
+		},
+		created(){
+			
+		},
+		watch: {
+
+		},
+		methods: {
+
+		}
+
+	}
+</script>
+
+<style>
+	.content {
+		background-color: rgba(0, 0, 0, 0.3);
+	}
+</style>

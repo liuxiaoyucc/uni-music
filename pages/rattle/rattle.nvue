@@ -1,9 +1,12 @@
 <template>
 	<div class="page">
+		<image v-if="deviceHeight" :style="{height:deviceHeight+'wx'}" :placeholder="bgi" resize="cover" class="bg-image" :src="bgi"></image>
+		<div class="status-bar" :style="{height: config.statusBarHeight+'wx'}"></div>
+
 		<lxy-tabs @change="changeTab" :index="tabIndex">
-			
-			<lxy-tab-bar :statusBarHeight="config.statusBarHeight" :drag="true" :tab-bars="tabBars" :tab-index="tabIndex">
-				<div class="status-bar" :style="{height: config.statusBarHeight+'wx'}"></div>
+
+			<lxy-tab-bar :sideBarWidth="sideBarWidth" drag="true" :tab-bars="tabBars" :tab-index="tabIndex">
+				<lxy-side-bar :bgi="bgi" :height="deviceHeight" :width="sideBarWidth"></lxy-side-bar>
 			</lxy-tab-bar>
 
 			<lxy-tab-content>
@@ -29,15 +32,23 @@
 	import lxyTabContent from '@/components/lxy-tab-nvue/lxy_tab_content.nvue'
 	import lxyTabBar from '@/components/lxy-tab-nvue/lxy_tab_bar.nvue'
 	import lxyTabs from '@/components/lxy-tab-nvue/lxy_tabs.nvue'
+	import lxySideBar from '@/components/lxy-tab-nvue/lxy_side_bar.nvue';
+	
+	import style from '@/config/style.js';
+	
 	const dom = weex.requireModule('dom')
 	export default {
 		components: {
 			lxyTabContent,
 			lxyTabBar,
-			lxyTabs
+			lxyTabs,
+			lxySideBar
 		},
 		data() {
 			return {
+				sideBarWidth:650,
+				bgi: style.BGI,
+				deviceHeight:0,
 				config: {},
 				tabIndex: 1,
 				tabBars: [{
@@ -56,14 +67,13 @@
 			}
 		},
 		created() {
-			setTimeout(() => {
-				uni.getStorage({
-					key: '_config',
-					success: (res) => {
-						this.config = JSON.parse(res.data);
-					}
-				})
-			}, 100);
+			uni.getStorage({
+				key: '_config',
+				success: (res) => {
+					this.config = JSON.parse(res.data);
+					this.deviceHeight = this.config.windowHeight;
+				}
+			})
 		},
 		methods: {
 			async changeTab(e) {
@@ -81,16 +91,15 @@
 	}
 	.page {
 		width: 750px;
-		background-color: #FF0000;
+		background-color: rgba(0,0,0,0.3);
+		
 	}
-
-	.page-background-image {
-		position: fixed;
+	.bg-image{
 		width: 750px;
-		height: 750px;
+		position: absolute;
 	}
 	.status-bar {
 		width: 750px;
-		background-color: #FF0000;
+		background-color: rgba(0, 0, 0, 0.3);
 	}
 </style>
