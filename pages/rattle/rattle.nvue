@@ -1,6 +1,7 @@
 <template>
 	<div class="page">
-		<image v-if="deviceHeight" :style="{height:deviceHeight+'wx'}" :placeholder="bgi" resize="cover" class="bg-image" :src="bgi"></image>
+		<image v-if="deviceHeight" :style="{height:deviceHeight+'wx'}" :placeholder="bgi" resize="cover" class="bg-image"
+		 :src="bgi"></image>
 		<div class="status-bar" :style="{height: config.statusBarHeight+'wx'}"></div>
 
 		<lxy-tabs @change="changeTab" :index="tabIndex">
@@ -10,20 +11,20 @@
 			</lxy-tab-bar>
 
 			<lxy-tab-content>
-				<scroller>
-					<text>我的</text>
+				<scroller v-for="(tab,tIndex) in tabBars" :key="tIndex">
+					<div class="find" v-if="tab.id == 'find'">
+						<slider index="0" class="slider" interval="5000" auto-play="true" show-indicators="true">
+							<div class="frame" v-for="img in imageList">
+								<image class="image" resize="cover" :src="img.src"></image>
+							</div>
+							<indicator item-size="12" item-color="#ddd" item-selected-color="#FF0000" class="indicator"></indicator>
+						</slider>
+					</div>
+					<div v-else>{{tab.name}}</div>
 				</scroller>
-				<scroller>
-					<text>发现</text>
-				</scroller>
-				<scroller>
-					<text>朋友</text>
-				</scroller>
-				<scroller>
-					<text>视频</text>
-				</scroller>
+
 			</lxy-tab-content>
-			
+
 		</lxy-tabs>
 	</div>
 </template>
@@ -33,9 +34,10 @@
 	import lxyTabBar from '@/components/lxy-tab-nvue/lxy_tab_bar.nvue'
 	import lxyTabs from '@/components/lxy-tab-nvue/lxy_tabs.nvue'
 	import lxySideBar from '@/components/lxy-tab-nvue/lxy_side_bar.nvue';
-	
+
+
 	import style from '@/config/style.js';
-	
+
 	const dom = weex.requireModule('dom')
 	export default {
 		components: {
@@ -46,9 +48,9 @@
 		},
 		data() {
 			return {
-				sideBarWidth:650,
+				sideBarWidth: 650,
 				bgi: style.BGI,
-				deviceHeight:0,
+				deviceHeight: 0,
 				config: {},
 				tabIndex: 1,
 				tabBars: [{
@@ -63,6 +65,25 @@
 				}, {
 					name: '视频',
 					id: 'video'
+				}],
+				imageList: [{
+					src: 'http://p1.music.126.net/jhisii20t8HmHuCy-Q7dYA==/109951164008114134.jpg'
+				}, {
+					src: 'http://p1.music.126.net/0yrVUf_n_R5wmRqNu1gKlQ==/109951164008902192.jpg'
+				}, {
+					src: 'http://p1.music.126.net/V1IYb7fOYnNMKoZB0Hsw9g==/109951164008749539.jpg'
+				},{
+					src: 'http://p1.music.126.net/8Cf0kANiLi4PI3owO9yFsA==/109951164008093274.jpg'
+				}, {
+					src: 'http://p1.music.126.net/-gC1wl4oNcs8QrkOq7sKYg==/109951164008314890.jpg'
+				}, {
+					src: 'http://p1.music.126.net/Q1El_3ISdo3Vw9bFMUp_9w==/109951164008139402.jpg'
+				}, {
+					src: 'http://p1.music.126.net/Pm9pobge14ZnFsvXJTqHVA==/109951164008109951.jpg'
+				}, {
+					src: 'http://p1.music.126.net/BqsOL4-XjJZNLh2jHvUA4Q==/109951164008463728.jpg'
+				}, {
+					src: 'http://p1.music.126.net/V1IYb7fOYnNMKoZB0Hsw9g==/109951164008749539.jpg'
 				}]
 			}
 		},
@@ -84,22 +105,53 @@
 </script>
 
 <style>
-	.test{
+	.test {
 		width: 500px;
 		height: 500px;
 		background-color: #0000FF;
 	}
+
 	.page {
 		width: 750px;
-		background-color: rgba(0,0,0,0.3);
-		
+		background-color: rgba(0, 0, 0, 0.3);
+
 	}
-	.bg-image{
+
+	.bg-image {
 		width: 750px;
 		position: absolute;
 	}
+
 	.status-bar {
 		width: 750px;
 		background-color: rgba(0, 0, 0, 0.3);
+	}
+
+	.find {
+		width: 750px;
+		flex-direction: column;
+		padding-top: 20px;
+	}
+
+	.image {
+		width: 700px;
+		height: 260px;
+		left: 25px;
+		border-radius: 10px;
+		position: absolute;
+	}
+
+	.slider {
+		width: 750px;
+		height: 260px;
+	}
+
+	.indicator {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		height: 45px;
+		background-color: rgba(0, 0, 0, 0.0);
 	}
 </style>
