@@ -13,10 +13,10 @@ view{
 	font-size:28rpx; 
 	line-height:1.8;
 }
-._progress, checkbox-group{
+progress, checkbox-group{
 	width: 100%;
 }
-._form {
+form {
 	width: 100%;
 }
 .uni-flex {
@@ -186,7 +186,7 @@ view{
 .uni-btn-v{
 	padding:10rpx 0;
 }
-.uni-btn-v ._button{margin:20rpx 0;}
+.uni-btn-v button{margin:20rpx 0;}
 
 
 	
@@ -223,7 +223,7 @@ view{
 radio-group, checkbox-group{
 	width:100%;
 }
-radio-group ._label, checkbox-group ._label{
+radio-group label, checkbox-group label{
 	padding-right:20rpx;
 }
 .uni-form-item .with-fun{
@@ -1123,7 +1123,7 @@ radio-group ._label, checkbox-group ._label{
 	        transform: scaleY(.5);
 	background-color: #c8c7cc;
 }
-.uni-input-row ._label {
+.uni-input-row label {
 	line-height: 70rpx;
 }
 
@@ -1135,7 +1135,7 @@ radio-group ._label, checkbox-group ._label{
 	width:100%;
 	background:#FFF;
 }
-.uni-textarea ._textarea{
+.uni-textarea textarea{
 	width:96%;
 	padding:18rpx 2%;
 	line-height:1.6;
@@ -1731,12 +1731,4 @@ radio-group ._label, checkbox-group ._label{
         -ms-transform: translateY(50%);
             transform: translateY(50%);
 }
-
-
-	
-
-/*每个页面公共css */
-
-
-
 

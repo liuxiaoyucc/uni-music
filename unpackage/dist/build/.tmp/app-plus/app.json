@@ -1,11 +1,11 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/fascinate/fascinate",
     "pages/me/me",
     "pages/login/login",
     "pages/reg/reg",
-    "pages/pwd/pwd"
+    "pages/pwd/pwd",
+    "pages/search/search"
   ],
   "subPackages": [],
   "window": {
@@ -14,34 +14,23 @@
     "navigationBarBackgroundColor": "#ffffff",
     "backgroundColor": "#ffffff"
   },
-  "tabBar": {
-    "color": "#000000",
-    "selectedColor": "#EE2C2C",
-    "backgroundColor": "#FFFFFF",
-    "borderStyle": "black",
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "text": "探索",
-        "iconPath": "./static/index_64_f.png",
-        "selectedIconPath": "./static/index_81.png"
-      },
-      {
-        "pagePath": "pages/fascinate/fascinate",
-        "text": "功能",
-        "iconPath": "./static/idea_f.png",
-        "selectedIconPath": "./static/idea_81.png"
-      },
-      {
-        "pagePath": "pages/me/me",
-        "text": "我",
-        "iconPath": "./static/me_81_f.png",
-        "selectedIconPath": "./static/me_81.png"
+  "usingComponents": {},
+  "nvue": {
+    "pages": {
+      "pages/rattle/rattle.html": {
+        "window": {
+          "usingComponents": {},
+          "navigationBarTitleText": "叨叨",
+          "titleNView": false
+        }
       }
-    ]
+    },
+    "entryPagePath": "pages/rattle/rattle"
   },
   "splashscreen": {
-    "autoclose": true
+    "alwaysShowBeforeRender": true,
+    "autoclose": false
   },
-  "appname": "Heartbeat"
+  "appname": "Heartbeat",
+  "compilerVersion": "1.9.2"
 }

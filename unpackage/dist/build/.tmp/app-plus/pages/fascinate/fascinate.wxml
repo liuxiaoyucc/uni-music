@@ -1,2 +1,2 @@
 <import src="./fascinate.vue.wxml" />
-    <template is="35fbf228" data="{{ ...$root['0'], $root }}"/>
+    <template is="798a9ae8" data="{{ ...$root['0'], $root }}"/>
