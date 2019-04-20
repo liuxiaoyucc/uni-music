@@ -1,6 +1,6 @@
 <template>
-	<div class="content" :style="{width:width+'px'}">
-		<image resize="cover" :style="{width:width+'px',height:height+'wx'}" :src="bgi"></image>
+	<div class="wyy-bg-color" :style="{width:width+'px'}">
+		
 	</div>
 </template>
 
@@ -20,10 +20,6 @@
 			height: {
 				type: Number,
 				default:0
-			},
-			bgi: {
-				type: String,
-				default:''
 			}
 		},
 		data() {
@@ -43,9 +39,6 @@
 
 	}
 </script>
-
+<style src="@/common/wyy.css"></style>
 <style>
-	.content {
-		background-color: rgba(0, 0, 0, 0.3);
-	}
 </style>

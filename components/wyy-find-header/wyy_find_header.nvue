@@ -1,0 +1,60 @@
+<template>
+	<div class="find">
+		<div class="wyy-main-color bg-slider"></div>
+		<div class="top">
+			<slider index="0" class="slider" interval="5000" auto-play="true" show-indicators="true">
+				<div class="frame" v-for="(img,iIndex) in imageList" :key="iIndex">
+					<image class="image" resize="cover" :src="img.src"></image>
+				</div>
+				<indicator item-size="12" item-color="#ddd" item-selected-color="#FF0000" class="indicator"></indicator>
+			</slider>
+			<div class="category-bars">
+				<div class="c-bar" v-for="(cBar,cbIndex) in categoryBars" :key="cbIndex">
+					<image class="cBarImage" resize="cover" :src="cBar.iconSrc"></image>
+					<div class="cBarText"><text style="font-size: 17px;">{{cBar.name}}</text></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<script>
+	
+
+
+	export default {
+		components: {
+
+		},
+		props: {
+			imageList:{
+				type:Array,
+				default:[]
+			},
+			categoryBars:{
+				type:Array,
+				default:[]
+			}
+		},
+		data() {
+			return {
+				
+			}
+		},
+		created(){
+			
+		},
+		watch: {
+
+		},
+		methods: {
+
+		}
+
+	}
+</script>
+<style src="@/common/wyy.css"></style>
+<style src="@/components/wyy-find-header/wyy_find_header.css"></style>
+<style>
+	
+</style>

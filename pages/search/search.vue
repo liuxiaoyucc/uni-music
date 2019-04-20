@@ -1,6 +1,6 @@
 <template>
-	<view class="page">
-		<!-- <image class="bg-image" mode="aspectFill" :src="bgi"></image> -->
+	<view class="wyy-main-color page">
+		
 	</view>
 </template>
 
@@ -10,7 +10,7 @@
 	export default {
 		data() {
 			return {
-				bgi:style.BGI
+				
 			}
 		},
 		methods: {
@@ -20,12 +20,7 @@
 </script>
 
 <style>
-	page{
-		background: #FF0000;
-	}
-	/* .bg-image{
+	.page{
 		width: 750upx;
-		height: 100%;
-		position: absolute;
-	} */
+	}
 </style>

@@ -1,7 +1,7 @@
 <template>
 	<div>
 
-		<div v-if="drag" class="wrap tab-bar-scroll">
+		<div v-if="drag" class="wrap tab-bar-scroll wyy-main-color">
 			<div class="menu" @click="menuClick">
 				<image class="menu-icon" src="../../static/menu.png"></image>
 			</div>
@@ -25,7 +25,7 @@
 			</div>
 		</div>
 
-		<wxc-popup :width="sideBarWidth" popupColor="rgba(0, 0, 0, 0.3)" :show="isBottomShow" @wxcPopupOverlayClicked="popupOverlayBottomClick" pos="left">
+		<wxc-popup :width="sideBarWidth" :show="isBottomShow" @wxcPopupOverlayClicked="popupOverlayBottomClick" pos="left">
 			<slot></slot>
 		</wxc-popup>
 
@@ -117,58 +117,46 @@
 		}
 	};
 </script>
+
+<style src="@/common/wyy.css"></style>
 <style>
-	.demo-image{
-		width: 200px;
-		height: 200px;
-	}
 	.wrap {
 		height: 90px;
 		width: 750px;
 		flex-direction: row;
-
 		font-size: 28px;
-		background-color: rgba(0, 0, 0, 0.3);
-
 	}
-
 	.tab-bar {
 		justify-content: space-between;
 		padding-left: 30px;
 		padding-right: 30px;
 	}
-
 	.scroll {
 		height: 90px;
 		width: 590px;
 		flex-direction: row;
 		justify-content: center;
 	}
-
 	.tab-bar-item {
 		height: 90px;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
 	}
-
 	.tab-bar-scroll-width {
 		width: 100px;
 	}
-
 	.tab-bar-title {
 		height: 90px;
 		line-height: 90px;
 		font-size: 26px;
 		color: #DCDCDC;
 	}
-
 	.active {
 		color: #FFFFFF;
 		font-weight: bold;
 		font-size: 30px;
 	}
-
 	.menu {
 		width: 80px;
 		height: 90px;
