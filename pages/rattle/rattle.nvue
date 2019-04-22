@@ -9,9 +9,7 @@
 
 			<lxy-tab-content>
 				<scroller v-for="(tab,tIndex) in tabBars" :key="tIndex">
-					<!-- <wyy-find-header :imageList="imageList" :categoryBars="categoryBars"></wyy-find-header> -->
-
-					<wyy-find-header v-if="tab.id == 'find'" :imageList="imageList" :categoryBars="categoryBars"></wyy-find-header>
+					<wyy-find v-if="tab.id == 'find'" :imageList="imageList" :categoryBars="categoryBars"></wyy-find>
 					<div v-else>{{tab.name}}</div>
 				</scroller>
 			</lxy-tab-content>
@@ -25,7 +23,7 @@
 	import lxyTabBar from '@/components/lxy-tab-nvue/lxy_tab_bar.nvue'
 	import lxyTabs from '@/components/lxy-tab-nvue/lxy_tabs.nvue'
 	import lxySideBar from '@/components/lxy-tab-nvue/lxy_side_bar.nvue';
-	import wyyFindHeader from '@/components/wyy-find-header/wyy_find_header.nvue';
+	import wyyFind from '@/components/wyy-find/wyy_find.nvue';
 
 
 	import style from '@/config/style.js';
@@ -39,7 +37,7 @@
 			lxyTabBar,
 			lxyTabs,
 			lxySideBar,
-			wyyFindHeader
+			wyyFind
 		},
 		data() {
 			return {

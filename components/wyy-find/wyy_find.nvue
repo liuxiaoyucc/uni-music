@@ -17,17 +17,20 @@
 				</div>
 			</div>
 
-			<wyy-find-recommend></wyy-find-recommend>
-			<wyy-find-recommend></wyy-find-recommend>
+			<wyy-find-recommend showImageMask=true></wyy-find-recommend>
+			<wyy-find-fresh></wyy-find-fresh>
 		</div>
 	</div>
 </template>
 
 <script>
 	import wyyFindRecommend from '@/components/wyy-find-recommend/wyy_find_recommend.nvue';
+	import wyyFindFresh from '@/components/wyy-find-fresh/wyy_find_fresh.nvue';
+
 	export default {
 		components: {
-			wyyFindRecommend
+			wyyFindRecommend,
+			wyyFindFresh
 		},
 		props: {
 			imageList: {
@@ -81,7 +84,7 @@
 	}
 </script>
 <style src="@/common/wyy.css"></style>
-<style src="@/components/wyy-find-header/wyy_find_header.css"></style>
+<style src="@/components/wyy-find/wyy_find.css"></style>
 <style>
 
 </style>

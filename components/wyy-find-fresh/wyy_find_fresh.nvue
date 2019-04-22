@@ -1,0 +1,120 @@
+<template>
+	<div class="find-recommend">
+
+		<div class="title">
+			<div class="title-left">
+				<div class="title-name" v-for="(title,tIndex) in freshData" :key="tIndex" @click="changeIndex(tIndex)">
+					<text :class="[titleIndex == tIndex ? 'title-active' : 'title-common' ]">{{title.title+''}}</text>
+				</div>
+			</div>
+			<div class="vertical"></div>
+			<div class="title-right" @click="toMusicList">
+				<text class="title-handle">{{freshData[titleIndex].handle}}</text>
+			</div>
+		</div>
+		
+		<slider :index="titleIndex" class="slider" scrollable=false>
+			<div class="frame" v-for="(data,dIndex) in freshData" :key="dIndex">
+				<div class="music-lists">
+					<div class="music-list" v-for="(musicList,mlIndex) in data.data" :key="mlIndex">
+						<image class="ml-bg-image" resize="cover" :src="musicList.imageSrc"></image>
+						<div class="music-list-header" v-if="showImageMask">
+							<text class="favorite-num">{{musicList.favoriteNum+'万'}}</text>
+						</div>
+						<div class="music-list-footer">
+							<text class="list-name">{{musicList.name}}</text>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</slider>
+
+	</div>
+</template>
+
+<script>
+	export default {
+
+		components: {
+
+		},
+		props: {
+			showImageMask: {
+				type: Boolean,
+				default: false
+			}
+		},
+		data() {
+			return {
+				titleIndex:0,
+				imageInfo:[],
+				freshData: [{
+						title: "新碟",
+						handle:'更多新碟',
+						data: [{
+								name: "猫的生存法则",
+								imageSrc: "https://p1.music.126.net/7Od84R9fZK6FXTeOsJuwIQ==/109951164017571904.jpg?param=400y400",
+								favoriteNum: 113
+							},
+							{
+								name: "大碗宽面",
+								imageSrc: "http://p4.music.126.net/yDFbKhM9wIO0GWEuOvxhVg==/109951164007799327.jpg?param=400y400",
+								favoriteNum: 537
+							},
+							{
+								name: "Earth",
+								imageSrc: "http://p3.music.126.net/c3Hk8QZSvWg-zai7A77bAQ==/109951164008979507.jpg?param=400y400",
+								favoriteNum: 113
+							}
+						]
+					},
+					{
+						title: "新歌",
+						handle:'新歌推荐',
+						data: [{
+								name: "归去来兮",
+								imageSrc: "http://p2.music.126.net/H6dt7IgvXNWhRM_w7XbcqQ==/109951163990575387.jpg?param=400y400",
+								favoriteNum: 113
+							},
+							{
+								name: "Hard To Get",
+								imageSrc: "http://p1.music.126.net/t9biqeqU7UQLuC-rKP0eqA==/109951164009647158.jpg?param=400y400",
+								favoriteNum: 113
+							},
+							{
+								name: "今天也想见到你",
+								imageSrc: "http://p1.music.126.net/NsQayd9eEolhYXAYm-gTEw==/109951163940822824.jpg?param=400y400",
+								favoriteNum: 113
+							}
+						]
+					}
+				]
+			}
+		},
+		created() {
+
+		},
+		watch: {
+			
+		},
+		computed: {
+			
+		},
+		methods: {
+			toMusicList() {
+				console.log('toMusicList');
+			},
+			changeIndex(tIndex){
+				this.titleIndex = tIndex;
+			}
+		}
+
+
+	}
+</script>
+
+<style src="@/components/wyy-find-fresh/wyy_find_fresh.css"></style>
+<style>
+
+</style>

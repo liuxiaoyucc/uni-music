@@ -13,7 +13,7 @@
 		<div class="music-lists">
 			<div class="music-list" v-for="(musicList,mlIndex) in musicLists" :key="mlIndex">
 				<image class="ml-bg-image" resize="cover" :src="musicList.imageSrc"></image>
-				<div class="music-list-header">
+				<div class="music-list-header" v-if="showImageMask">
 					<text class="favorite-num">{{musicList.favoriteNum+'万'}}</text>
 				</div>
 
@@ -36,8 +36,10 @@
 
 		},
 		props: {
-
-
+			showImageMask: {
+				type: Boolean,
+				default : false
+			}
 		},
 		data() {
 			return {
