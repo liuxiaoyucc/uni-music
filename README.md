@@ -1,8 +1,15 @@
-# heartbeat
+# CloudMusic
 
 #### Description
-my first uni-app project named heartbeat !
-
+##### 絮叨
+* 我是个前端小白
+* 网易云音乐页面太好看了,我们来clone一个吧! 有兴趣的小伙伴可以联系我一起加入
+##### 技术栈
+* VueJs
+* uni-app(基于Vue,一次开发,多端运行,简单上手)
+* Weex(使用流行的 Web 开发体验来开发高性能原生应用的框架)
+* PHP (后台api编写预计使用php+restful)
+* CodeIgniter (php框架)
 #### Software Architecture
 Software architecture description
 
