@@ -5,7 +5,7 @@
     "iPad"
   ],
   "id": "__UNI__112FF25",
-  "name": "Heartbeat",
+  "name": "网易云音乐",
   "version": {
     "name": "1.0.0",
     "code": "100"
@@ -53,7 +53,7 @@
           "xxxhdpi": "unpackage/res/icons/192x192.png"
         },
         "ios": {
-          "appstore": "static/logo.png",
+          "appstore": "static/wyy_logo.png",
           "ipad": {
             "app": "unpackage/res/icons/76x76.png",
             "app@2x": "unpackage/res/icons/152x152.png",
