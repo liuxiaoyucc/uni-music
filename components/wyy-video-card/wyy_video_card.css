@@ -1,0 +1,9 @@
+.header{
+	flex-direction: row;
+}
+.video-title{
+	flex-direction: row;
+}
+.card-footer{
+	flex-direction: row;
+}

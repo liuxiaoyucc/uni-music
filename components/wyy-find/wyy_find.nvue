@@ -19,6 +19,8 @@
 
 			<wyy-find-recommend showImageMask=true></wyy-find-recommend>
 			<wyy-find-fresh></wyy-find-fresh>
+			<wyy-video-card></wyy-video-card>
+			
 		</div>
 	</div>
 </template>
@@ -26,11 +28,13 @@
 <script>
 	import wyyFindRecommend from '@/components/wyy-find-recommend/wyy_find_recommend.nvue';
 	import wyyFindFresh from '@/components/wyy-find-fresh/wyy_find_fresh.nvue';
+	import wyyVideoCard from '@/components/wyy-video-card/wyy_video_card.nvue';
 
 	export default {
 		components: {
 			wyyFindRecommend,
-			wyyFindFresh
+			wyyFindFresh,
+			wyyVideoCard
 		},
 		props: {
 			imageList: {
@@ -44,7 +48,7 @@
 		},
 		data() {
 			return {
-				p: ''
+				
 			}
 		},
 		created() {
@@ -54,31 +58,7 @@
 
 		},
 		methods: {
-			play() {
-				let audio = weex.requireModule('audio')
-				audio.play('http://59.110.169.246/img/1.mp3')
-			},
-			pause() {
-				let audio = weex.requireModule('audio')
-				audio.pause()
-			},
-			stop() {
-				let audio = weex.requireModule('audio')
-				audio.stop()
-			},
-			seek() {
-				let audio = weex.requireModule('audio')
-				audio.seek(112160)
-			},
-			onLoad(p) {
-				let audio = weex.requireModule('audio')
-				audio.setOnPlaying((res) => {
-					this.p = res;
-				})
-				audio.setOnCompletion((res) => {
-					this.p = '播放完毕';
-				})
-			},
+			
 		}
 
 	}

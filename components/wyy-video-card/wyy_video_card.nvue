@@ -1,0 +1,66 @@
+<template>
+	<div class="video">
+		<div class="header">
+			<div class="header-left"></div>
+			<div class="header-right"></div>
+		</div>
+		<div class="video-card" v-for="">
+			<image></image>
+			<div class="image-mask"></div>
+			<div class="video-title">
+				<div class="title-left">
+					<text></text>
+				</div>
+				<div class="title-right">
+					<image class="avatar"></image>
+				</div>
+			</div>
+			<div class="card-footer">
+				<div class="footer-left">
+					<div class="like">
+						<image class="like-icon"></image>
+						<text class="like-num"></text>
+					</div>
+					<div class="comment">
+						<image class="comment-icon"></image>
+						<text class="comment-num"></text>
+					</div>
+				</div>
+				<div class="footer-right">
+					<image class="more"></image>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<script>
+	export default {
+		components: {
+
+		},
+		props: {
+
+		},
+		data() {
+			return {
+
+			}
+		},
+		created() {
+
+		},
+		watch: {
+
+		},
+		methods: {
+
+		}
+
+	}
+</script>
+<style src="@/common/wyy.css"></style>
+<style src="@/components/wyy-find/wyy_find.css"></style>
+<style>
+
+</style>
