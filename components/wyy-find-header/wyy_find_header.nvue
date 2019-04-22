@@ -1,54 +1,81 @@
 <template>
-	<div class="find">
+	<div class="find_header">
 		<div class="wyy-main-color bg-slider"></div>
 		<div class="top">
+
 			<slider index="0" class="slider" interval="5000" auto-play="true" show-indicators="true">
 				<div class="frame" v-for="(img,iIndex) in imageList" :key="iIndex">
 					<image class="image" resize="cover" :src="img.src"></image>
 				</div>
 				<indicator item-size="12" item-color="#ddd" item-selected-color="#FF0000" class="indicator"></indicator>
 			</slider>
+
 			<div class="category-bars">
 				<div class="c-bar" v-for="(cBar,cbIndex) in categoryBars" :key="cbIndex">
-					<image class="cBarImage" resize="cover" :src="cBar.iconSrc"></image>
-					<div class="cBarText"><text style="font-size: 17px;">{{cBar.name}}</text></div>
+					<image class="c-bar-image" resize="cover" :src="cBar.iconSrc"></image>
+					<div class="c-bar-text"><text class="c-bar-name">{{cBar.name}}</text></div>
 				</div>
 			</div>
+
+			<wyy-find-recommend></wyy-find-recommend>
+			<wyy-find-recommend></wyy-find-recommend>
 		</div>
 	</div>
 </template>
 
 <script>
-	
-
-
+	import wyyFindRecommend from '@/components/wyy-find-recommend/wyy_find_recommend.nvue';
 	export default {
 		components: {
-
+			wyyFindRecommend
 		},
 		props: {
-			imageList:{
-				type:Array,
-				default:[]
+			imageList: {
+				type: Array,
+				default: []
 			},
-			categoryBars:{
-				type:Array,
-				default:[]
+			categoryBars: {
+				type: Array,
+				default: []
 			}
 		},
 		data() {
 			return {
-				
+				p: ''
 			}
 		},
-		created(){
-			
+		created() {
+
 		},
 		watch: {
 
 		},
 		methods: {
-
+			play() {
+				let audio = weex.requireModule('audio')
+				audio.play('http://59.110.169.246/img/1.mp3')
+			},
+			pause() {
+				let audio = weex.requireModule('audio')
+				audio.pause()
+			},
+			stop() {
+				let audio = weex.requireModule('audio')
+				audio.stop()
+			},
+			seek() {
+				let audio = weex.requireModule('audio')
+				audio.seek(112160)
+			},
+			onLoad(p) {
+				let audio = weex.requireModule('audio')
+				audio.setOnPlaying((res) => {
+					this.p = res;
+				})
+				audio.setOnCompletion((res) => {
+					this.p = '播放完毕';
+				})
+			},
 		}
 
 	}
@@ -56,5 +83,5 @@
 <style src="@/common/wyy.css"></style>
 <style src="@/components/wyy-find-header/wyy_find_header.css"></style>
 <style>
-	
+
 </style>

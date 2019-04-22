@@ -9,7 +9,9 @@
 
 			<lxy-tab-content>
 				<scroller v-for="(tab,tIndex) in tabBars" :key="tIndex">
-					<wyy-find-header v-if="tab.id == 'find'" :imageList = "imageList" :categoryBars="categoryBars"></wyy-find-header>
+					<!-- <wyy-find-header :imageList="imageList" :categoryBars="categoryBars"></wyy-find-header> -->
+
+					<wyy-find-header v-if="tab.id == 'find'" :imageList="imageList" :categoryBars="categoryBars"></wyy-find-header>
 					<div v-else>{{tab.name}}</div>
 				</scroller>
 			</lxy-tab-content>
@@ -28,7 +30,9 @@
 
 	import style from '@/config/style.js';
 
-	const dom = weex.requireModule('dom')
+	const dom = weex.requireModule('dom');
+	
+	
 	export default {
 		components: {
 			lxyTabContent,
@@ -46,7 +50,7 @@
 				categoryBars: [{
 						name: "每日推荐",
 						id: "recommend",
-						iconSrc: "/static/rattle/recommend.png"//红色背景暂时先用图片代替,后面改成背景,方便更改
+						iconSrc: "/static/rattle/recommend.png" //红色背景暂时先用图片代替,后面改成背景,方便更改
 					},
 					{
 						name: "私人FM",
@@ -112,6 +116,8 @@
 					this.deviceHeight = this.config.windowHeight;
 				}
 			})
+
+			
 		},
 		methods: {
 			async changeTab(e) {
