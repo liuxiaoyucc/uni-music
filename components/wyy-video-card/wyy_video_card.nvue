@@ -1,20 +1,33 @@
 <template>
 	<div class="video">
+		<div class="top"></div>
 		<div class="header">
-			<div class="header-left"></div>
-			<div class="header-right"></div>
-		</div>
-		<div class="video-card" v-for="">
-			<image></image>
-			<div class="image-mask"></div>
-			<div class="video-title">
-				<div class="title-left">
-					<text></text>
-				</div>
-				<div class="title-right">
-					<image class="avatar"></image>
+			<div class="header-left">
+				<div class="header-name">
+					<text class="header-common">云村精选</text>
 				</div>
 			</div>
+			<div class="header-right">
+				<text class="header-handle">获取新内容</text>
+			</div>
+		</div>
+
+
+		<div class="video-card" v-for="(video,vIndex) in videos" :key="vIndex">
+			<div class="video-info">
+				<image class="video-image" resize="cover" :src="video.poster"></image>
+				
+				<div class="image-mask"></div>
+				<div class="video-title">
+					<div class="title-left">
+						<text class="video-name">{{video.name}}</text>
+					</div>
+					<div class="title-right">
+						<image class="avatar" :src="video.avatar"></image>
+					</div>
+				</div>
+			</div>
+			
 			<div class="card-footer">
 				<div class="footer-left">
 					<div class="like">
@@ -27,9 +40,10 @@
 					</div>
 				</div>
 				<div class="footer-right">
-					<image class="more"></image>
+					<image class="more" src="../../static/rattle/more.png"></image>
 				</div>
 			</div>
+			<div class="top"></div>
 		</div>
 	</div>
 </template>
@@ -44,7 +58,33 @@
 		},
 		data() {
 			return {
+				videos: [{
+						name: "我们的云村时光（网易云音乐六周年用户纪录短片）你爱上对方的方式非法手段",
+						poster: "http://p1.music.126.net/lXzYxTX2uWtgKPRr435yhQ==/109951164015332296.jpg",
+						author: ["网易云音乐"],
+						avatar: "https://p2.music.126.net/0R_1imPfGwoeT199iPa5dA==/2274889557915240.jpg?param=130y130"
+					},
+					{
+						name: "原创说唱合集,第二波阵容	",
+						poster: "http://p1.music.126.net/voV3yPduAhNATICMRJza1A==/109951164017919367.jpg",
+						author: ["群星"],
+						avatar: "https://p1.music.126.net/anpTIBDMSvMVgEX2qaquBQ==/177021372091849.jpg?param=130y130"
+					},
+					{
+						name: "窦佳嫄 全新单曲,在过程与结局中成长,继续向无限未来前行",
 
+						poster: "http://p1.music.126.net/QFUo8dXaQs1rE2tXUuBY6g==/109951164017929609.jpg",
+						author: ["窦佳嫄"],
+						avatar: "https://p1.music.126.net/nWEC85ZQlTjy733EZZCGJg==/109951163446425468.jpg?param=130y130"
+					},
+					{
+						name: "自由之歌,F.I.R 飞儿乐团,最新单曲",
+
+						poster: "http://p1.music.126.net/YIb7z7GyFyBcqoEpM46t6A==/109951164018653907.jpg",
+						author: ["F.I.R."],
+						avatar: "https://p2.music.126.net/5OTQ9ltnNM5BaUynd8b2Xg==/109951163986695473.jpg?param=130y130"
+					}
+				]
 			}
 		},
 		created() {
@@ -60,7 +100,7 @@
 	}
 </script>
 <style src="@/common/wyy.css"></style>
-<style src="@/components/wyy-find/wyy_find.css"></style>
+<style src="@/components/wyy-video-card/wyy_video_card.css"></style>
 <style>
 
 </style>

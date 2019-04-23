@@ -8,7 +8,7 @@
 			</lxy-tab-bar>
 
 			<lxy-tab-content>
-				<scroller v-for="(tab,tIndex) in tabBars" :key="tIndex">
+				<scroller show-scrollbar=false v-for="(tab,tIndex) in tabBars" :key="tIndex">
 					<wyy-find v-if="tab.id == 'find'" :imageList="imageList" :categoryBars="categoryBars"></wyy-find>
 					<div v-else>{{tab.name}}</div>
 				</scroller>
@@ -86,7 +86,7 @@
 					id: 'video'
 				}],
 				imageList: [{
-					src: 'http://p1.music.126.net/jhisii20t8HmHuCy-Q7dYA==/109951164008114134.jpg'
+					src: 'http://p1.music.126.net/lXzYxTX2uWtgKPRr435yhQ==/109951164015332296.jpg'
 				}, {
 					src: 'http://p1.music.126.net/0yrVUf_n_R5wmRqNu1gKlQ==/109951164008902192.jpg'
 				}, {

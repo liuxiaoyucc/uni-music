@@ -37,16 +37,20 @@
 	position: absolute;
 	top: 0;
 	left: 0;
+	z-index: 999;
 }
 
 .status-bar {
 	width: 750px;
 }
 
-.find_header {
+.find {
 	width: 750px;
 	flex-direction: column;
 	padding-top: 20px;
+}
+.top{
+	
 }
 
 .image {

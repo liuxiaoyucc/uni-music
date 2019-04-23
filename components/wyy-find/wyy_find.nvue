@@ -1,5 +1,5 @@
 <template>
-	<div class="find_header">
+	<div class="find">
 		<div class="wyy-main-color bg-slider"></div>
 		<div class="top">
 
