@@ -8,9 +8,7 @@
 			<scroller class="scroll" scrollDirection="horizontal" showScrollbar="false">
 
 				<div class="tab-bar-item tab-bar-scroll-width" v-for="(tabBar, t) in tabBars" :key="t" :ref="tabBar.id + t" @click="change(t)">
-					<text class="tab-bar-title" :class="[tabIndex === t ? 'active' : '']">{{
-						tabBar.name
-					}}</text>
+					<text class="tab-bar-title" :class="[tabIndex === t ? 'active' : '']">{{ tabBar.name }}</text>
 				</div>
 			</scroller>
 			<div class="search" @click="searchClick">
@@ -150,7 +148,7 @@
 		height: 90px;
 		line-height: 90px;
 		font-size: 26px;
-		color: #DCDCDC;
+		color: rgba(255,255,255,0.5);
 	}
 	.active {
 		color: #FFFFFF;

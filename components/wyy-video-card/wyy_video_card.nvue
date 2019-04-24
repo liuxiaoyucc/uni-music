@@ -31,12 +31,12 @@
 			<div class="card-footer">
 				<div class="footer-left">
 					<div class="like">
-						<image class="like-icon"></image>
-						<text class="like-num"></text>
+						<image class="like-icon" src="../../static/rattle/like.png"></image>
+						<text class="like-num"> 701</text>
 					</div>
 					<div class="comment">
-						<image class="comment-icon"></image>
-						<text class="comment-num"></text>
+						<image class="comment-icon" src="../../static/rattle/comment.png"></image>
+						<text class="comment-num"> 59</text>
 					</div>
 				</div>
 				<div class="footer-right">

@@ -105,6 +105,37 @@
 	flex-direction: row;
 	justify-content: space-between;
 }
+.footer-left{
+	height: 80px;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+.like{
+	flex-direction: row;
+}
+.comment{
+	margin-left: 70px;
+	flex-direction: row;
+}
+.like-num{
+	font-size: 20px;
+	line-height: 35px;
+	color: #707070;
+}
+.comment-num{
+	font-size: 20px;
+	line-height: 35px;
+	color: #707070;
+}
+.like-icon{
+	height: 35px;
+	width: 35px;
+}
+.comment-icon{
+	height: 35px;
+	width: 35px;
+}
 .footer-right{
 	width: 80px;
 	height: 80px;
