@@ -37,7 +37,7 @@
 
 	import style from '@/config/style.js';
 
-	const dom = weex.requireModule('dom');
+	
 
 	export default {
 		components: {
@@ -136,7 +136,7 @@
 				this.refreshing = true
 				setTimeout(() => {
 					this.refreshing = false
-				}, 2000)
+				}, 1000)
 			},
 			onpullingdown(event) {
 
