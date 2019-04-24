@@ -9,8 +9,17 @@
 
 			<lxy-tab-content>
 				<scroller show-scrollbar=false v-for="(tab,tIndex) in tabBars" :key="tIndex">
+					<refresh class="wyy-main-color refresh" @refresh="onrefresh" @pullingdown="onpullingdown" :display="refreshing ? 'show' : 'hide'">
+						<loading-indicator class="indicator"></loading-indicator>
+					</refresh>
+
 					<wyy-find v-if="tab.id == 'find'" :imageList="imageList" :categoryBars="categoryBars"></wyy-find>
 					<div v-else>{{tab.name}}</div>
+
+
+					<loading class="loading" @loading="onloading" :display="loadinging ? 'show' : 'hide'">
+						<loading-indicator class="indicator"></loading-indicator>
+					</loading>
 				</scroller>
 			</lxy-tab-content>
 
@@ -29,8 +38,7 @@
 	import style from '@/config/style.js';
 
 	const dom = weex.requireModule('dom');
-	
-	
+
 	export default {
 		components: {
 			lxyTabContent,
@@ -41,6 +49,8 @@
 		},
 		data() {
 			return {
+				refreshing: false,
+				loadinging: false,
 				sideBarWidth: 640,
 				deviceHeight: 0,
 				config: {},
@@ -115,12 +125,28 @@
 				}
 			})
 
-			
+
 		},
 		methods: {
 			async changeTab(e) {
 				this.tabIndex = e.index;
-			}
+			},
+
+			onrefresh(event) {
+				this.refreshing = true
+				setTimeout(() => {
+					this.refreshing = false
+				}, 2000)
+			},
+			onpullingdown(event) {
+
+			},
+			onloading(event) {
+				this.loadinging = true
+				setTimeout(() => {
+					this.loadinging = false
+				}, 2000)
+			},
 		}
 	}
 </script>
@@ -129,5 +155,41 @@
 <style>
 	.status-bar {
 		width: 750px;
+	}
+
+	.refresh {
+		width: 750;
+		display: -ms-flex;
+		display: -webkit-flex;
+		display: flex;
+		-ms-flex-align: center;
+		-webkit-align-items: center;
+		-webkit-box-align: center;
+		align-items: center;
+	}
+
+	.indicator-text {
+		color: #888888;
+		font-size: 42px;
+		text-align: center;
+	}
+
+	.indicator {
+		background-color: #FFFFFF;
+		border-radius: 50%;
+		height: 70px;
+		width: 70px;
+		color: #FF0000;
+	}
+
+	.loading {
+		width: 750;
+		display: -ms-flex;
+		display: -webkit-flex;
+		display: flex;
+		-ms-flex-align: center;
+		-webkit-align-items: center;
+		-webkit-box-align: center;
+		align-items: center;
 	}
 </style>
