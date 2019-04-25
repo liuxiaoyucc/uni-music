@@ -19,15 +19,6 @@
 			}
 		},
 		{
-			"path" : "pages/me/me",
-			"style" : {
-				"navigationBarTitleText" : "Home",
-				"h5" : {
-					"titleNView" : false
-				}
-			}
-		},
-		{
 			"path" : "pages/login/login",
 			"style" : {
 				"h5" : {

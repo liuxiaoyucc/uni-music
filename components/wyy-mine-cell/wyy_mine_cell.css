@@ -1,0 +1,36 @@
+.cells{
+	
+}
+.top {
+	width: 750px;
+	height: 13px;
+	background-color: rgba(0, 0, 0, 0.05);
+}
+.cell{
+	flex-direction: row;
+}
+.cell-left{
+	height: 86px;
+	width: 132px;
+	justify-content: center;
+	align-items: center;
+}
+.cell-right{
+	width: 618px;
+	flex-direction: row;
+	align-items: center;
+	border-bottom-color: rgba(0,0,0,0.05);
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+.cell-name{
+	font-size: 24px;
+}
+.number{
+	font-size: 20px;
+	color: rgba(0,0,0,0.3);
+}
+.cell-icon{
+	width: 45px;
+	height: 45px;
+}

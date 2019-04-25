@@ -1,0 +1,61 @@
+<template>
+	<div class="cells">
+		<div class="cell">
+			<div class="cell-left">
+				<image class="cell-icon" src="../../static/rattle/mine/local-music.png"></image>
+			</div>
+			<div class="cell-right">
+				<text class="cell-name">本地音乐</text>
+				<text class="number"> (30)</text>
+			</div>
+		</div>
+		<div class="cell">
+			<div class="cell-left">
+				<image class="cell-icon" src="../../static/rattle/mine/recently-played.png"></image>
+			</div>
+			<div class="cell-right">
+				<text class="cell-name">最近播放</text>
+				<text class="number"> (200)</text>
+			</div>
+		</div>
+		<div class="cell">
+			<div class="cell-left">
+				<image class="cell-icon" src="../../static/rattle/mine/download.png"></image>
+			</div>
+			<div class="cell-right">
+				<text class="cell-name">下载管理</text>
+				<text class="number"> (29)</text>
+			</div>
+		</div>
+		<div class="cell">
+			<div class="cell-left">
+				<image class="cell-icon" src="../../static/rattle/mine/radio.png"></image>
+			</div>
+			<div class="cell-right">
+				<text class="cell-name">我的电台</text>
+				<text class="number"> (2)</text>
+			</div>
+		</div>
+		<div class="cell">
+			<div class="cell-left">
+				<image class="cell-icon" src="../../static/rattle/mine/collect.png"></image>
+			</div>
+			<div class="cell-right">
+				<text class="cell-name">我的收藏</text>
+				<text class="number"> (34)</text>
+			</div>
+		</div>
+		<div class="top"></div>
+	</div>
+</template>
+
+<script>
+	export default {
+		
+	}
+</script>
+
+<style src="@/components/wyy-mine-cell/wyy_mine_cell.css"></style>
+<style>
+
+</style>

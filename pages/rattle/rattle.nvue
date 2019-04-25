@@ -9,15 +9,16 @@
 
 			<lxy-tab-content>
 				<scroller show-scrollbar=false v-for="(tab,tIndex) in tabBars" :key="tIndex">
-					<refresh class="wyy-main-color refresh" @refresh="onrefresh" @pullingdown="onpullingdown" :display="refreshing ? 'show' : 'hide'">
+					<refresh v-if="tab.id != 'mine'" class="wyy-main-color refresh" @refresh="onrefresh" @pullingdown="onpullingdown" :display="refreshDisplay">
 						<loading-indicator class="indicator"></loading-indicator>
 					</refresh>
 
-					<wyy-find v-if="tab.id == 'find'" :imageList="imageList" :categoryBars="categoryBars"></wyy-find>
+					<wyy-find v-if="tab.id == 'find'" :categoryBars="categoryBars"></wyy-find>
+					<wyy-mine v-else-if="tab.id == 'mine'"></wyy-mine>
 					<div v-else>{{tab.name}}</div>
 
 
-					<loading class="loading" @loading="onloading" :display="loadinging ? 'show' : 'hide'">
+					<loading v-if="tab.id != 'mine'" class="loading" @loading="onloading" :display="loadinging ? 'show' : 'hide'">
 						<loading-indicator class="indicator"></loading-indicator>
 					</loading>
 				</scroller>
@@ -33,7 +34,7 @@
 	import lxyTabs from '@/components/lxy-tab-nvue/lxy_tabs.nvue'
 	import lxySideBar from '@/components/lxy-tab-nvue/lxy_side_bar.nvue';
 	import wyyFind from '@/components/wyy-find/wyy_find.nvue';
-
+	import wyyMine from '@/components/wyy-mine/wyy_mine.nvue';
 
 	import style from '@/config/style.js';
 
@@ -45,7 +46,8 @@
 			lxyTabBar,
 			lxyTabs,
 			lxySideBar,
-			wyyFind
+			wyyFind,
+			wyyMine
 		},
 		data() {
 			return {
@@ -55,33 +57,6 @@
 				deviceHeight: 0,
 				config: {},
 				tabIndex: 1,
-				categoryBars: [{
-						name: "每日推荐",
-						id: "recommend",
-						iconSrc: "/static/rattle/recommend.png" //红色背景暂时先用图片代替,后面改成背景,方便更改
-					},
-					{
-						name: "私人FM",
-						id: "privateFM",
-						iconSrc: "/static/rattle/private-fm.png"
-					},
-					{
-						name: "歌单",
-						id: "musicList",
-						iconSrc: "/static/rattle/music-list.png"
-					},
-					{
-						name: "排行榜",
-						id: "rank",
-						iconSrc: "/static/rattle/rank.png"
-					},
-
-					{
-						name: "跑步FM",
-						id: "runFM",
-						iconSrc: "/static/rattle/run-fm.png"
-					},
-				],
 				tabBars: [{
 					name: '我的',
 					id: 'mine'
@@ -94,26 +69,12 @@
 				}, {
 					name: '视频',
 					id: 'video'
-				}],
-				imageList: [{
-					src: 'http://p1.music.126.net/lXzYxTX2uWtgKPRr435yhQ==/109951164015332296.jpg'
-				}, {
-					src: 'http://p1.music.126.net/0yrVUf_n_R5wmRqNu1gKlQ==/109951164008902192.jpg'
-				}, {
-					src: 'http://p1.music.126.net/V1IYb7fOYnNMKoZB0Hsw9g==/109951164008749539.jpg'
-				}, {
-					src: 'http://p1.music.126.net/8Cf0kANiLi4PI3owO9yFsA==/109951164008093274.jpg'
-				}, {
-					src: 'http://p1.music.126.net/-gC1wl4oNcs8QrkOq7sKYg==/109951164008314890.jpg'
-				}, {
-					src: 'http://p1.music.126.net/Q1El_3ISdo3Vw9bFMUp_9w==/109951164008139402.jpg'
-				}, {
-					src: 'http://p1.music.126.net/Pm9pobge14ZnFsvXJTqHVA==/109951164008109951.jpg'
-				}, {
-					src: 'http://p1.music.126.net/BqsOL4-XjJZNLh2jHvUA4Q==/109951164008463728.jpg'
-				}, {
-					src: 'http://p1.music.126.net/V1IYb7fOYnNMKoZB0Hsw9g==/109951164008749539.jpg'
 				}]
+			}
+		},
+		computed: {
+			refreshDisplay() {
+				return this.refreshing ? 'show' : 'hide'
 			}
 		},
 		created() {

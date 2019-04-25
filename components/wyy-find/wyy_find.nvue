@@ -1,8 +1,7 @@
 <template>
 	<div class="find">
 		<div class="wyy-main-color bg-slider"></div>
-		<div class="top">
-
+		<div>
 			<slider index="0" class="slider" interval="5000" auto-play="true" show-indicators="true">
 				<div class="frame" v-for="(img,iIndex) in imageList" :key="iIndex">
 					<image class="image" resize="cover" :src="img.src"></image>
@@ -10,45 +9,79 @@
 				<indicator item-size="12" item-color="#ddd" item-selected-color="#FF0000" class="indicator"></indicator>
 			</slider>
 
-			<div class="category-bars">
-				<div class="c-bar" v-for="(cBar,cbIndex) in categoryBars" :key="cbIndex">
-					<image class="c-bar-image" resize="cover" :src="cBar.iconSrc"></image>
-					<div class="c-bar-text"><text class="c-bar-name">{{cBar.name}}</text></div>
-				</div>
-			</div>
-
+			<wyy-category-bars :categoryBars="categoryBars"></wyy-category-bars>
+			
 			<wyy-find-recommend showImageMask=true></wyy-find-recommend>
 			<wyy-find-fresh></wyy-find-fresh>
 			<wyy-video-card></wyy-video-card>
-			
 		</div>
 	</div>
 </template>
 
 <script>
+	import wyyCategoryBars from '@/components/wyy-category-bars/wyy_category_bars.nvue';
 	import wyyFindRecommend from '@/components/wyy-find-recommend/wyy_find_recommend.nvue';
 	import wyyFindFresh from '@/components/wyy-find-fresh/wyy_find_fresh.nvue';
 	import wyyVideoCard from '@/components/wyy-video-card/wyy_video_card.nvue';
 
 	export default {
 		components: {
+			wyyCategoryBars,
 			wyyFindRecommend,
 			wyyFindFresh,
 			wyyVideoCard
 		},
 		props: {
-			imageList: {
-				type: Array,
-				default: []
-			},
-			categoryBars: {
-				type: Array,
-				default: []
-			}
+			
 		},
 		data() {
 			return {
-				
+				imageList: [{
+					src: 'http://p1.music.126.net/lXzYxTX2uWtgKPRr435yhQ==/109951164015332296.jpg'
+				}, {
+					src: 'http://p1.music.126.net/0yrVUf_n_R5wmRqNu1gKlQ==/109951164008902192.jpg'
+				}, {
+					src: 'http://p1.music.126.net/V1IYb7fOYnNMKoZB0Hsw9g==/109951164008749539.jpg'
+				}, {
+					src: 'http://p1.music.126.net/8Cf0kANiLi4PI3owO9yFsA==/109951164008093274.jpg'
+				}, {
+					src: 'http://p1.music.126.net/-gC1wl4oNcs8QrkOq7sKYg==/109951164008314890.jpg'
+				}, {
+					src: 'http://p1.music.126.net/Q1El_3ISdo3Vw9bFMUp_9w==/109951164008139402.jpg'
+				}, {
+					src: 'http://p1.music.126.net/Pm9pobge14ZnFsvXJTqHVA==/109951164008109951.jpg'
+				}, {
+					src: 'http://p1.music.126.net/BqsOL4-XjJZNLh2jHvUA4Q==/109951164008463728.jpg'
+				}, {
+					src: 'http://p1.music.126.net/V1IYb7fOYnNMKoZB0Hsw9g==/109951164008749539.jpg'
+				}],
+				categoryBars: [{
+						name: "每日推荐",
+						id: "recommend",
+						iconSrc: "/static/rattle/recommend.png" //红色背景暂时先用图片代替,后面改成背景,方便更改
+					},
+					{
+						name: "私人FM",
+						id: "privateFM",
+						iconSrc: "/static/rattle/private-fm.png"
+					},
+					{
+						name: "歌单",
+						id: "musicList",
+						iconSrc: "/static/rattle/music-list.png"
+					},
+					{
+						name: "排行榜",
+						id: "rank",
+						iconSrc: "/static/rattle/rank.png"
+					},
+
+					{
+						name: "跑步FM",
+						id: "runFM",
+						iconSrc: "/static/rattle/run-fm.png"
+					},
+				]
 			}
 		},
 		created() {
@@ -58,7 +91,7 @@
 
 		},
 		methods: {
-			
+
 		}
 
 	}

@@ -1,0 +1,32 @@
+<template>
+	<view>
+		<scroller class="category-bars" scroll-direction="horizontal">
+			<div class="c-bar" v-for="(cBar,cbIndex) in categoryBars" :key="cbIndex">
+				<image class="c-bar-image" resize="cover" :src="cBar.iconSrc"></image>
+				<div class="c-bar-text"><text class="c-bar-name">{{cBar.name}}</text></div>
+			</div>
+		</scroller>
+	</view>
+</template>
+
+<script>
+	export default {
+		props: {
+			categoryBars: {
+				type: Array,
+				default: function(){
+					return []
+				}
+			},
+		},
+		data() {
+			return {
+				
+			};
+		}
+	}
+</script>
+<style src="@/components/wyy-category-bars/wyy_category_bars.css"></style>
+<style>
+
+</style>

@@ -1,0 +1,71 @@
+<template>
+	<div class="mine">
+		<wyy-category-bars :categoryBars="categoryBars"></wyy-category-bars>
+		<wyy-mine-cell></wyy-mine-cell>
+	</div>
+</template>
+
+<script>
+	import wyyCategoryBars from '@/components/wyy-category-bars/wyy_category_bars.nvue';
+	import wyyMineCell from '@/components/wyy-mine-cell/wyy_mine_cell.nvue';
+
+	export default {
+		components: {
+			wyyCategoryBars,
+			wyyMineCell
+		},
+		data() {
+			return {
+				categoryBars: [{
+						name: "每日推荐",
+						id: "recommend",
+						iconSrc: "/static/rattle/recommend.png" //红色背景暂时先用图片代替,后面改成背景,方便更改
+					},
+					{
+						name: "私人FM",
+						id: "privateFM",
+						iconSrc: "/static/rattle/private-fm.png"
+					},
+					{
+						name: "歌单",
+						id: "musicList",
+						iconSrc: "/static/rattle/music-list.png"
+					},
+					{
+						name: "排行榜",
+						id: "rank",
+						iconSrc: "/static/rattle/rank.png"
+					},
+
+					{
+						name: "跑步FM",
+						id: "runFM",
+						iconSrc: "/static/rattle/run-fm.png"
+					},
+					{
+						name: "歌单",
+						id: "musicList",
+						iconSrc: "/static/rattle/music-list.png"
+					},
+					{
+						name: "排行榜",
+						id: "rank",
+						iconSrc: "/static/rattle/rank.png"
+					},
+
+					{
+						name: "编辑",
+						id: "edit",
+						iconSrc: "/static/rattle/mine/edit.png"
+					}
+				]
+			}
+		},
+	}
+</script>
+
+<style src="@/common/wyy.css"></style>
+<style src="@/components/wyy-mine/wyy_mine.css"></style>
+<style>
+
+</style>
