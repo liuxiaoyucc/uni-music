@@ -1,0 +1,16 @@
+<template>
+	<div>
+		
+	</div>
+</template>
+
+<script>
+	export default {
+		
+	}
+</script>
+
+<style src="@/components/wyy-mine-playlist/wyy_mine_playlist.css"></style>
+<style>
+
+</style>

@@ -1,11 +1,12 @@
 <template>
-	
+
 	<scroller show-scrollbar=false>
-		
+
 		<refresh class="wyy-main-color refresh" @refresh="onrefresh" @pullingdown="onpullingdown" :display="refreshDisplay">
 			<loading-indicator class="loading-indicator"></loading-indicator>
 		</refresh>
-		
+
+
 		<div class="find">
 			<div class="wyy-main-color bg-slider"></div>
 			<div>
@@ -15,22 +16,24 @@
 					</div>
 					<indicator item-size="12" item-color="#ddd" item-selected-color="#FF0000" class="indicator"></indicator>
 				</slider>
-		
+
 				<wyy-category-bars :categoryBars="categoryBars"></wyy-category-bars>
-				
+
 				<wyy-find-recommend showImageMask=true></wyy-find-recommend>
 				<wyy-find-fresh></wyy-find-fresh>
 				<wyy-video-card></wyy-video-card>
 			</div>
 		</div>
-		
-		
+
+
+
+
 		<loading class="loading" @loading="onloading" :display="loadinging ? 'show' : 'hide'">
 			<loading-indicator class="loading-indicator"></loading-indicator>
 		</loading>
-		
+
 	</scroller>
-	
+
 </template>
 
 <script>
@@ -47,7 +50,7 @@
 			wyyVideoCard
 		},
 		props: {
-			
+
 		},
 		computed: {
 			refreshDisplay() {
@@ -120,7 +123,7 @@
 				}, 1000)
 			},
 			onpullingdown(event) {
-			
+
 			},
 			onloading(event) {
 				this.loadinging = true
