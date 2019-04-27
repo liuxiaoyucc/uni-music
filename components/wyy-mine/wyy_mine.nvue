@@ -3,7 +3,6 @@
 		<div class="mine">
 			<wyy-category-bars :categoryBars="categoryBars"></wyy-category-bars>
 			<wyy-mine-cell></wyy-mine-cell>
-			
 		</div>
 	</scroller>
 	
