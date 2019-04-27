@@ -1,21 +1,36 @@
 <template>
-	<div class="find">
-		<div class="wyy-main-color bg-slider"></div>
-		<div>
-			<slider index="0" class="slider" interval="5000" auto-play="true" show-indicators="true">
-				<div class="frame" v-for="(img,iIndex) in imageList" :key="iIndex">
-					<image class="image" resize="cover" :src="img.src"></image>
-				</div>
-				<indicator item-size="12" item-color="#ddd" item-selected-color="#FF0000" class="indicator"></indicator>
-			</slider>
-
-			<wyy-category-bars :categoryBars="categoryBars"></wyy-category-bars>
-			
-			<wyy-find-recommend showImageMask=true></wyy-find-recommend>
-			<wyy-find-fresh></wyy-find-fresh>
-			<wyy-video-card></wyy-video-card>
+	
+	<scroller show-scrollbar=false>
+		
+		<refresh class="wyy-main-color refresh" @refresh="onrefresh" @pullingdown="onpullingdown" :display="refreshDisplay">
+			<loading-indicator class="loading-indicator"></loading-indicator>
+		</refresh>
+		
+		<div class="find">
+			<div class="wyy-main-color bg-slider"></div>
+			<div>
+				<slider index="0" class="slider" interval="5000" auto-play="true" show-indicators="true">
+					<div class="frame" v-for="(img,iIndex) in imageList" :key="iIndex">
+						<image class="image" resize="cover" :src="img.src"></image>
+					</div>
+					<indicator item-size="12" item-color="#ddd" item-selected-color="#FF0000" class="indicator"></indicator>
+				</slider>
+		
+				<wyy-category-bars :categoryBars="categoryBars"></wyy-category-bars>
+				
+				<wyy-find-recommend showImageMask=true></wyy-find-recommend>
+				<wyy-find-fresh></wyy-find-fresh>
+				<wyy-video-card></wyy-video-card>
+			</div>
 		</div>
-	</div>
+		
+		
+		<loading class="loading" @loading="onloading" :display="loadinging ? 'show' : 'hide'">
+			<loading-indicator class="loading-indicator"></loading-indicator>
+		</loading>
+		
+	</scroller>
+	
 </template>
 
 <script>
@@ -34,8 +49,15 @@
 		props: {
 			
 		},
+		computed: {
+			refreshDisplay() {
+				return this.refreshing ? 'show' : 'hide'
+			}
+		},
 		data() {
 			return {
+				refreshing: false,
+				loadinging: false,
 				imageList: [{
 					src: 'http://p1.music.126.net/lXzYxTX2uWtgKPRr435yhQ==/109951164015332296.jpg'
 				}, {
@@ -91,7 +113,21 @@
 
 		},
 		methods: {
-
+			onrefresh(event) {
+				this.refreshing = true
+				setTimeout(() => {
+					this.refreshing = false
+				}, 1000)
+			},
+			onpullingdown(event) {
+			
+			},
+			onloading(event) {
+				this.loadinging = true
+				setTimeout(() => {
+					this.loadinging = false
+				}, 2000)
+			},
 		}
 
 	}
