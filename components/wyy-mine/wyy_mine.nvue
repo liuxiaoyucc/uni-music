@@ -1,10 +1,16 @@
 <template>
-	<scroller show-scrollbar=false>
-		<div class="mine">
-			<wyy-category-bars :categoryBars="categoryBars"></wyy-category-bars>
+	<list show-scrollbar=false>
+		<refresh class="wyy-refresh wyy-main-color" @refresh="onrefresh" @pullingdown="onpullingdown" :display="refreshDisplay">
+			<loading-indicator class="wyy-loading-indicator"></loading-indicator>
+		</refresh>
+		<cell class="mine">
+			<wyy-category-bars :bars="categoryBars"></wyy-category-bars>
 			<wyy-mine-cell></wyy-mine-cell>
-		</div>
-	</scroller>
+		</cell>
+		<loading class="wyy-loading" @loading="onloading" :display="loadinging ? 'show' : 'hide'">
+			<loading-indicator class="wyy-loading-indicator"></loading-indicator>
+		</loading>
+	</list>
 	
 </template>
 
@@ -19,6 +25,8 @@
 		},
 		data() {
 			return {
+				refreshing: false,
+				loadinging: false,
 				categoryBars: [{
 						name: "每日推荐",
 						id: "recommend",
@@ -64,6 +72,28 @@
 				]
 			}
 		},
+		computed:{
+			refreshDisplay() {
+				return this.refreshing ? 'show' : 'hide'
+			}
+		},
+		methods:{
+			onrefresh(event) {
+				this.refreshing = true
+				setTimeout(() => {
+					this.refreshing = false
+				}, 1000)
+			},
+			onpullingdown(event) {
+			
+			},
+			onloading(event) {
+				this.loadinging = true
+				setTimeout(() => {
+					this.loadinging = false
+				}, 2000)
+			},
+		}
 	}
 </script>
 

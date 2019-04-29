@@ -6,3 +6,38 @@
 	width: 750px;
 	background-color: rgba(255, 255, 255, 1);
 }
+.wyy-refresh {
+	width: 750;
+	display: -ms-flex;
+	display: -webkit-flex;
+	display: flex;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	-webkit-box-align: center;
+	align-items: center;
+}
+
+.wyy-indicator-text {
+	color: #888888;
+	font-size: 42px;
+	text-align: center;
+}
+
+.wyy-loading-indicator {
+	background-color: #FFFFFF;
+	border-radius: 50%;
+	height: 70px;
+	width: 70px;
+	color: #FF0000;
+}
+
+.wyy-loading {
+	width: 750;
+	display: -ms-flex;
+	display: -webkit-flex;
+	display: flex;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	-webkit-box-align: center;
+	align-items: center;
+}

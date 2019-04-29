@@ -11,7 +11,8 @@
 				
 				<wyy-mine></wyy-mine>
 				<wyy-find :categoryBars="categoryBars"></wyy-find>
-				
+				<wyy-find :categoryBars="categoryBars"></wyy-find>
+				<wyy-find :categoryBars="categoryBars"></wyy-find>
 			</lxy-tab-content>
 			
 		</lxy-tabs>

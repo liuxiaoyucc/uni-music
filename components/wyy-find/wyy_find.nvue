@@ -1,39 +1,35 @@
 <template>
 
-	<scroller show-scrollbar=false>
-
-		<refresh class="wyy-main-color refresh" @refresh="onrefresh" @pullingdown="onpullingdown" :display="refreshDisplay">
-			<loading-indicator class="loading-indicator"></loading-indicator>
+	<list>
+		<refresh class="wyy-main-color wyy-refresh" @refresh="onrefresh" @pullingdown="onpullingdown" :display="refreshDisplay">
+			<loading-indicator class="wyy-loading-indicator"></loading-indicator>
 		</refresh>
 
-
-		<div class="find">
-			<div class="wyy-main-color bg-slider"></div>
-			<div>
+		<cell>
+			<div class="find-slider">
+				<!-- <div class="wyy-main-color bg-slider"></div> -->
 				<slider index="0" class="slider" interval="5000" auto-play="true" show-indicators="true">
-					<div class="frame" v-for="(img,iIndex) in imageList" :key="iIndex">
+					<div class="frame" v-for="(img,iIndex) in imageList" :key="iIndex" @click="test(iIndex)">
 						<image class="image" resize="cover" :src="img.src"></image>
 					</div>
 					<indicator item-size="12" item-color="#ddd" item-selected-color="#FF0000" class="indicator"></indicator>
 				</slider>
-
-				<wyy-category-bars :categoryBars="categoryBars"></wyy-category-bars>
-
-				<wyy-find-recommend showImageMask=true></wyy-find-recommend>
-				<wyy-find-fresh></wyy-find-fresh>
-				<wyy-video-card></wyy-video-card>
 			</div>
-		</div>
 
+			<wyy-category-bars :bars="categoryBars"></wyy-category-bars>
 
+			<wyy-find-recommend showImageMask=true></wyy-find-recommend>
 
+			<wyy-find-fresh></wyy-find-fresh>
 
-		<loading class="loading" @loading="onloading" :display="loadinging ? 'show' : 'hide'">
-			<loading-indicator class="loading-indicator"></loading-indicator>
+			<wyy-video-card></wyy-video-card>
+		</cell>
+
+		<loading class="wyy-loading" @loading="onloading" :display="loadinging ? 'show' : 'hide'">
+			<loading-indicator class="wyy-loading-indicator"></loading-indicator>
 		</loading>
 
-	</scroller>
-
+	</list>
 </template>
 
 <script>
@@ -41,6 +37,9 @@
 	import wyyFindRecommend from '@/components/wyy-find-recommend/wyy_find_recommend.nvue';
 	import wyyFindFresh from '@/components/wyy-find-fresh/wyy_find_fresh.nvue';
 	import wyyVideoCard from '@/components/wyy-video-card/wyy_video_card.nvue';
+
+
+
 
 	export default {
 		components: {
@@ -116,6 +115,7 @@
 
 		},
 		methods: {
+			
 			onrefresh(event) {
 				this.refreshing = true
 				setTimeout(() => {
@@ -131,6 +131,7 @@
 					this.loadinging = false
 				}, 2000)
 			},
+
 		}
 
 	}

@@ -107,6 +107,7 @@
 			},
 			changeIndex(tIndex){
 				this.titleIndex = tIndex;
+				console.log(tIndex);
 			}
 		}
 
