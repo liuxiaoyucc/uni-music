@@ -1,57 +1,32 @@
 <template>
 	<div class="cells">
-		<div class="cell">
+		<div class="cell" v-for="(item,i) in list" :key="i">
 			<div class="cell-left">
-				<image class="cell-icon" src="../../static/rattle/mine/local-music.png"></image>
+				<image class="cell-icon" :src="item.src"></image>
 			</div>
 			<div class="cell-right">
-				<text class="cell-name">本地音乐</text>
-				<text class="number"> (30)</text>
+				<text class="cell-name">{{item.name}}</text>
+				<text class="number"> ({{item.number}})</text>
 			</div>
 		</div>
-		<div class="cell">
-			<div class="cell-left">
-				<image class="cell-icon" src="../../static/rattle/mine/recently-played.png"></image>
-			</div>
-			<div class="cell-right">
-				<text class="cell-name">最近播放</text>
-				<text class="number"> (200)</text>
-			</div>
-		</div>
-		<div class="cell">
-			<div class="cell-left">
-				<image class="cell-icon" src="../../static/rattle/mine/download.png"></image>
-			</div>
-			<div class="cell-right">
-				<text class="cell-name">下载管理</text>
-				<text class="number"> (29)</text>
-			</div>
-		</div>
-		<div class="cell">
-			<div class="cell-left">
-				<image class="cell-icon" src="../../static/rattle/mine/radio.png"></image>
-			</div>
-			<div class="cell-right">
-				<text class="cell-name">我的电台</text>
-				<text class="number"> (2)</text>
-			</div>
-		</div>
-		<div class="cell">
-			<div class="cell-left">
-				<image class="cell-icon" src="../../static/rattle/mine/collect.png"></image>
-			</div>
-			<div class="cell-right">
-				<text class="cell-name">我的收藏</text>
-				<text class="number"> (34)</text>
-			</div>
-		</div>
+		
 		<div class="top"></div>
 	</div>
 </template>
 
 <script>
 	export default {
-		
+		data() {
+			return {
+				list: [
+					{name: '本地音乐', number: 30, src: '../../static/rattle/mine/local-music.png'},
+					{name: '最近播放', number: 200, src: '../../static/rattle/mine/recently-played.png'},
+					{name: '下载管理', number: 29, src: '../../static/rattle/mine/download.png'},
+					{name: '我的电台', number: 2, src: '../../static/rattle/mine/radio.png'},
+					{name: '我的收藏', number: 34, src: '../../static/rattle/mine/collect.png'},
+				]
+			}
+		},
 	}
 </script>
 

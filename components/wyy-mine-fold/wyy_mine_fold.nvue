@@ -1,0 +1,55 @@
+<template>
+	<div class="fold">
+		<div class="fold-header" @click="rotate()">
+			<div class="fold-header-left">
+				<image class="unfold" ref="unfold" src="/static/rattle/mine/unfold.png"></image>
+				<text class="fold-name">创建的歌单</text>
+				<text class="fold-num">(7)</text>
+			</div>
+			<div class="fold-header-right">
+				<image class="add" src="/static/rattle/mine/add.png" @click.stop=""></image>
+				<image class="more" src="/static/rattle/more.png" @click.stop=""></image>
+			</div>
+		</div>
+		<div class="fold-content" v-if="!isFold">
+			
+		</div>
+	</div>
+</template>
+
+<script>
+	const animation = weex.requireModule('animation');
+
+	export default {
+		data() {
+			return {
+				isFold: true,
+			}
+		},
+		methods: {
+			rotate() {
+				
+				var degree = this.isFold ? '90deg' : '0deg'
+				
+				var unfoldEl = this.$refs.unfold;
+				animation.transition(unfoldEl, {
+					styles: {
+						transform: 'rotate('+degree+')',
+						transformOrigin: 'center center'
+					},
+					duration: 250, //ms
+					timingFunction: 'linear',
+					delay: 0 //ms
+				},  ()=> {
+					this.isFold = !this.isFold;
+					//动画执行结束
+				})
+			},
+		},
+	}
+</script>
+
+<style src="@/components/wyy-mine-fold/wyy_mine_fold.css"></style>
+<style>
+
+</style>

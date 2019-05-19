@@ -6,6 +6,8 @@
 		<cell class="mine">
 			<wyy-category-bars :bars="categoryBars"></wyy-category-bars>
 			<wyy-mine-cell></wyy-mine-cell>
+			<wyy-mine-fold></wyy-mine-fold>
+			<wyy-mine-fold></wyy-mine-fold>
 		</cell>
 		<loading class="wyy-loading" @loading="onloading" :display="loadinging ? 'show' : 'hide'">
 			<loading-indicator class="wyy-loading-indicator"></loading-indicator>
@@ -17,11 +19,14 @@
 <script>
 	import wyyCategoryBars from '@/components/wyy-category-bars/wyy_category_bars.nvue';
 	import wyyMineCell from '@/components/wyy-mine-cell/wyy_mine_cell.nvue';
+	import wyyMineFold from '@/components/wyy-mine-fold/wyy_mine_fold.nvue';
+
 
 	export default {
 		components: {
 			wyyCategoryBars,
-			wyyMineCell
+			wyyMineCell,
+			wyyMineFold,
 		},
 		data() {
 			return {

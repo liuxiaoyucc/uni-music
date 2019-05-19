@@ -1,0 +1,45 @@
+.fold-header{
+	flex-direction: row;
+	padding-left: 25px;
+	padding-right: 25px;
+	justify-content: space-between;
+}
+.fold-header:active{
+	background-color: rgba(0,0,0,0.1);
+}
+.unfold{
+	width: 30px;
+	height: 30px;
+}
+.fold-name{
+	font-size: 26px;
+	font-weight: bold;
+}
+.fold-num{
+	font-size: 20px;
+	color: rgba(0,0,0,0.3);
+}
+.fold-header-left{
+	flex-direction: row;
+	height: 70px;
+	align-items: center;
+}
+.fold-header-right{
+	flex-direction: row;
+	height: 70px;
+	align-items: center;
+}
+.add{
+	width: 30px;
+	height: 30px;
+}
+.more{
+	margin-left: 20px;
+	width: 30px;
+	height: 30px;
+}
+.fold-content{
+	width: 750px;
+	height: 500px;
+	background-color: #576B95;
+}

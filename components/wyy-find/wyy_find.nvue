@@ -9,7 +9,7 @@
 			<div class="find-slider">
 				<!-- <div class="wyy-main-color bg-slider"></div> -->
 				<slider index="0" class="slider" interval="5000" auto-play="true" show-indicators="true">
-					<div class="frame" v-for="(img,iIndex) in imageList" :key="iIndex" @click="test(iIndex)">
+					<div class="frame" v-for="(img,iIndex) in imageList" :key="iIndex">
 						<image class="image" resize="cover" :src="img.src"></image>
 					</div>
 					<indicator item-size="12" item-color="#ddd" item-selected-color="#FF0000" class="indicator"></indicator>

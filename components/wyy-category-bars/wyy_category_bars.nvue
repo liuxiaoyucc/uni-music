@@ -1,7 +1,7 @@
 <template>
 
 	<scroller class="category-bars" scroll-direction="horizontal">
-		<div class="c-bar" v-for="(bar,i) in bars" :key="i" @click="testClick(i)">
+		<div class="c-bar" v-for="(bar,i) in bars" :key="i">
 			<image class="c-bar-image" resize="cover" :src="bar.iconSrc"></image>
 			<div class="c-bar-text"><text class="c-bar-name">{{bar.name}}</text></div>
 		</div>
