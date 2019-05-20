@@ -12,10 +12,12 @@
 	height: 30px;
 }
 .fold-name{
+	margin-left: 10px;
 	font-size: 26px;
 	font-weight: bold;
 }
 .fold-num{
+	margin-left: 10px;
 	font-size: 20px;
 	color: rgba(0,0,0,0.3);
 }
@@ -40,6 +42,34 @@
 }
 .fold-content{
 	width: 750px;
-	height: 500px;
-	background-color: #576B95;
+}
+.music-list{
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	padding-left: 25px;
+	padding-right: 25px;
+	height: 100px;
+}
+.cover-image{
+	height: 90px;
+	width: 90px;
+	border-radius: 8px;
+}
+.music-list-center{
+	flex-direction: column;
+	justify-content: space-between;
+	width: 555px;
+	height: 60px;
+	padding-left: 15px;
+}
+.music-list-name{
+	font-size: 24px;
+}
+.number{
+	font-size: 18px;
+	color: rgba(0,0,0,0.5);
+}
+.music-list:active{
+	background-color: rgba(0,0,0,0.1);
 }

@@ -1,17 +1,11 @@
 <template>
 	<list show-scrollbar=false>
-		<refresh class="wyy-refresh wyy-main-color" @refresh="onrefresh" @pullingdown="onpullingdown" :display="refreshDisplay">
-			<loading-indicator class="wyy-loading-indicator"></loading-indicator>
-		</refresh>
 		<cell class="mine">
 			<wyy-category-bars :bars="categoryBars"></wyy-category-bars>
-			<wyy-mine-cell></wyy-mine-cell>
-			<wyy-mine-fold></wyy-mine-fold>
-			<wyy-mine-fold></wyy-mine-fold>
+			<wyy-mine-cell :items="commonLists"></wyy-mine-cell>
+			<wyy-mine-fold number="7"></wyy-mine-fold>
+			<wyy-mine-fold musicListName="收藏的歌单" musicListType="favor" number="28"></wyy-mine-fold>
 		</cell>
-		<loading class="wyy-loading" @loading="onloading" :display="loadinging ? 'show' : 'hide'">
-			<loading-indicator class="wyy-loading-indicator"></loading-indicator>
-		</loading>
 	</list>
 	
 </template>
@@ -32,6 +26,13 @@
 			return {
 				refreshing: false,
 				loadinging: false,
+				commonLists: [
+					{name: '本地音乐', number: 30, src: '../../static/rattle/mine/local-music.png'},
+					{name: '最近播放', number: 200, src: '../../static/rattle/mine/recently-played.png'},
+					{name: '下载管理', number: 29, src: '../../static/rattle/mine/download.png'},
+					{name: '我的电台', number: 2, src: '../../static/rattle/mine/radio.png'},
+					{name: '我的收藏', number: 34, src: '../../static/rattle/mine/collect.png'},
+				],
 				categoryBars: [{
 						name: "每日推荐",
 						id: "recommend",
@@ -78,26 +79,10 @@
 			}
 		},
 		computed:{
-			refreshDisplay() {
-				return this.refreshing ? 'show' : 'hide'
-			}
+			
 		},
 		methods:{
-			onrefresh(event) {
-				this.refreshing = true
-				setTimeout(() => {
-					this.refreshing = false
-				}, 1000)
-			},
-			onpullingdown(event) {
 			
-			},
-			onloading(event) {
-				this.loadinging = true
-				setTimeout(() => {
-					this.loadinging = false
-				}, 2000)
-			},
 		}
 	}
 </script>

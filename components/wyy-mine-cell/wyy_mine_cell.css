@@ -9,6 +9,9 @@
 .cell{
 	flex-direction: row;
 }
+.cell:active{
+	background-color: rgba(0,0,0,0.1);
+}
 .cell-left{
 	height: 86px;
 	width: 132px;

@@ -3,27 +3,81 @@
 		<div class="fold-header" @click="rotate()">
 			<div class="fold-header-left">
 				<image class="unfold" ref="unfold" src="/static/rattle/mine/unfold.png"></image>
-				<text class="fold-name">创建的歌单</text>
-				<text class="fold-num">(7)</text>
+				<text class="fold-name">{{ musicListName }}</text>
+				<text class="fold-num">({{number}})</text>
 			</div>
 			<div class="fold-header-right">
-				<image class="add" src="/static/rattle/mine/add.png" @click.stop=""></image>
-				<image class="more" src="/static/rattle/more.png" @click.stop=""></image>
+				<image v-if="musicListType=='created'" class="add" src="/static/rattle/mine/add.png" @click.stop=""></image>
+				<image class="more" src="/static/rattle/mine/more.png" @click.stop=""></image>
 			</div>
 		</div>
 		<div class="fold-content" v-if="!isFold">
-			
+			<div class="music-list" v-for="(item, index) in currentLists" :key="index">
+				<div class="music-list-left">
+					<image class="cover-image" :src="item.cover"></image>
+				</div>
+				
+				<div class="music-list-center">
+					<text class="music-list-name">{{item.name}}</text>
+					<text class="number" v-if="musicListType == 'created'">{{item.number}}首，已下载{{item.downloaded}}首</text>
+					<text class="number" v-else>{{item.number}}首 by {{item.owner}}</text>
+
+				</div>
+				
+				<div class="music-list-right">
+					<image class="more" src="/static/rattle/more.png" @click.stop=""></image>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
 
 <script>
+	
+
 	const animation = weex.requireModule('animation');
 
 	export default {
+		components: {
+			
+		},
 		data() {
 			return {
 				isFold: true,
+				currentLists: [
+					
+				],
+				createdLists: [
+					{name: '我喜欢的音乐',number: 1382, downloaded: 23, tag: '', description: '', owner: '', cover: 'https://p1.music.126.net/V4peTxArZ8SPWj1HB4LMNw==/109951163522937354.jpg?param=200y200'},
+					{name: '大宝贝喜欢的音乐',number: 111, downloaded: 2, tag: '', description: '', owner: '', cover: 'https://p1.music.126.net/BJgUd9aD9gpougZFASRTTw==/18548761162235571.jpg?param=200y200'},
+					{name: '初相见',number: 15, downloaded: 1, tag: '', description: '', owner: '', cover: 'https://p1.music.126.net/qr43RIFY1C_CkkZI-JmcHg==/19151293532638921.jpg?param=200y200'},
+				],
+				favorLists: [
+					{name: '让摇滚娶了民谣！',number: 538, downloaded: 0, tag: '', description: '', owner: '-Hudson', cover: 'https://p1.music.126.net/tjTFds7jyl8XFc78pNF35Q==/18607035278757929.jpg?param=200y200'},
+					{name: '小酒馆的微醺需要腔调和情怀',number: 30, downloaded: 0, tag: '', description: '', owner: '齊宣王啃牛角', cover: 'https://p1.music.126.net/KBu6AzUPu4M3rfJWcCbuDA==/2885118512088643.jpg?param=200y200'},
+					{name: '一个人的慵懒时光',number: 29, downloaded: 0, tag: '', description: '', owner: '齊宣王啃牛角', cover: 'https://p2.music.126.net/ZwM8MXw-y8BW7H9QuXXG2g==/7790039882872517.jpg?param=200y200'},
+					{name: '音乐 || 许嵩',number: 159, downloaded: 0, tag: '', description: '', owner: '执着的charm', cover: 'https://p1.music.126.net/Gcp9FRTk3V12hScXHfmIzg==/109951163681664966.jpg?param=200y200'},
+					{name: '超lazy的午夜沙发音乐',number: 29, downloaded: 0, tag: '', description: '', owner: 'SunsetCruzer', cover: 'https://p1.music.126.net/7MlT3n1hkZn4fv_GP5d05Q==/14408000370380150.jpg?param=200y200'},
+					{name: '【会让人瞬间心碎的•萨克斯曲】',number: 29, downloaded: 0, tag: '', description: '', owner: 'Anita58', cover: 'https://p1.music.126.net/HVtk8FUI5RKnqAiiGSb6UQ==/6051711999484752.jpg?param=200y200'},
+
+				]
+			}
+		},
+		created() {
+			this.currentLists = this.musicListType == 'created' ? this.createdLists : this.favorLists;
+		},
+		props: {
+			musicListName: {
+				type: String,
+				default: "创建的歌单"
+			},
+			musicListType: {
+				type: String,
+				default: "created"
+			},
+			number: {
+				type: Number,
+				default: 0
 			}
 		},
 		methods: {

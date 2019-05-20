@@ -1,6 +1,6 @@
 <template>
 	<div class="cells">
-		<div class="cell" v-for="(item,i) in list" :key="i">
+		<div class="cell" v-for="(item,i) in items" :key="i">
 			<div class="cell-left">
 				<image class="cell-icon" :src="item.src"></image>
 			</div>
@@ -18,14 +18,14 @@
 	export default {
 		data() {
 			return {
-				list: [
-					{name: '本地音乐', number: 30, src: '../../static/rattle/mine/local-music.png'},
-					{name: '最近播放', number: 200, src: '../../static/rattle/mine/recently-played.png'},
-					{name: '下载管理', number: 29, src: '../../static/rattle/mine/download.png'},
-					{name: '我的电台', number: 2, src: '../../static/rattle/mine/radio.png'},
-					{name: '我的收藏', number: 34, src: '../../static/rattle/mine/collect.png'},
-				]
+				
 			}
+		},
+		props: {
+			items: {
+				type: Array,
+				default: []
+			},
 		},
 	}
 </script>
