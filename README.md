@@ -25,7 +25,7 @@
 4. Create Pull Request
 
 #### 已完成部分截图
-<figure class="half">
+<div style="display:flex;flex-direction: row;">
 <img title="mine" src="https://user-images.githubusercontent.com/33248133/58035743-030e7e80-7b5c-11e9-9452-183b60c985e1.jpg">
 <img title="find" src="https://user-images.githubusercontent.com/33248133/56738294-e66e6900-679e-11e9-9d3b-21ec3912ccc3.png">
-</figure>
+</div>
