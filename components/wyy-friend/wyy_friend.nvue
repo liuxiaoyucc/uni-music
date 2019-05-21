@@ -1,0 +1,20 @@
+<template>
+	<div>
+		friend
+	</div>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				
+			}
+		},
+	}
+</script>
+
+<style src="@/components/wyy-friend/wyy_friend.css"></style>
+<style>
+
+</style>

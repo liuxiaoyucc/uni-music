@@ -1,0 +1,29 @@
+<template>
+	<div>
+		video
+	</div>
+</template>
+
+<script>
+
+
+	export default {
+		components: {
+
+		},
+		data: () => ({
+			
+		}),
+		created() {
+			
+		},
+		methods: {
+			
+		}
+	};
+</script>
+
+<style scoped src="@/components/wyy-video/wyy_video.css"></style>
+<style scoped>
+
+</style>

@@ -8,11 +8,10 @@
 			</lxy-tab-bar>
 
 			<lxy-tab-content>
-				
 				<wyy-mine></wyy-mine>
-				<wyy-find :categoryBars="categoryBars"></wyy-find>
-				<wyy-find :categoryBars="categoryBars"></wyy-find>
-				<wyy-find :categoryBars="categoryBars"></wyy-find>
+				<wyy-find></wyy-find>
+				<wyy-friend></wyy-friend>
+				<wyy-video></wyy-video>
 			</lxy-tab-content>
 			
 		</lxy-tabs>
@@ -26,9 +25,8 @@
 	import lxySideBar from '@/components/lxy-tab-nvue/lxy_side_bar.nvue';
 	import wyyFind from '@/components/wyy-find/wyy_find.nvue';
 	import wyyMine from '@/components/wyy-mine/wyy_mine.nvue';
-
-	import style from '@/config/style.js';
-
+	import wyyFriend from '@/components/wyy-friend/wyy_friend.nvue';
+	import wyyVideo from '@/components/wyy-video/wyy_video.nvue';
 
 
 	export default {
@@ -38,7 +36,9 @@
 			lxyTabs,
 			lxySideBar,
 			wyyFind,
-			wyyMine
+			wyyMine,
+			wyyFriend,
+			wyyVideo
 		},
 		data() {
 			return {
@@ -46,19 +46,12 @@
 				deviceHeight: 0,
 				config: {},
 				tabIndex: 1,
-				tabBars: [{
-					name: '我的',
-					id: 'mine'
-				}, {
-					name: '发现',
-					id: 'find'
-				}, {
-					name: '朋友',
-					id: 'friend'
-				}, {
-					name: '视频',
-					id: 'video'
-				}]
+				tabBars: [
+					{ name: '我的', id: 'mine' },
+					{ name: '发现', id: 'find' },
+					{ name: '朋友', id: 'friend' },
+					{ name: '视频', id: 'video' },
+				]
 			}
 		},
 		computed: {

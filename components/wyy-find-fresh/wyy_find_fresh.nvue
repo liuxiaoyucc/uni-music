@@ -103,11 +103,10 @@
 		},
 		methods: {
 			toMusicList() {
-				console.log('toMusicList');
+				
 			},
 			changeIndex(tIndex){
 				this.titleIndex = tIndex;
-				console.log(tIndex);
 			}
 		}
 

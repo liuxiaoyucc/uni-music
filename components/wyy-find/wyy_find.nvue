@@ -38,9 +38,6 @@
 	import wyyFindFresh from '@/components/wyy-find-fresh/wyy_find_fresh.nvue';
 	import wyyVideoCard from '@/components/wyy-video-card/wyy_video_card.nvue';
 
-
-
-
 	export default {
 		components: {
 			wyyCategoryBars,
