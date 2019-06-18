@@ -1,8 +1,18 @@
+.personal-details{
+	padding: 0 30px;
+}
+.line{
+	height: 1;
+	margin: 0 30px;
+	background-color: rgba(0,0,0,.1);
+}
 .sidebar{
 	padding-top: 100px;
+	
 }
 .contain{
-	padding: 0 30px 0 30px;
+	/* padding: 0 30px; */
+	flex: 1 0 auto;
 }
 
 .personal-card{
@@ -25,5 +35,61 @@
 	border-radius: 10px;
 	background-image: linear-gradient(to right, #000000, rgba(0,0,0,.8));
 	height: 90px;
-	margin-top: 25px;
+	margin: 25px 30px;
+}
+.features{
+	flex-direction: row;
+	padding: 20px;
+}
+.icon-block{
+	flex: 1;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	margin: 0px 10px;
+	padding: 10px;
+}
+.feature-icon{
+	width: 50px;
+	height: 50px;
+}
+.feature-name{
+	font-size: 18px;
+	margin-top: 10px;
+}
+
+
+
+
+
+.cells{
+	padding: 15px 0px;
+}
+.cell{
+	flex-direction: row;
+	padding: 15px 0px;
+}
+.cell:active{
+	background-color: rgba(0,0,0,0.1);
+}
+.cell-left{
+	padding-left: 30px;
+	justify-content: center;
+	align-items: center;
+}
+.cell-right{
+	margin-left: 15px;
+	flex-direction: row;
+	align-items: center;
+}
+.cell-name{
+	font-size: 22px;
+}
+.number{
+	font-size: 20px;
+	color: rgba(0,0,0,0.3);
+}
+.cell-icon{
+	width: 45px;
+	height: 45px;
 }

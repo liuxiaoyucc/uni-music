@@ -4,7 +4,7 @@
 
 		<lxy-tabs @change="changeTab" :index="tabIndex">
 			<lxy-tab-bar :sideBarWidth="sideBarWidth" drag="true" :tab-bars="tabBars" :tab-index="tabIndex">
-				<wyy-side-bar :height="systemInfo.deviceHeight" :width="sideBarWidth"></wyy-side-bar>
+				<wyy-side-bar></wyy-side-bar>
 			</lxy-tab-bar>
 
 			<lxy-tab-content>

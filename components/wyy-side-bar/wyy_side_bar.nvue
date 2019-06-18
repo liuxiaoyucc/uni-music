@@ -1,56 +1,136 @@
 <template>
-	<div class="sidebar wyy-bg-color" :style="{width:width+'px'}">
-		<div class="contain">
-			
-			<div class="personal-card">
-				<div class="personal-details">
-					<image class="avatar" src="http://p4.music.126.net/-GRoXp9WKuDSM1rY-NjozA==/109951163685331993.jpg?param=200y200"></image>
-					<div class="data-strip">
-						<div>
-							<text class="nickname">宝贝畅畅的网易云音乐</text>
-						</div>
-						<div>
-							
-						</div>
-					</div>
-				</div>
-				<div class="vip-card"></div>
-				<div class="features">
-					<div>
 
+	<scroller show-scrollbar="false">
+		<div class="sidebar wyy-bg-color" style="height: 100%;">
+			<div class="contain">
+
+				<div class="personal-card">
+					<div class="personal-details">
+						<image class="avatar" src="http://p4.music.126.net/-GRoXp9WKuDSM1rY-NjozA==/109951163685331993.jpg?param=200y200"></image>
+						<div class="data-strip">
+							<div>
+								<text class="nickname">宝贝畅畅的网易云音乐</text>
+							</div>
+							<div>
+
+							</div>
+						</div>
 					</div>
-					<div></div>
-					<div></div>
-					<div></div>
+					<div class="vip-card"></div>
+					<div class="features">
+						<div class="icon-block" v-for="item in 4" :key="item">
+							<image class="feature-icon" src="../../static/rattle/mine/collect.png"></image>
+							<text class="feature-name">我的消息</text>
+						</div>
+					</div>
+					<div class="line"></div>
 				</div>
+
+				<div class="cells">
+					<div class="cell" v-for="(item,i) in commonLists" :key="i">
+						<div class="cell-left">
+							<image class="cell-icon" :src="item.src"></image>
+						</div>
+						<div class="cell-right">
+							<text class="cell-name">{{item.name}}</text>
+						</div>
+					</div>
+				</div>
+
+				<div class="line"></div>
+
+				<div class="cells">
+					<div class="cell" v-for="(extend_item,extend_index) in extendsList" :key="extend_index">
+						<div class="cell-left">
+							<image class="cell-icon" :src="extend_item.src"></image>
+						</div>
+						<div class="cell-right">
+							<text class="cell-name">{{extend_item.name}}</text>
+						</div>
+					</div>
+				</div>
+
 			</div>
-			
 		</div>
-	</div>
+
+	</scroller>
+
 </template>
 
 <script>
+	import wyyMineCell from '@/components/wyy-mine-cell/wyy_mine_cell.nvue';
+
 	export default {
+
 		components: {
-			
+			wyyMineCell,
 		},
 		props: {
-			width: {
-				type: Number,
-				default: 650
-			},
-			height: {
-				type: Number,
-				default:0
-			}
+			
 		},
 		data() {
 			return {
-				
+				commonLists: [{
+						name: '演出',
+						src: '../../static/rattle/mine/local-music.png'
+					},
+					{
+						name: '商城',
+						src: '../../static/rattle/mine/recently-played.png'
+					},
+					{
+						name: '附近的人',
+						src: '../../static/rattle/mine/download.png'
+					},
+					{
+						name: '口袋铃声',
+						src: '../../static/rattle/mine/radio.png'
+					},
+				],
+				extendsList: [{
+						name: '定时停止播放',
+						src: '../../static/rattle/mine/local-music.png'
+					},
+					{
+						name: '扫一扫',
+						src: '../../static/rattle/mine/recently-played.png'
+					},
+					{
+						name: '音乐闹钟',
+						src: '../../static/rattle/mine/download.png'
+					},
+					{
+						name: '音乐云盘',
+						src: '../../static/rattle/mine/radio.png'
+					},
+					{
+						name: '在线听歌免流量',
+						src: '../../static/rattle/mine/local-music.png'
+					},
+					{
+						name: '游戏推荐',
+						src: '../../static/rattle/mine/recently-played.png'
+					},
+					{
+						name: '优惠券',
+						src: '../../static/rattle/mine/download.png'
+					},
+					{
+						name: '加入网易音乐人',
+						src: '../../static/rattle/mine/radio.png'
+					},
+					{
+						name: '我要直播',
+						src: '../../static/rattle/mine/local-music.png'
+					},
+				]
 			}
 		},
-		created(){
-			
+		computed: {
+
+		},
+		created() {
+
 		},
 		watch: {
 
@@ -63,5 +143,3 @@
 </script>
 <style src="@/common/wyy.css"></style>
 <style scope src="@/components/wyy-side-bar/wyy_side_bar.css"></style>
-<style scope>
-</style>
