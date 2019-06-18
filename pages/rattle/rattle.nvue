@@ -1,10 +1,10 @@
 <template>
 	<div class="wyy-bg-color">
-		<div class="status-bar wyy-main-color" :style="{height: config.statusBarHeight+'wx'}"></div>
+		<div class="status-bar wyy-main-color" :style="{height: systemInfo.statusBarHeight+'wx'}"></div>
 
 		<lxy-tabs @change="changeTab" :index="tabIndex">
 			<lxy-tab-bar :sideBarWidth="sideBarWidth" drag="true" :tab-bars="tabBars" :tab-index="tabIndex">
-				<lxy-side-bar :height="deviceHeight" :width="sideBarWidth"></lxy-side-bar>
+				<wyy-side-bar :height="systemInfo.deviceHeight" :width="sideBarWidth"></wyy-side-bar>
 			</lxy-tab-bar>
 
 			<lxy-tab-content>
@@ -22,7 +22,7 @@
 	import lxyTabContent from '@/components/lxy-tab-nvue/lxy_tab_content.nvue'
 	import lxyTabBar from '@/components/lxy-tab-nvue/lxy_tab_bar.nvue'
 	import lxyTabs from '@/components/lxy-tab-nvue/lxy_tabs.nvue'
-	import lxySideBar from '@/components/lxy-tab-nvue/lxy_side_bar.nvue';
+	import wyySideBar from '@/components/wyy-side-bar/wyy_side_bar.nvue';
 	import wyyFind from '@/components/wyy-find/wyy_find.nvue';
 	import wyyMine from '@/components/wyy-mine/wyy_mine.nvue';
 	import wyyFriend from '@/components/wyy-friend/wyy_friend.nvue';
@@ -34,7 +34,7 @@
 			lxyTabContent,
 			lxyTabBar,
 			lxyTabs,
-			lxySideBar,
+			wyySideBar,
 			wyyFind,
 			wyyMine,
 			wyyFriend,
@@ -43,8 +43,8 @@
 		data() {
 			return {
 				sideBarWidth: 640,
-				deviceHeight: 0,
-				config: {},
+				statusBarHeight: 0,
+				systemInfo: {},
 				tabIndex: 1,
 				tabBars: [
 					{ name: '我的', id: 'mine' },
@@ -58,15 +58,8 @@
 			
 		},
 		created() {
-			uni.getStorage({
-				key: '_config',
-				success: (res) => {
-					this.config = JSON.parse(res.data);
-					this.deviceHeight = this.config.windowHeight;
-				}
-			})
-
-
+			var system = uni.getSystemInfoSync();
+			this.systemInfo = system;
 		},
 		methods: {
 			async changeTab(e) {

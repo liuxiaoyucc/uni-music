@@ -1,0 +1,67 @@
+<template>
+	<div class="sidebar wyy-bg-color" :style="{width:width+'px'}">
+		<div class="contain">
+			
+			<div class="personal-card">
+				<div class="personal-details">
+					<image class="avatar" src="http://p4.music.126.net/-GRoXp9WKuDSM1rY-NjozA==/109951163685331993.jpg?param=200y200"></image>
+					<div class="data-strip">
+						<div>
+							<text class="nickname">宝贝畅畅的网易云音乐</text>
+						</div>
+						<div>
+							
+						</div>
+					</div>
+				</div>
+				<div class="vip-card"></div>
+				<div class="features">
+					<div>
+
+					</div>
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</template>
+
+<script>
+	export default {
+		components: {
+			
+		},
+		props: {
+			width: {
+				type: Number,
+				default: 650
+			},
+			height: {
+				type: Number,
+				default:0
+			}
+		},
+		data() {
+			return {
+				
+			}
+		},
+		created(){
+			
+		},
+		watch: {
+
+		},
+		methods: {
+
+		}
+
+	}
+</script>
+<style src="@/common/wyy.css"></style>
+<style scope src="@/components/wyy-side-bar/wyy_side_bar.css"></style>
+<style scope>
+</style>

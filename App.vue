@@ -4,7 +4,6 @@
 		
 		onLaunch: function () {
 			console.log('onLaunch');
-			uni.setStorageSync('_config', this.$config.systemInfo)
 		},
 		onShow: function () {
 			console.log('App Show')
