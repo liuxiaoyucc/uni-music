@@ -1,6 +1,6 @@
 .DS_Store
-node_modules/
-/dist/
+NVUE/node_modules/
+NVUE//dist/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -12,9 +12,9 @@ yarn-error.log*
 *.ntvs*
 *.njsproj
 *.sln
-unpackage/
+NVUE/unpackage/
 
-unpackage/dist/
+NVUE/unpackage/dist/
 
-unpackage
+NVUE/unpackage
 
