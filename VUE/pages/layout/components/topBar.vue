@@ -2,7 +2,7 @@
 	<view class="content flex">
 		<i class="iconfont menu-icon icon-menu_icon" @click="$emit('openDrawer')"><chat class="chat" v-if="message" :num="message" /></i>
 		<view class="navs flex1 flex-center">
-			<view class="nav" v-for="(item, index) in navs" :key="index">{{ item.name }}</view>
+			<view class="nav font32" @click="$emit('clickTab', index)" :class="{ active: index == current }" v-for="(item, index) in navs" :key="index">{{ item.name }}</view>
 		</view>
 		<i class="iconfont icon-sousuo"></i>
 	</view>
@@ -15,7 +15,11 @@ export default {
 		chat
 	},
 	props: {
-		navs: {}
+		navs: {},
+		current: {
+			type: Number,
+			default: 0
+		}
 	},
 	data() {
 		return {
@@ -28,6 +32,7 @@ export default {
 <style scoped>
 .navs .nav {
 	width: 110rpx;
+	color: #717171;
 }
 
 .menu-icon {
@@ -37,5 +42,11 @@ export default {
 	position: absolute;
 	left: 40rpx;
 	top: -18rpx;
+}
+
+.navs .active {
+	font-weight: bold;
+	color: #363636;
+	font-size: 36rpx;
 }
 </style>
