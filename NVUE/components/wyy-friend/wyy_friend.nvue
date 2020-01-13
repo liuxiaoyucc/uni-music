@@ -15,5 +15,5 @@
 </script>
 
 <style>
-@import '../../components/wyy-friend/wyy_friend.css';
+/* @import '../../components/wyy-friend/wyy_friend.css'; */
 </style>

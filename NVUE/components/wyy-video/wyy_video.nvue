@@ -25,5 +25,5 @@
 
 
 <style scoped>
-@import '../../components/wyy-video/wyy_video.css';
+/* @import '../../components/wyy-video/wyy_video.css'; */
 </style>
