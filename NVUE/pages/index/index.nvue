@@ -1,6 +1,21 @@
 <template>
 	<div class="tabs wyy-bg-color">
-		
+		<view :style="{ height: statusbar_height + 'px'}" style="background-color: rgba(218, 45, 30, 1);;"></view>
+		<div class="sub_page">
+			<view class="left-bar" @tap="show_side_drawer">
+				<image class="menu-icon" src="/static/menu.png"></image>
+			</view>
+			<view id="tab-bar" class="scroll-h">
+				<view class="tab-item" v-for="(tab,index) in tabBars" :key="tab.id" :id="tab.id" :data-current="index" @click="ontabtap(index)">
+					<text class="uni-tab-item-title" :class="tab_index==index ? 'uni-tab-item-title-active' : ''">{{tab.name}}</text>
+				</view>
+			</view>
+			<view class="right-bar">
+				<image class="search-icon" src="/static/search.png"></image>
+			</view>
+		</div>
+
+
 		<swiper :current="tab_index" class="swiper-box" :duration="300" @change="change_tab">
 			<swiper-item class="swiper-item">
 				<wyy-mine></wyy-mine>
@@ -15,15 +30,14 @@
 				<wyy-video></wyy-video>
 			</swiper-item>
 		</swiper>
-		
-		<uni-drawer :visible="show_sidebar" mode="left" @close="closeDrawer('left')">
+
+		<uni-drawer :visible="show_sidebar" mode="left" @close="close_side_drawer('left')">
 			<wyy-side-bar></wyy-side-bar>
 		</uni-drawer>
 	</div>
 </template>
 
 <script>
-
 	import wyySideBar from '@/components/wyy-side-bar/wyy_side_bar.nvue';
 	import wyyFind from '@/components/wyy-find/wyy_find.nvue';
 	import wyyMine from '@/components/wyy-mine/wyy_mine.nvue';
@@ -31,7 +45,7 @@
 	import wyyVideo from '@/components/wyy-video/wyy_video.nvue';
 
 	import uniDrawer from '@/components/uni-drawer/uni-drawer.vue'
-	
+
 	export default {
 		components: {
 			wyySideBar,
@@ -44,39 +58,45 @@
 		data() {
 			return {
 				show_sidebar: false,
-				
+				statusbar_height: 0,
 				tab_index: 0,
 				tabBars: [
-					
-				]
+					{name: '我的', id: 'mine'},
+					{name: '发现', id: 'find'},
+					{name: '朋友', id: 'friends'},
+					{name: '视频', id: 'video'},
+				],
 			}
 		},
 		computed: {
-			
+
 		},
 		watch: {
 			tab_index: function(val, old_val) {
-				uni.$emit('tab_index_changed_forward', val); //触发bar.nvue中的监听
+				
 			}
 		},
 		created() {
-			uni.$on('tab_index_changed_reverse', (index)=> {
-				this.tab_index = index;
-			})
-			uni.$on('call_sidebar', ()=> {
-				this.show_sidebar = true;
-			})
+			this.statusbar_height = uni.getSystemInfoSync().statusBarHeight;
 		},
 		onUnload() {
-			uni.$off('tab_index_changed_reverse');
+			
 		},
 		methods: {
-			
-			closeDrawer() {
+			ontabtap(index) {
+				this.change_tab_index(index);
+			},
+			show_side_drawer() {
+				this.show_sidebar = true;
+			},
+			close_side_drawer() {
 				this.show_sidebar = false;
 			},
 			change_tab(e) {
 				let index = e.target.current || e.detail.current;
+				this.change_tab_index(index);
+			},
+			change_tab_index(index) {
 				this.tab_index = index;
 			}
 		}
@@ -85,6 +105,7 @@
 
 <style>
 	@import '../../common/wyy.css';
+
 	.tabs {
 		flex: 1;
 		flex-direction: column;
@@ -94,7 +115,72 @@
 		height: 100vh;
 		/* #endif */
 	}
+
 	.swiper-box {
 		flex: 1;
+	}
+
+	.sub_page {
+		flex-direction: row;
+		justify-content: space-between;
+		background-color: rgba(218, 45, 30, 1);
+	}
+
+
+	.scroll-h {
+		background-color: rgba(218, 45, 30, 1);
+		width: 550rpx;
+		height: 80rpx;
+		flex-direction: row;
+		justify-content: center;
+	}
+
+
+	.uni-tab-item-title {
+		color: #FFFFFF;
+		font-size: 26rpx;
+		height: 80rpx;
+		line-height: 80rpx;
+		flex-wrap: nowrap;
+		/* #ifndef APP-PLUS */
+		white-space: nowrap;
+		/* #endif */
+	}
+
+	.uni-tab-item-title-active {
+		color: #FFFFFF;
+		font-weight: 600;
+		font-size: 32rpx;
+	}
+
+	.tab-item {
+		justify-content: center;
+		align-items: center;
+		margin: 0 10rpx;
+		width: 100rpx;
+	}
+
+	.left-bar {
+		width: 100rpx;
+		height: 80rpx;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.right-bar {
+		width: 100rpx;
+		height: 80rpx;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.menu-icon {
+		width: 35rpx;
+		height: 35rpx;
+	}
+
+	.search-icon {
+		width: 35rpx;
+		height: 35rpx;
 	}
 </style>

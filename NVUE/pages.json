@@ -5,18 +5,18 @@
 			"path" : "pages/Index/Index",
 			"style" : {
 				"navigationBarTitleText" : "首页",
-				"titleNView" : false,
-				"subNVues": [{
-						"id": "bar",
-						"path": "subNVue/bar",
-						"type": "navigationBar",
-						"style": {
-							"position": "absolute",
-							"top": "0",
-							"left": "0"
-						}
-					}
-				]
+				"titleNView" : false
+				// "subNVues": [{
+				// 		"id": "bar",
+				// 		"path": "subNVue/bar",
+				// 		"type": "navigationBar",
+				// 		"style": {
+				// 			"position": "absolute",
+				// 			"top": "0",
+				// 			"left": "0"
+				// 		}
+				// 	}
+				// ]
 			}
 			
 		},

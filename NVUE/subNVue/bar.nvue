@@ -12,10 +12,6 @@
 			<image class="search-icon" src="/static/search.png"></image>
 		</view>
 		
-		
-		
-		
-		
 	</div>
 </template>
 
@@ -28,7 +24,6 @@
 		data() {
 			return {
 				
-				unread_num: 0,
 				tab_index: 0, //当前tab
 				tabBars: [
 					{name: '我的', id: 'mine'},
