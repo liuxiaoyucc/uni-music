@@ -78,6 +78,10 @@
 	font-size: 40rpx;
 }
 
+.font50 {
+	font-size: 50rpx;
+}
+
 .border-round {
 	border-radius: 50%;
 }

@@ -2,9 +2,9 @@
 	<view class="layout">
 		<view class="status_bar"><!-- 状态栏 --></view>
 		<!-- topbar -->
-		<top-bar class="topbar container" @openDrawer="openDrawer" :navs="topbar" />
+		<top-bar class="topbar container" :current="current" @openDrawer="openDrawer" @clickTab="clickTab" :navs="topbar" />
 		<!-- main -->
-		<swiper class="main swiper">
+		<swiper class="main swiper" :current="current" @change="changeSwiper">
 			<!-- 我的 -->
 			<swiper-item class="swiper-item my">
 				<scroll-view class="scroll-view-y"><homeMy></homeMy></scroll-view>
@@ -48,7 +48,8 @@ export default {
 
 	data() {
 		return {
-			drawerShow: true, //用户中心状态
+			drawerShow: false, //用户中心状态
+			current: 0,
 			topbar: [{ name: '我的' }, { name: '发现' }, { name: '云村' }, { name: '视频' }]
 		};
 	},
@@ -60,6 +61,14 @@ export default {
 		closeDrawer() {
 			// 监听抽屉关闭;
 			this.drawerShow = false;
+		},
+		clickTab(index) {
+			// 监听组件tab点击切换
+			this.current = index;
+		},
+		changeSwiper(e) {
+			// swiper 切换
+			this.current = e.detail.current;
 		}
 	}
 };
@@ -75,7 +84,6 @@ export default {
 
 .main {
 	height: calc(100vh - 110rpx - var(--status-bar-height));
-	border: 1rpx solid red;
 }
 
 .swiper-item,

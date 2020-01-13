@@ -68,7 +68,7 @@ export default {
 	},
 	data() {
 		return {
-			isLogin: true,
+			isLogin: false,
 			rowLists: [
 				{ name: '我的消息', icon: 'icon-xinfeng', message: 100 },
 				{ name: '我的好友', icon: 'icon-xinfeng' },
