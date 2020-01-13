@@ -6,8 +6,10 @@
 
 
 #### Members
-[liuxiaoyucc](https://github.com/liuxiaoyuc)
-[xiangbin0712](https://github.com/xiangbin0712)
+以下排名不分先后
+ * [liuxiaoyucc](https://github.com/liuxiaoyuc)
+
+ * [xiangbin0712](https://github.com/xiangbin0712)
 
 #### Technology Stack
 
