@@ -14,5 +14,5 @@ export default {
 
 <style>
 @import url('./static/font/iconfont.css');
-@import url('./pages/common/base.css');
+@import url('./common/base.css');
 </style>

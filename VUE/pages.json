@@ -6,24 +6,31 @@
 			"style": {
 				"navigationStyle": "custom"
 			}
+		}, {
+			"path": "pages/homeMy/homeMy",
+			"style": {}
+		}, {
+			"path": "pages/homeFind/homeFind",
+			"style": {}
+		}, {
+			"path": "pages/homeVillage/homeVillage",
+			"style": {}
+		}, {
+			"path": "pages/homeVideo/homeVideo",
+			"style": {}
+		},
+		{
+			"path": "pages/aboutUserPage/myMessage",
+			"style": {}
+		},
+		{
+			"path": "pages/aboutUserPage/setting/setting",
+			"style": {
+				"navigationStyle": "custom"
+			}
 		}
-	    ,{
-            "path" : "pages/homeMy/homeMy",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/homeFind/homeFind",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/homeVillage/homeVillage",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/homeVideo/homeVideo",
-            "style" : {}
-        }
-    ],
+
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
