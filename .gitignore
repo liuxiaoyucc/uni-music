@@ -1,10 +1,7 @@
 .DS_Store
-NVUE/node_modules/
-NVUE//dist/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
 # Editor directories and files
 .idea
 .vscode
@@ -12,9 +9,10 @@ yarn-error.log*
 *.ntvs*
 *.njsproj
 *.sln
+NVUE/node_modules/
 NVUE/unpackage/
 
-NVUE/unpackage/dist/
+VUE/node_modules/
+VUE/unpackage/
 
-NVUE/unpackage
 
