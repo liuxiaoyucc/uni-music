@@ -13,8 +13,8 @@
 			</div>
 		</div>
 		
-		<swiper :index="titleIndex" class="slider" scrollable=false>
-			<swiper-item class="frame" v-for="(data,dIndex) in freshData" :key="dIndex">
+		<view class="slider">
+			<view class="frame" v-if="dIndex == titleIndex" v-for="(data,dIndex) in freshData" :key="dIndex">
 				<div class="music-lists">
 					<div class="music-list" v-for="(musicList,mlIndex) in data.data" :key="mlIndex">
 						<image class="ml-bg-image" resize="cover" :src="musicList.imageSrc"></image>
@@ -26,9 +26,8 @@
 						</div>
 					</div>
 				</div>
-				
-			</swiper-item>
-		</swiper>
+			</view>
+		</view>
 
 	</div>
 </template>
