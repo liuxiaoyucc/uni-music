@@ -17,6 +17,6 @@
 </script>
 
 <style>
-	@import './common/uni.css';
+	
 
 </style>

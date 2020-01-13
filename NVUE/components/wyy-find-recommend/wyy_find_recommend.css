@@ -1,35 +1,35 @@
 .find-recommend {
-	width: 750px;
+	width: 750rpx;
 	flex-direction: column;
-	padding-top: 35px;
+	padding-top: 35rpx;
 }
 
 .title {
 	flex-direction: row;
-	padding: 0px 25px;
+	padding: 0rpx 25rpx;
 	justify-content: space-between;
 }
 
 .title-left {
-	height: 40px;
+	height: 40rpx;
 	flex-direction: column;
 	justify-content: center;
 }
 
 .title-content {
-	font-size: 26px;
+	font-size: 26rpx;
 	font-weight: bold;
-	line-height: 40px;
+	line-height: 40rpx;
 }
 
 .title-right {
 	border-color: rgba(0, 0, 0, 0.1);
 	border-style: solid;
-	border-width: 1px;
+	border-width: 1rpx;
 
-	height: 40px;
-	border-radius: 20px;
-	padding: 8px 15px;
+	height: 40rpx;
+	border-radius: 20rpx;
+	padding: 8rpx 15rpx;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
@@ -41,54 +41,54 @@
 }
 
 .title-handle {
-	font-size: 20px;
-	line-height: 40px;
+	font-size: 20rpx;
+	line-height: 40rpx;
 }
 
 .music-lists {
-	width: 750px;
-	padding: 5px 15px;
+	width: 750rpx;
+	padding: 5rpx 15rpx;
 	flex-direction: row;
 	flex-wrap: wrap;
 }
 
 .music-list {
-	margin: 20px 10px;
+	margin: 20rpx 10rpx;
 }
 
 .ml-bg-image {
 	z-index: 1;
-	width: 220px;
-	height: 220px;
-	border-radius: 8px;
+	width: 220rpx;
+	height: 220rpx;
+	border-radius: 8rpx;
 }
 
 .music-list-header {
 	position: absolute;
-	height: 35px;
-	width: 220px;
+	height: 35rpx;
+	width: 220rpx;
 	z-index: 2;
-	top: 0px;
-	left: 0px;
-	padding: 0 10px;
+	top: 0rpx;
+	left: 0rpx;
+	padding: 0 10rpx;
 	flex-direction: row;
 	justify-content: flex-end;
-	border-radius: 10px;
+	border-radius: 10rpx;
 	align-items: center;
 	/* background-color: rgba(0, 0, 0, 0.1); */
 	background-image: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0));
 }
 .favorite-num{
-	font-size: 20px;
+	font-size: 20rpx;
 	color: #FFFFFF;
-	line-height: 35px;
+	line-height: 35rpx;
 }
 .music-list-footer{
-	width: 220px;
-	padding-top: 15px;
+	width: 220rpx;
+	padding-top: 15rpx;
 }
 .list-name{
-	font-size: 20px;
+	font-size: 20rpx;
 	lines:2;
 	text-overflow: ellipsis;
 }

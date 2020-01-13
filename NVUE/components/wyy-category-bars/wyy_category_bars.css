@@ -1,31 +1,31 @@
 .category-bars {
-	width: 750px;
-	height: 180px;
+	width: 750rpx;
+	height: 180rpx;
 	flex-direction: row;
 	justify-content: space-between;
 	border-bottom-color: rgba(0, 0, 0, 0.05);
 	border-bottom-style: solid;
-	border-bottom-width: 1px;
+	border-bottom-width: 1rpx;
 }
 
 .c-bar {
-	width: 150px;
-	height: 180px;
-	padding: 35px 30px;
+	width: 150rpx;
+	height: 180rpx;
+	padding: 35rpx 30rpx;
 	flex-direction: column;
 	align-items: center;
 }
 .c-bar-name{
-	font-size: 17px;
+	font-size: 17rpx;
 }
 .c-bar-image {
-	width: 75px;
-	height: 75px;
+	width: 75rpx;
+	height: 75rpx;
 }
 
 .c-bar-text {
-	height: 35px;
-	width: 80px;
+	height: 35rpx;
+	width: 80rpx;
 	flex-direction: column;
 	justify-content: flex-end;
 	align-items: center;

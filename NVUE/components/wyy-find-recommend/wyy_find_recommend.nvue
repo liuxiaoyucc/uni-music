@@ -38,7 +38,7 @@
 		props: {
 			showImageMask: {
 				type: Boolean,
-				default : false
+				default: false
 			}
 		},
 		data() {
@@ -92,7 +92,6 @@
 	}
 </script>
 
-<style src="@/components/wyy-find-recommend/wyy_find_recommend.css"></style>
 <style>
-
+	@import '../../components/wyy-find-recommend/wyy_find_recommend.css';
 </style>

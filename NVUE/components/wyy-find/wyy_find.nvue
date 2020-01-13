@@ -7,13 +7,14 @@
 
 		<cell>
 			<div class="find-slider">
-				<!-- <div class="wyy-main-color bg-slider"></div> -->
-				<slider index="0" class="slider" interval="5000" auto-play="true" show-indicators="true">
-					<div class="frame" v-for="(img,iIndex) in imageList" :key="iIndex">
+				<div class="wyy-main-color bg-slider"></div>
+				
+				<swiper class="slider" circular indicator-dots indicator-active-color="rgba(218, 45, 30, 1)" autoplay :interval="interval" :duration="duration">
+					<swiper-item class="frame" v-for="(img,iIndex) in imageList" :key="iIndex">
 						<image class="image" resize="cover" :src="img.src"></image>
-					</div>
-					<indicator item-size="12" item-color="#ddd" item-selected-color="#FF0000" class="indicator"></indicator>
-				</slider>
+					</swiper-item>
+				</swiper>
+				
 			</div>
 
 			<wyy-category-bars :bars="categoryBars"></wyy-category-bars>
@@ -55,6 +56,9 @@
 		},
 		data() {
 			return {
+				interval: 2000,
+				duration: 500,
+				
 				refreshing: false,
 				loadinging: false,
 				imageList: [{
@@ -133,8 +137,8 @@
 
 	}
 </script>
-<style src="@/common/wyy.css"></style>
-<style src="@/components/wyy-find/wyy_find.css"></style>
-<style>
 
+<style>
+@import '../../common/wyy.css';
+@import '../../components/wyy-find/wyy_find.css';
 </style>

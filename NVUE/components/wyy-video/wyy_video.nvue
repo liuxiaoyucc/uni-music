@@ -23,7 +23,7 @@
 	};
 </script>
 
-<style scoped src="@/components/wyy-video/wyy_video.css"></style>
-<style scoped>
 
+<style scoped>
+@import '../../components/wyy-video/wyy_video.css';
 </style>

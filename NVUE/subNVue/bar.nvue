@@ -1,0 +1,120 @@
+<template>
+	<div class="sub_page">
+		<view class="left-bar" @tap="show_side_drawer">
+			<image class="menu-icon" src="/static/menu.png"></image>
+		</view>
+		<view id="tab-bar" class="scroll-h">
+			<view class="tab-item" v-for="(tab,index) in tabBars" :key="tab.id" :id="tab.id" :data-current="index" @click="ontabtap(index)">
+				<text class="uni-tab-item-title" :class="tab_index==index ? 'uni-tab-item-title-active' : ''">{{tab.name}}</text>
+			</view>
+		</view>
+		<view class="right-bar">
+			<image class="search-icon" src="/static/search.png"></image>
+		</view>
+		
+		
+		
+		
+		
+	</div>
+</template>
+
+<script>
+	
+	export default {
+		components: {
+			
+		},
+		data() {
+			return {
+				
+				unread_num: 0,
+				tab_index: 0, //当前tab
+				tabBars: [
+					{name: '我的', id: 'mine'},
+					{name: '发现', id: 'find'},
+					{name: '朋友', id: 'friends'},
+					{name: '视频', id: 'video'},
+				],
+			}
+		},
+		created() {
+			uni.$on('tab_index_changed_forward', (tab_index)=> {
+				this.tab_index = tab_index;
+			});//监听tab_index变化
+		},
+		onUnload() {
+			uni.$off('tab_index_changed_forward');
+		},
+		methods: {
+			ontabtap(index) {
+				console.log(index);
+				uni.$emit('tab_index_changed_reverse', index)
+			},
+			show_side_drawer() {
+				uni.$emit('call_sidebar');
+			},
+		},
+	}
+</script>
+
+<style>
+	.sub_page{
+		flex: 1;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: flex-end;
+		background-color: rgba(218, 45, 30, 1);
+	}
+	
+	
+	.scroll-h {
+		background-color: rgba(218, 45, 30, 1);
+		width: 550rpx;
+		height: 80rpx;
+		flex-direction: row;
+		justify-content: center;
+	}
+	
+	
+	.uni-tab-item-title {
+		color: #FFFFFF;
+		font-size: 26rpx;
+		height: 80rpx;
+		line-height: 80rpx;
+		flex-wrap: nowrap;
+		/* #ifndef APP-PLUS */
+		white-space: nowrap;
+		/* #endif */
+	}
+	
+	.uni-tab-item-title-active {
+		color: #FFFFFF;
+		font-weight: 600;
+		font-size: 32rpx;
+	}
+	.tab-item {
+		justify-content: center;
+		align-items: center;
+		margin: 0 10rpx;
+		width: 100rpx;
+	}
+	.left-bar {
+		width: 100rpx; height: 80rpx;
+		justify-content: center;
+		align-items: center;
+	}
+	.right-bar {
+		width: 100rpx; height: 80rpx;
+		justify-content: center;
+		align-items: center;
+	}
+	.menu-icon {
+		width: 35rpx;
+		height: 35rpx;
+	}
+	.search-icon {
+		width: 35rpx;
+		height: 35rpx;
+	}
+</style>

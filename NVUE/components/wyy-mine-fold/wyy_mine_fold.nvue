@@ -103,7 +103,7 @@
 	}
 </script>
 
-<style src="@/components/wyy-mine-fold/wyy_mine_fold.css"></style>
-<style>
 
+<style>
+@import '../../components/wyy-mine-fold/wyy_mine_fold.css';
 </style>

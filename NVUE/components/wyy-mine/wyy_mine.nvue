@@ -1,9 +1,18 @@
 <template>
-	<list show-scrollbar=false>
-		<cell class="mine">
+	<list show-scrollbar=false class="mine">
+		<cell>
 			<wyy-category-bars :bars="categoryBars"></wyy-category-bars>
+		</cell>
+		
+		<cell>
 			<wyy-mine-cell :items="commonLists"></wyy-mine-cell>
+		</cell>
+		
+		<cell>
 			<wyy-mine-fold number="7"></wyy-mine-fold>
+		</cell>
+		
+		<cell>
 			<wyy-mine-fold musicListName="收藏的歌单" musicListType="favor" number="28"></wyy-mine-fold>
 		</cell>
 	</list>
@@ -87,8 +96,7 @@
 	}
 </script>
 
-<style src="@/common/wyy.css"></style>
-<style src="@/components/wyy-mine/wyy_mine.css"></style>
 <style>
-
+@import '../../common/wyy.css';
+@import '../../components/wyy-mine/wyy_mine.css';
 </style>

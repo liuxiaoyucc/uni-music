@@ -6,37 +6,26 @@
 	background-color: rgba(255, 255, 255, 1);
 }
 .wyy-refresh {
-	width: 750;
-	display: -ms-flex;
-	display: -webkit-flex;
-	display: flex;
-	-ms-flex-align: center;
-	-webkit-align-items: center;
-	-webkit-box-align: center;
+	width: 750rpx;
 	align-items: center;
 }
 
 .wyy-indicator-text {
 	color: #888888;
-	font-size: 42px;
+	font-size: 42rpx;
 	text-align: center;
 }
 
 .wyy-loading-indicator {
 	background-color: #FFFFFF;
+	padding: 15rpx;
 	border-radius: 50%;
-	height: 70px;
-	width: 70px;
+	height: 60rpx;
+	width: 60rpx;
 	color: #FF0000;
 }
 
 .wyy-loading {
-	width: 750;
-	display: -ms-flex;
-	display: -webkit-flex;
-	display: flex;
-	-ms-flex-align: center;
-	-webkit-align-items: center;
-	-webkit-box-align: center;
+	width: 750rpx;
 	align-items: center;
 }

@@ -2,8 +2,8 @@
 	
 }
 .top {
-	width: 750px;
-	height: 13px;
+	width: 750rpx;
+	height: 13rpx;
 	background-color: rgba(0, 0, 0, 0.05);
 }
 .cell{
@@ -13,27 +13,27 @@
 	background-color: rgba(0,0,0,0.1);
 }
 .cell-left{
-	height: 86px;
-	width: 132px;
+	height: 86rpx;
+	width: 132rpx;
 	justify-content: center;
 	align-items: center;
 }
 .cell-right{
-	width: 618px;
+	width: 618rpx;
 	flex-direction: row;
 	align-items: center;
 	border-bottom-color: rgba(0,0,0,0.05);
-	border-bottom-width: 1px;
+	border-bottom-width: 1rpx;
 	border-bottom-style: solid;
 }
 .cell-name{
-	font-size: 24px;
+	font-size: 24rpx;
 }
 .number{
-	font-size: 20px;
+	font-size: 20rpx;
 	color: rgba(0,0,0,0.3);
 }
 .cell-icon{
-	width: 45px;
-	height: 45px;
+	width: 45rpx;
+	height: 45rpx;
 }

@@ -30,7 +30,7 @@
 	}
 </script>
 
-<style src="@/components/wyy-mine-cell/wyy_mine_cell.css"></style>
-<style>
 
+<style>
+@import '../../components/wyy-mine-cell/wyy_mine_cell.css';
 </style>

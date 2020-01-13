@@ -1,0 +1,100 @@
+<template>
+	<div class="tabs wyy-bg-color">
+		
+		<swiper :current="tab_index" class="swiper-box" :duration="300" @change="change_tab">
+			<swiper-item class="swiper-item">
+				<wyy-mine></wyy-mine>
+			</swiper-item>
+			<swiper-item class="swiper-item">
+				<wyy-find></wyy-find>
+			</swiper-item>
+			<swiper-item class="swiper-item">
+				<wyy-friend></wyy-friend>
+			</swiper-item>
+			<swiper-item class="swiper-item">
+				<wyy-video></wyy-video>
+			</swiper-item>
+		</swiper>
+		
+		<uni-drawer :visible="show_sidebar" mode="left" @close="closeDrawer('left')">
+			<wyy-side-bar></wyy-side-bar>
+		</uni-drawer>
+	</div>
+</template>
+
+<script>
+
+	import wyySideBar from '@/components/wyy-side-bar/wyy_side_bar.nvue';
+	import wyyFind from '@/components/wyy-find/wyy_find.nvue';
+	import wyyMine from '@/components/wyy-mine/wyy_mine.nvue';
+	import wyyFriend from '@/components/wyy-friend/wyy_friend.nvue';
+	import wyyVideo from '@/components/wyy-video/wyy_video.nvue';
+
+	import uniDrawer from '@/components/uni-drawer/uni-drawer.vue'
+	
+	export default {
+		components: {
+			wyySideBar,
+			wyyFind,
+			wyyMine,
+			wyyFriend,
+			wyyVideo,
+			uniDrawer
+		},
+		data() {
+			return {
+				show_sidebar: false,
+				
+				tab_index: 0,
+				tabBars: [
+					
+				]
+			}
+		},
+		computed: {
+			
+		},
+		watch: {
+			tab_index: function(val, old_val) {
+				uni.$emit('tab_index_changed_forward', val); //触发bar.nvue中的监听
+			}
+		},
+		created() {
+			uni.$on('tab_index_changed_reverse', (index)=> {
+				this.tab_index = index;
+			})
+			uni.$on('call_sidebar', ()=> {
+				this.show_sidebar = true;
+			})
+		},
+		onUnload() {
+			uni.$off('tab_index_changed_reverse');
+		},
+		methods: {
+			
+			closeDrawer() {
+				this.show_sidebar = false;
+			},
+			change_tab(e) {
+				let index = e.target.current || e.detail.current;
+				this.tab_index = index;
+			}
+		}
+	}
+</script>
+
+<style>
+	@import '../../common/wyy.css';
+	.tabs {
+		flex: 1;
+		flex-direction: column;
+		overflow: hidden;
+		background-color: #F8F8F8;
+		/* #ifdef MP-ALIPAY || MP-BAIDU */
+		height: 100vh;
+		/* #endif */
+	}
+	.swiper-box {
+		flex: 1;
+	}
+</style>

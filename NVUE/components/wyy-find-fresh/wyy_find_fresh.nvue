@@ -13,8 +13,8 @@
 			</div>
 		</div>
 		
-		<slider :index="titleIndex" class="slider" scrollable=false>
-			<div class="frame" v-for="(data,dIndex) in freshData" :key="dIndex">
+		<swiper :index="titleIndex" class="slider" scrollable=false>
+			<swiper-item class="frame" v-for="(data,dIndex) in freshData" :key="dIndex">
 				<div class="music-lists">
 					<div class="music-list" v-for="(musicList,mlIndex) in data.data" :key="mlIndex">
 						<image class="ml-bg-image" resize="cover" :src="musicList.imageSrc"></image>
@@ -27,8 +27,8 @@
 					</div>
 				</div>
 				
-			</div>
-		</slider>
+			</swiper-item>
+		</swiper>
 
 	</div>
 </template>
@@ -114,7 +114,7 @@
 	}
 </script>
 
-<style src="@/components/wyy-find-fresh/wyy_find_fresh.css"></style>
-<style>
 
+<style>
+@import '../../components/wyy-find-fresh/wyy_find_fresh.css';
 </style>

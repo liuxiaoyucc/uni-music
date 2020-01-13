@@ -2,12 +2,26 @@
 	"pages" : [
 		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path" : "pages/rattle/rattle",
+			"path" : "pages/Index/Index",
 			"style" : {
-				"navigationBarTitleText" : "叨叨",
-				"titleNView" : false
+				"navigationBarTitleText" : "首页",
+				"titleNView" : false,
+				"subNVues": [{
+						"id": "bar",
+						"path": "subNVue/bar",
+						"type": "navigationBar",
+						"style": {
+							"position": "absolute",
+							"top": "0",
+							"left": "0"
+						}
+					}
+				]
 			}
+			
 		},
+		
+		
 		{
 			"path" : "pages/fascinate/fascinate",
 			"style" : {

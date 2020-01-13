@@ -1,73 +1,73 @@
 .fold-header{
 	flex-direction: row;
-	padding-left: 25px;
-	padding-right: 25px;
+	padding-left: 25rpx;
+	padding-right: 25rpx;
 	justify-content: space-between;
 }
 .fold-header:active{
 	background-color: rgba(0,0,0,0.1);
 }
 .unfold{
-	width: 30px;
-	height: 30px;
+	width: 30rpx;
+	height: 30rpx;
 }
 .fold-name{
-	margin-left: 10px;
-	font-size: 26px;
+	margin-left: 10rpx;
+	font-size: 26rpx;
 	font-weight: bold;
 }
 .fold-num{
-	margin-left: 10px;
-	font-size: 20px;
+	margin-left: 10rpx;
+	font-size: 20rpx;
 	color: rgba(0,0,0,0.3);
 }
 .fold-header-left{
 	flex-direction: row;
-	height: 70px;
+	height: 70rpx;
 	align-items: center;
 }
 .fold-header-right{
 	flex-direction: row;
-	height: 70px;
+	height: 70rpx;
 	align-items: center;
 }
 .add{
-	width: 30px;
-	height: 30px;
+	width: 30rpx;
+	height: 30rpx;
 }
 .more{
-	margin-left: 20px;
-	width: 30px;
-	height: 30px;
+	margin-left: 20rpx;
+	width: 30rpx;
+	height: 30rpx;
 }
 .fold-content{
-	width: 750px;
+	width: 750rpx;
 }
 .music-list{
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
-	padding-left: 25px;
-	padding-right: 25px;
-	height: 100px;
+	padding-left: 25rpx;
+	padding-right: 25rpx;
+	height: 100rpx;
 }
 .cover-image{
-	height: 90px;
-	width: 90px;
-	border-radius: 8px;
+	height: 90rpx;
+	width: 90rpx;
+	border-radius: 8rpx;
 }
 .music-list-center{
 	flex-direction: column;
 	justify-content: space-between;
-	width: 555px;
-	height: 60px;
-	padding-left: 15px;
+	width: 555rpx;
+	height: 60rpx;
+	padding-left: 15rpx;
 }
 .music-list-name{
-	font-size: 24px;
+	font-size: 24rpx;
 }
 .number{
-	font-size: 18px;
+	font-size: 18rpx;
 	color: rgba(0,0,0,0.5);
 }
 .music-list:active{

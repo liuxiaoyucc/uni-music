@@ -1,7 +1,7 @@
 <template>
 
 	<scroller show-scrollbar="false">
-		<div class="sidebar wyy-bg-color" style="height: 100%;">
+		<div class="sidebar wyy-bg-color">
 			<div class="contain">
 
 				<div class="personal-card">
@@ -141,5 +141,7 @@
 
 	}
 </script>
-<style src="@/common/wyy.css"></style>
-<style scope src="@/components/wyy-side-bar/wyy_side_bar.css"></style>
+<style>
+	@import '../../common/wyy.css';
+	@import '../../components/wyy-side-bar/wyy_side_bar.css';
+</style>

@@ -16,7 +16,7 @@
 		<div class="video-card" v-for="(video,vIndex) in videos" :key="vIndex">
 			<div class="video-info">
 				<image class="video-image" resize="cover" :src="video.poster"></image>
-				
+
 				<div class="image-mask"></div>
 				<div class="video-title">
 					<div class="title-left">
@@ -27,7 +27,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<div class="card-footer">
 				<div class="footer-left">
 					<div class="like">
@@ -99,8 +99,8 @@
 
 	}
 </script>
-<style src="@/common/wyy.css"></style>
-<style src="@/components/wyy-video-card/wyy_video_card.css"></style>
-<style>
 
+<style>
+	@import '../../common/wyy.css';
+	@import '../../components/wyy-video-card/wyy_video_card.css';
 </style>

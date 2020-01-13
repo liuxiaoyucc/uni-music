@@ -33,7 +33,7 @@
 		}
 	}
 </script>
-<style src="@/components/wyy-category-bars/wyy_category_bars.css"></style>
-<style>
 
+<style>
+@import '../../components/wyy-category-bars/wyy_category_bars.css';
 </style>
