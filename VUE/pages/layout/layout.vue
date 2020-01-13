@@ -48,7 +48,7 @@ export default {
 
 	data() {
 		return {
-			drawerShow: false, //用户中心状态
+			drawerShow: true, //用户中心状态
 			topbar: [{ name: '我的' }, { name: '发现' }, { name: '云村' }, { name: '视频' }]
 		};
 	},

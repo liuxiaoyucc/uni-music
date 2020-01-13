@@ -1,0 +1,99 @@
+.status_bar {
+	height: var(--status-bar-height);
+}
+
+.flex {
+	display: flex;
+	align-items: center
+}
+
+.flex1 {
+	flex: 1;
+}
+
+.flex-col {
+	display: flex;
+	flex-direction: column;
+}
+
+.flex-center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.flex-aro {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.flex-bet {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.main-color {
+	color: #2D2D2D;
+}
+
+.font20 {
+	font-size: 20rpx
+}
+
+.font22 {
+	font-size: 22rpx
+}
+
+.font24 {
+	font-size: 24rpx
+}
+
+.font26 {
+	font-size: 26rpx
+}
+
+.font28 {
+	font-size: 28rpx
+}
+
+.font30 {
+	font-size: 30rpx
+}
+
+.font32 {
+	font-size: 32rpx;
+}
+
+.font34 {
+	font-size: 34rpx;
+}
+
+.font36 {
+	font-size: 36rpx;
+}
+
+.font40 {
+	font-size: 40rpx;
+}
+
+.border-round {
+	border-radius: 50%;
+}
+
+/* 半像素  top */
+.harf-px-top {
+	position: relative;
+	border: none;
+}
+
+.harf-px-top:after {
+	content: "";
+	position: absolute;
+	top: 0;
+	background: #E5E5E5;
+	width: 100%;
+	height: 1rpx;
+	transform: scaleY(0.5);
+}
