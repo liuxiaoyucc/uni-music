@@ -1,5 +1,5 @@
 <template>
-<text class="iconfont" :style="{fontSize: size + 'rpx',color:color}">{{name}}</text>
+<text @click="onClick" class="iconfont" :style="{fontSize: size + 'rpx',color:color}">{{name}}</text>
 </template>
 
 <script>
@@ -30,7 +30,7 @@
 		created(){
 			dom.addRule('fontFace', {
 			  'fontFamily': "weexUiIconFont",
-			  'src': "url(\'http://at.alicdn.com/t/font_1211227_dqfrszdx6zn.ttf\')"
+			  'src': "url(\'http://at.alicdn.com/t/font_1211227_pk3svznvqd.ttf\')"
 			}); 
 		},
 		methods: {

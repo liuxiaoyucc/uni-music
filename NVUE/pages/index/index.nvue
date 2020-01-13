@@ -30,6 +30,10 @@
 				<wyy-video></wyy-video>
 			</swiper-item>
 		</swiper>
+		
+		<view class="footer" @click="play_start">
+			<wyy-icon type="&#xe601;" size="50" color="#393939" ></wyy-icon>
+		</view>
 
 		<uni-drawer :visible="show_sidebar" mode="left" @close="close_side_drawer('left')">
 			<wyy-side-bar></wyy-side-bar>
@@ -44,8 +48,12 @@
 	import wyyFriend from '@/components/wyy-friend/wyy_friend.nvue';
 	import wyyVideo from '@/components/wyy-video/wyy_video.nvue';
 
-	import uniDrawer from '@/components/uni-drawer/uni-drawer.vue'
-
+	import uniDrawer from '@/components/uni-drawer/uni-drawer.vue';
+	import wyyIcon from '@/components/uni-icon.vue';
+	
+	import $repeater from '@/utils/repeater.js';
+	
+	import Player from '@/model/play.js';
 	export default {
 		components: {
 			wyySideBar,
@@ -53,7 +61,8 @@
 			wyyMine,
 			wyyFriend,
 			wyyVideo,
-			uniDrawer
+			uniDrawer,
+			wyyIcon
 		},
 		data() {
 			return {
@@ -66,6 +75,8 @@
 					{name: '朋友', id: 'friends'},
 					{name: '视频', id: 'video'},
 				],
+				
+				audio_url: 'https://mudic.oss-cn-shanghai.aliyuncs.com/%E8%AE%B8%E5%B5%A9%20-%20%E5%BA%90%E5%B7%9E%E6%9C%88.mp3', //测试音频
 			}
 		},
 		computed: {
@@ -77,12 +88,19 @@
 			}
 		},
 		created() {
-			this.statusbar_height = uni.getSystemInfoSync().statusBarHeight;
+			this.statusbar_height = $repeater.config.status_bar_height;
 		},
 		onUnload() {
 			
 		},
 		methods: {
+			play_start() {
+				Player.start(this.audio_url, (res)=> {
+					console.log(res);
+				});
+			},
+			
+			
 			ontabtap(index) {
 				this.change_tab_index(index);
 			},
@@ -105,7 +123,13 @@
 
 <style>
 	@import '../../common/wyy.css';
-
+	.footer {
+		flex-direction: row;
+		
+		height: 90rpx;
+		width: 750rpx;
+		background-color: #00B26A;
+	}
 	.tabs {
 		flex: 1;
 		flex-direction: column;
