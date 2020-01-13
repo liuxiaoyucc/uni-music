@@ -8,7 +8,7 @@
 			</div>
 			<div class="fold-header-right">
 				<image v-if="musicListType=='created'" class="add" src="/static/rattle/mine/add.png" @click.stop=""></image>
-				<image class="more" src="/static/rattle/mine/more.png" @click.stop=""></image>
+				<wyy-icon class="more" type="&#xe655;" size="30" color="#696969" @click.stop=""></wyy-icon>
 			</div>
 		</div>
 		<div class="fold-content" v-if="!isFold">
@@ -33,13 +33,13 @@
 </template>
 
 <script>
-	
+	import wyyIcon from '../../components/wyy-icon/wyy-icon.nvue';
 
 	const animation = weex.requireModule('animation');
 
 	export default {
 		components: {
-			
+			wyyIcon
 		},
 		data() {
 			return {
