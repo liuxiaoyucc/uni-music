@@ -34,8 +34,6 @@ export default {
 .iconfont {
 	height: 100%;
 }
-.right {
-}
 
 .list .right .num {
 	color: #a4a4a4;
