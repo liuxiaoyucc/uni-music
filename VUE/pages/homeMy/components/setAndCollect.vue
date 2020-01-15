@@ -30,35 +30,6 @@
 						<text>心动模式</text>
 					</view>
 				</view>
-
-				<view class="list love flex-bet">
-					<view class="left  flex">
-						<view class="thumb flex-center"><i class="iconfont font50 icon-love"></i></view>
-						<view class="info">
-							<view class="title font30">我喜欢的音乐</view>
-							<view class="num font24">0首</view>
-						</view>
-					</view>
-
-					<view class="right font24 flex-center">
-						<i class="iconfont font24  icon-ziyuan1"></i>
-						<text>心动模式</text>
-					</view>
-				</view>
-				<view class="list love flex-bet">
-					<view class="left  flex">
-						<view class="thumb flex-center"><i class="iconfont font50 icon-love"></i></view>
-						<view class="info">
-							<view class="title font30">我喜欢的音乐</view>
-							<view class="num font24">0首</view>
-						</view>
-					</view>
-
-					<view class="right font24 flex-center">
-						<i class="iconfont font24  icon-ziyuan1"></i>
-						<text>心动模式</text>
-					</view>
-				</view>
 			</view>
 		</view>
 	</view>

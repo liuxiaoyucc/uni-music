@@ -4,24 +4,26 @@
 		<!-- topbar -->
 		<top-bar class="topbar container" :current="current" @openDrawer="openDrawer" @clickTab="clickTab" :navs="topbar" />
 		<!-- main -->
-		<swiper class="main swiper" :current="current" @change="changeSwiper">
-			<!-- 我的 -->
-			<swiper-item class="swiper-item my">
-				<scroll-view class="scroll-view-y"><homeMy></homeMy></scroll-view>
-			</swiper-item>
-			<!-- 发现 -->
-			<swiper-item class="swiper-item find">
-				<scroll-view class="scroll-view-y"><homeFind></homeFind></scroll-view>
-			</swiper-item>
-			<!-- 云村 -->
-			<swiper-item class="swiper-item village">
-				<scroll-view class="scroll-view-y"><homeVillage></homeVillage></scroll-view>
-			</swiper-item>
-			<!-- 视频 -->
-			<swiper-item class="swiper-item video">
-				<scroll-view class="scroll-view-y"><homeVideo></homeVideo></scroll-view>
-			</swiper-item>
-		</swiper>
+		<view class="main">
+			<swiper class=" swiper" :current="current" @change="changeSwiper">
+				<!-- 我的 -->
+				<swiper-item class="swiper-item my">
+					<scroll-view class="scroll-view-y" scroll-y="true"><homeMy></homeMy></scroll-view>
+				</swiper-item>
+				<!-- 发现 -->
+				<swiper-item class="swiper-item find">
+					<scroll-view class="scroll-view-y" scroll-y="true"><homeFind class="home-find"></homeFind></scroll-view>
+				</swiper-item>
+				<!-- 云村 -->
+				<swiper-item class="swiper-item village">
+					<scroll-view class="scroll-view-y" scroll-y="true"><homeVillage></homeVillage></scroll-view>
+				</swiper-item>
+				<!-- 视频 -->
+				<swiper-item class="swiper-item video">
+					<scroll-view class="scroll-view-y" scroll-y="true"><homeVideo></homeVideo></scroll-view>
+				</swiper-item>
+			</swiper>
+		</view>
 
 		<!-- 侧边抽屉 个人中心 -->
 		<view class="drawer-user"><drawerUser @closeDrawer="closeDrawer" :show="drawerShow" /></view>
@@ -84,8 +86,9 @@ export default {
 
 .main {
 	height: calc(100vh - 110rpx - var(--status-bar-height));
+	/* border: 4rpx solid red; */
 }
-
+.swiper,
 .swiper-item,
 .scroll-view-y {
 	height: 100%;

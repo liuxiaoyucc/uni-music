@@ -1,11 +1,14 @@
 <template>
-	<view class="content">
+	<view class="content1">
 		<!-- slider -->
-		<swiper class="swiper  " :indicator-dots="true" indicator-active-color="rgba(218, 45, 30, 1)" :autoplay="true" :interval="3000" :duration="500">
-			<swiper-item class="swiper-item" v-for="(item, index) in imageList" :key="index"><image :src="item.src" class="image"></image></swiper-item>
+		<swiper class="swiper" :indicator-dots="true" indicator-active-color="rgba(218, 45, 30, 1)" :autoplay="true" :interval="3000" :duration="500">
+			<swiper-item class="swiper-item" v-for="(item, index) in banners.banners" :key="index">
+				<image :src="item.pic" class="image"></image>
+				<view class="tag font20 flex" :style="{ background: item.titleColor }">{{ item.typeTitle }}</view>
+			</swiper-item>
 		</swiper>
+		<!-- row-nav -->
 		<view class="row-nav flex">
-			<!-- 这里后续和首页nav封装成组件使用 -->
 			<view class="list" v-for="item in rowNav" :key="item.id">
 				<view class="thumb flex-center"></view>
 				<view class="text font26 flex-center">{{ item.name }}</view>
@@ -13,43 +16,45 @@
 		</view>
 
 		<!-- 推荐歌单 -->
-		<!-- <view class="recommend-playlist harf-px-top">
+		<view class="recommend-playlist harf-px-top">
 			<view class="container">
 				<view class="title text-color flex-bet ">
 					<view class="left font32 fontb">推荐歌单</view>
-					<view class="right flex-center font24">歌单广场</view>
+					<navigator hover-class="none" class="right flex-center font24" url="../playMenuSquare/playMenuSquare">歌单广场</navigator>
 				</view>
 				<view class="card-box flex-bet">
-					<block v-for="item in demo" :key="item.id"><music-card class="music-card" :info="item"></music-card></block>
+					<block v-for="item in recommendPlaylist.result" :key="item.id"><music-card class="music-card" :info="item"></music-card></block>
 				</view>
 			</view>
-		</view> -->
+		</view>
 
-		<!-- 新碟 -->
-		<!-- 	<view class="new-plate">
+		<!-- 新碟/新歌 -->
+		<view class="new-plate">
 			<view class="container">
 				<view class="title text-color flex-bet ">
 					<view class="left flex">
-						<view class="item font28" @click="plateTabClick(item.id)" :class="{ active: item.id == currentTab }" v-for="item in tab" :key="item.id">
-							{{ item.name }}
-						</view>
+						<view class="item font28" @click="currentTab = item.id" :class="{ active: item.id == currentTab }" v-for="item in tab" :key="item.id">{{ item.name }}</view>
 					</view>
-					<view class="right flex-center font24">更多新碟</view>
+					<view class="right flex-center font24">{{ currentTab ? '更多新歌' : '更多新碟' }}</view>
 				</view>
-				<view class="card-box flex-bet">
-					<block v-for="item in demo" :key="item.id"><music-card class="music-card" :info="item"></music-card></block>
+				<view class="card-box flex-bet" v-show="currentTab == 0">
+					<block v-for="item in newAlbum.albums" :key="item.id"><music-card type="1" class="music-card" :info="item"></music-card></block>
+				</view>
+				<view class="card-box flex-bet" v-show="currentTab == 1">
+					<block v-for="item in newSong" :key="item.id"><music-card type="2" class="music-card" :info="item"></music-card></block>
 				</view>
 			</view>
-		</view> -->
+		</view>
 		<!-- 云村精选 -->
 		<view class="choiceness">
-			<view class="container">
+			暂无接口
+			<!-- 	<view class="container">
 				<view class="title">
 					<view class="left">云村精选</view>
 					<view class="right">获取新内容</view>
 				</view>
 				<choicenessCard></choicenessCard>
-			</view>
+			</view> -->
 		</view>
 	</view>
 </template>
@@ -57,39 +62,14 @@
 <script>
 import musicCard from '@/components/musicCard/musicCard.vue';
 import choicenessCard from '@/components/choicenessCard/choicenessCard.vue';
+import { Banner } from '../../models/banner.js';
+import { Recommend } from '../../models/recommend.js';
+import { Data } from '../../models/data.js';
 export default {
 	components: { musicCard, choicenessCard },
 	data() {
 		return {
-			imageList: [
-				{
-					src: 'http://p1.music.126.net/lXzYxTX2uWtgKPRr435yhQ==/109951164015332296.jpg'
-				},
-				{
-					src: 'http://p1.music.126.net/0yrVUf_n_R5wmRqNu1gKlQ==/109951164008902192.jpg'
-				},
-				{
-					src: 'http://p1.music.126.net/V1IYb7fOYnNMKoZB0Hsw9g==/109951164008749539.jpg'
-				},
-				{
-					src: 'http://p1.music.126.net/8Cf0kANiLi4PI3owO9yFsA==/109951164008093274.jpg'
-				},
-				{
-					src: 'http://p1.music.126.net/-gC1wl4oNcs8QrkOq7sKYg==/109951164008314890.jpg'
-				},
-				{
-					src: 'http://p1.music.126.net/Q1El_3ISdo3Vw9bFMUp_9w==/109951164008139402.jpg'
-				},
-				{
-					src: 'http://p1.music.126.net/Pm9pobge14ZnFsvXJTqHVA==/109951164008109951.jpg'
-				},
-				{
-					src: 'http://p1.music.126.net/BqsOL4-XjJZNLh2jHvUA4Q==/109951164008463728.jpg'
-				},
-				{
-					src: 'http://p1.music.126.net/V1IYb7fOYnNMKoZB0Hsw9g==/109951164008749539.jpg'
-				}
-			],
+			banners: [],
 			rowNav: [
 				{
 					name: '每日推荐',
@@ -118,25 +98,49 @@ export default {
 					iconSrc: '/static/rattle/run-fm.png'
 				}
 			],
-			currentTab: 0, //新碟tab
 			tab: [{ id: 0, name: '新碟' }, { id: 1, name: '新歌' }],
-			demo: [
-				{ id: 0, text: '啥哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈1', src: 'https://dummyimage.com/500x500?text=A' },
-				{ id: 1, text: '测试1', src: 'https://dummyimage.com/500x500?text=b' },
-				{ id: 2, text: '测试1', src: 'https://dummyimage.com/500x500?text=c' }
-			]
+			currentTab: 0, // 新碟/新歌 tab
+			newSong: [], // 新歌
+			newAlbum: [], // 新碟
+			recommendPlaylist: [] //推荐歌单
 		};
 	},
+
+	mounted() {
+		this.init();
+	},
+	watch: {
+		currentTab(newValue, oldValue) {
+			// tab切换
+			// newValue ? this.getNewSong() : this.getNewAlbum();
+		}
+	},
+
 	methods: {
-		plateTabClick(e) {
-			// 新碟 tab切换
-			this.currentTab = e;
+		async init() {
+			// 获取banner
+			this.banners = await Banner.getBanner(2);
+			// 获取推荐歌单
+			this.recommendPlaylist = await Recommend.GetRecommendPlaylist(6);
+			this.getNewSong(); // 新歌
+			this.getNewAlbum(); // 新碟
+		},
+
+		async getNewSong() {
+			// 获取新歌
+			const newSong = await Data.getNewSong();
+			this.newSong = newSong.data.slice(0, 3);
+		},
+
+		async getNewAlbum() {
+			// 新碟
+			this.newAlbum = await Data.getNewAlbum(0, 3);
 		}
 	}
 };
 </script>
 
-<style scoped>
+<style>
 .container {
 	margin: 0 30rpx;
 }
@@ -146,17 +150,27 @@ export default {
 	height: 17vh;
 }
 
-.swiper-item {
+.swiper .swiper-item {
 	height: 100%;
 	border-radius: 10rpx;
+	position: relative;
 }
 
 .swiper .image {
-	width: 100%;
 	height: 100%;
 	border-radius: 10rpx;
 	margin: 0 30rpx;
 	width: calc(100% - 60rpx);
+}
+
+.swiper .tag {
+	position: absolute;
+	right: 32rpx;
+	bottom: 0;
+	border-radius: 10rpx 0 10rpx 0;
+	color: #ffffff;
+	height: 40rpx;
+	padding: 0 20rpx;
 }
 
 /* roW-nav */
