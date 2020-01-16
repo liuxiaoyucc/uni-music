@@ -139,3 +139,18 @@
 	height: 1rpx;
 	transform: scaleY(0.5);
 }
+
+.harf-px-bottom {
+	position: relative;
+	border: none;
+}
+
+.harf-px-bottom:after {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	background: #E5E5E5;
+	width: 100%;
+	height: 1rpx;
+	transform: scaleY(0.5);
+}

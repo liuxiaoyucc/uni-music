@@ -1,7 +1,7 @@
 <template>
 	<view class="content">
 		<view class="tabs font30 flex">
-			<view class="tab flex1" :class="{ active: current == index }" @click="clickTab(index, tab.id)" v-if="tab.status" v-for="(tab, index) in tabs" :key="tab.id">
+			<view class="tab flex1 " :class="{ active: current == index }" @click="clickTab(index, tab.id)" v-if="tab.status" v-for="(tab, index) in tabs" :key="tab.id">
 				{{ tab.name }}
 			</view>
 		</view>
