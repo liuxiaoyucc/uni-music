@@ -4,7 +4,7 @@
 		<view class="navs flex1 flex-center">
 			<view class="nav font32" @click="$emit('clickTab', index)" :class="{ active: index == current }" v-for="(item, index) in navs" :key="index">{{ item.name }}</view>
 		</view>
-		<i class="iconfont icon-sousuo"></i>
+		<navigator class="iconfont icon-sousuo" hover-class="none" url="../search/search"></navigator>
 	</view>
 </template>
 

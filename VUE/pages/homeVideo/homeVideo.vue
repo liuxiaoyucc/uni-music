@@ -1,12 +1,13 @@
 <template>
 	<view class="content">
 		<scroll-view class="navs harf-px-bottom" scroll-x="true">
-			<view class="nav font30" @click="current == index" :class="{ active: current == index }" v-for="(nav, index) in topNavs" :key="nav.id">{{ nav.name }}</view>
+			<view class="nav font30" @click="clickNav(index, nav.id)" :class="{ active: current == index }" v-for="(nav, index) in topNavs" :key="nav.id">{{ nav.name }}</view>
 		</scroll-view>
 		<swiper class="main  swiper" :current="current" @change="current = $event.detail.current">
 			<block v-for="list in topNavs" :key="list.id">
 				<swiper-item class="swiper-item">
 					<view class="video-lists"><video-card></video-card></view>
+					{{ currentId }}
 				</swiper-item>
 			</block>
 		</swiper>
@@ -22,8 +23,16 @@ export default {
 	data() {
 		return {
 			current: 0,
+			currentId: '',
 			topNavs: []
 		};
+	},
+	watch: {
+		current(oldValue, newValue) {
+			// console.log(oldValue, newValue, 12);
+			// console.log(currentId)
+			console.log(this.topNavs[this.current].id, 'id');
+		}
 	},
 	mounted() {
 		this.init();
@@ -33,6 +42,18 @@ export default {
 			// 顶部nav
 			const topNavs = await Video.getVideoLable();
 			this.topNavs = topNavs.data;
+			this.currentId = topNavs.data[0].id;
+			this.getVidelForLable();
+		},
+		async getVidelForLable() {
+			const videoLists = await Video.getVidelForLable(this.currentId);
+			console.log(videoLists);
+		},
+
+		clickNav(index, id) {
+			// 点击切换nav
+			this.current = index;
+			this.currentId = id;
 		}
 	}
 };
