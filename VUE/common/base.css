@@ -38,6 +38,18 @@
 	color: #2D2D2D;
 }
 
+.tal {
+	text-align: left;
+}
+
+.tac {
+	text-align: center;
+}
+
+.tar {
+	text-align: right;
+}
+
 .fontb {
 	font-weight: bold;
 }

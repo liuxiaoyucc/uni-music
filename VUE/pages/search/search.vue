@@ -4,8 +4,13 @@
 		<!-- top 搜索栏 -->
 		<view class="top container flex">
 			<view class="icon">icon</view>
-			<input class="input flex1" :placeholder="placeholder" placeholder-style="color:#b3b3b3" type="text" />
+			<input class="input flex1" focus="true" @input="inputValue" @confirm="inputConfirm" :placeholder="placeholder" placeholder-style="color:#b3b3b3" type="text" />
 			<view class="icon">icon</view>
+		</view>
+		<!-- 模糊搜索列表 -->
+		<view class="fuzzy" v-if="fuzzyLists.length">
+			<view class="default list">搜索"{{ searchKeyWord }}"</view>
+			<view class="list harf-px-top flex" v-for="(list, index) in fuzzyLists" :key="index">{{ list }}</view>
 		</view>
 
 		<view class="main">
@@ -16,7 +21,7 @@
 				<view class="history" v-if="records.length">
 					<view class="title flex-bet container">
 						<view class="text font30 fontb">历史记录</view>
-						<i class="iconfont hd-left-icon icon-love"></i>
+						<i class="iconfont hd-left-icon icon-love" @click="open"></i>
 					</view>
 					<!-- 搜索 记录 -->
 					<scroll-view class="scroll-view-x  records" scroll-x="true">
@@ -44,17 +49,30 @@
 				</view>
 			</scroll-view>
 		</view>
+		<uni-popup ref="popup" type="center">
+			<view class="pop-up font26">
+				<view class="text">确认清空全部历史记录?</view>
+				<view class="btns flex">
+					<view class="cancel btn" @click="close">取消</view>
+					<view class="affirm btn" @click="affirm">清空</view>
+				</view>
+			</view>
+		</uni-popup>
 	</view>
 </template>
 
 <script>
 import { Search } from '../../models/search.js';
+import uniPopup from '@/components/uni-popup/uni-popup.vue';
 export default {
+	components: { uniPopup },
 	data() {
 		return {
 			hotLists: [],
+			fuzzyLists: [1, 2, 3, 4], // 模糊搜索列表
 			placeholder: '音乐、视频、歌词、电台',
-			records: ['杀死哪个石家庄人', '1', '哈哈哈', 'order', '杀死哪个石家庄人']
+			records: ['杀死哪个石家庄人', '1', '哈哈哈', 'order', '杀死哪个石家庄人'],
+			searchKeyWord: '' //
 		};
 	},
 	mounted() {
@@ -69,6 +87,31 @@ export default {
 			const hotLists = await Search.getSearchHotDetail();
 			this.placeholder = searchWord.data.realkeyword;
 			this.hotLists = hotLists.data;
+		},
+		inputValue(e) {
+			// 搜索框输入
+			this.searchKeyWord = e.detail.value;
+		},
+		inputConfirm() {
+			// 开始搜索 没输入关键词为默认
+			let keyWord = '';
+			if (!this.searchKeyWord) {
+				console.log('no');
+			}
+		},
+
+		open() {
+			// popup open
+			this.$refs.popup.open();
+		},
+		close() {
+			// popup close
+			this.$refs.popup.close();
+		},
+		affirm() {
+			//确认清空历史记录
+			this.records = [];
+			this.close();
 		}
 	}
 };
@@ -142,5 +185,39 @@ export default {
 
 .hot .hot-lists .score {
 	color: #dedede;
+}
+
+.pop-up {
+	background: #ffffff;
+	border-radius: 10rpx;
+	width: calc(650rpx - 30rpx);
+	padding: 40rpx 30rpx;
+	color: #999999;
+}
+
+.pop-up .btns {
+	margin-top: 40rpx;
+	color: #e24647;
+	justify-content: flex-end;
+}
+
+.pop-up .btns .btn {
+	width: 150rpx;
+	text-align: center;
+}
+
+.fuzzy {
+	position: fixed;
+	z-index: 99;
+	background: #ffffff;
+	width: 700rpx;
+	left: 30rpx;
+	right: 30rpx;
+	top: calc(95rpx + var(--status-bar-height));
+	box-shadow: 0rpx -2rpx 10rpx 2rpx #dedede, 0 2rpx 10rpx 2rpx #dedede, -2rpx 0rpx 10rpx 2rpx #dedede, 0rpx 2rpx 10rpx 2rpx #dedede;
+}
+
+.fuzzy .list {
+	height: 60rpx;
 }
 </style>
