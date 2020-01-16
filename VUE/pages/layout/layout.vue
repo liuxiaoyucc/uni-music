@@ -16,7 +16,7 @@
 				</swiper-item>
 				<!-- 云村 -->
 				<swiper-item class="swiper-item village">
-					<scroll-view class="scroll-view-y" scroll-y="true"><homeVillage></homeVillage></scroll-view>
+					<scroll-view class="scroll-view-y" scroll-y="true"><homeVillage @sliderRight="sliderRight" @sliderLeft="sliderLeft"></homeVillage></scroll-view>
 				</swiper-item>
 				<!-- 视频 -->
 				<swiper-item class="swiper-item video">
@@ -50,10 +50,19 @@ export default {
 
 	data() {
 		return {
-			drawerShow: false, //用户中心状态
-			current: 1,
+			drawerShow: false, // 用户中心状态
+			current: 2,
 			topbar: [{ name: '我的' }, { name: '发现' }, { name: '云村' }, { name: '视频' }]
 		};
+	},
+	onLoad() {
+		// 监听全局事件
+		// changeOutSwipeLeft 内部组件改变外部swiper左滑
+		// changeOutSwipeRight 内部组件改变外部swiper右滑
+		uni.$on('sliderLeft', data => {
+			console.log(123);
+			this.current = 1;
+		});
 	},
 	methods: {
 		openDrawer() {
@@ -71,6 +80,14 @@ export default {
 		changeSwiper(e) {
 			// swiper 切换
 			this.current = e.detail.current;
+		},
+
+		// // 内部swiper 控制外部swiper 左右滑动
+		sliderLeft() {
+			this.current = this.current - 1;
+		},
+		sliderRight() {
+			this.current = this.current + 1;
 		}
 	}
 };

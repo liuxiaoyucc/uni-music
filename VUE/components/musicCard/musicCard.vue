@@ -19,8 +19,8 @@ export default {
 		info: {},
 		// 控制文字显示行数  内容以及播放icon
 		type: {
-			type: Number,
-			default: 0
+			type: String,
+			default: '0'
 		}
 	},
 	data() {
