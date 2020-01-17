@@ -2,6 +2,11 @@
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 
 		{
+			"path": "pages/singer/singer",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		}, {
 			"path": "pages/search/search",
 			"style": {
 				"navigationStyle": "custom"
@@ -40,8 +45,6 @@
 				"navigationStyle": "custom"
 			}
 		}
-
-
 
 	],
 	"globalStyle": {
