@@ -1,22 +1,24 @@
 <template>
 	<view class="search">
 		<view class="status_bar"><!-- 状态栏 --></view>
-		<!-- top 搜索栏 -->
-		<view class="top container flex">
-			<view class="icon">icon</view>
-			<input class="input flex1" focus="true" @input="inputValue" @confirm="inputConfirm" :placeholder="placeholder" placeholder-style="color:#b3b3b3" type="text" />
-			<view class="icon">icon</view>
-		</view>
+		<!-- search-global -->
+		<search-global
+			ref="globalSearch"
+			:placeholder="placeholder"
+			@inputConfrim="inputConfrim"
+			@inputVlue="inputVlue"
+			@empty="empty"
+			class="search-global"
+			@clickRight="clickRight"
+		></search-global>
+
 		<!-- 模糊搜索列表 -->
-		<view class="fuzzy" v-if="fuzzyLists.length">
-			<view class="default list">搜索"{{ searchKeyWord }}"</view>
-			<view class="list harf-px-top flex" v-for="(list, index) in fuzzyLists" :key="index">{{ list }}</view>
-		</view>
+		<search-suggest v-if="searchKeyWord" :right="120" :searchKeyWord="searchKeyWord" :lists="suggestLists"></search-suggest>
 
 		<view class="main">
 			<scroll-view class="scroll-view-y" scroll-y="true" @scroll="scroll">
 				<!-- ad -->
-				<view class="ad flex-center container">ad</view>
+				<view class="ad flex-center container" @click="inputConfrim">ad</view>
 				<!-- history -->
 				<view class="history" v-if="records.length">
 					<view class="title flex-bet container">
@@ -49,28 +51,24 @@
 				</view>
 			</scroll-view>
 		</view>
-		<uni-popup ref="popup" type="center">
-			<view class="pop-up font26">
-				<view class="text">确认清空全部历史记录?</view>
-				<view class="btns flex">
-					<view class="cancel btn" @click="close">取消</view>
-					<view class="affirm btn" @click="affirm">清空</view>
-				</view>
-			</view>
-		</uni-popup>
+
+		<show-modal ref="showModal" @rightBtn="clearHistory"></show-modal>
 	</view>
 </template>
 
 <script>
 import { Search } from '../../models/search.js';
-import uniPopup from '@/components/uni-popup/uni-popup.vue';
+import searchSuggest from '@/components/searchSuggest/searchSuggest.vue';
+import showModal from '@/components/showModal/showModal.vue';
+import searchGlobal from '@/components/searchGlobal/searchGlobal.vue';
+
 export default {
-	components: { uniPopup },
+	components: { searchSuggest, showModal, searchGlobal },
 	data() {
 		return {
 			hotLists: [],
-			fuzzyLists: [1, 2, 3, 4], // 模糊搜索列表
-			placeholder: '音乐、视频、歌词、电台',
+			suggestLists: [], // 推荐搜索
+			placeholder: '',
 			records: ['杀死哪个石家庄人', '1', '哈哈哈', 'order', '杀死哪个石家庄人'],
 			searchKeyWord: '' //
 		};
@@ -78,8 +76,8 @@ export default {
 	mounted() {
 		this.init();
 	},
+
 	methods: {
-		scroll() {},
 		async init() {
 			// 默认搜索关键词
 			const searchWord = await Search.getSearchDefault();
@@ -88,30 +86,50 @@ export default {
 			this.placeholder = searchWord.data.realkeyword;
 			this.hotLists = hotLists.data;
 		},
-		inputValue(e) {
-			// 搜索框输入
-			this.searchKeyWord = e.detail.value;
-		},
-		inputConfirm() {
-			// 开始搜索 没输入关键词为默认
-			let keyWord = '';
-			if (!this.searchKeyWord) {
-				console.log('no');
-			}
+
+		async getSearchSuggest(word) {
+			// 搜索建议
+			const suggest = await Search.getSearchSuggest(word);
+			this.suggestLists = suggest.result.allMatch;
 		},
 
+		async getSearchMultimatch(word) {
+			// 搜索多重匹配
+			const data = await Search.getSearchMultimatch(word);
+			console.log(data);
+		},
+
+		// =====================监听global-search组件事件  start===========
+
+		inputVlue(e) {
+			// input 输入
+			this.getSearchSuggest(e);
+			this.searchKeyWord = e;
+		},
+		clickRight() {
+			// 右边图标点击
+			console.log(123);
+		},
+
+		inputConfrim() {
+			//输入确认按钮 input 为空时使用默认值
+			this.searchKeyWord ? this.getSearchMultimatch(this.searchKeyWord) : this.getSearchMultimatch(this.placeholder);
+		},
+		empty() {
+			// 清空inputvalue
+			this.searchKeyWord = '';
+		},
+
+		// =====================监听global-search组件事件  end===========
+
 		open() {
-			// popup open
-			this.$refs.popup.open();
+			// open popup
+			this.$refs.showModal.open();
 		},
-		close() {
-			// popup close
-			this.$refs.popup.close();
-		},
-		affirm() {
+
+		clearHistory() {
 			//确认清空历史记录
 			this.records = [];
-			this.close();
 		}
 	}
 };
@@ -122,16 +140,8 @@ export default {
 	margin: 0 30rpx;
 }
 
-.top {
+.search-global {
 	height: 75rpx;
-}
-.top .input {
-	height: 100%;
-	border-bottom: 1rpx solid #858585;
-}
-
-.top .icon {
-	width: 100rpx;
 }
 
 .main {
@@ -185,39 +195,5 @@ export default {
 
 .hot .hot-lists .score {
 	color: #dedede;
-}
-
-.pop-up {
-	background: #ffffff;
-	border-radius: 10rpx;
-	width: calc(650rpx - 30rpx);
-	padding: 40rpx 30rpx;
-	color: #999999;
-}
-
-.pop-up .btns {
-	margin-top: 40rpx;
-	color: #e24647;
-	justify-content: flex-end;
-}
-
-.pop-up .btns .btn {
-	width: 150rpx;
-	text-align: center;
-}
-
-.fuzzy {
-	position: fixed;
-	z-index: 99;
-	background: #ffffff;
-	width: 700rpx;
-	left: 30rpx;
-	right: 30rpx;
-	top: calc(95rpx + var(--status-bar-height));
-	box-shadow: 0rpx -2rpx 10rpx 2rpx #dedede, 0 2rpx 10rpx 2rpx #dedede, -2rpx 0rpx 10rpx 2rpx #dedede, 0rpx 2rpx 10rpx 2rpx #dedede;
-}
-
-.fuzzy .list {
-	height: 60rpx;
 }
 </style>

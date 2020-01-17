@@ -2,7 +2,7 @@
 	<view class="video-card">
 		<view class="container">
 			<view class="thumb font22 flex-center">
-				<image src="https://dummyimage.com/1000x500?text=A" class="img" mode=""></image>
+				<image src="https://dummyimage.com/1000x500?text=A" class="img"></image>
 				<view class="tag flex-center">#收藏榜#</view>
 				<view class="player-btn"><i class="iconfont hd-left-icon icon-love"></i></view>
 				<view class="player-num  flex">
@@ -17,12 +17,12 @@
 
 			<view class="center flex-bet">
 				<view class="text font30 text-two-line flex1">哈哈哈哈哈哈jhahahhhhhhhhhhhhhhhhh哈哈哈啊哈哈哈哈哈哈哈奥哈哈或或或或或或或或或或或</view>
-				<image class="img" src="https://dummyimage.com/1000x500?text=A" mode=""></image>
+				<image class="img" src="https://dummyimage.com/1000x500?text=A"></image>
 			</view>
 			<view class="author-action harf-px-top flex-bet">
 				<!-- 作者 -->
 				<view class="author flex">
-					<image class="avatar" src="https://dummyimage.com/1000x500?text=A" mode=""></image>
+					<image class="avatar" src="https://dummyimage.com/1000x500?text=A"></image>
 					<view class="nickname font30  flex1 text-one-line">1111111111111111111111</view>
 				</view>
 				<!-- 功能区 -->

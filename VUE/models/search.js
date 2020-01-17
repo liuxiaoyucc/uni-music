@@ -24,6 +24,29 @@ class Search {
 		})
 	}
 
+	// 搜索建议
+	static async getSearchSuggest(keywords, type = "mobile") {
+		return await Http.request({
+			url: `/search/suggest`,
+			data: {
+				keywords,
+				type
+			}
+		})
+	}
+
+	// 搜索多重匹配
+	static async getSearchMultimatch(keywords) {
+		return await Http.request({
+			url: `/search/multimatch`,
+			data: {
+				keywords
+			}
+		})
+	}
+
+
+
 
 }
 
