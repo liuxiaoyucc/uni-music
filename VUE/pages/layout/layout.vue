@@ -1,8 +1,8 @@
 <template>
 	<view class="layout">
-		<view class="status_bar"><!-- 状态栏 --></view>
+		<view class="status_bar"></view>
 		<!-- topbar -->
-		<top-bar class="topbar container" :current="current" @openDrawer="openDrawer" @clickTab="clickTab" :navs="topbar" />
+		<view class="tabbar container30"><top-bar :current="current" @openDrawer="openDrawer" @clickTab="clickTab" :navs="topbar" /></view>
 		<!-- main -->
 		<view class="main">
 			<swiper class=" swiper" :current="current" @change="changeSwiper">
@@ -50,10 +50,18 @@ export default {
 
 	data() {
 		return {
-			drawerShow: false, // 用户中心状态
-			current: 3,
+			drawerShow: false, //用户中心状态
+			current: 0,
 			topbar: [{ name: '我的' }, { name: '发现' }, { name: '云村' }, { name: '视频' }]
 		};
+	},
+
+	created() {
+		try {
+			const userInfo = uni.getStorageInfoSync('userInfo');
+		} catch (e) {
+			//TODO handle the exception
+		}
 	},
 	onLoad() {
 		// 监听全局事件
@@ -94,16 +102,12 @@ export default {
 </script>
 
 <style scoped>
-.container {
-	margin: 0 20rpx;
-}
-.topbar {
-	height: 110rpx;
+.tabbar {
+	height: 100rpx;
 }
 
 .main {
 	height: calc(100vh - 110rpx - var(--status-bar-height));
-	/* border: 4rpx solid red; */
 }
 .swiper,
 .swiper-item,

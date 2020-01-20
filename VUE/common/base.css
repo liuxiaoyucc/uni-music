@@ -2,6 +2,14 @@
 	height: var(--status-bar-height);
 }
 
+.main-color {
+	color: #dd001b;
+}
+
+.main-bg {
+	background: #dd001b;
+}
+
 .flex {
 	display: flex;
 	align-items: center
@@ -165,4 +173,52 @@
 	width: 100%;
 	height: 1rpx;
 	transform: scaleY(0.5);
+}
+
+
+.container20 {
+	margin: 0 20rpx;
+}
+
+.container30 {
+	margin: 0 30rpx;
+}
+
+
+
+/* 点击波纹效果 */
+.ripple {
+	position: relative;
+	overflow: hidden;
+	user-select: none;
+
+}
+
+.ripple:after {
+
+	position: absolute;
+	content: '';
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	pointer-events: none;
+	//设置径向渐变
+	/* background-image: radial-gradient(circle, #363636 80%, transparent 10.01%); */
+	/* background-image: radial-gradient(closest-corner  at 60% 55%, red, yellow, black); */
+	background-image: radial-gradient(red, green, blue);
+	background-repeat: no-repeat;
+	background-position: 50%;
+	transform: scale(10, 10);
+	opacity: 0;
+	transition: transform .1s, opacity .6s;
+	overflow: hidden;
+
+}
+
+.ripple:active:after {
+	transform: scale(0, 0);
+	opacity: .9;
+	//设置初始状态
+	transition: 0s;
 }

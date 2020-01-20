@@ -2,26 +2,32 @@
 	<view class="content">
 		<uni-drawer :visible="show" @close="$emit('closeDrawer')">
 			<scroll-view class="scroll-view-y" scroll-y="true">
-				<view class="user-info">
-					<view class="login flex-center flex-col container" v-if="isLogin">
-						<image src="https://dummyimage.com/300x300?text=A" mode="" class="avatar border-round"></image>
-						<view class="info flex-bet">
-							<view class="left flex">
-								<view class="nickname font32">安安静静听歌</view>
-								<view class="grade font24">等级</view>
-							</view>
-							<view class="check-in flex-center font30">
-								<i class="iconfont icon-dd"></i>
-								签到
+				<view class="user-info" :style="{ backgroundImage: `url(${userInfo.backgroundUrl})` }">
+					<view class="lucency" v-if="hasLogin">
+						<view class="login flex-center flex-col container">
+							<image :src="userInfo.avatarUrl" mode="" class="avatar border-round"></image>
+							<view class="info flex-bet">
+								<view class="left flex">
+									<view class="nickname font32">{{ userInfo.nickname }}</view>
+									<view class="grade font24">等级</view>
+								</view>
+								<view class="check-in flex-center font30" @click="signIn">
+									<view class="has-sign-in" v-if="signInTemp">已签到</view>
+									<view class="no-sign-in" v-else>
+										<i class="iconfont icon-dd"></i>
+										签到
+									</view>
+								</view>
 							</view>
 						</view>
 					</view>
+
 					<view class="not-login flex-center flex-col" v-else>
 						<view class="text font24">
 							<view class="flex-center">登录网易云音乐</view>
 							<view class="flex-center">手机电脑多端同步,尽享海量高品质音乐</view>
 						</view>
-						<view class="login-btn flex-center font28">立即登录</view>
+						<view class="login-btn flex-center font28" @click="goLogin">立即登录</view>
 					</view>
 				</view>
 				<view class="banner container">banner</view>
@@ -33,15 +39,45 @@
 				</view>
 
 				<view class="col-list1 container harf-px-top">
-					<view class="lists" v-for="(item, index) in colList1" :key="index"><list class="list" :list="item" /></view>
+					<view class="lists" v-for="(list, index) in colList1" :key="index">
+						<view class="list flex-bet">
+							<view class="left font28 flex main-color">
+								<i class="iconfont" :class="list.icon"></i>
+								<text>{{ list.name }}</text>
+							</view>
+							<view class="right font22">
+								<text>{{ list.newText }}</text>
+							</view>
+						</view>
+					</view>
 				</view>
 				<!-- 创作者中心 -->
-				<view class="creation-center container harf-px-top" v-if="isLogin">
-					<view class="lists" v-for="(item, index) in colList2" :key="index"><list class="list" :list="item" /></view>
+				<view class="creation-center container harf-px-top" v-if="hasLogin" @click="temp">
+					<view class="lists" v-for="(list, index) in colList2" :key="index">
+						<view class="list flex-bet">
+							<view class="left font28 flex main-color">
+								<i class="iconfont" :class="list.icon"></i>
+								<text>{{ list.name }}</text>
+							</view>
+							<view class="right font22">
+								<text>{{ list.newText }}</text>
+							</view>
+						</view>
+					</view>
 				</view>
 
 				<view class="col-list2 container harf-px-top">
-					<view class="lists" v-for="(item, index) in colList3" :key="index"><list class="list" :list="item" /></view>
+					<view class="lists" v-for="(list, index) in colList3" :key="index">
+						<view class="list flex-bet">
+							<view class="left font28 flex main-color">
+								<i class="iconfont" :class="list.icon"></i>
+								<text>{{ list.name }}</text>
+							</view>
+							<view class="right font22">
+								<text>{{ list.newText }}</text>
+							</view>
+						</view>
+					</view>
 				</view>
 			</scroll-view>
 
@@ -61,6 +97,8 @@
 import chat from '@/components/chat/chat.vue';
 import list from '@/components/list/list.vue';
 import uniDrawer from '@/components/uni-drawer/uni-drawer.vue';
+import { User } from '../../../models/user.js';
+import { mapState } from 'vuex';
 export default {
 	components: { uniDrawer, list, chat },
 	props: {
@@ -68,7 +106,7 @@ export default {
 	},
 	data() {
 		return {
-			isLogin: false,
+			signInTemp: true,
 			rowLists: [
 				{ name: '我的消息', icon: 'icon-xinfeng', message: 100 },
 				{ name: '我的好友', icon: 'icon-xinfeng' },
@@ -95,12 +133,34 @@ export default {
 			bottom: [{ name: '夜间模式', icon: 'icon-piao' }, { name: '设置', icon: 'icon-piao' }, { name: '退出', icon: 'icon-piao' }]
 		};
 	},
+	computed: {
+		...mapState(['userInfo', 'hasLogin'])
+	},
 
 	methods: {
 		clickRowlist(index) {
 			// 我的消息区域 click
 		},
-		clickBottomItem(index) {}
+		clickBottomItem(index) {},
+		goLogin() {
+			uni.navigateTo({
+				url: `/pages/opening/opening?argu=1}`
+			});
+		},
+		async signIn() {
+			// 签到
+			const result = await User.signIn();
+			if (result.code == 200) {
+				// 刷新store数据
+			}
+			this.showToast(result.msg);
+		},
+
+		showToast(msg) {
+			// #ifdef APP-PLUS
+			plus.nativeUI.toast(msg);
+			// #endif
+		}
 	}
 };
 </script>
@@ -115,7 +175,17 @@ export default {
 }
 .user-info {
 	height: 25vh;
-	background: #ebebeb;
+	position: relative;
+	background-position: center center;
+}
+
+.lucency {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background: rgba(255, 255, 255, 0.8);
 }
 
 .user-info .login,
@@ -131,19 +201,25 @@ export default {
 	width: 100%;
 }
 
-.login .info .check-in {
+.login .info .check-in .no-sign-in {
 	color: #ffffff;
 	background: #ec3739;
-	width: 140rpx;
-	height: 50rpx;
 	border-radius: 30rpx;
+	padding: 4rpx 20rpx;
 }
 .login .info .check-in .iconfont {
 	margin-right: 6rpx;
 }
+.login .info .check-in .has-sign-in {
+	color: #2d2d2d;
+	border: 1rpx solid #999;
+	border-radius: 100rpx;
+	padding: 4rpx 20rpx;
+}
 
 .login .info .nickname {
 	margin-right: 20rpx;
+	opacity: 1;
 }
 
 .login .avatar {
@@ -153,11 +229,16 @@ export default {
 }
 
 .not-login .login-btn {
+	color: #5d5d5d;
 	border-radius: 50rpx;
 	border: 1rpx solid #c9c9c9;
 	height: 50rpx;
 	width: 200rpx;
-	margin-top: 20rpx;
+	margin-top: 40rpx;
+}
+
+.not-login .text {
+	color: #5e5e5e;
 }
 
 .banner {
@@ -191,6 +272,13 @@ export default {
 
 .lists .list {
 	height: 80rpx;
+}
+
+.lists .list .left .iconfont {
+	margin-right: 20rpx;
+}
+.lists .list .right {
+	color: #848484;
 }
 
 .bottom {

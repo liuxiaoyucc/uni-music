@@ -20,6 +20,10 @@ export default {
 </script>
 
 <style scoped>
+.list {
+	height: 100%;
+}
+
 .list .right text {
 	color: #848484;
 }

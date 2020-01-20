@@ -1,5 +1,5 @@
 <template>
-	<view class="content flex-center" :class="{ round: num < 100 }">{{ countNum }}</view>
+	<view class="chat">{{ countNum }}</view>
 </template>
 
 <script>
@@ -18,26 +18,33 @@ export default {
 	computed: {
 		countNum() {
 			let num = this.$props.num;
-			if (num < 100) return num;
-			return '99+';
+			if (num == 0) {
+				return '';
+			} else if (num < 100) {
+				return num;
+			} else {
+				return '99+';
+			}
 		}
 	}
 };
 </script>
 
 <style scoped>
-.content {
+.chat {
 	background: red;
 	color: #ffffff;
+}
+.chat:not(:empty) {
 	font-size: 20rpx;
-	height: 30rpx;
-	width: 46rpx;
-	border-radius: 30rpx;
+
+	padding: 0 10rpx;
+	border-radius: 1000rpx;
 }
 
-.content .round {
-	width: 30rpx;
-	height: 30rpx;
+.chat:empty {
+	height: 15rpx;
+	width: 15rpx;
 	border-radius: 50%;
 }
 </style>

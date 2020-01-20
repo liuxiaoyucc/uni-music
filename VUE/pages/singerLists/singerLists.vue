@@ -2,8 +2,8 @@
 	<view class="singer">
 		<view class="status_bar"><!-- 状态栏 --></view>
 		<view class="navigation flex container">
-			<i class="iconfont hd-left-icon icon-love" @click="open"></i>
-			歌手分类
+			<i class="iconfont hd-left-icon icon-love" @click="back"></i>
+			歌手分类{{ temp }}
 		</view>
 		<view class="classify font28">
 			<!-- 关闭 -->
@@ -17,10 +17,10 @@
 			<!-- 展开 -->
 			<view class="unfold" v-else>
 				<view class="row1 flex">
-					<view class="nav" :class="{ active: nav.id == current1 }" @click="clickNav(1, nav.id)" v-for="nav in nav1" :key="nav.id">{{ nav.name }}</view>
+					<view class="nav" :class="{ active: nav.id == current1 }" @click="clickNav1(nav.id)" v-for="nav in nav1" :key="nav.id">{{ nav.name }}</view>
 				</view>
 				<view class="row2 flex">
-					<view class="nav flex-center" :class="{ active: nav.id == current2 }" @click="clickNav(2, nav.id)" v-for="nav in nav2" :key="nav.id">{{ nav.name }}</view>
+					<view class="nav flex-center" :class="{ active: nav.id == current2 }" @click="clickNav2(nav.id)" v-for="nav in nav2" :key="nav.id">{{ nav.name }}</view>
 				</view>
 			</view>
 		</view>
@@ -28,7 +28,7 @@
 		<scroll-view class="scroll-view-y main" @scrolltolower="scrolltolower" @scroll="scroll" scroll-y="true" :class="status ? 'height1' : 'height2'">
 			<view class="title font22 flex">热门歌手</view>
 			<view class="singer-lists">
-				<view class="list flex-bet" v-for="(list, index) in singerLists" :key="index">
+				<view class="list flex-bet" @click="goSingerPage" v-for="(list, index) in singerLists" :key="index">
 					<image class="avatar" :src="list.picUrl" />
 					<view class="artist  flex1 flex">
 						<view class="text font30">{{ list.name }}</view>
@@ -46,13 +46,14 @@
 
 <script>
 import { Singer } from '../../models/singer.js';
+import { obj1, obj2 } from './data.js';
 export default {
 	data() {
 		return {
 			current1: '0',
 			current2: '0',
+			temp: [1, 1], //分类选择后的集合
 			offset: 0, //数据偏移量
-			scrillViewHeight: 0,
 			status: false, //顶部分类状态
 			nav1: [{ id: 1, name: '华语' }, { id: 2, name: '欧美' }, { id: 3, name: '日本' }, { id: 4, name: '韩国' }, { id: 5, name: '其他' }],
 			nav2: [{ id: 1, name: '男' }, { id: 2, name: '女' }, { id: 3, name: '乐队/组合' }],
@@ -65,20 +66,25 @@ export default {
 	watch: {},
 	methods: {
 		async init() {
-			// 1001 华语男歌手  1002 华语nv歌手
-			this.getSingLists(1001, 1002, 10, 0);
+			this.getSingAll();
 		},
 
-		async getSingLists(cat1, cat2, limit, offset) {
+		async getSingAll() {
+			//初始请求数据 分别请求女歌手和男歌手 // 1001 华语男歌手  1002 华语nv歌手
+			const menSingers = await Singer.getSingList(1001, 10, 0);
+			const womenSingers = await Singer.getSingList(1002, 10, 0);
+			this.singerLists = [...menSingers.artists, ...womenSingers.artists];
+		},
+
+		async getSingLists(cat, limit, offset) {
 			// 获取歌手列表
-			const menSingers = await Singer.getSingList(cat1, limit, offset);
-			const womenSingers = await Singer.getSingList(cat2, limit, offset);
+			const singerLists = await Singer.getSingList(cat, limit, offset);
+
 			if (offset < 1) {
-				this.singerLists = [...menSingers.artists, ...womenSingers.artists];
+				this.singerLists = singerLists.artists;
+				console.log(singerLists, 'singerLists');
 				return;
 			}
-
-			this.singerLists = this.singerLists.concat([...menSingers.artists, ...womenSingers.artists]);
 		},
 
 		scroll(e) {
@@ -90,40 +96,52 @@ export default {
 		scrolltolower() {
 			// scroll-view 滑动到底部
 			this.offset++;
-
-			this.getSingLists(1001, 1002, 10, this.offset);
-			// console.log(offset, '12');
-
-			// concat
+			this.getSingLists(1001, 10, this.offset);
 		},
 
-		clickNav(index, id) {
-			// 顶部分类切换
-			// index：1 区域分类 index:2 男/女/组合
-			index == 1 ? (this.current1 = id) : (this.current2 = id);
+		clickNav1(id) {
+			// 区域切换
+			this.current1 = id;
+			this.temp[0] = id;
+			this.match(1);
+		},
+		clickNav2(id) {
+			// 性别/组合切换
+			this.current2 = id;
+			this.temp[1] = id;
+			this.match(2);
+		},
 
-			if (index == 1) {
-				
+		match(parm) {
+			let cat = ''; //分类参数
+			let num1 = `${this.temp[0]}${this.temp[1]}`;
+			let num2 = `${this.temp[1]}${this.temp[0]}`;
+			// 点击第一行的数组和第二行的数组 和样本对比拿到分类参数
+			parm == 1 ? (cat = this.forEach(num1, obj1)) : (cat = this.forEach(num1, obj1));
+
+			// 发送reuest
+			this.getSingLists(cat, 20, 0);
+		},
+
+		forEach(num, data) {
+			let cat;
+			for (let key in data) {
+				if (key == num) {
+					cat = data[key];
+				}
 			}
-			
+			return cat;
+		},
+		goSingerPage() {
+			uni.navigateTo({
+				url: '../singerPage/singerPage'
+			});
+		},
 
-			let a = {
-				11: '1001', //华语男
-				12: '1002', // 华语女
-				13: '1003', // 华语组合
-				21: '2001', //欧美男
-				22: '2002', //欧美女
-				23: '2003' //欧美组合
-				//日本男
-				//日本女
-				//日本组合
-				//韩国男
-				//韩国女
-				// 韩国组合
-				// 其他男
-				// 其他女
-				// 其他组合
-			};
+		back() {
+			uni.navigateBack({
+				delta: 1
+			});
 		}
 	}
 };

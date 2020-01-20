@@ -108,7 +108,9 @@ export default {
 		},
 		clickRight() {
 			// 右边图标点击
-			console.log(123);
+			uni.navigateTo({
+				url: '../singerLists/singerLists'
+			});
 		},
 
 		inputConfrim() {

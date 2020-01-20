@@ -1,19 +1,17 @@
 <template>
 	<view class="content">
 		<view class="status_bar"><!-- 状态栏 --></view>
-		<view class="top container flex">
-			<view class="icon">icon</view>
-			<view class="name">歌单广场</view>
-		</view>
+		<view class="top-status-bar"><topStatusBar leftText="歌单广场"></topStatusBar></view>
 
-		<view class="row-nav container">row-nav</view>
 		<view class="swiper harf-px-top flex">swiper</view>
 		<view class="card-box"></view>
 	</view>
 </template>
 
 <script>
+import topStatusBar from '../../components/topStatusBar/topStatusBar.vue';
 export default {
+	components: { topStatusBar },
 	data() {
 		return {};
 	},
@@ -27,6 +25,9 @@ export default {
 </script>
 
 <style scoped>
+.top-status-bar {
+	height: 70rpx;
+}
 .container {
 	margin: 0 30rpx;
 }

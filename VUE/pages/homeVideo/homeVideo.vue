@@ -31,7 +31,7 @@ export default {
 		current(oldValue, newValue) {
 			// console.log(oldValue, newValue, 12);
 			// console.log(currentId)
-			console.log(this.topNavs[this.current].id, 'id');
+			// console.log(this.topNavs[this.current].id, 'id');
 		}
 	},
 	mounted() {
@@ -47,7 +47,7 @@ export default {
 		},
 		async getVidelForLable() {
 			const videoLists = await Video.getVidelForLable(this.currentId);
-			console.log(videoLists);
+			// console.log(videoLists);
 		},
 
 		clickNav(index, id) {
