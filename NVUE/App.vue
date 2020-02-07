@@ -2,8 +2,10 @@
 
 	export default {
 		globalData: {
-			a: 1,
-			player: {}
+			player: {},
+			
+			uid: 0,
+			subcount: {},
 		},
 		onLaunch: function () {
 			console.log('onLaunch');

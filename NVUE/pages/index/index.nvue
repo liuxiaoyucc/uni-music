@@ -89,6 +89,16 @@
 		},
 		created() {
 			this.statusbar_height = $repeater.config.status_bar_height;
+			$repeater.user.login('18724597563', 'cc@lxy599222', (res)=> { //暂时放在这里, 测试下其他api
+				
+				
+				$repeater.user.get_subcount(()=> {
+					console.log(getApp().globalData.subcount);
+					uni.$emit('sdk_ready');
+				});
+				
+			});
+			
 		},
 		onUnload() {
 			

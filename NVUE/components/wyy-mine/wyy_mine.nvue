@@ -9,11 +9,11 @@
 		</cell>
 		
 		<cell>
-			<wyy-mine-fold number="7"></wyy-mine-fold>
+			<wyy-mine-fold :number="subcount.createdPlaylistCount"></wyy-mine-fold>
 		</cell>
 		
 		<cell>
-			<wyy-mine-fold musicListName="收藏的歌单" musicListType="favor" number="28"></wyy-mine-fold>
+			<wyy-mine-fold musicListName="收藏的歌单" musicListType="favor" :number="subcount.subPlaylistCount"></wyy-mine-fold>
 		</cell>
 	</list>
 	
@@ -24,6 +24,7 @@
 	import wyyMineCell from '@/components/wyy-mine-cell/wyy_mine_cell.nvue';
 	import wyyMineFold from '@/components/wyy-mine-fold/wyy_mine_fold.nvue';
 
+	import $repeater from '@/utils/repeater.js';
 
 	export default {
 		components: {
@@ -33,15 +34,18 @@
 		},
 		data() {
 			return {
+				subcount: {},
+				
+				
 				refreshing: false,
 				loadinging: false,
-				commonLists: [
-					{name: '本地音乐', number: 30, src: '../../static/rattle/mine/local-music.png'},
-					{name: '最近播放', number: 200, src: '../../static/rattle/mine/recently-played.png'},
-					{name: '下载管理', number: 29, src: '../../static/rattle/mine/download.png'},
-					{name: '我的电台', number: 2, src: '../../static/rattle/mine/radio.png'},
-					{name: '我的收藏', number: 34, src: '../../static/rattle/mine/collect.png'},
-				],
+				// commonLists: [
+				// 	{name: '本地音乐', number: 30, src: '../../static/rattle/mine/local-music.png'},
+				// 	{name: '最近播放', number: 200, src: '../../static/rattle/mine/recently-played.png'},
+				// 	{name: '下载管理', number: 29, src: '../../static/rattle/mine/download.png'},
+				// 	{name: '我的电台', number: 2, src: '../../static/rattle/mine/radio.png'},
+				// 	{name: '我的收藏', number: 34, src: '../../static/rattle/mine/collect.png'},
+				// ],
 				categoryBars: [{
 						name: "每日推荐",
 						id: "recommend",
@@ -88,6 +92,27 @@
 			}
 		},
 		computed:{
+			commonLists: function() {
+				
+				let subcount = this.subcount;
+				return [
+					{name: '本地音乐', number: 30, src: '../../static/rattle/mine/local-music.png'},
+					{name: '最近播放', number: 200, src: '../../static/rattle/mine/recently-played.png'},
+					{name: '下载管理', number: 29, src: '../../static/rattle/mine/download.png'},
+					{name: '我的电台', number: subcount.djRadioCount, src: '../../static/rattle/mine/radio.png'},
+					{name: '我的收藏', number: subcount.artistCount + subcount.mvCount, src: '../../static/rattle/mine/collect.png'},
+				]
+			}
+		},
+		watch: {
+			
+		},
+		created() {
+			uni.$once('sdk_ready', ()=> {
+				this.subcount = getApp().globalData.subcount;
+				$repeater.user.get_user_detail('74116856');
+			})
+			
 			
 		},
 		methods:{
