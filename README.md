@@ -3,7 +3,9 @@
 #### Description
 
 * 网易云音乐页面太好看了,我们来clone一个吧! 有兴趣的小伙伴可以一起加入
-
+* 此项目分为vue和nvue两个版本
+	- vue版本由[xiangbin0712](https://github.com/xiangbin0712)同学开发
+	- nvue版本由[liuxiaoyucc](https://github.com/liuxiaoyuc)同学负责
 
 #### Members
 以下排名不分先后
