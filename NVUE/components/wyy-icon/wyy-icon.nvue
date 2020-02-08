@@ -1,23 +1,19 @@
 <template>
-<text @click="onClick" class="iconfont" :style="{fontSize: size + 'rpx',color:color}">{{name}}</text>
+	<text @click="onClick" class="iconfont" :style="{fontSize: size + 'rpx',color:color}">{{name}}</text>
 </template>
 
 <script>
-	const dom = weex.requireModule('dom');
-	  //传&#x的icon, 转成\u icon
-	  //template 直接使用&#x的icon 可以正确展示, 但是如果使用变量传&#x的icon 则展示失败
-	  //template 中直接使用\u icon 或者使用\u icon变量 展示效果都正常
-	  //如果使用props 传过来的\u icon 在template使用 显示失败, 传过来的 \u icon一被编码成字符串内存中的值其实是"\\ue715"
+	//传&#x的icon, 转成\u icon
+	//template 直接使用&#x的icon 可以正确展示, 但是如果使用变量传&#x的icon 则展示失败
+	//template 中直接使用\u icon 或者使用\u icon变量 展示效果都正常
+	//如果使用props 传过来的\u icon 在template使用 显示失败, 传过来的 \u icon一被编码成字符串内存中的值其实是"\\ue715"
 	export default{
 		props: {
-		  type: String,                              
+		  type: String,
 		  color: String,
 		  size: [Number, String]
 		},
 		computed: {
-		    fontSize() {
-		        return `${this.size}px`
-		    },
 			name(){
 				let tmp = this.type;
 				tmp = '\\' + 'u' +  tmp.replace('&#x', '');
@@ -28,10 +24,7 @@
 		data(){ 		    
 		}, 
 		created(){
-			dom.addRule('fontFace', {
-			  'fontFamily': "weexUiIconFont",
-			  'src': "url(\'http://at.alicdn.com/t/font_1211227_cxylyti2u7.ttf\')"
-			}); 
+			
 		},
 		methods: {
 		    onClick() {

@@ -10,6 +10,13 @@
 		onLaunch: function () {
 			console.log('onLaunch');
 			this.globalData.player = uni.createInnerAudioContext();
+			
+			const dom = weex.requireModule('dom');
+			
+			dom.addRule('fontFace', {
+			  'fontFamily': "weexUiIconFont",
+			  'src': "url(\'http://at.alicdn.com/t/font_1211227_t3nop0ufnm.ttf\')"
+			}); 
 		},
 		onShow: function () {
 			console.log('App Show')

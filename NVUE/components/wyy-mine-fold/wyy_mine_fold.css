@@ -23,6 +23,7 @@
 }
 .fold-header-left{
 	flex-direction: row;
+	justify-content: center;
 	height: 70rpx;
 	align-items: center;
 }
@@ -44,7 +45,7 @@
 .music-list{
 	flex-direction: row;
 	align-items: center;
-	justify-content: space-between;
+	/* justify-content: space-between; */
 	padding-left: 25rpx;
 	padding-right: 25rpx;
 	height: 100rpx;
@@ -54,12 +55,19 @@
 	width: 90rpx;
 	border-radius: 8rpx;
 }
+.music-list-left {
+	
+}
 .music-list-center{
 	flex-direction: column;
 	justify-content: space-between;
-	width: 555rpx;
+	width: 560rpx;
 	height: 60rpx;
 	padding-left: 15rpx;
+}
+.music-list-right {
+	flex: 1;
+	height: 60rpx;
 }
 .music-list-name{
 	font-size: 24rpx;

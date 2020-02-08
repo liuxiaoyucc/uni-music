@@ -41,7 +41,7 @@ User.get_user_detail = function(uid, cb) {
 	}
 	request.post(url, params, (data)=> {
 		if (data.code == 200) {
-			console.log(data);
+			
 			cb && cb(data)
 		}else {
 			console.log('failed');
@@ -56,7 +56,6 @@ User.get_playlist = function(uid, cb) {
 	}
 	request.post(url, params, (data)=> {
 		if (data.code == 200) {
-			console.log(data);
 			cb && cb(data)
 		}else {
 			console.log('failed');

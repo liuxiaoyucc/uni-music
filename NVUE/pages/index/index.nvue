@@ -91,15 +91,13 @@
 		created() {
 			this.statusbar_height = $repeater.config.status_bar_height;
 			
-			this.get_playlist();
+			
 		},
 		onUnload() {
 			
 		},
 		methods: {
-			get_playlist() {
-				console.log(this.uid);
-			},
+			
 			play_start() {
 				Player.start(this.audio_url, (res)=> {
 					console.log(res);
@@ -117,12 +115,12 @@
 				this.show_sidebar = false;
 			},
 			change_tab(e) {
-				console.log(e);
+				
 				let index = e.target.current || e.detail.current;
 				this.change_tab_index(index);
 			},
 			change_tab_index(index) {
-				console.log(index);
+				
 				this.tab_index = index;
 			}
 		}

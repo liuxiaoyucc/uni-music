@@ -5,15 +5,15 @@
 		</cell>
 		
 		<cell>
-			<wyy-mine-cell :items="commonLists"></wyy-mine-cell>
+			<wyy-mine-cell :items="common_list"></wyy-mine-cell>
 		</cell>
 		
 		<cell>
-			<wyy-mine-fold :number="subcount.createdPlaylistCount"></wyy-mine-fold>
+			<wyy-mine-fold :current_list="created_list" :number="subcount.createdPlaylistCount"></wyy-mine-fold>
 		</cell>
 		
 		<cell>
-			<wyy-mine-fold musicListName="收藏的歌单" musicListType="favor" :number="subcount.subPlaylistCount"></wyy-mine-fold>
+			<wyy-mine-fold :current_list="favor_list" musicListName="收藏的歌单" musicListType="favor" :number="subcount.subPlaylistCount"></wyy-mine-fold>
 		</cell>
 	</list>
 	
@@ -36,11 +36,12 @@
 			return {
 				uid: getApp().globalData.uid,
 				subcount: getApp().globalData.subcount,
-				
+				created_list: [],
+				favor_list: [],
 				
 				refreshing: false,
 				loadinging: false,
-				// commonLists: [
+				// common_list: [
 				// 	{name: '本地音乐', number: 30, src: '../../static/rattle/mine/local-music.png'},
 				// 	{name: '最近播放', number: 200, src: '../../static/rattle/mine/recently-played.png'},
 				// 	{name: '下载管理', number: 29, src: '../../static/rattle/mine/download.png'},
@@ -93,13 +94,13 @@
 			}
 		},
 		computed:{
-			commonLists: function() {
+			common_list: function() {
 				
 				let subcount = this.subcount;
 				return [
-					{name: '本地音乐', number: 30, src: '../../static/rattle/mine/local-music.png'},
-					{name: '最近播放', number: 200, src: '../../static/rattle/mine/recently-played.png'},
-					{name: '下载管理', number: 29, src: '../../static/rattle/mine/download.png'},
+					{name: '本地音乐', number: '', src: '../../static/rattle/mine/local-music.png'},
+					{name: '最近播放', number: '', src: '../../static/rattle/mine/recently-played.png'},
+					{name: '下载管理', number: '', src: '../../static/rattle/mine/download.png'},
 					{name: '我的电台', number: subcount.djRadioCount, src: '../../static/rattle/mine/radio.png'},
 					{name: '我的收藏', number: subcount.artistCount + subcount.mvCount, src: '../../static/rattle/mine/collect.png'},
 				]
@@ -110,9 +111,22 @@
 		},
 		created() {
 			$repeater.user.get_user_detail(this.uid);
+			
+			this.get_playlist();
 		},
 		methods:{
-			
+			get_playlist() {
+				$repeater.user.get_playlist(this.uid, (data)=> {
+					let playlist = data.playlist;
+					let created_list = [], favor_list = [];
+					
+					playlist.forEach((item)=> {
+						item.subscribed && favor_list.push(item) || created_list.push(item)
+					})
+					this.created_list = created_list;
+					this.favor_list = favor_list;
+				});
+			},
 		}
 	}
 </script>

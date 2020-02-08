@@ -6,7 +6,7 @@
 			</div>
 			<div class="cell-right">
 				<text class="cell-name">{{item.name}}</text>
-				<text class="number"> ({{item.number}})</text>
+				<text class="number"> {{item.number ? '(' + item.number + ')' : ''}}</text>
 			</div>
 		</div>
 		
