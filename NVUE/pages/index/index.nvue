@@ -16,7 +16,7 @@
 		</div>
 
 
-		<swiper :current="tab_index" class="swiper-box" :duration="300" @change="change_tab">
+		<swiper :current="tab_index" class="swiper-box" @change="change_tab">
 			<swiper-item class="swiper-item">
 				<wyy-mine></wyy-mine>
 			</swiper-item>
@@ -66,6 +66,7 @@
 		},
 		data() {
 			return {
+				uid: getApp().globalData.uid,
 				show_sidebar: false,
 				statusbar_height: 0,
 				tab_index: 0,
@@ -89,21 +90,16 @@
 		},
 		created() {
 			this.statusbar_height = $repeater.config.status_bar_height;
-			$repeater.user.login('18724597563', 'cc@lxy599222', (res)=> { //暂时放在这里, 测试下其他api
-				
-				
-				$repeater.user.get_subcount(()=> {
-					console.log(getApp().globalData.subcount);
-					uni.$emit('sdk_ready');
-				});
-				
-			});
 			
+			this.get_playlist();
 		},
 		onUnload() {
 			
 		},
 		methods: {
+			get_playlist() {
+				console.log(this.uid);
+			},
 			play_start() {
 				Player.start(this.audio_url, (res)=> {
 					console.log(res);
@@ -121,10 +117,12 @@
 				this.show_sidebar = false;
 			},
 			change_tab(e) {
+				console.log(e);
 				let index = e.target.current || e.detail.current;
 				this.change_tab_index(index);
 			},
 			change_tab_index(index) {
+				console.log(index);
 				this.tab_index = index;
 			}
 		}

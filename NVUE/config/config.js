@@ -10,6 +10,8 @@ API.CELLPHONE_LOGIN_URL = 'login/cellphone'; // 手机号登录
 API.LOGIN_STATUS_URL = 'login/status'; // 登陆状态
 API.SUBCOUNT_URL = 'user/subcount'; // 用户的歌单，收藏，mv, dj 数量
 API.USER_DETAIL_URL = 'user/detail'; // 获取用户详情
+API.USER_PLAYLIST_URL = 'user/playlist'; // 获取用户歌单
+
 
 export default {
 	systemInfo, 

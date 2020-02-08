@@ -1,6 +1,6 @@
 {
-	"level": 8,
-	"listenSongs": 7330,
+	"level": 8, //等级
+	"listenSongs": 7330, //听过音乐总数
 	"userPoint": {
 		"userId": 74116856,
 		"balance": 1263,
@@ -15,7 +15,7 @@
 		"avatarImgIdStr": "109951163685331993",
 		"backgroundImgIdStr": "109951163235835677",
 		"description": "",
-		"avatarUrl": "http://p1.music.126.net/-GRoXp9WKuDSM1rY-NjozA==/109951163685331993.jpg",
+		"avatarUrl": "http://p1.music.126.net/-GRoXp9WKuDSM1rY-NjozA==/109951163685331993.jpg", // 头像
 		"authStatus": 0,
 		"detailDescription": "",
 		"experts": {},
@@ -23,7 +23,7 @@
 		"city": 230100,
 		"defaultAvatar": false,
 		"backgroundImgId": 109951163235835680,
-		"backgroundUrl": "http://p1.music.126.net/iRJ7NBlE5uwADeO_UVzoVg==/109951163235835677.jpg",
+		"backgroundUrl": "http://p1.music.126.net/iRJ7NBlE5uwADeO_UVzoVg==/109951163235835677.jpg", //背景图
 		"userId": 74116856,
 		"vipType": 0,
 		"accountStatus": 0,
@@ -36,9 +36,9 @@
 		"gender": 1,
 		"userType": 0,
 		"createTime": 1433939078308,
-		"nickname": "宝贝畅畅的网易云音乐",
+		"nickname": "宝贝畅畅的网易云音乐", //昵称
 		"djStatus": 0,
-		"signature": "普天下所有的水，都在你眼中荡开",
+		"signature": "普天下所有的水，都在你眼中荡开", //个性签名
 		"authority": 0,
 		"followeds": 10,
 		"follows": 31,

@@ -1,30 +1,26 @@
 let User = {};
 
 User.login = function(phone, password, cb) {
-	console.log('check_login');
+	let url = config.API.CELLPHONE_LOGIN_URL;
+	let params = {
+		phone: phone,
+		password: password
+	}
 	
-	get_status((res)=> {
-		if (!res.profile.userId) { //登陆过期
-			
-			let url = config.API.CELLPHONE_LOGIN_URL;
-			let params = {
-				phone: phone,
-				password: password
-			}
-			
-			request.post(url, params, (data)=> {
-				console.log(data);
-				if (data.code == 200) {
-					get_status();
-					cb && cb();
-				}
-			})
-		}else {
+	request.post(url, params, (data)=> {
+		console.log(data);
+		if (data.code == 200) {
+			get_status();
 			cb && cb();
 		}
 	})
-	
-	
+}
+
+User.check_login = function(cb) {
+	console.log('check_login');
+	get_status((res)=> {
+		cb && cb(res.profile.userId);
+	})
 }
 
 
@@ -53,12 +49,29 @@ User.get_user_detail = function(uid, cb) {
 	})
 }
 
+User.get_playlist = function(uid, cb) {
+	let url = config.API.USER_PLAYLIST_URL;
+	let params = {
+		uid: uid
+	}
+	request.post(url, params, (data)=> {
+		if (data.code == 200) {
+			console.log(data);
+			cb && cb(data)
+		}else {
+			console.log('failed');
+		}
+	})
+}
+
 function get_status(cb) {
 	let url = config.API.LOGIN_STATUS_URL;
 	
 	request.post(url, {}, (data)=> {
 		if (data.code == 200) {
 			getApp().globalData.user_status = data;
+			getApp().globalData.uid = data.profile.userId;
+			console.log(data);
 			cb && cb(data)
 		}else {
 			console.log('获取状态失败');

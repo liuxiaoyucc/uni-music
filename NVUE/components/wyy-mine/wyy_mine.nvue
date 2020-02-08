@@ -34,7 +34,8 @@
 		},
 		data() {
 			return {
-				subcount: {},
+				uid: getApp().globalData.uid,
+				subcount: getApp().globalData.subcount,
 				
 				
 				refreshing: false,
@@ -108,12 +109,7 @@
 			
 		},
 		created() {
-			uni.$once('sdk_ready', ()=> {
-				this.subcount = getApp().globalData.subcount;
-				$repeater.user.get_user_detail('74116856');
-			})
-			
-			
+			$repeater.user.get_user_detail(this.uid);
 		},
 		methods:{
 			
