@@ -20,9 +20,9 @@
 		    },
 			name(){
 				let tmp = this.type;
-				 tmp = '\\' + 'u' +  tmp.replace('&#x', '');
-				 tmp = tmp.substring(0, tmp.length-1);
-				 return  eval("'" + tmp + "'");               // 将内存中"\\ue715" 转成"\ue715"
+				tmp = '\\' + 'u' +  tmp.replace('&#x', '');
+				tmp = tmp.substring(0, tmp.length-1);
+				return  eval("'" + tmp + "'");               // 将内存中"\\ue715" 转成"\ue715"
 			}
 		},
 		data(){ 		    
