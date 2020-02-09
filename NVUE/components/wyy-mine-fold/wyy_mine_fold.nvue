@@ -74,7 +74,6 @@
 		},
 		methods: {
 			choose_playlist(obj) {
-				console.log(obj);
 				$repeater.helper.to('/pages/playlist/playlist?playlist_id=' + obj.id + '&cover_image=' + obj.coverImgUrl + '&name=' + obj.name);
 			},
 			rotate() {

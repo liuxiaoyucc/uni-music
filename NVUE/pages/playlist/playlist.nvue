@@ -9,11 +9,11 @@
 					<text class="name">{{tmp_name}}</text>
 					<view class="creator">
 						<image class="creator-headimg" src="../../static/fascinate/ondit/header01.jpg"></image>
-						<text class="creator-nickname">宝贝畅畅的网易云音乐</text>
+						<text class="creator-nickname">{{playlist.creator.nickname}}</text>
 						<wyy-icon type="&#xe79b;" size="20" color="rgba(255,255,255,.6)" ></wyy-icon>
 					</view>
 					<view class="intro-footer">
-						<text class="description">大宝贝的歌单呢</text>
+						<text class="description">{{playlist.description || ''}}</text>
 						<wyy-icon type="&#xe79b;" size="20" color="rgba(255,255,255,.6)" ></wyy-icon>
 					</view>
 				</view>
@@ -86,7 +86,11 @@
 				
 				tmp_name: '',
 				tmp_image: '',
-				playlist: [],
+				playlist: {
+					creator: {
+						
+					}
+				},
 			}
 		},
 		computed: {
@@ -105,11 +109,11 @@
 		},
 		methods: {
 			get_playlist_detail() {
-				console.log(this.playlist_id);
 				let playlist_id = this.playlist_id;
 				$repeater.playlist.get_playlist_detail(playlist_id, (data)=> {
 					let playlist = data.playlist;
 					this.playlist = playlist;
+					
 				});
 			}
 		}
