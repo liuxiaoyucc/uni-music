@@ -93,10 +93,14 @@
 			
 		},
 		onLoad(option) {
-			console.log(option);
 			this.playlist_id = option.playlist_id;
 			this.tmp_name = option.name;
 			this.tmp_image = option.cover_image;
+			
+			uni.setNavigationBarTitle({
+			    title: this.tmp_name
+			});
+			
 			this.get_playlist_detail();
 		},
 		methods: {
@@ -225,6 +229,10 @@
 		flex-direction: row;
 		width: 750rpx;
 		height: 100rpx;
+		
+	}
+	.music:active{
+		background-color: rgba(0,0,0,0.1);
 	}
 	.music-index {
 		justify-content: center;
@@ -248,11 +256,11 @@
 		flex-direction: row;
 	}
 	.music-creator {
-		font-size: 20rpx;
+		font-size: 18rpx;
 		color: rgba(0,0,0,0.3);
 	}
 	.music-al {
-		font-size: 20rpx;
+		font-size: 18rpx;
 		color: rgba(0,0,0,0.3);
 	}
 </style>

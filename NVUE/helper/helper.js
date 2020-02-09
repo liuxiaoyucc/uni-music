@@ -1,4 +1,13 @@
 
+function backgrounder(){
+	let os = plus.os.name.toLocaleLowerCase() == 'android' ? 'android' : 'ios';
+	if(os == 'android'){
+		let main = plus.android.runtimeMainActivity();
+		main.moveTaskToBack(false);
+	}
+}
+
+
 function to(url, mode) {
 	mode = mode || 'navigate_to';
 	
@@ -25,5 +34,6 @@ function toast(icon, text, duration, mask, position) {
 
 export default {
 	to,
-	toast
+	toast,
+	backgrounder
 }

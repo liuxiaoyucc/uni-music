@@ -88,6 +88,10 @@
 				
 			}
 		},
+		onBackPress() {
+			$repeater.helper.backgrounder();
+		},
+		
 		created() {
 			this.statusbar_height = $repeater.config.status_bar_height;
 			
