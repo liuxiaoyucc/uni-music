@@ -5,7 +5,7 @@ Playlist.get_playlist_detail = function(id, cb) {
 	let params = {
 		id: id
 	}
-	request.post(url, params, (data)=> {
+	request.get(url, params, (data)=> {
 		if (data.code == 200) {
 			
 			cb && cb(data)

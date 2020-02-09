@@ -1,8 +1,7 @@
 function get(url, params, success_cb, failed_cb) {
 	
 	let uri = config.HOST + url;
-	console.log(uri);
-	console.log(params);
+
 	uni.request({
 		url: uri, 
 		data: params,

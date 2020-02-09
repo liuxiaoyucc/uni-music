@@ -45,9 +45,26 @@
 				<view class="icon">
 					<wyy-icon type="&#xe601;" size="40" color="#000000" ></wyy-icon>
 				</view>
-				<text class="top-bar-text">播放全部(共600首)</text>
+				<text class="top-bar-text">播放全部(共{{playlist.trackCount}}首)</text>
 			</view>
-			
+			<list class="musics" show-scrollbar="false">
+				<cell class="music" v-for="(music, index) in playlist.tracks" :key="index">
+					
+					<view class="music-index">
+						<text class="index-text">{{index + 1}}</text>
+						<!-- <wyy-icon type="&#xe601;" size="40" color="#000000" ></wyy-icon> -->
+					</view>
+					<view class="music-info">
+						<text class="music-name">{{music.name}}</text>
+						<view class="music-creators">
+							<text class="music-creator" v-for="(creator, c_index) in music.ar" :key="c_index">{{creator.name + ' '}}</text>
+							<text class="music-al">- {{music.al.name}}</text>
+						</view>
+						
+					</view>
+					
+				</cell>
+			</list>
 			
 			
 		</view>
@@ -69,8 +86,11 @@
 				
 				tmp_name: '',
 				tmp_image: '',
-				
+				playlist: [],
 			}
+		},
+		computed: {
+			
 		},
 		onLoad(option) {
 			console.log(option);
@@ -81,11 +101,11 @@
 		},
 		methods: {
 			get_playlist_detail() {
-				console.log('获取歌单详情');
 				console.log(this.playlist_id);
-				$repeater.playlist.get_playlist_detail(this.playlist_id, (data)=> {
-					console.log(11);
+				let playlist_id = this.playlist_id;
+				$repeater.playlist.get_playlist_detail(playlist_id, (data)=> {
 					let playlist = data.playlist;
+					this.playlist = playlist;
 				});
 			}
 		}
@@ -104,7 +124,6 @@
 	}
 	.bottom {
 		width: 750rpx;
-		height: 3000rpx;
 		background-color: #FFFFFF;
 		border-top-left-radius: 25;
 		border-top-right-radius: 25;
@@ -198,5 +217,42 @@
 	.top-bar-text {
 		font-size: 26rpx;
 		color: #000000;
+	}
+	.musics {
+		background-color: #FFFFFF;
+	}
+	.music {
+		flex-direction: row;
+		width: 750rpx;
+		height: 100rpx;
+	}
+	.music-index {
+		justify-content: center;
+		align-items: center;
+		width: 100rpx;
+	}
+	.index-text {
+		font-size: 26rpx;
+		color: rgba(0,0,0,0.3);
+	}
+	.music-info {
+		width: 650rpx;
+		height: 100rpx;
+		justify-content: center;
+	}
+	.music-name {
+		font-size: 26rpx;
+	}
+	.music-creators {
+		margin-top: 5rpx;
+		flex-direction: row;
+	}
+	.music-creator {
+		font-size: 20rpx;
+		color: rgba(0,0,0,0.3);
+	}
+	.music-al {
+		font-size: 20rpx;
+		color: rgba(0,0,0,0.3);
 	}
 </style>
