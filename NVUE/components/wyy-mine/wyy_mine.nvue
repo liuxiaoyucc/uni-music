@@ -125,7 +125,7 @@
 					})
 					this.created_list = created_list;
 					this.favor_list = favor_list;
-					console.log(created_list);
+					
 				});
 			},
 		}

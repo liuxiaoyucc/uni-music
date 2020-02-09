@@ -55,8 +55,9 @@
 </template>
 
 <script>
-	
 	import wyyIcon from '@/components/uni-icon.vue';
+	
+	import $repeater from '@/utils/repeater.js';
 	export default {
 		components: {
 			wyyIcon,
@@ -76,10 +77,16 @@
 			this.playlist_id = option.playlist_id;
 			this.tmp_name = option.name;
 			this.tmp_image = option.cover_image;
+			this.get_playlist_detail();
 		},
 		methods: {
 			get_playlist_detail() {
 				console.log('获取歌单详情');
+				console.log(this.playlist_id);
+				$repeater.playlist.get_playlist_detail(this.playlist_id, (data)=> {
+					console.log(11);
+					let playlist = data.playlist;
+				});
 			}
 		}
 	}
