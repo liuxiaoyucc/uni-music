@@ -36,7 +36,8 @@
 
 <script>
 	import wyyIcon from '../../components/wyy-icon/wyy-icon.nvue';
-
+	import $repeater from '@/utils/repeater.js';
+	
 	const animation = weex.requireModule('animation');
 
 	export default {
@@ -74,6 +75,7 @@
 		methods: {
 			choose_playlist(obj) {
 				console.log(obj);
+				$repeater.helper.to('/pages/playlist/playlist?playlist_id=' + obj.id + '&cover_image=' + obj.coverImgUrl + '&name=' + obj.name);
 			},
 			rotate() {
 				var degree = this.isFold ? '0deg' : '-90deg'

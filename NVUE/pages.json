@@ -31,7 +31,7 @@
 				"backgroundColor":"rgba(0,0,0,0.3)",
 				"app-plus": {
 					"animationType": "slide-in-bottom",
-					"animationDuration":50,
+					"animationDuration":150,
 					"bounce" :"none",
 					"titleNView":{
 						
@@ -52,6 +52,40 @@
             "style" : {}
         }
         
+        ,{
+            "path" : "pages/playlist/playlist",
+            "style" : {
+				"app-plus": {
+					// "scrollIndicator": "none",
+					// "animationType": "slide-in-bottom",
+					// "animationDuration":300,
+					"titleNView": {
+						"titleColor": "#FFFFFF",
+						"titleText": "歌单",
+						
+						"backgroundColor": "rgba(218, 45, 30, 1)",
+						"buttons": [
+							{
+								"fontSrc": "/static/font/iconfont.ttf",
+								"text": "\ue655",
+								"width": "40px",
+								"fontSize": "24px",
+								"color": "#FFFFFF",
+								"background": "rgba(0,0,0,0)"
+							},
+							{
+								"fontSrc": "/static/font/iconfont.ttf",
+								"text": "\ue66b",
+								"width": "40px",
+								"fontSize": "24px",
+								"color": "#FFFFFF",
+								"background": "rgba(0,0,0,0)"
+							}
+						]
+					}
+				}
+			}
+        }
     ],
 	"globalStyle" : {
 		"navigationBarTextStyle" : "black",

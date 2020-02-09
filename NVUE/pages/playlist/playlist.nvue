@@ -1,0 +1,195 @@
+<template>
+	<view class="page wyy-main-color">
+		<view class="top">
+			<view class="playlist_intro">
+				<view class="intro-left">
+					<image class="cover-image" :src="tmp_image"></image>
+				</view>
+				<view class="intro-right">
+					<text class="name">{{tmp_name}}</text>
+					<view class="creator">
+						<image class="creator-headimg" src="../../static/fascinate/ondit/header01.jpg"></image>
+						<text class="creator-nickname">宝贝畅畅的网易云音乐</text>
+						<wyy-icon type="&#xe79b;" size="20" color="rgba(255,255,255,.6)" ></wyy-icon>
+					</view>
+					<view class="intro-footer">
+						<text class="description">大宝贝的歌单呢</text>
+						<wyy-icon type="&#xe79b;" size="20" color="rgba(255,255,255,.6)" ></wyy-icon>
+					</view>
+				</view>
+			</view>
+			<view class="handle">
+				<div class="c-bar">
+					<wyy-icon type="&#xe668;" size="40" color="#FFFFFF" ></wyy-icon>
+					<text class="c-bar-name">评论</text>
+				</div>
+				<div class="c-bar">
+					<wyy-icon type="&#xe667;" size="40" color="#FFFFFF" ></wyy-icon>
+					<text class="c-bar-name">分享</text>
+				</div>
+				<div class="c-bar">
+					<wyy-icon type="&#xe666;" size="40" color="#FFFFFF" ></wyy-icon>
+					<text class="c-bar-name">下载</text>
+				</div>
+				<div class="c-bar">
+					<wyy-icon type="&#xe665;" size="40" color="#FFFFFF" ></wyy-icon>
+					<text class="c-bar-name">多选</text>
+				</div>
+			</view>
+		</view>
+		
+		
+		
+		<view class="bottom">
+			<view class="top-bar">
+				<view class="icon">
+					<wyy-icon type="&#xe601;" size="40" color="#000000" ></wyy-icon>
+				</view>
+				<text class="top-bar-text">播放全部(共600首)</text>
+			</view>
+			
+			
+			
+		</view>
+	</view>
+</template>
+
+<script>
+	
+	import wyyIcon from '@/components/uni-icon.vue';
+	export default {
+		components: {
+			wyyIcon,
+			
+		},
+		data() {
+			return {
+				playlist_id: '',
+				
+				tmp_name: '',
+				tmp_image: '',
+				
+			}
+		},
+		onLoad(option) {
+			console.log(option);
+			this.playlist_id = option.playlist_id;
+			this.tmp_name = option.name;
+			this.tmp_image = option.cover_image;
+		},
+		methods: {
+			get_playlist_detail() {
+				console.log('获取歌单详情');
+			}
+		}
+	}
+</script>
+
+<style>
+	@import '../../common/wyy.css';
+	.page {
+		
+		padding-top: 50rpx;
+	}
+	.top {
+		width: 750rpx;
+		padding: 0 30rpx;
+	}
+	.bottom {
+		width: 750rpx;
+		height: 3000rpx;
+		background-color: #FFFFFF;
+		border-top-left-radius: 25;
+		border-top-right-radius: 25;
+	}
+	.background {
+		width: 750rpx;
+	}
+	.playlist_intro {
+		flex-direction: row;
+	}
+	.cover-image {
+		width: 230rpx;
+		height: 230rpx;
+		border-radius: 10rpx;
+	}
+	.intro-left {
+		padding-right: 30rpx;
+	}
+	.intro-right {
+		width: 430rpx;
+		padding-top: 5rpx;
+	}
+	.name {
+		color: #FFFFFF;
+		font-size: 30rpx;
+		font-weight: bold;
+	}
+	.creator {
+		flex-direction: row;
+		align-items: center;
+		margin-top: 20rpx;
+	}
+	.creator-headimg {
+		width: 50rpx;
+		height: 50rpx;
+		border-radius: 50;
+	}
+	.creator-nickname {
+		font-size: 20rpx;
+		color: rgba(255,255,255,.6);
+		margin-left: 20rpx;
+	}
+	.description {
+		font-size: 18rpx;
+		color: rgba(255,255,255,.5);
+		text-overflow: ellipsis;
+		width: 430rpx;
+		lines: 2;
+	}
+	.intro-footer {
+		flex-direction: row;
+		position: absolute;
+		left: 0;
+		bottom: 5rpx;
+		text-overflow: ellipsis;
+	}
+	.handle {
+		width: 690rpx;
+		height: 140rpx;
+		flex-direction: row;
+		
+		align-items: center;
+		justify-content: space-between;
+	}
+	.c-bar {
+		width: 150rpx;
+		padding: 10rpx 0;
+		flex-direction: column;
+		align-items: center;
+	}
+	.c-bar-name{
+		font-size: 18rpx;
+		color: #FFFFFF;
+		margin-top: 10rpx;
+	}
+	
+	.top-bar {
+		position: sticky;
+		top: 0;
+		flex-direction: row;
+		align-items: center;
+		width: 750rpx;
+		height: 90rpx;
+		border-top-left-radius: 25;
+		border-top-right-radius: 25;
+		background-color: #FFFFFF;
+	}
+	.icon {
+		padding: 0 30rpx;
+	}
+	.top-bar-text {
+		font-size: 26rpx;
+		color: #000000;
+	}
+</style>
