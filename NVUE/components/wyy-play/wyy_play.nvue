@@ -41,10 +41,15 @@
 		},
 		methods: {
 			turn() {
-				$repeater.player.start(this.audio_url, (res)=> {
-					console.log(res);
-					this.playing = !this.playing;
-				});
+				if (this.playing) {
+					$repeater.player.pause();
+				}else {
+					console.log(1);
+					$repeater.player.start(this.audio_url);
+					console.log(3);
+				}
+				this.playing = !this.playing
+				
 			},
 		},
 	}
