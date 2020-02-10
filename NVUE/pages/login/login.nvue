@@ -1,22 +1,82 @@
 <template>
-	<view>
-		
+	<view class="page">
+		<input @input="phone_input" v-model="phone" type="number" class="input" placeholder="请输入手机号" />
+		<view class="line"></view>
+		<input @input="password_input" v-model="password" password class="input" placeholder="请输入密码" />
+		<view class="line"></view>
+		<button @tap="login" size="default" type="warn" class="login-button">登录</button>
 	</view>
 </template>
 
 <script>
+	import $repeater from '@/utils/repeater.js';
 	export default {
 		data() {
 			return {
-				
+				phone: '',
+				password: '',
 			}
 		},
 		methods: {
-			
+			phone_input(event) {
+				this.phone = event.detail.value;
+			},
+			password_input(event) {
+				this.password = event.detail.value;
+			},
+			login() {
+				if (!this.phone || !this.password) {
+					$repeater.helper.toast('none', '手机号或密码不能为空', 3000, false, 'bottom');
+					return;
+				}
+				
+				let phone = this.phone;
+				let password = this.password;
+				
+				this.init();
+				
+				$repeater.user.login(phone, password, (res)=> {
+					if (res){
+						$repeater.helper.toast('none', '登录成功', 3000, false, 'bottom');
+						uni.redirectTo({
+							url: '../index/index',
+						});
+					}else {
+						$repeater.helper.toast('none', '登录失败,请重试', 3000, false, 'bottom');
+					}
+					
+				});
+			},
+			init() {
+				this.phone = '';
+				this.password = '';
+			}
 		}
 	}
 </script>
 
 <style>
-
+	.page {
+		flex: 1;
+		justify-content: center;
+		padding: 0 30rpx;
+	}
+	.line {
+		height: 1rpx;
+		width: 690rpx;
+		background-color: rgba(0, 0, 0, .3);
+	}
+	.login-button {
+		width: 690rpx;
+		border-radius: 50rpx;
+		margin-top: 80rpx;
+		height: 80rpx;
+	}
+	.input {
+		height: 80rpx;
+		
+		
+		font-size:28rpx;
+		background-color: #FFFFFF;
+	}
 </style>

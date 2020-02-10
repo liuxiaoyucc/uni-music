@@ -1,6 +1,7 @@
 // 全局音频播放管理
 let PlayerHelper = {};
-let player = getApp().globalData.player;
+
+let player = getApp({allowDefault: true}).globalData.player;
 
 PlayerHelper.start = function(url, cb) {
 	console.log('play start');

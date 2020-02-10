@@ -32,8 +32,8 @@
 		
 		methods: {
 			check_login() {
-				$repeater.user.check_login((bool)=> { //暂时放在这里, 测试下其他api
-					if (!bool) {
+				$repeater.user.check_login((res)=> {
+					if (!res) {
 						//未登录
 						setTimeout(function() {
 							uni.redirectTo({

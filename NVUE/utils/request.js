@@ -7,11 +7,11 @@ function get(url, params, success_cb, failed_cb) {
 		data: params,
 		method:"GET",
 		success: (res)=>{
-			let data = res.data;
-			success_cb && success_cb(data);
+			
+			success_cb && success_cb(res);
 		},
 		fail:(res) => {
-			failed_cb && success_cb(res);
+			failed_cb && failed_cb(res);
 		    console.log('request_fail:url:' + url + ' ; ' + 'errMsg:' + res.errMsg);
 		}    
 	});
@@ -24,8 +24,7 @@ function post(url, params, success_cb, failed_cb) {
 		data: params,
 		method:"POST",   
 		success: (res)=>{
-			let data = res.data;
-			success_cb && success_cb(data);
+			success_cb && success_cb(res);
 		},
 		fail:(res) => {
 		    console.log('request_fail:url:' + url + ' ; ' + 'errMsg:' + res.errMsg);

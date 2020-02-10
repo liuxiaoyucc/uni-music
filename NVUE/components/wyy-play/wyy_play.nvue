@@ -1,0 +1,95 @@
+<template>
+	<view class="play">
+		<view class="play-left">
+			<image class="cover-image" :src="played.cover_image"></image>
+		</view>
+		<view class="play-center">
+			<text class="music-name">{{played.name}}</text>
+			<text class="creator-nickname">{{played.creator}}</text>
+		</view>
+		<view class="play-right">
+			<view class="handle-icon">
+				<!-- <wyy-icon type="&#xe677;" size="50" color="#000000" ></wyy-icon> -->
+				<wyy-icon @click="turn()" :type="playing ? '&#xe672;' : '&#xe677;'" size="50" color="#000000" ></wyy-icon>
+			</view>
+			<view class="handle-icon">
+				<wyy-icon type="&#xe671;" size="40" color="#000000" ></wyy-icon>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	import wyyIcon from '@/components/uni-icon.vue';
+	
+	import $repeater from '@/utils/repeater.js';
+	
+	export default {
+		components: {
+			wyyIcon
+		},
+		data() {
+			return {
+				played: getApp().globalData.played,
+				playing: false,
+				
+				audio_url: 'https://mudic.oss-cn-shanghai.aliyuncs.com/%E8%AE%B8%E5%B5%A9%20-%20%E5%BA%90%E5%B7%9E%E6%9C%88.mp3', //测试音频
+			};
+		},
+		created() {
+			
+		},
+		methods: {
+			turn() {
+				$repeater.player.start(this.audio_url, (res)=> {
+					console.log(res);
+					this.playing = !this.playing;
+				});
+			},
+		},
+	}
+</script>
+
+<style>
+	.play {
+		width: 750rpx;
+		border-top-color: rgba(0, 0, 0, .1);
+		border-top-width: 1rpx;
+		border-top-style: solid;
+		flex-direction: row;
+	}
+	.play-left {
+		width: 90rpx;
+		justify-content: center;
+		align-items: center;
+		padding: 0 10rpx;
+	}
+	.play-right {
+		flex-direction: row;
+		width: 160rpx;
+	}
+	.handle-icon {
+		width: 80rpx;
+		justify-content: center;
+		align-items: center;
+	}
+	.play-center {
+		width: 500rpx;
+		height: 90rpx;
+		justify-content: center;
+	}
+	.cover-image {
+		width: 70rpx;
+		height: 70rpx;
+		border-radius: 50;
+	}
+	.music-name {
+		font-size: 20rpx;
+		color: #000000;
+	}
+	.creator-nickname {
+		font-size: 18rpx;
+		color: rgba(0,0,0,0.5);
+		margin-top: 10rpx;
+	}
+</style>

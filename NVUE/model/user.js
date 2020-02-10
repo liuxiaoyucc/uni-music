@@ -8,11 +8,20 @@ User.login = function(phone, password, cb) {
 		password: password
 	}
 	
-	request.post(url, params, (data)=> {
-		console.log(data);
-		if (data.code == 200) {
-			get_status();
-			cb && cb();
+	request.post(url, params, (res)=> {
+		if (res.data) {
+			let data = res.data
+			if (data.code == 200) {
+				get_status((status)=> {
+					
+					cb && cb(status);
+				});
+				
+			}else {
+				helper.toast('none', data.msg, 3000, false, 'bottom');
+			}
+		}else {
+			console.log(res);
 		}
 	})
 }
@@ -21,7 +30,7 @@ User.login = function(phone, password, cb) {
 User.check_login = function(cb) {
 	console.log('check_login');
 	get_status((res)=> {
-		cb && cb(res.profile.userId);
+		cb && cb(res);
 	})
 }
 
@@ -42,7 +51,9 @@ User.get_user_detail = function(uid, cb) {
 	let params = {
 		uid: uid
 	}
-	request.post(url, params, (data)=> {
+	request.post(url, params, (res)=> {
+		
+		let data = res.data;
 		if (data.code == 200) {
 			
 			cb && cb(data)
@@ -58,7 +69,8 @@ User.get_playlist = function(uid, cb) {
 	let params = {
 		uid: uid
 	}
-	request.post(url, params, (data)=> {
+	request.post(url, params, (res)=> {
+		let data = res.data;
 		if (data.code == 200) {
 			cb && cb(data)
 		}else {
@@ -71,14 +83,16 @@ User.get_playlist = function(uid, cb) {
 function get_status(cb) {
 	let url = config.API.LOGIN_STATUS_URL;
 	
-	request.post(url, {}, (data)=> {
-		if (data.code == 200) {
+	request.post(url, {}, (res)=> {
+		let data = res.data;
+		
+		if (data && data.code == 200) {
 			getApp().globalData.user_status = data;
 			getApp().globalData.uid = data.profile.userId;
-			console.log(data);
 			cb && cb(data)
 		}else {
 			console.log('获取状态失败');
+			cb && cb(false);
 		}
 	})
 }
@@ -87,5 +101,6 @@ function get_status(cb) {
 
 import config from '../config/config.js';
 import request from '../utils/request.js';
+import helper from '../helper/helper.js';
 
 module.exports = User;
