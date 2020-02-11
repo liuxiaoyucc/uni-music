@@ -1,5 +1,5 @@
 <template>
-	<view class="play">
+	<view class="play" v-if="played" @tap="to_play_page">
 		<view class="play-left">
 			<image class="cover-image" :src="played.cover_image"></image>
 		</view>
@@ -36,17 +36,31 @@
 				audio_url: 'https://mudic.oss-cn-shanghai.aliyuncs.com/%E8%AE%B8%E5%B5%A9%20-%20%E5%BA%90%E5%B7%9E%E6%9C%88.mp3', //测试音频
 			};
 		},
-		created() {
+		computed: {
 			
 		},
+		created() {
+			console.log('底部播放组件加载');
+			$repeater.helper.played_watch((played)=> {
+				this.watch_back(played);
+			});
+		},
 		methods: {
+			to_play_page() {
+				console.log('to_play_page');
+			},
+			watch_back(played) {
+				console.log('played更新回调');
+				this.played = played
+			},
+			refresh() {
+				this.played = getApp().globalData.played
+			},
 			turn() {
 				if (this.playing) {
 					$repeater.player.pause();
 				}else {
-					console.log(1);
 					$repeater.player.start(this.audio_url);
-					console.log(3);
 				}
 				this.playing = !this.playing
 				
@@ -62,6 +76,10 @@
 		border-top-width: 1rpx;
 		border-top-style: solid;
 		flex-direction: row;
+		background-color: #FFFFFF;
+		position: fixed;
+		bottom: 0;
+		left: 0;
 	}
 	.play-left {
 		width: 90rpx;

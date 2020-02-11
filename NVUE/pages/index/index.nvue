@@ -31,9 +31,8 @@
 			</swiper-item>
 		</swiper>
 		
-		<view v-if="show_play" class="footer" @click="play_start">
-			<wyy-play></wyy-play>
-		</view>
+		
+		<wyy-play ref="played"></wyy-play>
 
 		<uni-drawer :visible="show_sidebar" mode="left" @close="close_side_drawer('left')">
 			<wyy-side-bar></wyy-side-bar>
@@ -97,18 +96,23 @@
 		created() {
 			this.statusbar_height = $repeater.config.status_bar_height;
 			
-			this.show_play = getApp().globalData.played ? true : false;
+			this.show_play = $repeater.storage.get_played() ? true : false;
+		},
+		onShow() {
+			this.refresh_played();
 		},
 		onUnload() {
 			
 		},
 		methods: {
-			
-			to_play_page() {
-				
+			refresh_played() {
+				try{
+					this.$refs.played.refresh();
+				}catch(e){
+					//很不优雅的忽略首次获取不到$refs的问题
+				}
 			},
-			
-			
+
 			ontabtap(index) {
 				this.change_tab_index(index);
 			},
@@ -133,13 +137,6 @@
 
 <style>
 	@import '../../common/wyy.css';
-	.footer {
-		flex-direction: row;
-		
-		height: 90rpx;
-		width: 750rpx;
-		background-color: #FFFFFF;
-	}
 	.tabs {
 		flex: 1;
 		flex-direction: column;

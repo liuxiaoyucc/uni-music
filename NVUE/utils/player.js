@@ -4,7 +4,6 @@ let PlayerHelper = {};
 let player = getApp({allowDefault: true}).globalData.player;
 
 PlayerHelper.start = function(url) {
-	console.log(2);
 	console.log('play start');
 	player.src = url;
 	player.play();

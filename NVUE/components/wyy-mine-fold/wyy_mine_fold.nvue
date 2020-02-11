@@ -19,7 +19,7 @@
 				</div>
 				
 				<div class="music-list-center">
-					<text class="music-list-name">{{index == 0 ? '我喜欢的音乐' : item.name}}</text>
+					<text class="music-list-name">{{index == 0 && musicListType == 'created' ? '我喜欢的音乐' : item.name}}</text>
 					<text class="number" v-if="musicListType == 'created'">{{item.trackCount}}首</text>
 					<!-- <text class="number" v-if="musicListType == 'created'">{{item.trackCount}}首，已下载{{item.downloaded}}首</text> -->
 					<text class="number" v-else>{{item.trackCount}}首 by {{item.creator.nickname}}</text>

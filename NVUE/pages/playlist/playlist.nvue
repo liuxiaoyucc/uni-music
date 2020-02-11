@@ -1,14 +1,14 @@
 <template>
 	<view class="page wyy-main-color">
 		<view class="top">
-			<view class="playlist_intro">
+			<view class="playlist_intro" @tap="test">
 				<view class="intro-left">
 					<image class="cover-image" :src="tmp_image"></image>
 				</view>
 				<view class="intro-right">
 					<text class="name">{{tmp_name}}</text>
 					<view class="creator">
-						<image class="creator-headimg" src="../../static/fascinate/ondit/header01.jpg"></image>
+						<image class="creator-headimg" :src="playlist.creator.avatarUrl"></image>
 						<text class="creator-nickname">{{playlist.creator.nickname}}</text>
 						<wyy-icon type="&#xe79b;" size="20" color="rgba(255,255,255,.6)" ></wyy-icon>
 					</view>
@@ -48,7 +48,7 @@
 				<text class="top-bar-text">播放全部(共{{playlist.trackCount}}首)</text>
 			</view>
 			<list class="musics" show-scrollbar="false">
-				<cell class="music" v-for="(music, index) in playlist.tracks" :key="index">
+				<cell class="music" v-for="(music, index) in playlist.tracks" :key="index" @tap="play(music)">
 					
 					<view class="music-index">
 						<text class="index-text">{{index + 1}}</text>
@@ -68,20 +68,25 @@
 			
 			
 		</view>
+		
+		<wyy-play></wyy-play>
+		
 	</view>
 </template>
 
 <script>
 	import wyyIcon from '@/components/uni-icon.vue';
+	import wyyPlay from '@/components/wyy-play/wyy_play.nvue';
 	
 	import $repeater from '@/utils/repeater.js';
 	export default {
 		components: {
 			wyyIcon,
-			
+			wyyPlay
 		},
 		data() {
 			return {
+				show_play: false,
 				playlist_id: '',
 				
 				tmp_name: '',
@@ -107,7 +112,50 @@
 			
 			this.get_playlist_detail();
 		},
+		onUnload() {
+			console.log('页面销毁');
+		},
 		methods: {
+			test() {
+				$repeater.helper.to('../search/search')
+			},
+			// 播放
+			// 如果选中歌曲和底部播放组件是同一首歌, 则跳转到播放页并开始播放
+			// 如果不同, 则开始播放新选中的歌曲, 更新播放组件信息, 不跳转
+			play(music) {
+				
+				let music_id = music.id;
+				let music_name = music.name;
+				let cover_image = music.al.picUrl;
+				
+				let current_played = $repeater.storage.get_played();
+				console.log(current_played);
+				let played_music_id = current_played.id;
+				
+				if (music_id == played_music_id) {
+					// 跳转播放详情页并播放
+					console.log('跳转');
+				}else {
+					let creators = music.ar;
+					let creator_str = '';
+					for (let creator of creators) {
+						creator_str = creator_str + creator.name;
+					}
+					
+					let played = {
+						id: music_id,
+						name: music_name,
+						creator: creator_str,
+						cover_image: cover_image,
+						time: 0, //上次播放的位置
+					}
+					
+					$repeater.storage.set_played(played);
+					
+					//直接开始播放, 不用跳转
+				}
+				
+			},
 			get_playlist_detail() {
 				let playlist_id = this.playlist_id;
 				$repeater.playlist.get_playlist_detail(playlist_id, (data)=> {
@@ -136,6 +184,7 @@
 		border-top-left-radius: 25;
 		border-top-right-radius: 25;
 	}
+	
 	.background {
 		width: 750rpx;
 	}
