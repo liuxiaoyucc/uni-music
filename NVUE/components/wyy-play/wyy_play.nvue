@@ -8,9 +8,9 @@
 			<text class="creator-nickname">{{played.creator}}</text>
 		</view>
 		<view class="play-right">
-			<view class="handle-icon">
+			<view class="handle-icon" @tap="turn($event)" >
 				<!-- <wyy-icon type="&#xe677;" size="50" color="#000000" ></wyy-icon> -->
-				<wyy-icon @click="turn()" :type="playing ? '&#xe672;' : '&#xe677;'" size="50" color="#000000" ></wyy-icon>
+				<wyy-icon :type="playing ? '&#xe672;' : '&#xe677;'" size="50" color="#000000" ></wyy-icon>
 			</view>
 			<view class="handle-icon">
 				<wyy-icon type="&#xe671;" size="40" color="#000000" ></wyy-icon>
@@ -31,38 +31,46 @@
 		data() {
 			return {
 				played: getApp().globalData.played,
-				playing: false,
+				
 				
 				audio_url: 'https://mudic.oss-cn-shanghai.aliyuncs.com/%E8%AE%B8%E5%B5%A9%20-%20%E5%BA%90%E5%B7%9E%E6%9C%88.mp3', //测试音频
 			};
 		},
 		computed: {
-			
+			playing() {
+				return this.$store.state.playing;
+			}
+		},
+		watch: {
+			playing(value) {
+				console.log(value);
+			}
 		},
 		created() {
-			console.log('底部播放组件加载');
 			$repeater.helper.played_watch((played)=> {
-				this.watch_back(played);
+				this.played_watch_back(played);
 			});
+			
 		},
 		methods: {
 			to_play_page() {
 				console.log('to_play_page');
 			},
-			watch_back(played) {
-				console.log('played更新回调');
-				this.played = played
+			played_watch_back(played) {
+				this.played = played;
 			},
 			refresh() {
 				this.played = getApp().globalData.played
 			},
-			turn() {
+			turn(event) {
+				event.stopPropagation();
+				
 				if (this.playing) {
 					$repeater.player.pause();
 				}else {
-					$repeater.player.start(this.audio_url);
+					
+					$repeater.player.start();
 				}
-				this.playing = !this.playing
 				
 			},
 		},

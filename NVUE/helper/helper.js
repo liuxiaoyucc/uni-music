@@ -6,12 +6,10 @@ function played_watch(cb) {
 		enumerable: true,
 		set: function(value) {
 			getApp().globalData._played = value;
-			console.log('是否会被执行2')
 			cb(value);
 		},
 		get: function() {
 			// 可以在这里打印一些东西，然后在其他界面调用getApp().globalData.played的时候，这里就会执行。
-			console.log('get时执行');
 			return getApp().globalData._played;
 		}
 	})
@@ -56,5 +54,6 @@ export default {
 	to,
 	toast,
 	backgrounder,
-	played_watch
+	played_watch,
+	
 }

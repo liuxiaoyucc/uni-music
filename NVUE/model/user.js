@@ -38,8 +38,8 @@ User.check_login = function(cb) {
 User.get_subcount = function(cb) {
 	let url = config.API.SUBCOUNT_URL;
 	
-	request.post(url, {}, (data)=> {
-		
+	request.post(url, {}, (res)=> {
+		let data = res.data
 		getApp().globalData.subcount = data;
 		cb && cb(data)
 	})

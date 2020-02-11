@@ -40,7 +40,7 @@
 		
 		
 		
-		<view class="bottom">
+		<view class="bottom" style="padding-bottom: 90rpx;">
 			<view class="top-bar">
 				<view class="icon">
 					<wyy-icon type="&#xe601;" size="40" color="#000000" ></wyy-icon>
@@ -69,7 +69,7 @@
 			
 		</view>
 		
-		<wyy-play></wyy-play>
+		<wyy-play ref="played" v-if="!destroy"></wyy-play>
 		
 	</view>
 </template>
@@ -86,6 +86,7 @@
 		},
 		data() {
 			return {
+				destroy: false,
 				show_play: false,
 				playlist_id: '',
 				
@@ -111,11 +112,25 @@
 			});
 			
 			this.get_playlist_detail();
+			
 		},
-		onUnload() {
-			console.log('页面销毁');
+		onReady() {
+			this.refresh_played();
+		},
+		onShow() {
+			this.refresh_played();
+		},
+		beforeDestroy() {
+			this.destroy = true;
 		},
 		methods: {
+			refresh_played() {
+				try{
+					this.$refs.played.refresh();
+				}catch(e){
+					//很不优雅的忽略首次获取不到$refs的问题
+				}
+			},
 			test() {
 				$repeater.helper.to('../search/search')
 			},
@@ -129,30 +144,39 @@
 				let cover_image = music.al.picUrl;
 				
 				let current_played = $repeater.storage.get_played();
-				console.log(current_played);
+				
 				let played_music_id = current_played.id;
 				
 				if (music_id == played_music_id) {
 					// 跳转播放详情页并播放
 					console.log('跳转');
 				}else {
-					let creators = music.ar;
-					let creator_str = '';
-					for (let creator of creators) {
-						creator_str = creator_str + creator.name;
-					}
+					// 获取音乐url
+					$repeater.song.get_song_url(music_id, (res)=> {
+						let url = res.data[0].url;
+						let creators = music.ar;
+						let creator_str = '';
+						
+						for (let creator of creators) {
+							creator_str = creator_str + creator.name;
+						}
+						
+						let played = {
+							id: music_id,
+							url: url,
+							name: music_name,
+							creator: creator_str,
+							cover_image: cover_image,
+							time: 0, //上次播放的位置
+						}
+						
+						$repeater.storage.set_played(played);
+						
+						$repeater.player.start();
+						//直接开始播放, 不用跳转
+					});
 					
-					let played = {
-						id: music_id,
-						name: music_name,
-						creator: creator_str,
-						cover_image: cover_image,
-						time: 0, //上次播放的位置
-					}
 					
-					$repeater.storage.set_played(played);
-					
-					//直接开始播放, 不用跳转
 				}
 				
 			},

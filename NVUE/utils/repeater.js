@@ -6,6 +6,7 @@ import storage from '@/utils/storage.js';
 
 import user from '../model/user.js';
 import playlist from '../model/playlist.js';
+import song from '../model/song.js';
 
 export default{ 
 	config,
@@ -13,5 +14,6 @@ export default{
 	user,
 	playlist,
 	player,
-	storage
+	storage,
+	song
 }

@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import App from './App';
+import store from './store'
+
 
 Vue.config.productionTip = false;
 
@@ -17,6 +19,7 @@ plus.nativeUI.toast = function(message, options) {
 
 
 const app = new Vue({
-    ...App
+    ...App,
+	store
 })
 app.$mount()

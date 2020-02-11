@@ -18,6 +18,8 @@ API.USER_PLAYLIST_URL = 'user/playlist'; // 获取用户歌单
 //歌单
 API.PLAYLIST_DETAIL_URL = 'playlist/detail'; // 歌单详情
 
+// 歌曲
+API.SONG_URL = 'song/url'; //获取歌曲url
 
 export default {
 	systemInfo, 

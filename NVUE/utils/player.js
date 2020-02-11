@@ -3,10 +3,20 @@ let PlayerHelper = {};
 
 let player = getApp({allowDefault: true}).globalData.player;
 
-PlayerHelper.start = function(url) {
-	console.log('play start');
-	player.src = url;
-	player.play();
+function set_url() {
+	let played = Storage.get_played();
+	if (player.src == played.url) {
+		return true;
+	}else {
+		player.src = played.url;
+		return false;
+	}
+}
+
+PlayerHelper.start = function() {
+	if (set_url()) {
+		player.play();
+	}
 	return;
 }
 
@@ -15,9 +25,11 @@ PlayerHelper.start = function(url) {
  * 需要start后, 触发onPlay事件后, pause才有效
  */
 PlayerHelper.pause = function() {
-	console.log('play pause');
 	player.pause();
 	return;
 }
+
+
+import Storage from '../utils/storage.js'
 
 module.exports = PlayerHelper
