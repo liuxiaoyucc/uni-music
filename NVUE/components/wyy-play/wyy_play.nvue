@@ -7,6 +7,7 @@
 			<text class="music-name">{{played.name}}</text>
 			<text class="creator-nickname">{{played.creator}}</text>
 		</view>
+		
 		<view class="play-right">
 			<view class="handle-icon" @tap="turn($event)" >
 				<!-- <wyy-icon type="&#xe677;" size="50" color="#000000" ></wyy-icon> -->
@@ -42,9 +43,7 @@
 			}
 		},
 		watch: {
-			playing(value) {
-				console.log(value);
-			}
+			
 		},
 		created() {
 			$repeater.helper.played_watch((played)=> {
@@ -64,11 +63,10 @@
 			},
 			turn(event) {
 				event.stopPropagation();
-				
+				console.log(this.playing);
 				if (this.playing) {
 					$repeater.player.pause();
 				}else {
-					
 					$repeater.player.start();
 				}
 				
@@ -89,6 +87,9 @@
 		bottom: 0;
 		left: 0;
 	}
+	.play:active {
+		background-color: rgba(0,0,0,0.1);
+	}
 	.play-left {
 		width: 90rpx;
 		justify-content: center;
@@ -104,6 +105,7 @@
 		justify-content: center;
 		align-items: center;
 	}
+	
 	.play-center {
 		width: 500rpx;
 		height: 90rpx;

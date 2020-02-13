@@ -34,20 +34,13 @@
 		},
 		data() {
 			return {
-				uid: getApp().globalData.uid,
-				subcount: getApp().globalData.subcount,
+				
 				created_list: [],
 				favor_list: [],
 				
 				refreshing: false,
 				loadinging: false,
-				// common_list: [
-				// 	{name: '本地音乐', number: 30, src: '../../static/rattle/mine/local-music.png'},
-				// 	{name: '最近播放', number: 200, src: '../../static/rattle/mine/recently-played.png'},
-				// 	{name: '下载管理', number: 29, src: '../../static/rattle/mine/download.png'},
-				// 	{name: '我的电台', number: 2, src: '../../static/rattle/mine/radio.png'},
-				// 	{name: '我的收藏', number: 34, src: '../../static/rattle/mine/collect.png'},
-				// ],
+				
 				categoryBars: [{
 						name: "每日推荐",
 						id: "recommend",
@@ -97,6 +90,7 @@
 			common_list: function() {
 				
 				let subcount = this.subcount;
+				
 				return [
 					{name: '本地音乐', number: '', src: '../../static/rattle/mine/local-music.png'},
 					{name: '最近播放', number: '', src: '../../static/rattle/mine/recently-played.png'},
@@ -104,14 +98,18 @@
 					{name: '我的电台', number: subcount.djRadioCount, src: '../../static/rattle/mine/radio.png'},
 					{name: '我的收藏', number: subcount.artistCount + subcount.mvCount, src: '../../static/rattle/mine/collect.png'},
 				]
-			}
+			},
+			subcount: function() {
+				return this.$store.state.subcount;
+			},
+			uid: function() {
+				return this.$store.state.uid;
+			},
 		},
 		watch: {
 			
 		},
 		created() {
-			$repeater.user.get_user_detail(this.uid);
-			
 			this.get_playlist();
 		},
 		methods:{

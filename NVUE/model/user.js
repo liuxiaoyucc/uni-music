@@ -28,6 +28,7 @@ User.login = function(phone, password, cb) {
 
 //登录检查
 User.check_login = function(cb) {
+	
 	console.log('check_login');
 	get_status((res)=> {
 		cb && cb(res);
@@ -39,9 +40,8 @@ User.get_subcount = function(cb) {
 	let url = config.API.SUBCOUNT_URL;
 	
 	request.post(url, {}, (res)=> {
-		let data = res.data
-		getApp().globalData.subcount = data;
-		cb && cb(data)
+		let data = res.data;
+		cb && cb(data);
 	})
 }
 
@@ -87,8 +87,6 @@ function get_status(cb) {
 		let data = res.data;
 		
 		if (data && data.code == 200) {
-			getApp().globalData.user_status = data;
-			getApp().globalData.uid = data.profile.userId;
 			cb && cb(data)
 		}else {
 			console.log('获取状态失败');
@@ -102,5 +100,6 @@ function get_status(cb) {
 import config from '../config/config.js';
 import request from '../utils/request.js';
 import helper from '../helper/helper.js';
+
 
 module.exports = User;

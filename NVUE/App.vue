@@ -1,16 +1,12 @@
 <script>
 	import Storage from 'utils/storage.js';
+	import PlayerHelper from 'utils/player.js';
 	export default {
 		globalData: {
 			_played: Storage.get_played(),
 			played: Storage.get_played(),
 			
 			player: {},
-			
-			
-			uid: 0,
-			subcount: {},
-			
 		},
 		onLaunch: function () {
 			console.log('onLaunch');
@@ -32,65 +28,52 @@
 		},
 		methods: {
 			init_player() {
-				const player = uni.createInnerAudioContext();
-				
-				//准备完毕, 可以播放
-				player.onCanplay(()=> {
-					console.log('音频已准备好,可以播放');
-					console.log(this.$store.state.playing);
-					player.play();
-					
+				const player = plus.audio.createPlayer({
+					autoplay: false
 				});
 				
-				//播放事件
-				player.onPlay(()=> {
-					console.log('音频开始播放');
+				player.addEventListener('canplay', ()=> {
+					console.log('on canplay');
+					PlayerHelper.play();
+				});
+				player.addEventListener('play', ()=> {
+					console.log('on play');
 					this.$store.commit('set_playing', true);
-					
 				});
-				
-				//暂停事件
-				player.onPause(()=> {
-					console.log('音频已暂停播放');
+				player.addEventListener('pause', ()=> {
+					console.log('on pause');
 					this.$store.commit('set_playing', false);
 				});
-				
-				//停止事件
-				player.onStop(()=> {
+				player.addEventListener('stop', ()=> {
+					console.log('on stop');
 					this.$store.commit('set_playing', false);
 				});
-				
-				//自然播放结束 这里可以进行下一曲
-				player.onEnded(()=> {
+				player.addEventListener('ended', ()=> {
+					console.log('on ended');
 					this.$store.commit('set_playing', false);
 				});
-				
-				//音频播放进度更新事件
-				player.onTimeUpdate(()=> {
-					
-				});
-				
-				//音频播放错误事件
-				player.onError((e)=> {
-					console.log(e);
+				player.addEventListener('error', ()=> {
+					console.log('on error');
 					this.$store.commit('set_playing', false);
 				});
-				
-				//音频加载中事件，当音频因为数据不足，需要停下来加载时会触发 缓冲中
-				player.onWaiting(()=> {
-					
+				player.addEventListener('waiting', ()=> {
+					console.log('on waiting');
 				});
-				
-				//音频进行 seek 操作事件 调整进度条也许会用到
-				player.onSeeking(()=> {
-					
+				player.addEventListener('seeking', ()=> {
+					console.log('on seeking');
 				});
-				
-				//音频完成 seek 操作事件
-				player.onSeeked(()=> {
-					
+				player.addEventListener('seeked', ()=> {
+					console.log('on seeked');
 				});
-				
+				player.addEventListener('prev', ()=> {
+					// 后台播放控制器上点击上一曲按钮时触发，未开启后台控制器则不触发此事件
+					console.log('on prev');
+				});
+				player.addEventListener('next', ()=> {
+					// 后台播放控制器上点击下一曲按钮时触发，未开启后台控制器则不触发此事件
+					console.log('on next');
+				});
+			
 				this.globalData.player = player;
 			}
 		},

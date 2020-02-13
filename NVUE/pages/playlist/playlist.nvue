@@ -154,6 +154,12 @@
 					// 获取音乐url
 					$repeater.song.get_song_url(music_id, (res)=> {
 						let url = res.data[0].url;
+						console.log(url);
+						if (!url) {
+							$repeater.helper.toast('none', '亲爱的, 暂无该歌曲资源~', 3000, false, 'bottom');
+							return;
+						}
+						
 						let creators = music.ar;
 						let creator_str = '';
 						
@@ -185,7 +191,6 @@
 				$repeater.playlist.get_playlist_detail(playlist_id, (data)=> {
 					let playlist = data.playlist;
 					this.playlist = playlist;
-					
 				});
 			}
 		}

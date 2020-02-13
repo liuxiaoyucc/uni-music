@@ -32,28 +32,33 @@
 		
 		methods: {
 			check_login() {
-				$repeater.user.check_login((res)=> {
-					if (!res) {
-						//未登录
+				$repeater.user.check_login((user_status)=> {
+					console.log(user_status);
+					if (!user_status) { // 未登录
+						
 						setTimeout(function() {
 							uni.redirectTo({
 								url: '../login/login',
 							});
 						}, 1500);
-					}else {
-						$repeater.user.get_subcount(()=> {
-							// 登录状态
-							
-							setTimeout(function() {
-								uni.redirectTo({
-									url: '../index/index',
-								});
-							}, 1500);
-						});
-						
-						
+					}else { // 已登录
+						let uid = user_status.profile.userId;
+						this.init_user(uid);
+						setTimeout(function() {
+							uni.redirectTo({
+								url: '../index/index',
+							});
+						}, 1500);
 					}
 					
+				});
+			},
+			init_user(uid) {
+				$repeater.user.get_user_detail(uid, (user_info)=> {
+					this.$store.commit('set_user_info', user_info)
+				});
+				$repeater.user.get_subcount((data)=> {
+					this.$store.commit('set_subcount', data);
 				});
 			}
 		}

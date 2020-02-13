@@ -46,9 +46,14 @@
 		},
 		data() {
 			return {
-				uid: getApp().globalData.uid,
+				
 				isFold: false,
 			}
+		},
+		computed: {
+			uid: function() {
+				return this.$store.state.uid;
+			},
 		},
 		created() {
 			
