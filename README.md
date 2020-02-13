@@ -18,11 +18,12 @@
 * VueJs
 * uni-app
 * Weex
+* Vuex
 
 #### Run
 
 1. git clone 到本地
-2. 将项目拖入HbuilderX中运行到手机或模拟器
+2. 将项目下的NVUE或VUE目录拖入HbuilderX中运行到手机或模拟器
 
 
 #### End
