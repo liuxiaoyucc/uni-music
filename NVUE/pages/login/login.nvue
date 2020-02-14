@@ -30,8 +30,8 @@
 					return;
 				}
 				
-				let phone = this.phone;
-				let password = this.password;
+				let phone = this.phone.trim();
+				let password = this.password.trim();
 				
 				this.init();
 				
