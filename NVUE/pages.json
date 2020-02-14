@@ -88,6 +88,12 @@
 				}
 			}
         }
+        ,{
+            "path" : "pages/play/play",
+            "style" : {
+				"titleNView" : false
+			}
+        }
     ],
 	"globalStyle" : {
 		"navigationBarTextStyle" : "black",

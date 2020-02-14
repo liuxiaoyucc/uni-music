@@ -39,6 +39,7 @@
 				}
 			},
 			init_player() {
+				//初始化的时候, 如果played存在, 则需要将played.src填入, 然后不要播放, 这样play页面就可以获取到歌曲音频长度
 				const player = plus.audio.createPlayer({
 					autoplay: false
 				});

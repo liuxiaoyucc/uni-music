@@ -162,6 +162,7 @@
 						
 						let played = {
 							id: music_id,
+							belong_playlist_id: this.playlist_id, //生成播放列表用
 							url: url,
 							name: music_name,
 							creator: creator_str,

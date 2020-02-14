@@ -51,8 +51,10 @@
 		methods: {
 			to_play_page() {
 				console.log('to_play_page');
+				$repeater.helper.to('../play/play');
 			},
 			turn(event) {
+				//切换播放暂停状态
 				event.stopPropagation();
 				console.log(this.playing);
 				if (this.playing) {

@@ -47,6 +47,15 @@ PlayerHelper.pause = function() {
 	return;
 }
 
+PlayerHelper.get_position = function() {
+	let player = get_player();
+	return player.getPosition();
+}
+
+PlayerHelper.get_duration = function() {
+	let player = get_player();
+	return player.getDuration();
+}
 
 import Storage from '../utils/storage.js'
 

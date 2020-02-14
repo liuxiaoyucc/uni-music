@@ -1,0 +1,186 @@
+<template>
+	<view class="page">
+		<view :style="{ height: statusbar_height + 'px'}" style="width: 750rpx;"></view>
+		<view class="header">
+			<text></text>
+		</view>
+		<view class="container">
+			<text></text>
+		</view>
+		<view class="footer">
+			
+			<view class="slider-view">
+				<view class="current_time">
+					<text class="time-text">{{position_show}}</text>
+				</view>
+				
+				<slider class="slider" :min="0" :max="duration" :value="current_position" activeColor="rgba(218, 45, 30, 1)" backgroundColor="rgba(255,255,255,.4)" block-color="#FFFFFF" block-size="18" />
+				
+				<view class="end_time">
+					<text class="time-text grey-time-text">{{duration_show}}</text>
+				</view>
+			</view>
+			
+			<view class="handle-area">
+				<view class="icon-group">
+					<view class="icon-area loop">
+						<wyy-icon type="&#xe676;" size="40" color="#FFFFFF" ></wyy-icon>
+						<!-- <wyy-icon type="&#xe674;" size="40" color="#FFFFFF" ></wyy-icon>
+						<wyy-icon type="&#xe678;" size="40" color="#FFFFFF" ></wyy-icon> -->
+					</view>
+					<view class="icon-area switch">
+						<wyy-icon type="&#xe66f;" size="40" color="#FFFFFF" ></wyy-icon>
+					</view>
+					
+					<view class="icon-area turn" @tap="turn()">
+						<wyy-icon :type="playing ? '&#xe672;' : '&#xe673;'" size="100" color="#FFFFFF" ></wyy-icon>
+					</view>
+					<view class="icon-area switch">
+						<wyy-icon type="&#xe622;" size="50" color="#FFFFFF" ></wyy-icon>
+					</view>
+					<view class="icon-area list-menu">
+						<wyy-icon type="&#xe671;" size="40" color="#FFFFFF" ></wyy-icon>
+					</view>
+					
+				</view>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	import wyyIcon from '@/components/uni-icon.vue';
+	
+	import $repeater from '@/utils/repeater.js';
+	
+	export default {
+		components: {
+			wyyIcon
+		},
+		data() {
+			return {
+				statusbar_height: $repeater.config.status_bar_height,
+				duration: $repeater.player.get_duration().toFixed(0), //音频总长度单位s
+				current_position: $repeater.player.get_position().toFixed(0), //当前播放位置
+			};
+		},
+		computed: {
+			position_show() {
+				let minute = parseInt(this.current_position / 60);
+				let second = this.current_position % 60;
+				if (minute < 10) {
+					minute = '0' + minute;
+				}
+				if (second < 10) {
+					second = '0' + second;
+				}
+				return minute + ':' + second;
+			},
+			duration_show() {
+				let minute = parseInt(this.duration / 60);
+				let second = this.duration % 60;
+				if (minute < 10) {
+					minute = '0' + minute;
+				}
+				if (second < 10) {
+					second = '0' + second;
+				}
+				return minute + ':' + second;
+			},
+			playing() {
+				return this.$store.state.playing;
+			},
+			played() {
+				return this.$store.state.played;
+			}
+		},
+		created() {
+			console.log(this.statusbar_height);
+			console.log(this.duration);
+			console.log(this.current_position);
+		},
+		methods: {
+			turn() {
+				//切换播放暂停状态
+				if (this.playing) {
+					$repeater.player.pause();
+				}else {
+					$repeater.player.start();
+				}
+				
+			},
+		},
+	}
+</script>
+
+<style>
+	.page {
+		flex: 1;
+		background-color: #2C405A;
+	}
+	.header {
+		
+	}
+	.footer {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		background-color: #333333;
+		height: 200rpx;
+		width: 750rpx;
+		
+		
+		align-items: center;
+		
+	}
+	
+	.slider-view {
+		width: 750rpx;
+		height: 50rpx;
+		flex-direction: row;
+		
+		justify-content: center;
+		align-items: center;
+	}
+	.slider {
+		width: 630rpx;
+		margin-left: 10rpx;
+		
+	}
+	.current_time {
+		width: 55rpx;
+		
+		align-items: flex-end;
+	}
+	.end_time {
+		width: 55rpx;
+		
+	}
+	.time-text {
+		color: #FFFFFF;
+		font-size: 16rpx;
+	}
+	.grey-time-text {
+		color: rgba(255,255,255,.3);
+	}
+	.handle-area {
+		width: 750rpx;
+		
+		align-items: center;
+		padding: 20rpx 30rpx 30rpx 30rpx;
+	}
+	.icon-group {
+		width: 600rpx;
+		height: 90rpx;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+	}
+	.icon-area {
+		width: 120rpx;
+		height: 90rpx;
+		justify-content: center;
+		align-items: center;
+	}
+	
+</style>
