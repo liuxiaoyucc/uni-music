@@ -1,75 +1,74 @@
 <template>
-	<view class="page wyy-main-color">
-		<view class="top">
-			<view class="playlist_intro" @tap="test">
-				<view class="intro-left">
-					<image class="cover-image" :src="tmp_image"></image>
-				</view>
-				<view class="intro-right">
-					<text class="name">{{tmp_name}}</text>
-					<view class="creator">
-						<image class="creator-headimg" :src="playlist.creator.avatarUrl"></image>
-						<text class="creator-nickname">{{playlist.creator.nickname}}</text>
-						<wyy-icon type="&#xe79b;" size="20" color="rgba(255,255,255,.6)" ></wyy-icon>
+	<view class="page">
+		<list show-scrollbar="false" class="page-list" style="margin-bottom: 90rpx; width: 750rpx; flex: 1;">
+			<cell class="top wyy-main-color">
+				<view class="playlist_intro" @tap="test">
+					<view class="intro-left">
+						<image class="cover-image" :src="tmp_image"></image>
 					</view>
-					<view class="intro-footer">
-						<text class="description">{{playlist.description || ''}}</text>
-						<wyy-icon type="&#xe79b;" size="20" color="rgba(255,255,255,.6)" ></wyy-icon>
-					</view>
-				</view>
-			</view>
-			<view class="handle">
-				<div class="c-bar">
-					<wyy-icon type="&#xe668;" size="40" color="#FFFFFF" ></wyy-icon>
-					<text class="c-bar-name">评论</text>
-				</div>
-				<div class="c-bar">
-					<wyy-icon type="&#xe667;" size="40" color="#FFFFFF" ></wyy-icon>
-					<text class="c-bar-name">分享</text>
-				</div>
-				<div class="c-bar">
-					<wyy-icon type="&#xe666;" size="40" color="#FFFFFF" ></wyy-icon>
-					<text class="c-bar-name">下载</text>
-				</div>
-				<div class="c-bar">
-					<wyy-icon type="&#xe665;" size="40" color="#FFFFFF" ></wyy-icon>
-					<text class="c-bar-name">多选</text>
-				</div>
-			</view>
-		</view>
-		
-		
-		
-		<view class="bottom" style="padding-bottom: 90rpx;">
-			<view class="top-bar">
-				<view class="icon">
-					<wyy-icon type="&#xe601;" size="40" color="#000000" ></wyy-icon>
-				</view>
-				<text class="top-bar-text">播放全部(共{{playlist.trackCount}}首)</text>
-			</view>
-			<list class="musics" show-scrollbar="false">
-				<cell class="music" v-for="(music, index) in playlist.tracks" :key="index" @tap="play(music)">
-					
-					<view class="music-index">
-						<text class="index-text">{{index + 1}}</text>
-						<!-- <wyy-icon type="&#xe601;" size="40" color="#000000" ></wyy-icon> -->
-					</view>
-					<view class="music-info">
-						<text class="music-name">{{music.name}}</text>
-						<view class="music-creators">
-							<text class="music-creator" v-for="(creator, c_index) in music.ar" :key="c_index">{{creator.name + ' '}}</text>
-							<text class="music-al">- {{music.al.name}}</text>
+					<view class="intro-right">
+						<text class="name">{{tmp_name}}</text>
+						<view class="creator">
+							<image class="creator-headimg" :src="playlist.creator.avatarUrl"></image>
+							<text class="creator-nickname">{{playlist.creator.nickname}}</text>
+							<wyy-icon type="&#xe79b;" size="20" color="rgba(255,255,255,.6)" ></wyy-icon>
 						</view>
-						
+						<view class="intro-footer">
+							<text class="description">{{playlist.description || ''}}</text>
+							<wyy-icon type="&#xe79b;" size="20" color="rgba(255,255,255,.6)" ></wyy-icon>
+						</view>
+					</view>
+				</view>
+				<view class="handle">
+					<div class="c-bar">
+						<wyy-icon type="&#xe668;" size="40" color="#FFFFFF" ></wyy-icon>
+						<text class="c-bar-name">评论</text>
+					</div>
+					<div class="c-bar">
+						<wyy-icon type="&#xe667;" size="40" color="#FFFFFF" ></wyy-icon>
+						<text class="c-bar-name">分享</text>
+					</div>
+					<div class="c-bar">
+						<wyy-icon type="&#xe666;" size="40" color="#FFFFFF" ></wyy-icon>
+						<text class="c-bar-name">下载</text>
+					</div>
+					<div class="c-bar">
+						<wyy-icon type="&#xe665;" size="40" color="#FFFFFF" ></wyy-icon>
+						<text class="c-bar-name">多选</text>
+					</div>
+				</view>
+			</cell>
+			
+			<cell class="wyy-main-color">
+				<view class="top-bar">
+					<view class="icon">
+						<wyy-icon type="&#xe601;" size="40" color="#000000" ></wyy-icon>
+					</view>
+					<text class="top-bar-text">播放全部(共{{playlist.trackCount}}首)</text>
+				</view>
+			</cell>
+			
+			
+			<cell class="music" v-for="(music, index) in playlist.tracks" :key="index" @tap="play(music)">
+				
+				<view class="music-index">
+					<text class="index-text">{{index + 1}}</text>
+					<!-- <wyy-icon type="&#xe601;" size="40" color="#000000" ></wyy-icon> -->
+				</view>
+				<view class="music-info">
+					<text class="music-name">{{music.name}}</text>
+					<view class="music-creators">
+						<text class="music-creator" v-for="(creator, c_index) in music.ar" :key="c_index">{{creator.name + ' '}}</text>
+						<text class="music-al">- {{music.al.name}}</text>
 					</view>
 					
-				</cell>
-			</list>
-			
-			
-		</view>
+				</view>
+				
+			</cell>
+		</list>
 		
-		<wyy-play v-if="played"></wyy-play>
+		
+		<wyy-play style="flex: 1;" v-if="played"></wyy-play>
 		
 	</view>
 </template>
@@ -194,12 +193,12 @@
 <style>
 	@import '../../common/wyy.css';
 	.page {
-		
-		padding-top: 50rpx;
+		flex: 1;
 	}
 	.top {
 		width: 750rpx;
-		padding: 0 30rpx;
+		padding: 50rpx 30rpx 0rpx 30rpx;
+		
 	}
 	.bottom {
 		width: 750rpx;
@@ -281,8 +280,6 @@
 	}
 	
 	.top-bar {
-		position: sticky;
-		top: 0;
 		flex-direction: row;
 		align-items: center;
 		width: 750rpx;
@@ -290,6 +287,7 @@
 		border-top-left-radius: 25;
 		border-top-right-radius: 25;
 		background-color: #FFFFFF;
+		
 	}
 	.icon {
 		padding: 0 30rpx;
@@ -298,9 +296,7 @@
 		font-size: 26rpx;
 		color: #000000;
 	}
-	.musics {
-		background-color: #FFFFFF;
-	}
+	
 	.music {
 		flex-direction: row;
 		width: 750rpx;
