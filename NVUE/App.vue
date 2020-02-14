@@ -29,12 +29,14 @@
 		methods: {
 			init_played() {
 				let played = Storage.get_played();
-				let music_id = played.id;
-
-				song.get_song_url(music_id, (res)=> {
-					played.url = res.data[0].url;
-					this.$store.commit('set_played', played);
-				});
+				if (played && played.id) {
+					let music_id = played.id;
+					
+					song.get_song_url(music_id, (res)=> {
+						played.url = res.data[0].url;
+						this.$store.commit('set_played', played);
+					});
+				}
 			},
 			init_player() {
 				const player = plus.audio.createPlayer({

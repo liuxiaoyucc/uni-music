@@ -43,6 +43,8 @@
 						}, 1500);
 					}else { // 已登录
 						let uid = user_status.profile.userId;
+						this.$store.commit('set_uid', uid)
+						
 						this.init_user(uid);
 						setTimeout(function() {
 							uni.redirectTo({

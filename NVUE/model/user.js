@@ -7,7 +7,7 @@ User.login = function(phone, password, cb) {
 		phone: phone,
 		password: password
 	}
-	
+	console.log(params);
 	request.post(url, params, (res)=> {
 		if (res.data) {
 			let data = res.data

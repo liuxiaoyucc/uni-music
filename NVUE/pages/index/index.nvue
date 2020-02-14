@@ -82,9 +82,6 @@
 			}
 		},
 		computed: {
-			uid: function() {
-				return this.$store.state.uid;
-			},
 			played: function() {
 				return this.$store.state.played;
 			}

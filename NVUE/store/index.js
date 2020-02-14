@@ -20,8 +20,10 @@ const store = new Vuex.Store({
 		set_playing(state, playing) {
 			state.playing = playing;
 		},
+		set_uid(state, uid) {
+			state.uid = uid;
+		},
 		set_user_info(state, user_info) {
-			state.uid = user_info.profile.userId
 			state.user_info = user_info;
 		},
 		set_subcount(state, subcount) {
