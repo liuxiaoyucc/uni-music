@@ -7,9 +7,9 @@
 
 #### Run
 
-渲染引擎: weex
-编译器版本: V3 (参考[V3编译器版本](https://ask.dcloud.net.cn/article/36599))
-页面编译模式: uni-app 组件模式
+* 渲染引擎: weex
+* 编译器版本: V3 (参考[V3编译器版本](https://ask.dcloud.net.cn/article/36599))
+* 页面编译模式: uni-app 组件模式
 
 __请确保你的HbuilderX版本在2.5.1以上__
 

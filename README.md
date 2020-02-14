@@ -25,7 +25,7 @@
 1. git clone 到本地
 2. 将项目下的NVUE或VUE目录拖入HbuilderX中运行到手机或模拟器
 
-tips: 
+__tips:__
 因为uniapp存在多种编译模式, 如果模式不对应, 会跑不起来或者出现各种错误 请参照NVUE及VUE目录下的readme自行修改后,再运行, 有问题请加下面微信交流
 
 #### End
