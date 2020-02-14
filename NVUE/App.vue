@@ -1,7 +1,7 @@
 <script>
-	import Storage from 'utils/storage.js';
-	import song from 'model/song.js';
-	import PlayerHelper from 'utils/player.js';
+	import Storage from '@/utils/storage.js';
+	import song from '@/model/song.js';
+	import PlayerHelper from '@/utils/player.js';
 	export default {
 		globalData: {
 			
