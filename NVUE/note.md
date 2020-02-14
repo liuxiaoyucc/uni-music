@@ -27,3 +27,8 @@ ended -> pause -> play方法的回调
 
 ### uni.innerAudioContext
 * paused属性无效
+
+## 关于NeteaseCloudMusicApi
+* 获取歌曲链接接口返回的链接是有过期时间的
+每次打开app时, 获取一下最新的url, 并更新
+使用https://music.163.com/song/media/outer/url?id=id.mp3 这个链接, 会自动跳转到最新地址

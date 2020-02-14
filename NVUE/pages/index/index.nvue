@@ -33,7 +33,7 @@
 		</swiper>
 		
 		
-		<wyy-play ref="played"></wyy-play>
+		<wyy-play v-if="played"></wyy-play>
 
 		<uni-drawer :visible="show_sidebar" mode="left" @close="close_side_drawer('left')">
 			<wyy-side-bar></wyy-side-bar>
@@ -85,6 +85,9 @@
 			uid: function() {
 				return this.$store.state.uid;
 			},
+			played: function() {
+				return this.$store.state.played;
+			}
 		},
 		watch: {
 			tab_index: function(val, old_val) {
@@ -97,22 +100,14 @@
 		
 		created() {
 			this.statusbar_height = $repeater.config.status_bar_height;
-			this.show_play = $repeater.storage.get_played() ? true : false;
 		},
 		onShow() {
-			this.refresh_played();
+			
 		},
 		onUnload() {
 			
 		},
 		methods: {
-			refresh_played() {
-				try{
-					this.$refs.played.refresh();
-				}catch(e){
-					//很不优雅的忽略首次获取不到$refs的问题
-				}
-			},
 
 			ontabtap(index) {
 				this.change_tab_index(index);

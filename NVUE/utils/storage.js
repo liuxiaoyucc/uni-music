@@ -10,7 +10,6 @@ Storage.get_played = function() {
 
 Storage.set_played = function(v) {
 	set(LATEST_PLAYED, v);
-	getApp().globalData.played = v;
 	return;
 }
 

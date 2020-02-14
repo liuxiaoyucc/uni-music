@@ -69,7 +69,7 @@
 			
 		</view>
 		
-		<wyy-play ref="played" v-if="!destroy"></wyy-play>
+		<wyy-play v-if="played"></wyy-play>
 		
 	</view>
 </template>
@@ -86,7 +86,6 @@
 		},
 		data() {
 			return {
-				destroy: false,
 				show_play: false,
 				playlist_id: '',
 				
@@ -100,7 +99,9 @@
 			}
 		},
 		computed: {
-			
+			played: function() {
+				return this.$store.state.played;
+			}
 		},
 		onLoad(option) {
 			this.playlist_id = option.playlist_id;
@@ -115,22 +116,15 @@
 			
 		},
 		onReady() {
-			this.refresh_played();
+			
 		},
 		onShow() {
-			this.refresh_played();
+			
 		},
 		beforeDestroy() {
-			this.destroy = true;
+			
 		},
 		methods: {
-			refresh_played() {
-				try{
-					this.$refs.played.refresh();
-				}catch(e){
-					//很不优雅的忽略首次获取不到$refs的问题
-				}
-			},
 			test() {
 				$repeater.helper.to('../search/search')
 			},
@@ -143,7 +137,7 @@
 				let music_name = music.name;
 				let cover_image = music.al.picUrl;
 				
-				let current_played = $repeater.storage.get_played();
+				let current_played = this.played;
 				
 				let played_music_id = current_played.id;
 				
@@ -176,7 +170,7 @@
 							time: 0, //上次播放的位置
 						}
 						
-						$repeater.storage.set_played(played);
+						this.$store.commit('set_played', played);
 						
 						$repeater.player.start();
 						//直接开始播放, 不用跳转

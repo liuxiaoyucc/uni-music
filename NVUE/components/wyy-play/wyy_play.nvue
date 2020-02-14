@@ -31,35 +31,26 @@
 		},
 		data() {
 			return {
-				played: getApp().globalData.played,
-				
-				
 				audio_url: 'https://mudic.oss-cn-shanghai.aliyuncs.com/%E8%AE%B8%E5%B5%A9%20-%20%E5%BA%90%E5%B7%9E%E6%9C%88.mp3', //测试音频
 			};
 		},
 		computed: {
 			playing() {
 				return this.$store.state.playing;
+			},
+			played() {
+				return this.$store.state.played;
 			}
 		},
 		watch: {
 			
 		},
 		created() {
-			$repeater.helper.played_watch((played)=> {
-				this.played_watch_back(played);
-			});
 			
 		},
 		methods: {
 			to_play_page() {
 				console.log('to_play_page');
-			},
-			played_watch_back(played) {
-				this.played = played;
-			},
-			refresh() {
-				this.played = getApp().globalData.played
 			},
 			turn(event) {
 				event.stopPropagation();

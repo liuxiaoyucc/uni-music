@@ -1,15 +1,15 @@
 <script>
 	import Storage from 'utils/storage.js';
+	import song from 'model/song.js';
 	import PlayerHelper from 'utils/player.js';
 	export default {
 		globalData: {
-			_played: Storage.get_played(),
-			played: Storage.get_played(),
 			
 			player: {},
 		},
 		onLaunch: function () {
 			console.log('onLaunch');
+			this.init_played();
 			//全局唯一播放管理
 			this.init_player();
 			
@@ -27,6 +27,15 @@
 			console.log('App Hide')
 		},
 		methods: {
+			init_played() {
+				let played = Storage.get_played();
+				let music_id = played.id;
+
+				song.get_song_url(music_id, (res)=> {
+					played.url = res.data[0].url;
+					this.$store.commit('set_played', played);
+				});
+			},
 			init_player() {
 				const player = plus.audio.createPlayer({
 					autoplay: false
@@ -52,8 +61,9 @@
 					console.log('on ended');
 					this.$store.commit('set_playing', false);
 				});
-				player.addEventListener('error', ()=> {
+				player.addEventListener('error', (e)=> {
 					console.log('on error');
+					console.log(e);
 					this.$store.commit('set_playing', false);
 				});
 				player.addEventListener('waiting', ()=> {
