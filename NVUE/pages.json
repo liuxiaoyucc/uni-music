@@ -1,16 +1,15 @@
 {
-	"pages" : [
-		{
-		    "path" : "pages/welcome/welcome",
-		    "style" : {
-				"titleNView" : false
+	"pages": [{
+			"path": "pages/welcome/welcome",
+			"style": {
+				"titleNView": false
 			}
 		},
 		{
-			"path" : "pages/index/index",
-			"style" : {
-				"navigationBarTitleText" : "首页",
-				"titleNView" : false
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "首页",
+				"titleNView": false
 				// "subNVues": [{
 				// 		"id": "bar",
 				// 		"path": "subNVue/bar",
@@ -23,20 +22,20 @@
 				// 	}
 				// ]
 			}
-			
+
 		},
 		{
-            "path" : "pages/search/search",
-            "style" : {
-				"backgroundColor":"rgba(0,0,0,0.3)",
+			"path": "pages/search/search",
+			"style": {
+				"backgroundColor": "rgba(0,0,0,0.3)",
 				"app-plus": {
 					"animationType": "slide-in-bottom",
-					"animationDuration":150,
-					"bounce" :"none",
-					"titleNView":{
-						
+					"animationDuration": 150,
+					"bounce": "none",
+					"titleNView": {
+
 						"type": "transparent",
-						
+
 						"searchInput": {
 							"align": "left",
 							"autoFocus": true,
@@ -46,17 +45,16 @@
 					}
 				}
 			}
-        }
-        ,{
-            "path" : "pages/login/login",
-            "style" : {
-				"navigationBarTitleText" : "登录"
+		}, {
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "登录"
 			}
-        }
-        
-        ,{
-            "path" : "pages/playlist/playlist",
-            "style" : {
+		}
+
+		, {
+			"path": "pages/playlist/playlist",
+			"style": {
 				"app-plus": {
 					// "scrollIndicator": "none",
 					// "animationType": "slide-in-bottom",
@@ -64,10 +62,9 @@
 					"titleNView": {
 						"titleColor": "#FFFFFF",
 						"titleText": "歌单",
-						
+
 						"backgroundColor": "rgba(218, 45, 30, 1)",
-						"buttons": [
-							{
+						"buttons": [{
 								"fontSrc": "/static/font/iconfont.ttf",
 								"text": "\ue655",
 								"width": "40px",
@@ -87,18 +84,17 @@
 					}
 				}
 			}
-        }
-        ,{
-            "path" : "pages/play/play",
-            "style" : {
-				"titleNView" : false
+		}, {
+			"path": "pages/play/play",
+			"style": {
+				"titleNView": false
 			}
-        }
-    ],
-	"globalStyle" : {
-		"navigationBarTextStyle" : "black",
-		"navigationBarTitleText" : "cloud music",
-		"navigationBarBackgroundColor" : "#ffffff",
-		"backgroundColor" : "#ffffff"
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "cloud music",
+		"navigationBarBackgroundColor": "#ffffff",
+		"backgroundColor": "#ffffff"
 	}
 }

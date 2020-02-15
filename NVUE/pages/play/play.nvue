@@ -95,9 +95,7 @@
 			}
 		},
 		created() {
-			console.log(this.statusbar_height);
-			console.log(this.duration);
-			console.log(this.current_position);
+
 		},
 		methods: {
 			turn() {

@@ -4,7 +4,7 @@
 	import PlayerHelper from '@/utils/player.js';
 	export default {
 		globalData: {
-			
+			flrst_play: true,
 			player: {},
 		},
 		onLaunch: function () {
@@ -45,6 +45,10 @@
 				});
 				
 				player.addEventListener('canplay', ()=> {
+					if (this.globalData.flrst_play) {
+						this.globalData.flrst_play = false;
+						return;
+					}
 					console.log('on canplay');
 					PlayerHelper.play();
 				});
@@ -88,6 +92,8 @@
 				});
 			
 				this.globalData.player = player;
+				
+				PlayerHelper.set_url();
 			}
 		},
 	}

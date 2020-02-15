@@ -6,7 +6,7 @@ function get_player() {
 	return getApp({allowDefault: true}).globalData.player;
 }
 
-function set_url() {
+PlayerHelper.set_url = function() {
 	let played = Storage.get_played();
 	
 	let player = get_player();
@@ -20,7 +20,7 @@ function set_url() {
 
 //play前的准备
 PlayerHelper.start = function() {
-	set_url();
+	this.set_url();
 	let player = get_player();
 	player.resume();
 	return;
@@ -54,6 +54,12 @@ PlayerHelper.get_position = function() {
 
 PlayerHelper.get_duration = function() {
 	let player = get_player();
+	console.log(player);
+	console.log(Storage.get_played());
+	console.log(player.getDuration());
+	setTimeout(function() {
+		console.log(player.getDuration());
+	}, 3000);
 	return player.getDuration();
 }
 
