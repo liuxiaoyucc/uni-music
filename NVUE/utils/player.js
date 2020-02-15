@@ -54,13 +54,12 @@ PlayerHelper.get_position = function() {
 
 PlayerHelper.get_duration = function() {
 	let player = get_player();
-	console.log(player);
-	console.log(Storage.get_played());
-	console.log(player.getDuration());
-	setTimeout(function() {
-		console.log(player.getDuration());
-	}, 3000);
+
 	return player.getDuration();
+}
+
+PlayerHelper.seek_to = function(position) {
+	return get_player().seekTo(position);
 }
 
 import Storage from '../utils/storage.js'

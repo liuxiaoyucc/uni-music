@@ -88,6 +88,10 @@
 			"path": "pages/play/play",
 			"style": {
 				"titleNView": false
+				// "app-plus": {
+				// 	"animationType": "slide-in-bottom",
+				// 	"animationDuration":300
+				// }
 			}
 		}
 	],

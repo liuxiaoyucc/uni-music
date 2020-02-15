@@ -25,6 +25,8 @@ ended -> pause -> play方法的回调
 
 当autoplay为false时, 在暂停之后,再次播放时, 不会触发canplay回调, __也就是说, 同一个音频链接, 在不切换src的情况下, 只会触发一次canplay, 所以不能只能在canplay回调中调用play()方法__
 
+* 没有进度更新回调, 所以播放进度条控制使用控制器来做的
+
 ### uni.innerAudioContext
 * paused属性无效
 
