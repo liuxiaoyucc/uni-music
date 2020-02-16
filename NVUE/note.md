@@ -8,6 +8,14 @@
 
 4. innerAudioContext对象的paused值获取不到, 导致不能判断当前播放状态, 只能通过各种回调和vuex单独维护playing		使用plus.audio.createPlayer代替uni.innerAudioContext
 
+5. 关于唱片cover旋转问题: nvue中暂不支持uni.createAnimation(OBJECT), weex的anianimation也不支持主动停止和启动, nvue的css样式又不支持animation属性, 所以目前只能用定时器做旋转效果, 播放和暂停时会有一点延迟, 影响不大, 想到好办法再优化
+
+6. nvue不支持径向渐变, play背景色只能用纯色或者线性渐变
+
+7. 目前使用的wyy-icon组件, 在v-if="false" 时会报个错误 TypeError: undefined is not an object (evaluating 'e._data.__ob__'), 暂时没找到问题
+	
+__已解决, 原因是组件中的data没有return一个对象 也就是,即使没有使用data, 也要return {}__
+
 ## TODO
 1. 使用plus的音频管理替代uni, 可以获取到播放状态
 2. 将playing放到哪里管理呢

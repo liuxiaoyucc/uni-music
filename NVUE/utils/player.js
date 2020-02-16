@@ -3,14 +3,14 @@ let PlayerHelper = {};
 
 //获取唯一player, 保持player统一
 function get_player() {
-	return getApp({allowDefault: true}).globalData.player;
+	return getApp().globalData.player;
 }
 
 PlayerHelper.set_url = function() {
 	let played = Storage.get_played();
 	
 	let player = get_player();
-	
+	console.log(played.url);
 	player.setStyles({
 		src: played.url
 	});
@@ -54,7 +54,7 @@ PlayerHelper.get_position = function() {
 
 PlayerHelper.get_duration = function() {
 	let player = get_player();
-
+	console.log(player.getDuration());
 	return player.getDuration();
 }
 

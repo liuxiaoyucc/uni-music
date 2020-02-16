@@ -1,12 +1,33 @@
 <template>
 	<view class="page">
-		<view :style="{ height: statusbar_height + 'px'}" style="width: 750rpx;"></view>
-		<view class="header">
-			<text></text>
+		
+		<view class="container blue" v-if="show_lyric" @tap="change_container()">
+			<text>这里滚动歌词</text>
 		</view>
-		<view class="container">
-			<text></text>
+		<view class="container red" v-else @tap="change_container()">
+			<view class="cover">
+				<image ref="cover_image" class="cover-image" resize="cover" :src="played.cover_image"></image>
+			</view>
+			<view class="option-area">
+				<view class="icon-group">
+					<view class="icon-area">
+						<wyy-icon type="&#xe67a;" size="40" color="#FFFFFF" ></wyy-icon>
+					</view>
+					<view class="icon-area">
+						<wyy-icon type="&#xe666;" size="40" color="#FFFFFF" ></wyy-icon>
+					</view>
+					
+					<view class="icon-area">
+						<wyy-icon type="&#xe668;" size="40" color="#FFFFFF" ></wyy-icon>
+					</view>
+					<view class="icon-area">
+						<wyy-icon type="&#xe67d;" size="40" color="#FFFFFF" ></wyy-icon>
+					</view>
+					
+				</view>
+			</view>
 		</view>
+		
 		<view class="footer">
 			
 			<view class="slider-view">
@@ -14,7 +35,7 @@
 					<text class="time-text">{{position_show}}</text>
 				</view>
 				
-				<slider @change="alider_change" @changing="slider_changing" class="slider" :min="0" :max="duration" :value="current_position" activeColor="rgba(218, 45, 30, 1)" backgroundColor="rgba(255,255,255,.4)" block-color="#FFFFFF" block-size="18" />
+				<slider @change="alider_change" @changing="slider_changing" class="slider" :min="0" :max="duration" :value="current_position" activeColor="rgba(255,255,255,.7)" backgroundColor="rgba(255,255,255,.4)" block-color="#FFFFFF" block-size="18" />
 				
 				<view class="end_time">
 					<text class="time-text grey-time-text">{{duration_show}}</text>
@@ -49,9 +70,11 @@
 </template>
 
 <script>
-	import wyyIcon from '@/components/uni-icon.vue';
+	import wyyIcon from '../../components/wyy-icon/wyy-icon.nvue';
 	
 	import $repeater from '@/utils/repeater.js';
+	
+	const animation = weex.requireModule('animation');
 	
 	export default {
 		components: {
@@ -64,7 +87,9 @@
 				current_position: $repeater.player.get_position().toFixed(0), //当前播放位置
 				
 				timer: '', //计时器
-				dragging: false,
+				animation_timer: '',
+				dragging: false, //
+				show_lyric: false, //是否显示歌词
 			};
 		},
 		computed: {
@@ -99,8 +124,49 @@
 		},
 		created() {
 			this.init_timer();
+			this.set_title(this.played.name);
+		},
+		onReady() {
+			this.init_cover_rotate();
 		},
 		methods: {
+			change_container() {
+				console.log(11111);
+				this.show_lyric = !this.show_lyric;
+			},
+			init_cover_rotate() {
+				return;
+				let cover_image = this.$refs.cover_image;
+				
+				let deg = 0;
+				let degree = deg+'deg';
+				
+				this.animation_timer = setInterval(()=> {
+					if (this.playing) {
+						deg += 20; //步进值
+					}
+					
+					degree = deg+ 'deg';
+					animation.transition(cover_image, {
+						styles: {
+							transform: 'rotate('+degree+')',
+							transformOrigin: 'center center'
+						},
+						duration: 1400, //ms
+						timingFunction: 'linear',
+						delay: 0 //ms
+					},  ()=> {
+						
+						
+					})
+				}, 1400);
+				
+			},
+			set_title(title) {
+				uni.setNavigationBarTitle({
+				    title: title
+				});
+			},
 			slider_changing(e) {
 				this.dragging = true;
 				this.current_position = e.detail.value;
@@ -115,9 +181,13 @@
 				//切换播放暂停状态
 				if (this.playing) {
 					$repeater.player.pause();
+					this.stop_rotate();
 				}else {
 					$repeater.player.start();
 				}
+				
+			},
+			stop_rotate() {
 				
 			},
 			init_timer() {
@@ -127,7 +197,7 @@
 					this.timer = '';
 				}
 				this.timer = setInterval(()=> {
-					console.log('timer');
+					
 					if (!this.dragging) {
 						this.current_position = $repeater.player.get_position().toFixed(0)
 					}
@@ -144,18 +214,36 @@
 </script>
 
 <style>
+	.red {
+		background-color: #FF0000;
+	}
+	.blue {
+		background-color: blue;
+		justify-content: center;
+		align-items: center;
+	}
 	.page {
 		flex: 1;
-		background-color: #2C405A;
+		background-color: rgba(218, 45, 30, 1);
 	}
 	.header {
 		
 	}
+	.container {
+		flex: 1;
+		
+	}
+	.cover {
+		flex: 1;
+		justify-content: center;
+		align-items: center;
+	}
+	.cover-image {
+		width: 480rpx;
+		height: 480rpx;
+		border-radius: 1000;
+	}
 	.footer {
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		background-color: #333333;
 		height: 200rpx;
 		width: 750rpx;
 		
@@ -192,6 +280,12 @@
 	}
 	.grey-time-text {
 		color: rgba(255,255,255,.3);
+	}
+	.option-area {
+		width: 750rpx;
+		
+		align-items: center;
+		padding: 20rpx 30rpx 10rpx 30rpx;
 	}
 	.handle-area {
 		width: 750rpx;

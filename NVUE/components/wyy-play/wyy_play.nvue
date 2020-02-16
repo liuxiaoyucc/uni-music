@@ -1,7 +1,7 @@
 <template>
 	<view class="play" v-if="played" @tap="to_play_page">
 		<view class="play-left">
-			<image class="cover-image" :src="played.cover_image"></image>
+			<image class="cover-image"  resize="cover" :src="played.cover_image"></image>
 		</view>
 		<view class="play-center">
 			<text class="music-name">{{played.name}}</text>
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-	import wyyIcon from '@/components/uni-icon.vue';
+	import wyyIcon from '../../components/wyy-icon/wyy-icon.nvue';
 	
 	import $repeater from '@/utils/repeater.js';
 	

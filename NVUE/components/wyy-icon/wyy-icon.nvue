@@ -1,5 +1,8 @@
 <template>
-	<text @click="onClick" class="iconfont" :style="{fontSize: size + 'rpx',color:color}">{{name}}</text>
+	<view>
+		<text @click="onClick" class="iconfont" :style="{fontSize: size + 'rpx',color:color}">{{name}}</text>
+	</view>
+	
 </template>
 
 <script>
@@ -9,9 +12,18 @@
 	//如果使用props 传过来的\u icon 在template使用 显示失败, 传过来的 \u icon一被编码成字符串内存中的值其实是"\\ue715"
 	export default{
 		props: {
-		  type: String,
-		  color: String,
-		  size: [Number, String]
+			type: {
+				type: String,
+				default: ""
+			},
+			color: {
+				type: String,
+				default: "#FFFFFF"
+			},
+			size: {
+				type: Number,
+				default: 40
+			}
 		},
 		computed: {
 			name(){
@@ -21,7 +33,10 @@
 				return  eval("'" + tmp + "'");               // 将内存中"\\ue715" 转成"\ue715"
 			}
 		},
-		data(){ 		    
+		data(){
+			return {
+				
+			}
 		}, 
 		created(){
 			
