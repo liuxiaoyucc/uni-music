@@ -136,14 +136,17 @@
 				return this.$store.state.played;
 			}
 		},
+		watch: {
+			
+		},
 		created() {
-			this.init_timer();
+			
 			this.set_title(this.played.name);
 			this.get_lyric();
 		},
 		onReady() {
 			this.init_cover_rotate();
-			
+			this.init_timer();
 		},
 		methods: {
 			set_active_lyric_row_index() {
@@ -283,7 +286,9 @@
 					if (!this.dragging) {
 						this.current_position = $repeater.player.get_position().toFixed(0);
 						
-						this.set_active_lyric_row_index();
+						if (this.show_lyric) {
+							this.set_active_lyric_row_index();
+						}
 						
 					}
 				}, 1000);
