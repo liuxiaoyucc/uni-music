@@ -4,17 +4,15 @@
 		<view class="container blue" v-if="show_lyric" >
 			
 			<list class="lyric-list" show-scrollbar="false" >
-				<cell class="top-area" @tap="change_container()"></cell>
+				<cell class="top-area"></cell>
 				<cell @tap="change_container()" v-for="(row, index) in lyric" :key="index">
-					
-					<view v-if="row[1]" class="lyric-row">
-						<text class="lyric-row-text">{{row[1]}}</text>
+					<view v-if="row.content" class="lyric-row">
+						<text :ref="`lyric${index}`" :class="active_lyric_row_index == row.index ? 'light-text' : ''" class="lyric-row-text">{{row.content}}</text>
+						<!-- <text :ref="`lyric${index}`" :class="active_lyric_row_index == row.index ? 'light-text' : ''" class="lyric-row-text">{{index}}</text> -->
 					</view>
 				</cell>
-				
-				<cell @tap="change_container()" class="bottom-area"></cell>
-				
 			</list>
+			
 		</view>
 		<view class="container red" v-else @tap="change_container()">
 			<view class="cover">
@@ -47,7 +45,7 @@
 					<text class="time-text">{{position_show}}</text>
 				</view>
 				
-				<slider @change="alider_change" @changing="slider_changing" class="slider" :min="0" :max="duration" :value="current_position" activeColor="rgba(255,255,255,.7)" backgroundColor="rgba(255,255,255,.4)" block-color="#FFFFFF" block-size="18" />
+				<slider @change="slider_change" @changing="slider_changing" class="slider" :min="0" :max="duration" :value="current_position" activeColor="rgba(255,255,255,.7)" backgroundColor="rgba(255,255,255,.4)" block-color="#FFFFFF" block-size="18" />
 				
 				<view class="end_time">
 					<text class="time-text grey-time-text">{{duration_show}}</text>
@@ -87,6 +85,7 @@
 	import $repeater from '@/utils/repeater.js';
 	
 	const animation = weex.requireModule('animation');
+	const dom = weex.requireModule('dom')
 	
 	export default {
 		components: {
@@ -103,7 +102,8 @@
 				dragging: false, //
 				show_lyric: false, //是否显示歌词
 				
-				lyric: '',
+				lyric: [],
+				active_lyric_row_index: 0,
 			};
 		},
 		computed: {
@@ -143,8 +143,42 @@
 		},
 		onReady() {
 			this.init_cover_rotate();
+			
 		},
 		methods: {
+			set_active_lyric_row_index() {
+				var active_lyric_rows = this.lyric.filter((obj)=> {
+				    return parseInt(obj.second) <= parseInt(this.current_position) && obj.content;
+				});
+				
+				let current_row = active_lyric_rows.pop();
+				
+				if (this.active_lyric_row_index == current_row.index) { //在一行歌词停留时, 就不滚动了
+					return;
+				}
+				if (this.active_lyric_row_index > current_row.index) {
+					
+				}
+				
+				this.active_lyric_row_index = current_row.index;
+				
+				let to_index = 0;
+				if (active_lyric_rows.length > 8) {
+					to_index = active_lyric_rows.slice(-8)[0].index;
+					
+					console.log(active_lyric_rows.slice(-8)[0]);
+				}
+				
+				if (current_row.content && to_index > 0) {
+					try{
+						const el = this.$refs[`lyric${to_index}`][0];
+						dom.scrollToElement(el, {})
+					}catch(e){
+						console.log(e);
+					}
+				}
+				
+			},
 			get_lyric() {
 				$repeater.song.get_lyric(this.played.id, (data)=> {
 					let lyric = data.lrc.lyric;
@@ -152,8 +186,8 @@
 					let lines = lyric.split('\n');
 					
 					let new_lyric = [];
-					lines.forEach((line)=> {
-						let new_line = [];
+					lines.forEach((line, index)=> {
+						let new_line = {};
 						if (!line) {
 							return
 						}
@@ -166,16 +200,18 @@
 						time = time.replace(/\[/, '');
 						time = time.replace(/\]/, '');
 						
-						new_line[0] = time;
-						new_line[1] = line_lyric;
+						new_line.index = index;
+						new_line.time = time;
+						new_line.content = line_lyric.trim();
+						new_line.second = (time.split(":")[0] * 60 + parseFloat(time.split(":")[1])).toFixed(0);
 						new_lyric.push(new_line);
 					})
-					console.log(JSON.stringify(new_lyric));
+					
 					this.lyric = new_lyric;
+					console.log(this.lyric[0]);
 				});
 			},
 			change_container() {
-				console.log(11111);
 				this.show_lyric = !this.show_lyric;
 			},
 			init_cover_rotate() {
@@ -215,7 +251,7 @@
 				this.dragging = true;
 				this.current_position = e.detail.value;
 			},
-			alider_change(e) {
+			slider_change(e) {
 				console.log(e);
 				let position = e.detail.value;
 				$repeater.player.seek_to(position);
@@ -236,14 +272,19 @@
 			},
 			init_timer() {
 				
+				
+				
 				if (this.timer) {
 					clearInterval(this.timer);
 					this.timer = '';
 				}
 				this.timer = setInterval(()=> {
-					
+					// console.log(this.lyric[this.active_row_lyric][2]);
 					if (!this.dragging) {
-						this.current_position = $repeater.player.get_position().toFixed(0)
+						this.current_position = $repeater.player.get_position().toFixed(0);
+						
+						this.set_active_lyric_row_index();
+						
 					}
 				}, 1000);
 			},
@@ -259,14 +300,14 @@
 
 <style>
 	.red {
-		background-color: #FF0000;
+		
 	}
 	.blue {
 		
 	}
 	.page {
 		flex: 1;
-		background-color: rgba(218, 45, 30, 1);
+		background-color: #171616;
 	}
 	.header {
 		
@@ -352,20 +393,25 @@
 	.lyric-row {
 		width: 750rpx;
 		height: 65rpx;
-		
+		padding-left: 16rpx;
 		justify-content: center;
-		align-items: center;
+		/* align-items: center; */
 	}
 	.lyric-row-text{
+		font-size: 24rpx;
+		color: #8B8682;
+	}
+	.light-text {
+		color: #FFFFFF;
 		font-size: 26rpx;
-		color: rgba(255,255,255,.8);
+		font-weight: bold;
 	}
 	.lyric-list {
 		flex: 1;
 		width: 750rpx;
 	}
 	.top-area {
-		height: 600rpx;
+		height: 50rpx;
 		width: 750rpx;
 	}
 	.bottom-area {

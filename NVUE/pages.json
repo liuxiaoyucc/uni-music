@@ -92,7 +92,7 @@
 						"titleColor": "#FFFFFF",
 						"titleText": "加载中...",
 				
-						"backgroundColor": "rgba(218, 45, 30, 1)",
+						"backgroundColor": "#171616",
 						"buttons": [{
 								"fontSrc": "/static/font/iconfont.ttf",
 								"text": "\ue667",
