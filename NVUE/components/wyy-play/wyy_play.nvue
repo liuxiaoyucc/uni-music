@@ -50,7 +50,6 @@
 		},
 		methods: {
 			to_play_page() {
-				console.log('to_play_page');
 				$repeater.helper.to('../play/play');
 			},
 			turn(event) {

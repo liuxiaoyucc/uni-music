@@ -20,7 +20,7 @@ API.PLAYLIST_DETAIL_URL = 'playlist/detail'; // 歌单详情
 
 // 歌曲
 API.SONG_URL = 'song/url'; //获取歌曲url
-
+API.LYRIC_URL = 'lyric'; //获取歌词
 export default {
 	systemInfo, 
 	status_bar_height,

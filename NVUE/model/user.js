@@ -29,7 +29,6 @@ User.login = function(phone, password, cb) {
 //登录检查
 User.check_login = function(cb) {
 	
-	console.log('check_login');
 	get_status((res)=> {
 		cb && cb(res);
 	})

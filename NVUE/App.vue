@@ -36,7 +36,6 @@
 					song.get_song_url(music_id, (res)=> {
 						played.url = res.data[0].url;
 						this.$store.commit('set_played', played);
-						PlayerHelper.set_url();
 					});
 				}
 			},
@@ -94,7 +93,7 @@
 				});
 
 				this.globalData.player = player;
-
+				PlayerHelper.set_url();
 			}
 		},
 	}

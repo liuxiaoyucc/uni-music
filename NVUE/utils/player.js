@@ -54,7 +54,7 @@ PlayerHelper.get_position = function() {
 
 PlayerHelper.get_duration = function() {
 	let player = get_player();
-	console.log(player.getDuration());
+	
 	return player.getDuration();
 }
 
