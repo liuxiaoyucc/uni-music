@@ -135,7 +135,7 @@
 				this.show_lyric = !this.show_lyric;
 			},
 			init_cover_rotate() {
-				return;
+				
 				let cover_image = this.$refs.cover_image;
 				
 				let deg = 0;

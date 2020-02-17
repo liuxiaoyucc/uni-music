@@ -2,6 +2,7 @@
 	import Storage from '@/utils/storage.js';
 	import song from '@/model/song.js';
 	import PlayerHelper from '@/utils/player.js';
+	
 	export default {
 		globalData: {
 			flrst_play: true,
@@ -35,6 +36,7 @@
 					song.get_song_url(music_id, (res)=> {
 						played.url = res.data[0].url;
 						this.$store.commit('set_played', played);
+						PlayerHelper.set_url();
 					});
 				}
 			},
@@ -90,10 +92,9 @@
 					// 后台播放控制器上点击下一曲按钮时触发，未开启后台控制器则不触发此事件
 					console.log('on next');
 				});
-			
+
 				this.globalData.player = player;
-				
-				PlayerHelper.set_url();
+
 			}
 		},
 	}
