@@ -45,7 +45,6 @@
 						let uid = user_status.profile.userId;
 						this.$store.commit('set_uid', uid)
 						
-						this.init_user(uid);
 						setTimeout(function() {
 							uni.redirectTo({
 								url: '../index/index',
@@ -53,14 +52,6 @@
 						}, 1500);
 					}
 					
-				});
-			},
-			init_user(uid) {
-				$repeater.user.get_user_detail(uid, (user_info)=> {
-					this.$store.commit('set_user_info', user_info)
-				});
-				$repeater.user.get_subcount((data)=> {
-					this.$store.commit('set_subcount', data);
 				});
 			}
 		}

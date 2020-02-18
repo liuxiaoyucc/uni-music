@@ -39,7 +39,7 @@
 					if (res){
 						let uid = res.profile.userId;
 						this.$store.commit('set_uid', uid)
-						this.init_user(uid);
+						
 						$repeater.helper.toast('none', '登录成功', 3000, false, 'bottom');
 						uni.redirectTo({
 							url: '../index/index',
@@ -54,14 +54,7 @@
 				this.phone = '';
 				this.password = '';
 			},
-			init_user(uid) {
-				$repeater.user.get_user_detail(uid, (user_info)=> {
-					this.$store.commit('set_user_info', user_info)
-				});
-				$repeater.user.get_subcount((data)=> {
-					this.$store.commit('set_subcount', data);
-				});
-			}
+			
 		}
 	}
 </script>

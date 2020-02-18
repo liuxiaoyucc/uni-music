@@ -20,8 +20,8 @@
 			</view>
 			<view class="option-area">
 				<view class="icon-group">
-					<view class="icon-area">
-						<wyy-icon type="&#xe67a;" size="40" color="#FFFFFF" ></wyy-icon>
+					<view class="icon-area" @tap="like($event)">
+						<wyy-icon :type="islike ? '&#xe679;' : '&#xe67a;'" size="40" :color="islike ? '#FF0000' : '#FFFFFF'" ></wyy-icon>
 					</view>
 					<view class="icon-area">
 						<wyy-icon type="&#xe666;" size="40" color="#FFFFFF" ></wyy-icon>
@@ -134,13 +134,16 @@
 			},
 			played() {
 				return this.$store.state.played;
+			},
+			islike() {
+				return this.$store.state.likelist.includes(this.played.id);
 			}
 		},
 		watch: {
 			
 		},
 		created() {
-			
+			console.log(this.islike);
 			this.set_title(this.played.name);
 			this.get_lyric();
 		},
@@ -149,6 +152,25 @@
 			this.init_timer();
 		},
 		methods: {
+			like(event) {
+				event.stopPropagation();
+				console.log(this.played.id);
+				
+				$repeater.user.like(this.played.id, !this.islike, (res)=> {
+					console.log(res);
+					let playlist = this.$store.state.likelist;
+					if (this.islike) {
+						let index = playlist.indexOf(this.played.id);
+						playlist.splice(index, 1);
+						console.log(index);
+					}else {
+						playlist.push(this.played.id);
+					}
+					console.log(playlist);
+					this.$store.commit('set_likelist', playlist);
+				})
+				
+			},
 			set_active_lyric_row_index() {
 				var active_lyric_rows = this.lyric.filter((obj)=> {
 				    return parseInt(obj.second) <= parseInt(this.current_position) && obj.content;
@@ -159,9 +181,7 @@
 				if (this.active_lyric_row_index == current_row.index) { //在一行歌词停留时, 就不滚动了
 					return;
 				}
-				if (this.active_lyric_row_index > current_row.index) {
-					
-				}
+				
 				
 				this.active_lyric_row_index = current_row.index;
 				

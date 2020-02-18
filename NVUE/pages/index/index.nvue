@@ -97,6 +97,7 @@
 		
 		created() {
 			this.statusbar_height = $repeater.config.status_bar_height;
+			this.init_user();
 		},
 		onShow() {
 			
@@ -105,7 +106,18 @@
 			
 		},
 		methods: {
-
+			init_user() {
+				let uid = this.$store.state.uid;
+				$repeater.user.get_user_detail(uid, (user_info)=> {
+					this.$store.commit('set_user_info', user_info)
+				});
+				$repeater.user.get_subcount((data)=> {
+					this.$store.commit('set_subcount', data);
+				});
+				$repeater.user.get_likelist(uid, (data)=> {
+					this.$store.commit('set_likelist', data.ids);
+				});
+			},
 			ontabtap(index) {
 				this.change_tab_index(index);
 			},

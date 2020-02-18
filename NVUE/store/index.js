@@ -10,6 +10,7 @@ const store = new Vuex.Store({
 		uid: '', //网易云用户id
 		user_info: {}, // 网易云用户详情
 		subcount: {}, // 各种计数
+		likelist: [], //喜欢的歌曲列表ids
 	},
 	mutations: {
 		set_played(state, played) {
@@ -28,6 +29,9 @@ const store = new Vuex.Store({
 		},
 		set_subcount(state, subcount) {
 			state.subcount = subcount;
+		},
+		set_likelist(state, likelist) {
+			state.likelist = likelist;
 		},
 		logout(state) {
 			state.played = '';

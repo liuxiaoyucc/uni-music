@@ -78,6 +78,37 @@ User.get_playlist = function(uid, cb) {
 	})
 }
 
+User.get_likelist = function(uid, cb) {
+	let url = config.API.USER_LIKE_LIST_URL;
+	let params = {
+		uid: uid
+	}
+	request.post(url, params, (res)=> {
+		let data = res.data;
+		if (data.code == 200) {
+			cb && cb(data)
+		}else {
+			console.log('failed');
+		}
+	})
+}
+
+User.like = function(music_id, like, cb) {
+	let url = config.API.LIKE_URL;
+	let params = {
+		id: music_id,
+		like: like
+	}
+	request.post(url, params, (res)=> {
+		let data = res.data;
+		if (data.code == 200) {
+			cb && cb(data)
+		}else {
+			console.log('failed');
+		}
+	})
+}
+
 //获取用户状态
 function get_status(cb) {
 	let url = config.API.LOGIN_STATUS_URL;

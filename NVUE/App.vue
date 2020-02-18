@@ -11,8 +11,8 @@
 		onLaunch: function () {
 			console.log('onLaunch');
 			this.init_played();
-			//全局唯一播放管理
-			this.init_player();
+			// //全局唯一播放管理
+			// this.init_player(); //这里先注释掉, 放在init_played中调用观察下是否能解决{"code":-99,"message":"未知错误"}的问题
 			
 			// 加载icon字体文件
 			const dom = weex.requireModule('dom');
@@ -36,6 +36,7 @@
 					song.get_song_url(music_id, (res)=> {
 						played.url = res.data[0].url;
 						this.$store.commit('set_played', played);
+						this.init_player();
 					});
 				}
 			},
