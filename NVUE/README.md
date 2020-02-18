@@ -24,9 +24,12 @@ __请确保你的HbuilderX版本在2.5.1以上__
 - [x] 获取用户详情
 - [x] 获取登录状态
 - [x] 获取用户信息 , 歌单，收藏，mv, dj 数量
-- [x] 获取用户歌单
-- [x] 获取歌单详情, 歌单中音乐列表
-- [x] 切换播放歌单中的音乐
+- [x] 用户歌单列表
+- [x] 歌单详情页
+- [x] 播放组件
+- [x] 播放详情页
+- [x] 播放进度条及歌词滚动
+- [x] 喜欢和取消喜欢
 
 #### Thanks
 
@@ -34,4 +37,5 @@ __请确保你的HbuilderX版本在2.5.1以上__
 
 #### 已完成部分截图
 
-<img title="find" src="https://user-images.githubusercontent.com/33248133/56738294-e66e6900-679e-11e9-9d3b-21ec3912ccc3.png" width='50%'><img title="mine" src="https://user-images.githubusercontent.com/33248133/58035743-030e7e80-7b5c-11e9-9452-183b60c985e1.jpg" width='50%'>
+<img title="发现页" src="https://user-images.githubusercontent.com/33248133/74755356-092db900-52ae-11ea-8a79-fff46e443807.png" width='50%'><img title="我的" src="https://user-images.githubusercontent.com/33248133/74755423-24002d80-52ae-11ea-9efb-62676579b066.png" width='50%'>
+<img title="播放详情页" src="https://user-images.githubusercontent.com/33248133/74755575-56118f80-52ae-11ea-8c6b-66c3f494717b.png" width='50%'><img title="歌词页" src="https://user-images.githubusercontent.com/33248133/74755664-6fb2d700-52ae-11ea-8002-0db04e8265c4.png" width='50%'>
