@@ -37,5 +37,5 @@ __请确保你的HbuilderX版本在2.5.1以上__
 
 #### 已完成部分截图
 
-<img title="发现页" src="https://user-images.githubusercontent.com/33248133/74755952-da641280-52ae-11ea-92e2-388ab94c3152.jpg" width='50%'><img title="我的" src="https://user-images.githubusercontent.com/33248133/74755949-d89a4f00-52ae-11ea-97a9-07142918126f.jpg" width='50%'>
-<img title="播放详情页" src="https://user-images.githubusercontent.com/33248133/74756037-f36cc380-52ae-11ea-9f8e-aca32945b9c1.jpg" width='50%'><img title="歌词页" src="https://user-images.githubusercontent.com/33248133/74756039-f4055a00-52ae-11ea-9412-8bb0c5c3d5d4.jpg" width='50%'>
+<img title="发现页" src="https://user-images.githubusercontent.com/33248133/74756196-29aa4300-52af-11ea-8c5f-ba1e7ad2d7eb.png" width='50%'><img title="我的" src="https://user-images.githubusercontent.com/33248133/74756204-2b740680-52af-11ea-9a7b-de19efab4baf.png" width='50%'>
+<img title="播放详情页" src="https://user-images.githubusercontent.com/33248133/74756187-2747e900-52af-11ea-8e79-e0801dff8532.png" width='50%'><img title="歌词页" src="https://user-images.githubusercontent.com/33248133/74756184-26af5280-52af-11ea-8cb4-a50e91ab4cd4.png" width='50%'>
