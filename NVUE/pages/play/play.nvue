@@ -267,7 +267,7 @@
 			},
 			set_title(title) {
 				uni.setNavigationBarTitle({
-				    title: title
+					title: title
 				});
 			},
 			slider_changing(e) {

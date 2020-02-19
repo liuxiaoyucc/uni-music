@@ -18,7 +18,7 @@
 			const dom = weex.requireModule('dom');
 			dom.addRule('fontFace', {
 				'fontFamily': "weexUiIconFont",
-				'src': "url(\'http://at.alicdn.com/t/font_1211227_u4mafj3d0b.ttf\')"
+				'src': "url(\'http://at.alicdn.com/t/font_1211227_midl7sqf2t8.ttf\')"
 			});
 		},
 		onShow: function () {

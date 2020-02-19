@@ -1,0 +1,134 @@
+<template>
+	<div class="sub_page">
+		<view style="width: 750rpx;" :style="{ height: statusbar_height + 'px'}"></view>
+		<view class="search-bar">
+			<view class="back">
+				<wyy-icon @tap="back" type="&#xe66a;" size="40" color="#FFFFFF" ></wyy-icon>
+			</view>
+			<view class="search-input-area">
+				<input @confirm="search" confirm-type="search" placeholder-class="input-placeholder" @input="on_input" v-model="input_content" type="text" class="input" placeholder="请输入搜索关键词" />
+			</view>
+			<view class="clear-input-area">
+				<view class="clear-input">
+					<wyy-icon @tap="clear" v-if="input_content" type="&#xe636;" size="40" color="#FFFFFF" ></wyy-icon>
+				</view>
+				
+			</view>
+			<view class="right-menu">
+				<wyy-icon type="&#xe6ab;" size="40" color="#FFFFFF" ></wyy-icon>
+			</view>
+		</view>
+	</div>
+</template>
+
+<script>
+	import wyyIcon from '@/components/wyy-icon/wyy-icon.nvue';
+	
+	import $repeater from '@/utils/repeater.js';
+	export default {
+		components: {
+			wyyIcon
+		},
+		data() {
+			return {
+				input_content: '',
+			}
+		},
+		computed: {
+			statusbar_height() {
+				return $repeater.config.status_bar_height
+			}
+		},
+		created() {
+			
+		},
+		onShow() {
+			
+		},
+		onReady() {
+			
+		},
+		onUnload() {
+			
+		},
+		methods: {
+			search() {
+				console.log(this.input_content);
+			},
+			back() {
+				console.log('back');
+				uni.hideKeyboard();
+				uni.navigateBack();
+			},
+			clear() {
+				console.log(111);
+				this.input_content = '';
+			},
+			on_input(event) {
+				this.input_content = event.detail.value;
+			}
+		},
+	}
+</script>
+
+<style>
+	.sub_page{
+		flex: 1;
+		background-color: rgba(218, 45, 30, 1);
+	}
+	.search-bar {
+		flex: 1;
+		flex-direction: row;
+	}
+	.back {
+		width: 100rpx;
+		justify-content: center;
+		align-items: center;
+	}
+	
+	.search-input-area {
+		width: 450rpx;
+		padding: 10rpx 0;
+		justify-content: center;
+
+	}
+	
+	.right-menu {
+		width: 100rpx;
+		justify-content: center;
+		align-items: center;
+	}
+	
+	.input {
+		flex: 1;
+		width: 550rpx;
+		font-size:28rpx;
+		color: rgba(255, 255, 255, .8);
+		
+		border-bottom-width: 2rpx;
+		border-bottom-color: rgba(255, 255, 255, .8);
+		border-style: solid;
+	}
+	.clear-input {
+		flex: 1;
+		width: 100rpx;
+		justify-content: center;
+		align-items: center;
+		border-bottom-width: 2rpx;
+		border-bottom-color: rgba(255, 255, 255, .8);
+		border-style: solid;
+		margin-top: 10rpx;
+	}
+	.clear-input-area {
+		padding-bottom: 10rpx;
+	}
+	
+	.input-placeholder {
+		color: rgba(255, 255, 255, .4);
+	}
+	
+
+	
+	
+	
+</style>

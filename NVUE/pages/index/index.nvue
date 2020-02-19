@@ -11,7 +11,7 @@
 					<text class="uni-tab-item-title" :class="tab_index==index ? 'uni-tab-item-title-active' : ''">{{tab.name}}</text>
 				</view>
 			</view>
-			<view class="right-bar">
+			<view class="right-bar" @tap="search">
 				<image class="search-icon" src="/static/search.png"></image>
 			</view>
 		</div>
@@ -70,7 +70,7 @@
 				show_play: false,
 				
 				show_sidebar: false,
-				statusbar_height: 0,
+				
 				tab_index: 0,
 				tabBars: [
 					{name: '我的', id: 'mine'},
@@ -84,6 +84,9 @@
 		computed: {
 			played: function() {
 				return this.$store.state.played;
+			},
+			statusbar_height() {
+				return $repeater.config.status_bar_height
 			}
 		},
 		watch: {
@@ -96,7 +99,6 @@
 		},
 		
 		created() {
-			this.statusbar_height = $repeater.config.status_bar_height;
 			this.init_user();
 		},
 		onShow() {
@@ -106,6 +108,9 @@
 			
 		},
 		methods: {
+			search() {
+				$repeater.helper.to('../search/search')
+			},
 			init_user() {
 				let uid = this.$store.state.uid;
 				$repeater.user.get_user_detail(uid, (user_info)=> {

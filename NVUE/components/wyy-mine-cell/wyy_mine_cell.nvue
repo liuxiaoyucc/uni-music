@@ -2,7 +2,7 @@
 	<div class="cells">
 		<div class="cell" v-for="(item,i) in items" :key="i">
 			<div class="cell-left">
-				<image class="cell-icon" :src="item.src"></image>
+				<wyy-icon :type="item.icon" size="50" color="#000000" ></wyy-icon>
 			</div>
 			<div class="cell-right">
 				<text class="cell-name">{{item.name}}</text>

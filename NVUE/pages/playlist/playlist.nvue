@@ -2,7 +2,7 @@
 	<view class="page">
 		<list show-scrollbar="false" class="page-list" style="margin-bottom: 90rpx; width: 750rpx; flex: 1;">
 			<cell class="top wyy-main-color">
-				<view class="playlist_intro" @tap="test">
+				<view class="playlist_intro">
 					<view class="intro-left">
 						<image class="cover-image" :src="tmp_image"></image>
 					</view>
@@ -68,7 +68,7 @@
 		</list>
 		
 		
-		<wyy-play style="flex: 1;" v-if="played"></wyy-play>
+		<wyy-play v-if="played"></wyy-play>
 		
 	</view>
 </template>
@@ -124,9 +124,7 @@
 			
 		},
 		methods: {
-			test() {
-				$repeater.helper.to('../search/search')
-			},
+			
 			// 播放
 			// 如果选中歌曲和底部播放组件是同一首歌, 则跳转到播放页并开始播放
 			// 如果不同, 则开始播放新选中的歌曲, 更新播放组件信息, 不跳转

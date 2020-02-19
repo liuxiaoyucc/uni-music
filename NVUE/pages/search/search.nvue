@@ -1,0 +1,112 @@
+<template>
+	<view class="page">
+		<list show-scrollbar="false" class="content">
+			<cell class="title" v-if="false">
+				<text class="title-text">历史记录</text>
+			</cell>
+			<cell class="search-history"></cell>
+			<cell class="title">
+				<text class="title-text">热搜榜</text>
+			</cell>
+			<cell class="hot-item" v-for="(item, index) in hot_list" :key="index">
+				<view class="hot-item-index">
+					<text class="index-text">{{index + 1}}</text>
+				</view>
+				<view class="hot-info">
+					<text class="key_word">{{item.searchWord}}</text>
+					<text class="description">{{item.content}}</text>
+				</view>
+			</cell>
+		</list>
+		
+		
+		<wyy-play v-if="played"></wyy-play>
+	</view>
+</template>
+
+<script>
+	import wyyPlay from '@/components/wyy-play/wyy_play.nvue';
+	import $repeater from '@/utils/repeater.js';
+	
+	export default {
+		components: {
+			wyyPlay
+		},
+		data() {
+			return {
+				hot_list: [],
+			}
+		},
+		computed: {
+			played: function() {
+				return this.$store.state.played;
+			},
+		},
+		created() {
+			this.get_hot_list()
+		},
+		methods: {
+			get_hot_list() {
+				$repeater.search.get_hot_list((data)=> {
+					
+					let hot_list = data.data;
+					//部分介绍结尾可能有换行符\n,需要去掉不然会扰乱样式
+					hot_list.forEach((item)=> {
+						item.content = item.content.trim();
+					})
+					this.hot_list = hot_list;
+				});
+			}
+		}
+	}
+</script>
+
+<style>
+	.page{
+		flex: 1;
+	}
+	.title-text {
+		font-size: 24rpx;
+		font-weight: bold;
+		color: #000000;
+	}
+	.title {
+		height: 80rpx;
+		width: 750rpx;
+		padding: 0 30rpx;
+		justify-content: center;
+	}
+	.content {
+		margin-bottom: 90rpx; 
+		width: 750rpx; 
+		flex: 1;
+	}
+	.hot-item {
+		width: 750rpx;
+		height: 100rpx;
+		flex-direction: row;
+	}
+	.hot-item-index {
+		justify-content: center;
+		align-items: center;
+		width: 100rpx;
+	}
+	.index-text {
+		font-size: 26rpx;
+		color: rgba(0,0,0,0.3);
+	}
+	.hot-info {
+		width: 650rpx;
+		height: 100rpx;
+		justify-content: center;
+	}
+	.key_word {
+		font-size: 26rpx;
+	}
+	.description {
+		font-size: 18rpx;
+		color: rgba(0,0,0,0.3);
+		margin-top: 10rpx;
+	}
+	
+</style>

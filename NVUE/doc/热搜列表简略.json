@@ -1,0 +1,56 @@
+{
+	"code": 200,
+	"result": {
+		"hots": [{
+			"first": "IU新歌",
+			"second": 1,
+			"third": null,
+			"iconType": 1
+		}, {
+			"first": "斗牛",
+			"second": 1,
+			"third": null,
+			"iconType": 1
+		}, {
+			"first": "Justin Bieber新专辑",
+			"second": 1,
+			"third": null,
+			"iconType": 1
+		}, {
+			"first": "想见你",
+			"second": 1,
+			"third": null,
+			"iconType": 1
+		}, {
+			"first": "歌手",
+			"second": 1,
+			"third": null,
+			"iconType": 1
+		}, {
+			"first": "声临其境第三季",
+			"second": 1,
+			"third": null,
+			"iconType": 1
+		}, {
+			"first": "毛不易",
+			"second": 1,
+			"third": null,
+			"iconType": 1
+		}, {
+			"first": "就在卧室音乐节",
+			"second": 1,
+			"third": null,
+			"iconType": 2
+		}, {
+			"first": "No Time To Die",
+			"second": 1,
+			"third": null,
+			"iconType": 2
+		}, {
+			"first": "借",
+			"second": 1,
+			"third": null,
+			"iconType": 1
+		}]
+	}
+}

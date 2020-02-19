@@ -10,39 +10,28 @@
 			"style": {
 				"navigationBarTitleText": "首页",
 				"titleNView": false
-				// "subNVues": [{
-				// 		"id": "bar",
-				// 		"path": "subNVue/bar",
-				// 		"type": "navigationBar",
-				// 		"style": {
-				// 			"position": "absolute",
-				// 			"top": "0",
-				// 			"left": "0"
-				// 		}
-				// 	}
-				// ]
 			}
 
 		},
 		{
 			"path": "pages/search/search",
 			"style": {
+				"titleNView": false,
 				"backgroundColor": "rgba(0,0,0,0.3)",
 				"app-plus": {
 					"animationType": "slide-in-bottom",
-					"animationDuration": 150,
+					"animationDuration": 250,
 					"bounce": "none",
-					"titleNView": {
-
-						"type": "transparent",
-
-						"searchInput": {
-							"align": "left",
-							"autoFocus": true,
-							"backgroundColor": "rgba(0, 0, 0, 0.3)",
-							"placeholder": "东北民谣 - 毛不易"
+					"subNVues": [{
+						"id": "search_nav_bar",
+						"path": "subNVue/search_nav_bar",
+						
+						"style": {
+							"position": "dock",
+							"dock":"top",
+							"height": "130rpx"
 						}
-					}
+					}]
 				}
 			}
 		}, {
@@ -91,17 +80,16 @@
 					"titleNView": {
 						"titleColor": "#FFFFFF",
 						"titleText": "加载中...",
-				
+
 						"backgroundColor": "#171616",
 						"buttons": [{
-								"fontSrc": "/static/font/iconfont.ttf",
-								"text": "\ue667",
-								"width": "40px",
-								"fontSize": "24px",
-								"color": "#FFFFFF",
-								"background": "rgba(0,0,0,0)"
-							}
-						]
+							"fontSrc": "/static/font/iconfont.ttf",
+							"text": "\ue667",
+							"width": "40px",
+							"fontSize": "24px",
+							"color": "#FFFFFF",
+							"background": "rgba(0,0,0,0)"
+						}]
 					}
 				}
 			}
