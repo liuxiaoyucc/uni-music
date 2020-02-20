@@ -16,6 +16,20 @@
 	
 __已解决, 原因是组件中的data没有return一个对象 也就是,即使没有使用data, 也要return {}__
 
+8. 拦截并自定义页面返回事件, 在页面的onBackPress生命周期中 return true 即可, 实测可以拦截物理按键和uni api的返回
+
+9. 关于移除某个单独的全局监听事件的实现,uni.$on与uni.$off的回调函数要保持一致, 如下
+
+```
+//监听的时候这样写
+uni.$on('search', this.search);
+uni.$on('search', this.other_search);
+
+//移除的时候, 第二个参数要相同, 这样就只把使用this.search回调的search事件的监听移除了, 而不会影响使用this.other_search回调的search事件
+uni.$off('search', this.search);
+
+```
+
 ## TODO
 1. 使用plus的音频管理替代uni, 可以获取到播放状态
 2. 将playing放到哪里管理呢

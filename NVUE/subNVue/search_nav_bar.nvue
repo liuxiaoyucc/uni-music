@@ -53,7 +53,7 @@
 		},
 		methods: {
 			search() {
-				console.log(this.input_content);
+				uni.$emit('search', {keyword: this.input_content});
 			},
 			back() {
 				console.log('back');

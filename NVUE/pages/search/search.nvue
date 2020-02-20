@@ -1,6 +1,7 @@
 <template>
 	<view class="page">
-		<list show-scrollbar="false" class="content">
+		<!-- 搜索页 -->
+		<list v-if="!show_result" show-scrollbar="false" class="content search-page">
 			<cell class="title" v-if="false">
 				<text class="title-text">历史记录</text>
 			</cell>
@@ -8,7 +9,7 @@
 			<cell class="title">
 				<text class="title-text">热搜榜</text>
 			</cell>
-			<cell class="hot-item" v-for="(item, index) in hot_list" :key="index">
+			<cell class="hot-item" v-for="(item, index) in hot_list" :key="index" @tap="hot_search(item)">
 				<view class="hot-item-index">
 					<text class="index-text">{{index + 1}}</text>
 				</view>
@@ -18,7 +19,15 @@
 				</view>
 			</cell>
 		</list>
+		<!-- 搜索页END -->
 		
+		<!-- 搜索结果页 -->
+		<list v-else show-scrollbar="false" class="content result-page" style="background-color: #00B26A;">
+			<cell>
+				<text>搜索结果</text>
+			</cell>
+		</list>
+		<!-- 搜索结果页END -->
 		
 		<wyy-play v-if="played"></wyy-play>
 	</view>
@@ -35,6 +44,7 @@
 		data() {
 			return {
 				hot_list: [],
+				show_result: false,
 			}
 		},
 		computed: {
@@ -42,10 +52,39 @@
 				return this.$store.state.played;
 			},
 		},
+		onBackPress() {
+			// 如果当前显示的是搜索结果页, 则拦截返回事件, 并关闭结果页
+			if (this.show_result) {
+				this.close_result_page();
+				return true;
+			}
+		},
 		created() {
+			uni.$on('search', this.search);
 			this.get_hot_list()
 		},
+		beforeDestroy() {
+			uni.$off('search');
+		},
 		methods: {
+			hot_search(hot) {
+				this.search(hot.searchWord);
+			},
+			on_search(e) {
+				this.search(e.keyword)
+			},
+			search(keyword) {
+				console.log(keyword);
+				this.open_result_page();
+				
+			},
+			close_result_page() {
+				this.show_result = false; //关闭结果页
+			},
+			open_result_page() {
+				this.show_result = true; //打开结果页
+			},
+			
 			get_hot_list() {
 				$repeater.search.get_hot_list((data)=> {
 					
@@ -85,6 +124,9 @@
 		width: 750rpx;
 		height: 100rpx;
 		flex-direction: row;
+	}
+	.hot-item:active {
+		background-color: rgba(0,0,0,0.1);
 	}
 	.hot-item-index {
 		justify-content: center;
