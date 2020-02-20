@@ -1,7 +1,7 @@
 let Playlist = {};
 
 Playlist.get_playlist_detail = function(id, cb) {
-	let url = config.API.PLAYLIST_DETAIL_URL;
+	let url = config.API.PLAYLIST_DETAIL;
 	let params = {
 		id: id
 	}

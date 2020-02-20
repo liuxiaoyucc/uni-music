@@ -1,7 +1,7 @@
 let Song = {};
 
 Song.get_song_url = function(id, cb) {
-	let url = config.API.SONG_URL;
+	let url = config.API.SONG;
 	let params = {
 		id: id,
 		br: 320000
@@ -18,7 +18,7 @@ Song.get_song_url = function(id, cb) {
 }
 
 Song.get_lyric = function(id, cb) {
-	let url = config.API.LYRIC_URL;
+	let url = config.API.LYRIC;
 	
 	let params = {
 		id: id,

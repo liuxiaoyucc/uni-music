@@ -2,7 +2,7 @@ let User = {};
 
 //登陆
 User.login = function(phone, password, cb) {
-	let url = config.API.CELLPHONE_LOGIN_URL;
+	let url = config.API.CELLPHONE_LOGIN;
 	let params = {
 		phone: phone,
 		password: password
@@ -36,7 +36,7 @@ User.check_login = function(cb) {
 
 //获取用户mv,歌单, dj, 收藏数量
 User.get_subcount = function(cb) {
-	let url = config.API.SUBCOUNT_URL;
+	let url = config.API.SUBCOUNT;
 	
 	request.post(url, {}, (res)=> {
 		let data = res.data;
@@ -46,7 +46,7 @@ User.get_subcount = function(cb) {
 
 //获取用户资料
 User.get_user_detail = function(uid, cb) {
-	let url = config.API.USER_DETAIL_URL;
+	let url = config.API.USER_DETAIL;
 	let params = {
 		uid: uid
 	}
@@ -64,7 +64,7 @@ User.get_user_detail = function(uid, cb) {
 
 //获取用户歌单列表
 User.get_playlist = function(uid, cb) {
-	let url = config.API.USER_PLAYLIST_URL;
+	let url = config.API.USER_PLAYLIST;
 	let params = {
 		uid: uid
 	}
@@ -79,7 +79,7 @@ User.get_playlist = function(uid, cb) {
 }
 
 User.get_likelist = function(uid, cb) {
-	let url = config.API.USER_LIKE_LIST_URL;
+	let url = config.API.USER_LIKE_LIST;
 	let params = {
 		uid: uid
 	}
@@ -94,7 +94,7 @@ User.get_likelist = function(uid, cb) {
 }
 
 User.like = function(music_id, like, cb) {
-	let url = config.API.LIKE_URL;
+	let url = config.API.LIKE;
 	let params = {
 		id: music_id,
 		like: like
@@ -111,7 +111,7 @@ User.like = function(music_id, like, cb) {
 
 //获取用户状态
 function get_status(cb) {
-	let url = config.API.LOGIN_STATUS_URL;
+	let url = config.API.LOGIN_STATUS;
 	
 	request.post(url, {}, (res)=> {
 		let data = res.data;
