@@ -1,0 +1,12 @@
+{
+	"programCount": 0,
+	"djRadioCount": 2, // 电台数
+	"mvCount": 7, // MV数量
+	"artistCount": 23, // 歌手数量
+	"newProgramCount": 0,
+	
+	"createDjRadioCount": 0, // 创建的电台数量
+	"createdPlaylistCount": 8, 创建的歌单数量
+	"subPlaylistCount": 28, // 收藏的歌单数量
+	"code": 200
+}

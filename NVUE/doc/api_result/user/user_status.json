@@ -1,0 +1,32 @@
+{
+	"code": 200,
+	"profile": {
+		"userId": 74116856,
+		"nickname": "宝贝畅畅的网易云音乐",
+		"avatarUrl": "http://p4.music.126.net/-GRoXp9WKuDSM1rY-NjozA==/109951163685331993.jpg",
+		"birthday": "797443200000",
+		"userType": 0,
+		"djStatus": 0
+	},
+	"bindings": [{
+		"expiresIn": 2147483647,
+		"expired": false,
+		"tokenJsonStr": "{\"countrycode\":\"\",\"cellphone\":\"187****7563\",\"hasPassword\":true}",
+		"refreshTime": 1467092218,
+		"id": 2872416805,
+		"type": 1,
+		"userId": 74116856,
+		"bindingTime": 1467092218907,
+		"url": ""
+	}, {
+		"expiresIn": 2592673,
+		"expired": true,
+		"tokenJsonStr": "{\"scope\":\"photo_upload status_update create_album publish_share read_user_album publish_feed\",\"expires_in\":2592673,\"token_type\":\"bearer\",\"refresh_token\":\"221599|0.CdifDLsyQTZkarhbXQ1OEzV9oyI6sSwj.563722771.1434060089844\",\"user\":{\"id\":563722771,\"name\":\"Mr.鱼儿\",\"avatar\":[{\"type\":\"avatar\",\"url\":\"http://hdn.xnimg.cn/photos/hdn321/20140416/0745/h_head_IT5F_5b890001a24f111a.jpg\"},{\"type\":\"tiny\",\"url\":\"http://hdn.xnimg.cn/photos/hdn321/20140416/0745/h_tiny_GqqO_5b890001a24f111a.jpg\"},{\"type\":\"main\",\"url\":\"http://hdn.xnimg.cn/photos/hdn321/20140416/0745/h_main_8IJH_5b890001a24f111a.jpg\"},{\"type\":\"large\",\"url\":\"http://hdn.xnimg.cn/photos/hdn321/20140416/0745/h_large_fKSY_5b890001a24f111a.jpg\"}]},\"access_token\":\"221599|6.2ac87c5a38131f901b5f9a907f771d59.2592000.1567159200-563722771\"}",
+		"refreshTime": 1564566527,
+		"id": 34962553,
+		"type": 4,
+		"userId": 74116856,
+		"bindingTime": 1434060089880,
+		"url": "http://www.renren.com/563722771"
+	}]
+}

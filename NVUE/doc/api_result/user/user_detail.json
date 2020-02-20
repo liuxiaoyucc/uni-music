@@ -1,0 +1,85 @@
+{
+	"level": 8, //等级
+	"listenSongs": 7330, //听过音乐总数
+	"userPoint": {
+		"userId": 74116856,
+		"balance": 1263,
+		"updateTime": 1581080260484,
+		"version": 10,
+		"status": 1,
+		"blockBalance": 0
+	},
+	"mobileSign": false,
+	"pcSign": false,
+	"profile": {
+		"avatarImgIdStr": "109951163685331993",
+		"backgroundImgIdStr": "109951163235835677",
+		"description": "",
+		"avatarUrl": "http://p1.music.126.net/-GRoXp9WKuDSM1rY-NjozA==/109951163685331993.jpg", // 头像
+		"authStatus": 0,
+		"detailDescription": "",
+		"experts": {},
+		"expertTags": null,
+		"city": 230100,
+		"defaultAvatar": false,
+		"backgroundImgId": 109951163235835680,
+		"backgroundUrl": "http://p1.music.126.net/iRJ7NBlE5uwADeO_UVzoVg==/109951163235835677.jpg", //背景图
+		"userId": 74116856,
+		"vipType": 0,
+		"accountStatus": 0,
+		"province": 230000,
+		"followed": false,
+		"mutual": false,
+		"remarkName": null,
+		"avatarImgId": 109951163685332000,
+		"birthday": 797443200000,
+		"gender": 1,
+		"userType": 0,
+		"createTime": 1433939078308,
+		"nickname": "宝贝畅畅的网易云音乐", //昵称
+		"djStatus": 0,
+		"signature": "普天下所有的水，都在你眼中荡开", //个性签名
+		"authority": 0,
+		"followeds": 10,
+		"follows": 31,
+		"blacklist": false,
+		"eventCount": 2,
+		"allSubscribedCount": 0,
+		"playlistBeSubscribedCount": 1,
+		"avatarImgId_str": "109951163685331993",
+		"followTime": null,
+		"followMe": false,
+		"artistIdentity": [],
+		"cCount": 0,
+		"sDJPCount": 0,
+		"playlistCount": 8,
+		"sCount": 0,
+		"newFollows": 31
+	},
+	"peopleCanSeeMyPlayRecord": true,
+	"bindings": [{
+		"url": "",
+		"expiresIn": 2147483647,
+		"refreshTime": 1467092218,
+		"bindingTime": 1467092218907,
+		"tokenJsonStr": null,
+		"expired": false,
+		"userId": 74116856,
+		"id": 2872416805,
+		"type": 1
+	}, {
+		"url": "http://www.renren.com/563722771",
+		"expiresIn": 2592673,
+		"refreshTime": 1564566527,
+		"bindingTime": 1434060089880,
+		"tokenJsonStr": null,
+		"expired": true,
+		"userId": 74116856,
+		"id": 34962553,
+		"type": 4
+	}],
+	"adValid": true,
+	"code": 200,
+	"createTime": 1433939078308,
+	"createDays": 1704
+}

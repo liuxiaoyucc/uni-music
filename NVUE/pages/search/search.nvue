@@ -77,6 +77,9 @@
 				console.log(keyword);
 				this.open_result_page();
 				
+				$repeater.search.search(keyword, 10, 0, (data)=> {
+					console.log(data);
+				});
 			},
 			close_result_page() {
 				this.show_result = false; //关闭结果页
