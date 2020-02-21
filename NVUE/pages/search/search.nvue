@@ -22,11 +22,22 @@
 		<!-- 搜索页END -->
 		
 		<!-- 搜索结果页 -->
-		<list v-else show-scrollbar="false" class="content result-page" style="background-color: #00B26A;">
-			<cell>
-				<text>搜索结果</text>
-			</cell>
-		</list>
+		<view v-else class="content result-page">
+			<scroll-view scroll-with-animation="true" class="scroll-bar-view" :scroll="false" :scroll-x="true" :show-scrollbar="false" :scroll-into-view="scroll_into">
+				<view class="scroll-bar" >
+					<view class="bar-name" v-for="(item, bar_index) in result_bars" :key="bar_index" @tap="on_tab_tap(bar_index)" :id="item.id">
+						<text :class="current_bar_index == bar_index ? 'active-bar' : ''" class="bar-name-text">{{item.name}}</text>
+					</view>
+				</view>
+			</scroll-view>
+			
+			<swiper class="bar-box" :current="current_bar_index" skip-hidden-item-layout @change="tab_changed">
+				<swiper-item v-for="(page, index) in result_bars" :key="index">
+					<text>{{page.name}}</text>
+				</swiper-item>
+			</swiper>
+		</view>
+		
 		<!-- 搜索结果页END -->
 		
 		<wyy-play v-if="played"></wyy-play>
@@ -45,6 +56,18 @@
 			return {
 				hot_list: [],
 				show_result: false,
+				result_bars: [
+					{id: 1018, name: '综合'},
+					{id: 1, name: '单曲'},
+					{id: 1014, name: '视频'},
+					{id: 100, name: '歌手'},
+					{id: 10, name: '专辑'},
+					{id: 1000, name: '歌单'},
+					{id: 1009, name: '主播电台'},
+					{id: 1002, name: '用户'},
+				],
+				current_bar_index: 0,
+				scroll_into: '',
 			}
 		},
 		computed: {
@@ -67,6 +90,16 @@
 			uni.$off('search');
 		},
 		methods: {
+			on_tab_tap(index) {
+				this.switch_tab(index);
+			},
+			tab_changed(e) {
+				this.switch_tab(e.detail.current);
+			},
+			switch_tab(index) {
+				this.current_bar_index = index;
+				this.scroll_into = this.result_bars[index].id;
+			},
 			hot_search(hot) {
 				this.search(hot.searchWord);
 			},
@@ -104,6 +137,7 @@
 </script>
 
 <style>
+	
 	.page{
 		flex: 1;
 	}
@@ -122,6 +156,7 @@
 		margin-bottom: 90rpx; 
 		width: 750rpx; 
 		flex: 1;
+
 	}
 	.hot-item {
 		width: 750rpx;
@@ -153,5 +188,31 @@
 		color: rgba(0,0,0,0.3);
 		margin-top: 10rpx;
 	}
-	
+	.scroll-bar-view {
+		width: 750rpx; height: 70rpx; flex-direction: row;
+		background-color: rgba(218, 45, 30, 1);
+	}
+	.scroll-bar {
+		flex-direction: row;
+	}
+	.bar-name {
+		justify-content: center;
+		align-items: center;
+		width: 135rpx;
+	}
+	.bar-name:active {
+		background-color: rgba(0, 0, 0, .1);
+	}
+	.bar-name-text {
+		font-size: 26rpx;
+		color: rgba(255, 255, 255, .6);
+	}
+	.active-bar {
+		font-size: 26rpx;
+		font-weight: bold;
+		color: #FFFFFF;
+	}
+	.bar-box {
+		flex: 1;
+	}
 </style>
