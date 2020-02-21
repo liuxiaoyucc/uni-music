@@ -39,14 +39,14 @@
 				</view>
 			</cell>
 			
-			<cell class="wyy-main-color">
+			<header class="wyy-main-color">
 				<view class="top-bar">
 					<view class="icon">
 						<wyy-icon type="&#xe601;" size="40" color="#000000" ></wyy-icon>
 					</view>
 					<text class="top-bar-text">播放全部(共{{playlist.trackCount}}首)</text>
 				</view>
-			</cell>
+			</header>
 			
 			
 			<cell class="music" v-for="(music, index) in playlist.tracks" :key="index" @tap="play(music)">
