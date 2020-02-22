@@ -1,7 +1,7 @@
 <template>
 	<view class="page">
 		<!-- 搜索页 -->
-		<uni-transition :duration="300" :mode-class="mode_class" :styles="transfromClass" :show="!show_result">
+		<uni-transition :duration="300" :mode-class="mode_class" :styles="transfrom_class" :show="!show_result">
 			<list v-if="!show_result" show-scrollbar="false" class="content search-page">
 				<cell class="title" v-if="false">
 					<text class="title-text">历史记录</text>
@@ -25,7 +25,7 @@
 		<!-- 搜索页END -->
 		
 		<!-- 搜索结果页 -->
-		<uni-transition :duration="300" :mode-class="mode_class" :styles="transfromClass" :show="show_result">
+		<uni-transition :duration="300" :mode-class="mode_class" :styles="transfrom_class" :show="show_result">
 			
 			<view class="content result-page">
 				<scroll-view scroll-with-animation="true" class="scroll-bar-view" :scroll="false" :scroll-x="true" :show-scrollbar="false" :scroll-into-view="scroll_into">
@@ -80,7 +80,7 @@
 				scroll_into: '',
 				
 				mode_class: ['fade'],
-				transfromClass: {
+				transfrom_class: {
 					'position': 'fixed',
 					'bottom': 0,
 					'top': 0,
