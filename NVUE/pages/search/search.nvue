@@ -1,42 +1,50 @@
 <template>
 	<view class="page">
 		<!-- 搜索页 -->
-		<list v-if="!show_result" show-scrollbar="false" class="content search-page">
-			<cell class="title" v-if="false">
-				<text class="title-text">历史记录</text>
-			</cell>
-			<cell class="search-history"></cell>
-			<cell class="title">
-				<text class="title-text">热搜榜</text>
-			</cell>
-			<cell class="hot-item" v-for="(item, index) in hot_list" :key="index" @tap="hot_search(item)">
-				<view class="hot-item-index">
-					<text class="index-text">{{index + 1}}</text>
-				</view>
-				<view class="hot-info">
-					<text class="key_word">{{item.searchWord}}</text>
-					<text class="description">{{item.content}}</text>
-				</view>
-			</cell>
-		</list>
+		<uni-transition :duration="300" :mode-class="mode_class" :styles="transfromClass" :show="!show_result">
+			<list v-if="!show_result" show-scrollbar="false" class="content search-page">
+				<cell class="title" v-if="false">
+					<text class="title-text">历史记录</text>
+				</cell>
+				<cell class="search-history"></cell>
+				<cell class="title">
+					<text class="title-text">热搜榜</text>
+				</cell>
+				<cell class="hot-item" v-for="(item, index) in hot_list" :key="index" @tap="hot_search(item)">
+					<view class="hot-item-index">
+						<text class="index-text">{{index + 1}}</text>
+					</view>
+					<view class="hot-info">
+						<text class="key_word">{{item.searchWord}}</text>
+						<text class="description">{{item.content}}</text>
+					</view>
+				</cell>
+			</list>
+		</uni-transition>
+		
 		<!-- 搜索页END -->
 		
 		<!-- 搜索结果页 -->
-		<view v-else class="content result-page">
-			<scroll-view scroll-with-animation="true" class="scroll-bar-view" :scroll="false" :scroll-x="true" :show-scrollbar="false" :scroll-into-view="scroll_into">
-				<view class="scroll-bar" >
-					<view class="bar-name" v-for="(item, bar_index) in result_bars" :key="bar_index" @tap="on_tab_tap(bar_index)" :id="item.id">
-						<text :class="current_bar_index == bar_index ? 'active-bar' : ''" class="bar-name-text">{{item.name}}</text>
-					</view>
-				</view>
-			</scroll-view>
+		<uni-transition :duration="300" :mode-class="mode_class" :styles="transfromClass" :show="show_result">
 			
-			<swiper class="bar-box" :current="current_bar_index" skip-hidden-item-layout @change="tab_changed">
-				<swiper-item v-for="(page, index) in result_bars" :key="index">
-					<text>{{page.name}}</text>
-				</swiper-item>
-			</swiper>
-		</view>
+			<view class="content result-page">
+				<scroll-view scroll-with-animation="true" class="scroll-bar-view" :scroll="false" :scroll-x="true" :show-scrollbar="false" :scroll-into-view="scroll_into">
+					<view class="scroll-bar" >
+						<view class="bar-name" v-for="(item, bar_index) in result_bars" :key="bar_index" @tap="on_tab_tap(bar_index)" :id="item.id">
+							<text :class="current_bar_index == bar_index ? 'active-bar' : ''" class="bar-name-text">{{item.name}}</text>
+						</view>
+					</view>
+				</scroll-view>
+				
+				<swiper class="bar-box" :current="current_bar_index" skip-hidden-item-layout @change="tab_changed">
+					<swiper-item v-for="(page, index) in result_bars" :key="index">
+						<text>{{page.name}}</text>
+					</swiper-item>
+				</swiper>
+			</view>
+		</uni-transition>
+		
+		
 		
 		<!-- 搜索结果页END -->
 		
@@ -45,11 +53,13 @@
 </template>
 
 <script>
+	import uniTransition from '@/components/uni-transition/uni-transition.vue'
 	import wyyPlay from '@/components/wyy-play/wyy_play.nvue';
 	import $repeater from '@/utils/repeater.js';
 	
 	export default {
 		components: {
+			uniTransition,
 			wyyPlay
 		},
 		data() {
@@ -68,6 +78,17 @@
 				],
 				current_bar_index: 0,
 				scroll_into: '',
+				
+				mode_class: ['fade'],
+				transfromClass: {
+					'position': 'fixed',
+					'bottom': 0,
+					'top': 0,
+					'left': 0,
+					'right': 0,
+					'justify-content': 'center',
+					'align-items': 'center'
+				}
 			}
 		},
 		computed: {
