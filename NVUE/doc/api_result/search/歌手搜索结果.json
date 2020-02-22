@@ -1,0 +1,49 @@
+{
+	"result": {
+		"artistCount": 3,
+		"artists": [{
+			"id": 861777,
+			"name": "华晨宇",
+			"picUrl": "https://p2.music.126.net/tMH2KjUioNW57zbixCA5Pg==/109951164158510116.jpg",
+			"alias": [],
+			"albumSize": 33,
+			"picId": 109951164158510110,
+			"img1v1Url": "https://p2.music.126.net/eiazGAbIGMBF-Q9lInm5xw==/109951164158509628.jpg",
+			"accountId": 43745724,
+			"img1v1": 109951164158509630,
+			"mvSize": 42,
+			"followed": false,
+			"alg": "alg_song_name",
+			"trans": null
+		}, {
+			"id": 12444023,
+			"name": "歌者达达",
+			"picUrl": "https://p2.music.126.net/82rQlakrU2A7hzaunfDY0A==/109951164718069449.jpg",
+			"alias": [],
+			"albumSize": 13,
+			"picId": 109951164718069460,
+			"img1v1Url": "https://p2.music.126.net/i2uoc9WB0ZEbxWlBiFDEzg==/109951164718078627.jpg",
+			"accountId": 1935795646,
+			"img1v1": 109951164718078620,
+			"mvSize": 0,
+			"followed": false,
+			"alg": "alg_song_name",
+			"trans": null
+		}, {
+			"id": 33314028,
+			"name": "Yu诗槐",
+			"picUrl": "https://p2.music.126.net/Qb8ivchkFkZ7LjCCJ9G-3Q==/109951164715668002.jpg",
+			"alias": [],
+			"albumSize": 1,
+			"picId": 109951164715668000,
+			"img1v1Url": "https://p2.music.126.net/JRkvcJe2d3q1WViKn1pvfQ==/109951164715661227.jpg",
+			"accountId": 548866015,
+			"img1v1": 109951164715661230,
+			"mvSize": 0,
+			"followed": false,
+			"alg": "alg_song_name",
+			"trans": null
+		}]
+	},
+	"code": 200
+}

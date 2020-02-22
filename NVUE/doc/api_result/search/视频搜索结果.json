@@ -1,0 +1,157 @@
+{
+	"result": {
+		"videoCount": 300,
+		"videos": [{
+			"coverUrl": "http://p1.music.126.net/jhkQe9Z8PwTlLkamYe3nYg==/109951164721931531.jpg",
+			"title": "好想爱这个世界啊！别怕，我们都在",
+			"durationms": 198122,
+			"playTime": 2192137,
+			"type": 1,
+			"creator": [{
+				"userId": 348239729,
+				"userName": "爆料先森"
+			}],
+			"aliaName": null,
+			"transName": null,
+			"vid": "A616A8E3462680351E4F3DBBBEACA429",
+			"markTypes": [],
+			"alg": "alg_video_pmml"
+		}, {
+			"coverUrl": "http://p1.music.126.net/hqlR3wBqcQ0-KOFNRRtpsw==/109951164527854370.jpg",
+			"title": "翻唱 华晨宇《好想爱这个世界啊》花花新歌",
+			"durationms": 260000,
+			"playTime": 288372,
+			"type": 1,
+			"creator": [{
+				"userId": 121374288,
+				"userName": "九尾妖妹妹"
+			}],
+			"aliaName": null,
+			"transName": null,
+			"vid": "70D0E4B1A4A06678E034E779A61E9BC1",
+			"markTypes": [],
+			"alg": "alg_video_pmml"
+		}, {
+			"coverUrl": "http://p1.music.126.net/9pIVZsyUSYWvDMxsP5jfaw==/109951164716396649.jpg",
+			"title": "【少年催泪翻唱】好想爱这个世界啊（十部治愈动漫混剪）",
+			"durationms": 279808,
+			"playTime": 25620,
+			"type": 1,
+			"creator": [{
+				"userId": 269173945,
+				"userName": "猫宁孜然"
+			}],
+			"aliaName": null,
+			"transName": null,
+			"vid": "7C933C9B12F2AE60BA1D13BBCC8F5506",
+			"markTypes": [],
+			"alg": "alg_video_pmml"
+		}, {
+			"coverUrl": "http://p1.music.126.net/OUV2kGR51Zh9FQdqbC1-Hw==/109951164563784953.jpg",
+			"title": "《好想爱这个世界啊》Cover华晨宇",
+			"durationms": 26666,
+			"playTime": 102694,
+			"type": 1,
+			"creator": [{
+				"userId": 283665468,
+				"userName": "是夕妹呀w"
+			}],
+			"aliaName": null,
+			"transName": null,
+			"vid": "49598761F2C0780E6F8CB9A87F4051F6",
+			"markTypes": [],
+			"alg": "alg_video_pmml"
+		}, {
+			"coverUrl": "http://p1.music.126.net/T8CvFGLOXEb6Ewe3CvzvnQ==/109951164575998515.jpg",
+			"title": "好想爱这个世界啊——华晨宇（翻唱）",
+			"durationms": 266839,
+			"playTime": 69379,
+			"type": 1,
+			"creator": [{
+				"userId": 36242227,
+				"userName": "北鹿西"
+			}],
+			"aliaName": null,
+			"transName": null,
+			"vid": "855F1DA3366DBD078737665C163268CF",
+			"markTypes": [],
+			"alg": "alg_video_pmml"
+		}, {
+			"coverUrl": "http://p1.music.126.net/jYZsQNazI4328r-uwg-8Bw==/109951164549176719.jpg",
+			"title": "华晨宇《好想爱这个世界啊》女声弹唱版",
+			"durationms": 192576,
+			"playTime": 122287,
+			"type": 1,
+			"creator": [{
+				"userId": 633247891,
+				"userName": "Evelyn蒋征玲"
+			}],
+			"aliaName": null,
+			"transName": null,
+			"vid": "7694C2F3ABBEADA70FDFF60343FF5968",
+			"markTypes": [],
+			"alg": "alg_video_pmml"
+		}, {
+			"coverUrl": "http://p1.music.126.net/bKql2Rs6PEwDm22F5KDXZg==/109951164538973349.jpg",
+			"title": "华晨宇《好想爱这个世界啊》愿你被温柔以待",
+			"durationms": 431914,
+			"playTime": 295491,
+			"type": 1,
+			"creator": [{
+				"userId": 600798945,
+				"userName": "关于你M_"
+			}],
+			"aliaName": null,
+			"transName": null,
+			"vid": "92DE4CD7664F14398B39C8C467C5B716",
+			"markTypes": [],
+			"alg": "alg_video_pmml"
+		}, {
+			"coverUrl": "http://p1.music.126.net/xXsZatpubxn8m3ayJCNW8A==/109951164575986974.jpg",
+			"title": "好想爱这个世界啊-吉他弹唱完整版-华晨宇-男声荒酱",
+			"durationms": 247269,
+			"playTime": 142056,
+			"type": 1,
+			"creator": [{
+				"userId": 7699944,
+				"userName": "晚睡强迫症患者_"
+			}],
+			"aliaName": null,
+			"transName": null,
+			"vid": "AD372CECDB1E71570F4F50EC794C832D",
+			"markTypes": [],
+			"alg": "alg_video_pmml"
+		}, {
+			"coverUrl": "http://p1.music.126.net/74HGP1Bhy4ygiVvHlpx1ew==/109951164614025834.jpg",
+			"title": "好想爱这个世界啊|清唱",
+			"durationms": 81152,
+			"playTime": 24981,
+			"type": 1,
+			"creator": [{
+				"userId": 294556579,
+				"userName": "亓贞子"
+			}],
+			"aliaName": null,
+			"transName": null,
+			"vid": "C13EF9CF4AA25F76480AB261F23C874D",
+			"markTypes": [],
+			"alg": "alg_video_pmml"
+		}, {
+			"coverUrl": "http://p1.music.126.net/dHDg7q1ptLLCP-bA7-9sLA==/109951164529852596.jpg",
+			"title": "今天，我们都爱一下这个世界《好想爱这个世界啊》",
+			"durationms": 195008,
+			"playTime": 1116175,
+			"type": 1,
+			"creator": [{
+				"userId": 281677392,
+				"userName": "Jian-阿健"
+			}],
+			"aliaName": null,
+			"transName": null,
+			"vid": "2AB4716822ED6CF75C5582683D127B86",
+			"markTypes": [],
+			"alg": "alg_video_pmml"
+		}]
+	},
+	"code": 200
+}

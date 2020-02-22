@@ -61,7 +61,6 @@
 				uni.navigateBack();
 			},
 			clear() {
-				console.log(111);
 				this.input_content = '';
 			},
 			on_input(event) {
