@@ -23,6 +23,7 @@ API.PLAYLIST_DETAIL = 'playlist/detail'; // 歌单详情
 // 歌曲
 API.SONG = 'song/url'; //获取歌曲url
 API.LYRIC = 'lyric'; //获取歌词
+API.SONG_DETAIL = 'song/detail'; //获取歌曲详情
 
 // 搜索
 API.HOT_SEARCH = 'search/hot/detail'; //获取热搜

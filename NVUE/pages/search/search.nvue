@@ -37,8 +37,27 @@
 				</scroll-view>
 				
 				<swiper class="bar-box" :current="current_bar_index" skip-hidden-item-layout @change="tab_changed">
-					<swiper-item v-for="(page, index) in result_bars" :key="index">
-						<text>{{page.name}}</text>
+					<swiper-item v-for="(page, index) in result_bars" :key="index" >
+						<!-- 单曲 -->
+						<list style="flex: 1;" v-if="page.id == 1">
+							<cell class="top-bar">
+								<view class="icon">
+									<wyy-icon type="&#xe601;" size="40" color="#000000" ></wyy-icon>
+								</view>
+								<text class="top-bar-text">播放全部</text>
+							</cell>
+							<cell v-for="(song, s_index) in songs_data" :key="s_index">
+								<song-card :song="song" :number="s_index"></song-card>
+								<!-- {{song}} -->
+							</cell>
+							
+						</list>
+						<list v-else>
+							<cell>
+								未完成
+							</cell>
+						</list>
+						<!-- 单曲END -->
 					</swiper-item>
 				</swiper>
 			</view>
@@ -55,13 +74,17 @@
 <script>
 	import uniTransition from '@/components/uni-transition/uni-transition.vue'
 	import wyyPlay from '@/components/wyy-play/wyy_play.nvue';
+	import wyyIcon from '../../components/wyy-icon/wyy-icon.nvue';
+	import songCard from '../../components/song_card.nvue';
 	import $repeater from '@/utils/repeater.js';
 	
 	
 	export default {
 		components: {
 			uniTransition,
-			wyyPlay
+			wyyPlay,
+			songCard,
+			wyyIcon
 		},
 		data() {
 			return {
@@ -69,14 +92,14 @@
 				show_result: false,
 				
 				result_bars: [
-					{id: 1018, name: '综合'},
-					{id: 1, name: '单曲'},
-					{id: 1014, name: '视频'},
-					{id: 100, name: '歌手'},
-					{id: 10, name: '专辑'},
-					{id: 1000, name: '歌单'},
-					{id: 1009, name: '主播电台'},
-					{id: 1002, name: '用户'},
+					{id: 1018, name: '综合', key: 'comprehensive'},
+					{id: 1, name: '单曲', key: 'song'},
+					{id: 1014, name: '视频', key: 'mv'},
+					{id: 100, name: '歌手', key: 'artist'},
+					{id: 10, name: '专辑', key: 'album'},
+					{id: 1000, name: '歌单', key: 'playlist'},
+					{id: 1009, name: '主播电台', key: 'dj'},
+					{id: 1002, name: '用户', key: 'user'},
 				],
 				
 				current_keyword: '',
@@ -88,7 +111,7 @@
 				mode_class: ['fade'],
 				transfrom_class: {
 					'position': 'fixed',
-					'bottom': 0,
+					'bottom': '90rpx',
 					'top': 0,
 					'left': 0,
 					'right': 0,
@@ -102,7 +125,7 @@
 				if (!this.show_result) {
 					return;
 				}
-				if (!this.current_search_result[this.result_bars[index].id]) {
+				if (!this.current_search_result[this.result_bars[index].key]) {
 					this.search();
 				}
 				
@@ -112,6 +135,28 @@
 			played: function() {
 				return this.$store.state.played;
 			},
+			songs_data: function() {
+				if (!this.current_keyword) {
+					return;
+				}
+
+				if (!this.current_search_result.song) {
+					return;
+				}
+				let songs = this.current_search_result.song.songs;
+				
+				let format_songs = [];
+				songs.forEach((song)=> {
+					let format_song = {};
+					format_song.id = song.id;
+					format_song.name = song.name;
+					format_song.artists = song.artists;
+					format_song.album_name = song.album.name;
+					format_songs.push(format_song);
+				})
+				
+				return format_songs;
+			}
 		},
 		onBackPress() {
 			// 如果当前显示的是搜索结果页, 则拦截返回事件, 并关闭结果页
@@ -158,8 +203,7 @@
 				let type = this.result_bars[index].id
 				let page = this.current_page;
 				$repeater.search.search(keyword, type, page, (data)=> {
-					console.log(data);
-					this.current_search_result[this.result_bars[index].id] = data;
+					this.$set(this.current_search_result, this.result_bars[index].key, data.result);
 				});
 			},
 			close_result_page() {
@@ -207,7 +251,6 @@
 		justify-content: center;
 	}
 	.content {
-		margin-bottom: 90rpx; 
 		width: 750rpx; 
 		flex: 1;
 
@@ -268,5 +311,20 @@
 	}
 	.bar-box {
 		flex: 1;
+	}
+	
+	.top-bar {
+		flex-direction: row;
+		align-items: center;
+		width: 750rpx;
+		height: 90rpx;
+		
+	}
+	.icon {
+		padding: 0 30rpx;
+	}
+	.top-bar-text {
+		font-size: 26rpx;
+		color: #000000;
 	}
 </style>
