@@ -1,22 +1,20 @@
 <template>
 	<view class="page">
 		<uni-transition :duration="300" :mode-class="mode_class" :styles="transfrom_class" :show="show_lyric">
-			<view class="container blue">
-				
-				<list class="lyric-list" show-scrollbar="false" >
-					<cell class="top-area"></cell>
-					<cell @tap="change_container()" v-for="(row, index) in lyric" :key="index">
-						<view v-if="row.content" class="lyric-row">
-							<text :ref="`lyric${index}`" :class="active_lyric_row_index == row.index ? 'light-text' : ''" class="lyric-row-text">{{row.content}}</text>
-							<!-- <text :ref="`lyric${index}`" :class="active_lyric_row_index == row.index ? 'light-text' : ''" class="lyric-row-text">{{index}}</text> -->
-						</view>
-					</cell>
-				</list>
-				
-			</view>
+			
+			<list class="lyric-list" show-scrollbar="false" >
+				<cell class="top-area"></cell>
+				<cell @tap="change_container()" v-for="(row, index) in lyric" :key="index">
+					<view v-if="row.content" class="lyric-row">
+						<text :ref="`lyric${index}`" :class="active_lyric_row_index == row.index ? 'light-text' : ''" class="lyric-row-text">{{row.content}}</text>
+						<!-- <text :ref="`lyric${index}`" :class="active_lyric_row_index == row.index ? 'light-text' : ''" class="lyric-row-text">{{index}}</text> -->
+					</view>
+				</cell>
+			</list>
+
 		</uni-transition>
 		<uni-transition :duration="300" :mode-class="mode_class" :styles="transfrom_class" :show="!show_lyric">
-			<view class="container red" @tap="change_container()">
+			<view class="container" @tap="change_container()">
 				<view class="cover">
 					<image ref="cover_image" class="cover-image" resize="cover" :src="played.cover_image"></image>
 				</view>
@@ -119,7 +117,6 @@
 					'top': 0,
 					'left': 0,
 					'right': 0,
-					'justify-content': 'center',
 					'align-items': 'center'
 				}
 			};
@@ -151,6 +148,7 @@
 				return this.$store.state.playing;
 			},
 			played() {
+				console.log(this.$store.state.played);
 				return this.$store.state.played;
 			},
 			islike() {
@@ -342,12 +340,7 @@
 </script>
 
 <style>
-	.red {
-		
-	}
-	.blue {
-		
-	}
+
 	.page {
 		flex: 1;
 		background-color: #171616;
@@ -357,7 +350,6 @@
 	}
 	.container {
 		flex: 1;
-		
 	}
 	.cover {
 		flex: 1;
