@@ -7,8 +7,8 @@
 		<view class="music-info">
 			<text class="music-name">{{song.name}}</text>
 			<view class="music-creators">
-				<text class="music-creator" v-for="(creator, c_index) in song.ar" :key="c_index">{{creator.name + ' '}}</text>
-				<text class="music-al">- {{song.al.name}}</text>
+				<text class="music-creator" v-for="(creator, c_index) in song.artists" :key="c_index">{{creator.name + ' '}}</text>
+				<text class="music-al">- {{song.album_name}}</text>
 			</view>
 		</view>
 		<view class="handle-area" v-if="false">
@@ -48,54 +48,52 @@
 			// 如果选中歌曲和底部播放组件是同一首歌, 则跳转到播放页并开始播放
 			// 如果不同, 则开始播放新选中的歌曲, 更新播放组件信息, 不跳转
 			play() {
-				let music = this.song; //懒得全都改为song, 所以就用music吧
-				
-				let music_id = music.id;
-				let music_name = music.name;
-				let cover_image = music.al.picUrl;
-				
-				let current_played = this.played;
-				
-				let played_music_id = current_played.id;
-				
-				if (music_id == played_music_id) {
-					// 跳转播放详情页并播放
-					console.log('跳转');
-				}else {
-					// 获取音乐url
-					$repeater.song.get_song_url(music_id, (res)=> {
-						let url = res.data[0].url;
-						
-						if (!url) {
-							$repeater.helper.toast('none', '亲爱的, 暂无该歌曲资源~', 3000, false, 'bottom');
-							return;
-						}
-						
-						let creators = music.ar;
-						let creator_str = '';
-						
-						for (let creator of creators) {
-							creator_str = creator_str + creator.name;
-						}
-						
-						let played = {
-							id: music_id,
-							belong_playlist_id: this.playlist_id, //生成播放列表用
-							url: url,
-							name: music_name,
-							creator: creator_str,
-							cover_image: cover_image,
-							time: 0, //上次播放的位置
-						}
-						
-						this.$store.commit('set_played', played);
-						
-						$repeater.player.start();
-						//直接开始播放, 不用跳转
-					});
+				let song_id = this.song.id;
+				$repeater.song.get_song_detail(song_id, (data)=> {
+					let song = data.songs[0];
+					let song_name = song.name;
+					let cover_image = song.al.picUrl;
 					
 					
-				}
+					let current_played = this.played;
+					let played_music_id = current_played.id;
+					
+					if (song_id == played_music_id) {
+						// 跳转播放详情页并播放
+						console.log('跳转');
+					}else {
+						$repeater.song.get_song_url(song_id, (res)=> {
+							let url = res.data[0].url;
+							
+							if (!url) {
+								$repeater.helper.toast('none', '亲爱的, 暂无该歌曲资源~', 3000, false, 'bottom');
+								return;
+							}
+							
+							let creators = song.ar;
+							let creator_str = '';
+							
+							for (let creator of creators) {
+								creator_str = creator_str + creator.name;
+							}
+							
+							let played = {
+								id: song_id,
+								// belong_playlist_id: this.playlist_id, //生成播放列表用
+								url: url,
+								name: song_name,
+								creator: creator_str,
+								cover_image: cover_image,
+								// time: 0, //上次播放的位置
+							}
+							
+							this.$store.commit('set_played', played);
+							
+							$repeater.player.start();
+							//直接开始播放, 不用跳转
+						});
+					}
+				});
 				
 			},
 		},
@@ -132,6 +130,7 @@
 	.music-creators {
 		margin-top: 10rpx;
 		flex-direction: row;
+		text-overflow: ellipsis;
 	}
 	.music-creator {
 		font-size: 18rpx;
