@@ -1,10 +1,10 @@
 <template>
 	<view class="music" @tap="play">
 		
-		<view class="music-index">
+		<view class="music-index" v-if="show_number">
 			<text class="index-text">{{number + 1}}</text>
 		</view>
-		<view class="music-info">
+		<view class="music-info" :class="show_number ? '' : 'padding-left'">
 			<text class="music-name">{{song.name}}</text>
 			<view class="music-creators">
 				<text class="music-creator" v-for="(creator, c_index) in song.artists" :key="c_index">{{creator.name + ' '}}</text>
@@ -31,6 +31,10 @@
 				type: Number,
 				default: 0
 			},
+			show_number: {
+				type: Boolean,
+				default: true,
+			}
 			
 		},
 		data() {
@@ -123,6 +127,10 @@
 		flex: 1;
 		height: 100rpx;
 		justify-content: center;
+		
+	}
+	.padding-left {
+		padding-left: 30rpx;
 	}
 	.music-name {
 		font-size: 26rpx;
