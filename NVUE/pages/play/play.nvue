@@ -2,7 +2,7 @@
 	<view class="page">
 		<uni-transition :duration="300" :mode-class="mode_class" :styles="transfrom_class" :show="show_lyric">
 			
-			<list class="lyric-list" show-scrollbar="false" >
+			<list v-if="!nolyric" class="lyric-list" show-scrollbar="false" >
 				<cell class="top-area"></cell>
 				<cell @tap="change_container()" v-for="(row, index) in lyric" :key="index">
 					<view v-if="row.content" class="lyric-row">
@@ -11,7 +11,9 @@
 					</view>
 				</cell>
 			</list>
-
+			<view v-else style="flex: 1;justify-content: center;">
+				<text class="lyric-row-text">纯音乐, 请欣赏</text>
+			</view>
 		</uni-transition>
 		<uni-transition :duration="300" :mode-class="mode_class" :styles="transfrom_class" :show="!show_lyric">
 			<view class="container" @tap="change_container()">
@@ -105,7 +107,7 @@
 				animation_timer: '',
 				dragging: false, //
 				show_lyric: false, //是否显示歌词
-				
+				nolyric: false,
 				lyric: [],
 				active_lyric_row_index: 0,
 				
@@ -118,7 +120,7 @@
 					'left': 0,
 					'right': 0,
 					'align-items': 'center'
-				}
+				},
 			};
 		},
 		computed: {
@@ -188,6 +190,9 @@
 				
 			},
 			set_active_lyric_row_index() {
+				if (this.nolyric) {
+					return;
+				}
 				var active_lyric_rows = this.lyric.filter((obj)=> {
 				    return parseInt(obj.second) <= parseInt(this.current_position) && obj.content;
 				});
@@ -220,6 +225,12 @@
 			},
 			get_lyric() {
 				$repeater.song.get_lyric(this.played.id, (data)=> {
+					
+					if (data.nolyric) {
+						console.log('暂无歌词');
+						this.nolyric = true;
+						return;
+					}
 					let lyric = data.lrc.lyric;
 					
 					let lines = lyric.split('\n');
