@@ -39,7 +39,7 @@
 				<swiper class="bar-box" :current="current_bar_index" skip-hidden-item-layout @change="tab_changed">
 					<swiper-item v-for="(page, index) in result_bars" :key="index" >
 						<!-- 单曲 -->
-						<list style="flex: 1;" v-if="page.id == 1">
+						<list show-scrollbar="false" style="flex: 1;" v-if="page.id == 1">
 							<cell class="top-bar">
 								<view class="icon">
 									<wyy-icon type="&#xe601;" size="40" color="#000000" ></wyy-icon>
@@ -47,17 +47,40 @@
 								<text class="top-bar-text">播放全部</text>
 							</cell>
 							<cell v-for="(song, s_index) in songs_data" :key="s_index">
-								<song-card :song="song" :number="s_index"></song-card>
+								<song-card :show_number="false" :song="song"></song-card>
 								<!-- {{song}} -->
 							</cell>
 							
 						</list>
+						<!-- 单曲END -->
+						
+						<!-- 综合 -->
+						<list v-else-if="page.id == 1018" show-scrollbar="false">
+							<cell v-for="(value, key, t_index) in comprehensive_data" :key="t_index">
+								<view v-if="key == 'song'">
+									<view class="title">
+										<text class="title-text">单曲</text>
+									</view>
+									
+									<song-card :show_number="false"  v-for="(song, index) in value.songs" :song="song" :key="index"></song-card>
+									
+								</view>
+								<view v-if="key == 'playList'">
+									<view class="title">
+										<text class="title-text">歌单</text>
+									</view>
+									<playlist-card v-for="(playlist, index) in value.playLists" :key="index" :playlist="playlist"></playlist-card>
+								</view>
+								
+							</cell>
+						</list>
+						<!-- 综合END -->
 						<list v-else>
 							<cell>
 								未完成
 							</cell>
 						</list>
-						<!-- 单曲END -->
+						
 					</swiper-item>
 				</swiper>
 			</view>
@@ -76,6 +99,7 @@
 	import wyyPlay from '@/components/wyy-play/wyy_play.nvue';
 	import wyyIcon from '../../components/wyy-icon/wyy-icon.nvue';
 	import songCard from '../../components/song_card.nvue';
+	import playlistCard from '../../components/playlist_card.nvue';
 	import $repeater from '@/utils/repeater.js';
 	
 	
@@ -84,6 +108,7 @@
 			uniTransition,
 			wyyPlay,
 			songCard,
+			playlistCard,
 			wyyIcon
 		},
 		data() {
@@ -134,6 +159,27 @@
 		computed: {
 			played: function() {
 				return this.$store.state.played;
+			},
+			comprehensive_data() {
+				if (!this.current_keyword) {
+					return;
+				}
+				
+				if (!this.current_search_result.comprehensive) {
+					return;
+				}
+				
+				let comprehensive = this.current_search_result.comprehensive;
+				if (comprehensive.song.songs) { //format songs信息
+					comprehensive.song.songs.forEach((song)=> {
+						song.id = song.id;
+						song.name = song.name;
+						song.artists = song.ar;
+						song.album_name = song.al.name;
+					})
+				}
+				
+				return comprehensive
 			},
 			songs_data: function() {
 				if (!this.current_keyword) {

@@ -102,7 +102,6 @@
 						format_song.album_name = song.al.name;
 						format_songs.push(format_song);
 					})
-					console.log(JSON.stringify(format_songs));
 					return format_songs;
 				}
 			}
@@ -134,7 +133,6 @@
 				$repeater.playlist.get_playlist_detail(playlist_id, (data)=> {
 					let playlist = data.playlist;
 					this.playlist = playlist;
-					console.log(this.playlist);
 				});
 			}
 		}
