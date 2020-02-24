@@ -1,0 +1,74 @@
+<template>
+	<view class="music-list">
+		<view class="music-list-left">
+			<image class="cover-image" :src="playlist.coverImgUrl"></image>
+		</view>
+		
+		<view class="music-list-center">
+			<text class="music-list-name">{{playlist.name}}</text>
+			<text class="number">{{playlist.trackCount}}首 by {{playlist.creator.nickname}}</text>
+		</view>
+		
+		<view class="music-list-right">
+			
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		props: {
+			playlist: {
+				type: Object,
+				default: {
+					
+				}
+			}
+		},
+		data() {
+			return {
+				
+			};
+		}
+	}
+</script>
+
+<style>
+	.music-list{
+		flex-direction: row;
+		align-items: center;
+		/* justify-content: space-between; */
+		padding-left: 25rpx;
+		padding-right: 25rpx;
+		height: 100rpx;
+	}
+	.cover-image{
+		height: 90rpx;
+		width: 90rpx;
+		border-radius: 8rpx;
+	}
+	.music-list-left {
+		
+	}
+	.music-list-center{
+		flex-direction: column;
+		justify-content: space-between;
+		width: 560rpx;
+		height: 60rpx;
+		padding-left: 15rpx;
+	}
+	.music-list-right {
+		flex: 1;
+		height: 60rpx;
+	}
+	.music-list-name{
+		font-size: 24rpx;
+	}
+	.number{
+		font-size: 18rpx;
+		color: rgba(0,0,0,0.5);
+	}
+	.music-list:active{
+		background-color: rgba(0,0,0,0.1);
+	}
+</style>
