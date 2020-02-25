@@ -2,7 +2,6 @@
 	<div class="fold">
 		<div class="fold-header" @click="rotate()">
 			<div class="fold-header-left">
-				<!-- <image class="unfold" ref="unfold" src="/static/rattle/mine/unfold.png"></image> -->
 				<wyy-icon ref="unfold" type="&#xe6af;" size="26" color="#696969" @click.stop=""></wyy-icon>
 				<text class="fold-name">{{ musicListName }}</text>
 				<text class="fold-num">({{number}})</text>
@@ -13,36 +12,21 @@
 			</div>
 		</div>
 		<div class="fold-content" v-if="!isFold">
-			<div class="music-list" v-for="(item, index) in current_list" :key="index" @tap="choose_playlist(item)">
-				<div class="music-list-left">
-					<image class="cover-image" :src="item.coverImgUrl"></image>
-				</div>
-				
-				<div class="music-list-center">
-					<text class="music-list-name">{{index == 0 && musicListType == 'created' ? '我喜欢的音乐' : item.name}}</text>
-					<text class="number" v-if="musicListType == 'created'">{{item.trackCount}}首</text>
-					<!-- <text class="number" v-if="musicListType == 'created'">{{item.trackCount}}首，已下载{{item.downloaded}}首</text> -->
-					<text class="number" v-else>{{item.trackCount}}首 by {{item.creator.nickname}}</text>
-
-				</div>
-				
-				<div class="music-list-right">
-					
-				</div>
-			</div>
+			<playlist-card v-for="(item, index) in current_list" :key="index" :playlist="item"></playlist-card>
 		</div>
 	</div>
 </template>
 
 <script>
 	import wyyIcon from '../../components/wyy-icon/wyy-icon.nvue';
-	import $repeater from '@/utils/repeater.js';
 	
+	import playlistCard from '../../components/playlist_card.nvue';
 	const animation = weex.requireModule('animation');
 
 	export default {
 		components: {
-			wyyIcon
+			wyyIcon,
+			playlistCard
 		},
 		data() {
 			return {
@@ -78,9 +62,6 @@
 			}
 		},
 		methods: {
-			choose_playlist(obj) {
-				$repeater.helper.to('/pages/playlist/playlist?playlist_id=' + obj.id + '&cover_image=' + obj.coverImgUrl + '&name=' + obj.name);
-			},
 			rotate() {
 				var degree = this.isFold ? '0deg' : '-90deg'
 				

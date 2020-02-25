@@ -38,8 +38,31 @@
 				
 				<swiper class="bar-box" :current="current_bar_index" skip-hidden-item-layout @change="tab_changed">
 					<swiper-item v-for="(page, index) in result_bars" :key="index" >
+
+						<!-- 综合 -->
+						<list v-if="page.id == 1018" show-scrollbar="false" style="flex: 1;">
+							<cell v-for="(value, key, t_index) in comprehensive_data" :key="t_index">
+								<view v-if="key == 'song'">
+									<view class="title">
+										<text class="title-text">单曲</text>
+									</view>
+									
+									<song-card :show_number="false"  v-for="(song, s_index) in value.songs" :song="song" :key="s_index"></song-card>
+									
+								</view>
+								<view v-if="key == 'playList'">
+									<view class="title">
+										<text class="title-text">歌单</text>
+									</view>
+									<playlist-card v-for="(playlist, p_index) in value.playLists" :key="p_index" :playlist="playlist"></playlist-card>
+								</view>
+								
+							</cell>
+						</list>
+						<!-- 综合END -->
+						
 						<!-- 单曲 -->
-						<list show-scrollbar="false" style="flex: 1;" v-if="page.id == 1">
+						<list show-scrollbar="false" style="flex: 1;" v-else-if="page.id == 1">
 							<cell class="top-bar">
 								<view class="icon">
 									<wyy-icon type="&#xe601;" size="40" color="#000000" ></wyy-icon>
@@ -54,27 +77,15 @@
 						</list>
 						<!-- 单曲END -->
 						
-						<!-- 综合 -->
-						<list v-else-if="page.id == 1018" show-scrollbar="false">
-							<cell v-for="(value, key, t_index) in comprehensive_data" :key="t_index">
-								<view v-if="key == 'song'">
-									<view class="title">
-										<text class="title-text">单曲</text>
-									</view>
-									
-									<song-card :show_number="false"  v-for="(song, index) in value.songs" :song="song" :key="index"></song-card>
-									
-								</view>
-								<view v-if="key == 'playList'">
-									<view class="title">
-										<text class="title-text">歌单</text>
-									</view>
-									<playlist-card v-for="(playlist, index) in value.playLists" :key="index" :playlist="playlist"></playlist-card>
-								</view>
-								
+						<!-- 歌单 -->
+						<list show-scrollbar="false" style="flex: 1;" v-else-if="page.id == 1000">
+							<cell v-for="(playlist, p_index) in playlist_data" :key="p_index">
+								<playlist-card :playlist="playlist"></playlist-card>
+								<!-- {{song}} -->
 							</cell>
 						</list>
-						<!-- 综合END -->
+						<!-- 歌单END -->
+						
 						<list v-else>
 							<cell>
 								未完成
@@ -119,12 +130,12 @@
 				result_bars: [
 					{id: 1018, name: '综合', key: 'comprehensive'},
 					{id: 1, name: '单曲', key: 'song'},
-					{id: 1014, name: '视频', key: 'mv'},
-					{id: 100, name: '歌手', key: 'artist'},
-					{id: 10, name: '专辑', key: 'album'},
+					// {id: 1014, name: '视频', key: 'mv'},
+					// {id: 100, name: '歌手', key: 'artist'},
+					// {id: 10, name: '专辑', key: 'album'},
 					{id: 1000, name: '歌单', key: 'playlist'},
-					{id: 1009, name: '主播电台', key: 'dj'},
-					{id: 1002, name: '用户', key: 'user'},
+					// {id: 1009, name: '主播电台', key: 'dj'},
+					// {id: 1002, name: '用户', key: 'user'},
 				],
 				
 				current_keyword: '',
@@ -160,12 +171,27 @@
 			played: function() {
 				return this.$store.state.played;
 			},
-			comprehensive_data() {
-				if (!this.current_keyword) {
+			playlist_data() {
+				if (!this.search_result_init_check('playlist')) {
 					return;
 				}
 				
-				if (!this.current_search_result.comprehensive) {
+				let playlists = this.current_search_result.playlist.playlists;
+				let new_playlists = [];
+				playlists.forEach((playlist)=> {
+					let tmp_playlist = {};
+					tmp_playlist.id = playlist.id;
+					tmp_playlist.coverImgUrl = playlist.coverImgUrl;
+					tmp_playlist.name = playlist.name;
+					tmp_playlist.trackCount = playlist.trackCount;
+					tmp_playlist.creator = playlist.creator;
+					new_playlists.push(tmp_playlist);
+				});
+				return new_playlists;
+			},
+			comprehensive_data() {
+				
+				if (!this.search_result_init_check('comprehensive')) {
 					return;
 				}
 				
@@ -182,11 +208,12 @@
 				return comprehensive
 			},
 			songs_data: function() {
-				if (!this.current_keyword) {
+				
+				if (!this.search_result_init_check('song')) {
 					return;
 				}
-
-				if (!this.current_search_result.song) {
+				
+				if (this.current_search_result.song.songCount == 0) {
 					return;
 				}
 				let songs = this.current_search_result.song.songs;
@@ -219,6 +246,21 @@
 			uni.$off('search');
 		},
 		methods: {
+			//检查是否可以正常展示搜索结果相关的内容
+			search_result_init_check(module) {
+				console.log(module);
+				if (!this.current_keyword) { //没有搜索关键词
+					return false;
+				}
+				if (!this.current_search_result[module]) { //对应模块没有加载好数据
+					return false;
+				}
+				
+				if (Object.keys(this.current_search_result[module]).length === 0) {
+					return false;
+				}
+				return true;
+			},
 			on_search(e) {
 				this.set_keyword(e.keyword);
 			},
@@ -262,6 +304,8 @@
 			},
 			open_result_page() {
 				this.show_result = true; //打开结果页
+				this.current_search_result = {};
+				this.current_page = 0;
 				this.search();
 			},
 			

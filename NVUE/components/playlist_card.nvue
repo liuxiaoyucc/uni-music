@@ -1,5 +1,5 @@
 <template>
-	<view class="music-list">
+	<view class="music-list" @tap="to_playlist">
 		<view class="music-list-left">
 			<image class="cover-image" :src="playlist.coverImgUrl"></image>
 		</view>
@@ -16,6 +16,7 @@
 </template>
 
 <script>
+	import $repeater from '@/utils/repeater.js';
 	export default {
 		props: {
 			playlist: {
@@ -29,7 +30,13 @@
 			return {
 				
 			};
-		}
+		},
+		methods: {
+			to_playlist() {
+				let playlist = this.playlist;
+				$repeater.helper.to('/pages/playlist/playlist?playlist_id=' + playlist.id + '&cover_image=' + playlist.coverImgUrl + '&name=' + playlist.name);
+			}
+		},
 	}
 </script>
 
