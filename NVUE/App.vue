@@ -38,6 +38,8 @@
 						this.$store.commit('set_played', played);
 						this.init_player();
 					});
+				}else {
+					this.init_player();
 				}
 			},
 			init_player() {
