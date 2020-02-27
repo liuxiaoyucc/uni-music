@@ -13,6 +13,8 @@
   },
   "author": "liuxy",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "weex-ui": "^0.8.4"
+  },
   "devDependencies": {}
 }

@@ -30,8 +30,12 @@ uni.$off('search', this.search);
 
 ```
 
-10. uniapp使用v-if隐藏显示元素时, 会闪烁, 用户体验很次, 要想办法解决
+10. uniapp使用v-if隐藏显示元素时, 会闪烁, 用户体验很次, 要想办法解决 [x]
 uniapp提供了过度动画组件uni-transition, 尝试一下
+
+
+11. uniapp的popup组件, 弹出时偶尔不显示动画
+
 
 ## TODO
 1. 使用plus的音频管理替代uni, 可以获取到播放状态

@@ -1,0 +1,64 @@
+<template>
+	<uni-pop-up ref="showpopup" type="bottom" @change="change">
+		<view class="content">
+			<view class="header" style="">
+				<text style="font-size: 26rpx;">随机播放</text>
+			</view>
+			<list style="flex: 1;" show-scrollbar="false">
+				
+			</list>
+		</view>
+	</uni-pop-up>
+</template>
+
+<script>
+	import uniPopUp from '@/components/uni-popup/uni-popup.vue';
+	export default {
+		components: {
+			uniPopUp
+		},
+		data() {
+			return {
+				
+			};
+		},
+		props: {
+			
+		},
+		created() {
+			this.set_playlist();
+		},
+		methods: {
+			change(e) {
+				console.log(e);
+			},
+			set_playlist() {
+				
+			},
+			close_playlist() {
+				
+			},
+			open_playlist() {
+				this.$nextTick(() => {
+					this.$refs.showpopup.open();
+				})
+				
+			},
+		},
+	}
+</script>
+
+<style>
+	.content {
+		height: 850rpx; width: 750rpx; background-color: #FFFFFF;
+		border-top-left-radius: 35rpx;
+		border-top-right-radius: 35rpx;
+	}
+	.header {
+		height: 80rpx;
+		padding: 0 20rpx;
+		justify-content: center;
+		border-bottom-color: rgba(0, 0, 0, .1);
+		border-bottom-width: 1rpx;
+	}
+</style>

@@ -11,8 +11,13 @@ const store = new Vuex.Store({
 		user_info: {}, // 网易云用户详情
 		subcount: {}, // 各种计数
 		likelist: [], //喜欢的歌曲列表ids
+		
+		current_playlist: [], // 当前播放列表, 应该两种模式, 播放历史和歌曲所在清单
 	},
 	mutations: {
+		push_current_playlist(state, item) {
+			state.current_playlist.push(item);
+		},
 		set_played(state, played) {
 			state.played = played;
 			Storage.set_played(played);

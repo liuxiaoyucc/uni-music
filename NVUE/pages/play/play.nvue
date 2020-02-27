@@ -7,7 +7,6 @@
 				<cell @tap="change_container()" v-for="(row, index) in lyric" :key="index">
 					<view v-if="row.content" class="lyric-row">
 						<text :ref="`lyric${index}`" :class="active_lyric_row_index == row.index ? 'light-text' : ''" class="lyric-row-text">{{row.content}}</text>
-						<!-- <text :ref="`lyric${index}`" :class="active_lyric_row_index == row.index ? 'light-text' : ''" class="lyric-row-text">{{index}}</text> -->
 					</view>
 				</cell>
 			</list>
@@ -73,18 +72,21 @@
 					<view class="icon-area switch">
 						<wyy-icon type="&#xe622;" size="50" color="#FFFFFF" ></wyy-icon>
 					</view>
-					<view class="icon-area list-menu">
+					<view class="icon-area list-menu" @tap="open_playlist">
 						<wyy-icon type="&#xe671;" size="40" color="#FFFFFF" ></wyy-icon>
 					</view>
 					
 				</view>
 			</view>
 		</view>
+		<playlist-drawer ref="playlist_drawer"></playlist-drawer>
 	</view>
 </template>
 
 <script>
 	import uniTransition from '@/components/uni-transition/uni-transition.vue'
+	import playlistDrawer from '@/components/playlist_drawer.nvue';
+	
 	import wyyIcon from '../../components/wyy-icon/wyy-icon.nvue';
 	
 	import $repeater from '@/utils/repeater.js';
@@ -95,6 +97,7 @@
 	export default {
 		components: {
 			uniTransition,
+			playlistDrawer,
 			wyyIcon
 		},
 		data() {
@@ -121,6 +124,7 @@
 					'right': 0,
 					'align-items': 'center'
 				},
+				
 			};
 		},
 		computed: {
@@ -161,7 +165,6 @@
 			
 		},
 		created() {
-			console.log(this.islike);
 			this.set_title(this.played.name);
 			this.get_lyric();
 		},
@@ -170,6 +173,9 @@
 			this.init_timer();
 		},
 		methods: {
+			open_playlist() {
+				this.$refs.playlist_drawer.open_playlist();
+			},
 			like(event) {
 				event.stopPropagation();
 				console.log(this.played.id);
@@ -444,7 +450,7 @@
 		height: 65rpx;
 		padding-left: 16rpx;
 		justify-content: center;
-		/* align-items: center; */
+		align-items: center;
 	}
 	.lyric-row-text{
 		font-size: 24rpx;

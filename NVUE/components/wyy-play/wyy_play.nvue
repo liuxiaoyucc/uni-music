@@ -1,9 +1,9 @@
 <template>
-	<view class="play" v-if="played" @tap="to_play_page">
-		<view class="play-left">
+	<view class="play" v-if="played">
+		<view class="play-left" @tap="to_play_page()">
 			<image class="cover-image"  resize="cover" :src="played.cover_image"></image>
 		</view>
-		<view class="play-center">
+		<view class="play-center" @tap="to_play_page()">
 			<text class="music-name">{{played.name}}</text>
 			<text class="creator-nickname">{{played.creator}}</text>
 		</view>
@@ -13,21 +13,24 @@
 				<!-- <wyy-icon type="&#xe677;" size="50" color="#000000" ></wyy-icon> -->
 				<wyy-icon :type="playing ? '&#xe672;' : '&#xe677;'" size="50" color="#000000" ></wyy-icon>
 			</view>
-			<view class="handle-icon">
+			<view class="handle-icon" @tap="open_playlist($event)">
 				<wyy-icon type="&#xe671;" size="40" color="#000000" ></wyy-icon>
 			</view>
 		</view>
+		
+		<playlist-drawer ref="playlist_drawer"></playlist-drawer>
 	</view>
 </template>
 
 <script>
 	import wyyIcon from '../../components/wyy-icon/wyy-icon.nvue';
-	
+	import playlistDrawer from '@/components/playlist_drawer.nvue';
 	import $repeater from '@/utils/repeater.js';
 	
 	export default {
 		components: {
-			wyyIcon
+			wyyIcon,
+			playlistDrawer
 		},
 		data() {
 			return {
@@ -35,6 +38,7 @@
 			};
 		},
 		computed: {
+			
 			playing() {
 				return this.$store.state.playing;
 			},
@@ -49,6 +53,10 @@
 			
 		},
 		methods: {
+			open_playlist(event) {
+				event.stopPropagation();
+				this.$refs.playlist_drawer.open_playlist();
+			},
 			to_play_page() {
 				$repeater.helper.to('../play/play');
 			},
