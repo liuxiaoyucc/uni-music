@@ -64,3 +64,6 @@ ended -> pause -> play方法的回调
 每次打开app时, 获取一下最新的url, 并更新
 使用https://music.163.com/song/media/outer/url?id=id.mp3 这个链接, 会自动跳转到最新地址
 
+* 歌曲或专辑封面图片太大导致页面加载卡顿,
+可在图片url后面加上参数param控制图片大小,如下
+https://p1.music.126.net/a_rb8pgC5R_hO-lfm7acSw==/109951164019567772.jpg?param=140y140

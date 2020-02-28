@@ -17,7 +17,7 @@
 		<uni-transition :duration="300" :mode-class="mode_class" :styles="transfrom_class" :show="!show_lyric">
 			<view class="container" @tap="change_container()">
 				<view class="cover">
-					<image ref="cover_image" class="cover-image" resize="cover" :src="played.cover_image"></image>
+					<image ref="cover_image" class="cover-image" resize="cover" :src="played.cover_image + '?param=300y300'"></image>
 				</view>
 				<view class="option-area">
 					<view class="icon-group">

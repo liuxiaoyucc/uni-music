@@ -1,7 +1,7 @@
 <template>
 	<view class="play" v-if="played">
 		<view class="play-left" @tap="to_play_page()">
-			<image class="cover-image"  resize="cover" :src="played.cover_image"></image>
+			<image class="cover-image"  resize="cover" :src="played.cover_image + '?param=100y100'"></image>
 		</view>
 		<view class="play-center" @tap="to_play_page()">
 			<text class="music-name">{{played.name}}</text>

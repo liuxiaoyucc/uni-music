@@ -71,7 +71,6 @@
 							</cell>
 							<cell v-for="(song, s_index) in songs_data" :key="s_index">
 								<song-card :show_number="false" :song="song"></song-card>
-								<!-- {{song}} -->
 							</cell>
 							
 						</list>
@@ -81,7 +80,6 @@
 						<list show-scrollbar="false" style="flex: 1;" v-else-if="page.id == 1000">
 							<cell v-for="(playlist, p_index) in playlist_data" :key="p_index">
 								<playlist-card :playlist="playlist"></playlist-card>
-								<!-- {{song}} -->
 							</cell>
 						</list>
 						<!-- 歌单END -->
@@ -204,7 +202,6 @@
 						song.album_name = song.al.name;
 					})
 				}
-				
 				return comprehensive
 			},
 			songs_data: function() {

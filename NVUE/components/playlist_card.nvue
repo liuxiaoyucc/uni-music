@@ -1,7 +1,7 @@
 <template>
 	<view class="music-list" @tap="to_playlist">
 		<view class="music-list-left">
-			<image class="cover-image" :src="playlist.coverImgUrl"></image>
+			<image class="cover-image" :src="playlist.coverImgUrl + '?param=100y100'"></image>
 		</view>
 		
 		<view class="music-list-center">
