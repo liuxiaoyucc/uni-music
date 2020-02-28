@@ -17,6 +17,11 @@ const store = new Vuex.Store({
 	mutations: {
 		push_current_playlist(state, item) {
 			state.current_playlist.push(item);
+			Storage.set_current_playlist(state.current_playlist);
+		},
+		set_current_playlist(state, playlist) {
+			state.current_playlist = playlist;
+			Storage.set_current_playlist(state.current_playlist);
 		},
 		set_played(state, played) {
 			state.played = played;

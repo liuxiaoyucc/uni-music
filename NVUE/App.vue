@@ -13,7 +13,7 @@
 			this.init_played();
 			// //全局唯一播放管理
 			// this.init_player(); //这里先注释掉, 放在init_played中调用观察下是否能解决{"code":-99,"message":"未知错误"}的问题
-			
+			this.init_current_playlist(); //初始化播放列表
 			// 加载icon字体文件
 			const dom = weex.requireModule('dom');
 			dom.addRule('fontFace', {
@@ -28,6 +28,12 @@
 			console.log('App Hide')
 		},
 		methods: {
+			init_current_playlist() {
+				let current_playlist = Storage.get_current_playlist();
+				if (current_playlist) {
+					this.$store.commit('set_current_playlist', current_playlist);
+				}
+			},
 			init_played() {
 				let played = Storage.get_played();
 				if (played && played.id) {

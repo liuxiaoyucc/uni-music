@@ -62,14 +62,14 @@
 						<!-- <wyy-icon type="&#xe674;" size="40" color="#FFFFFF" ></wyy-icon>
 						<wyy-icon type="&#xe678;" size="40" color="#FFFFFF" ></wyy-icon> -->
 					</view>
-					<view class="icon-area switch">
+					<view class="icon-area prev" @tap="prev()">
 						<wyy-icon type="&#xe66f;" size="40" color="#FFFFFF" ></wyy-icon>
 					</view>
 					
 					<view class="icon-area turn" @tap="turn()">
 						<wyy-icon :type="playing ? '&#xe672;' : '&#xe673;'" size="100" color="#FFFFFF" ></wyy-icon>
 					</view>
-					<view class="icon-area switch">
+					<view class="icon-area next" @tap="next()">
 						<wyy-icon type="&#xe622;" size="50" color="#FFFFFF" ></wyy-icon>
 					</view>
 					<view class="icon-area list-menu" @tap="open_playlist">
@@ -108,6 +108,7 @@
 				
 				timer: '', //计时器
 				animation_timer: '',
+				deg: 0,
 				dragging: false, //
 				show_lyric: false, //是否显示歌词
 				nolyric: false,
@@ -154,7 +155,6 @@
 				return this.$store.state.playing;
 			},
 			played() {
-				console.log(this.$store.state.played);
 				return this.$store.state.played;
 			},
 			islike() {
@@ -162,17 +162,31 @@
 			}
 		},
 		watch: {
-			
+			played(value) {
+				console.log(value);
+				this._init();
+			}
 		},
 		created() {
-			this.set_title(this.played.name);
-			this.get_lyric();
+			
 		},
 		onReady() {
-			this.init_cover_rotate();
-			this.init_timer();
+			this._init();
 		},
 		methods: {
+			_init() {
+				this.set_title(this.played.name);
+				this.get_lyric();
+				this.init_cover_rotate();
+				this.init_timer();
+				this.init_slider()
+			},
+			init_slider() {
+				setTimeout(()=> {
+					this.duration = $repeater.player.get_duration().toFixed(0);
+					this.current_position =  $repeater.player.get_position().toFixed(0);
+				}, 1000);
+			},
 			open_playlist() {
 				this.$refs.playlist_drawer.open_playlist();
 			},
@@ -271,18 +285,21 @@
 				this.show_lyric = !this.show_lyric;
 			},
 			init_cover_rotate() {
-				
+				if (this.animation_timer) {
+					clearInterval(this.animation_timer);
+					this.animation_timer = '';
+				}
 				let cover_image = this.$refs.cover_image;
 				
-				let deg = 0;
-				let degree = deg+'deg';
+				
+				let degree = this.deg + 'deg';
 				
 				this.animation_timer = setInterval(()=> {
 					if (this.playing) {
-						deg += 20; //步进值
+						this.deg += 20; //步进值
 					}
 					
-					degree = deg+ 'deg';
+					degree = this.deg + 'deg';
 					animation.transition(cover_image, {
 						styles: {
 							transform: 'rotate('+degree+')',
@@ -347,10 +364,10 @@
 				}, 1000);
 			},
 			next() {
-				
+				console.log('下一曲');
 			},
-			previous() {
-				
+			prev() {
+				console.log('上一曲');
 			}
 		},
 	}

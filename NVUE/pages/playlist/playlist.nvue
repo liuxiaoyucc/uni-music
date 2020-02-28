@@ -50,7 +50,7 @@
 			
 			
 			<cell v-for="(song, index) in format_songs" :key="index" >
-				<song-card :song="song" :number="index"></song-card>
+				<song-card :song="song" :number="index" :playlist_id="playlist_id"></song-card>
 			</cell>
 		</list>
 		

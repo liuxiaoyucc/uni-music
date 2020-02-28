@@ -34,6 +34,10 @@
 			show_number: {
 				type: Boolean,
 				default: true,
+			},
+			playlist_id: {
+				type: Number,
+				default: 0
 			}
 			
 		},
@@ -83,7 +87,6 @@
 							
 							let played = {
 								id: song_id,
-								// belong_playlist_id: this.playlist_id, //生成播放列表用
 								url: url,
 								name: song_name,
 								creator: creator_str,
@@ -98,6 +101,26 @@
 						});
 					}
 				});
+				
+				// 获取相同歌单下的歌曲生成一个播放列表, 如何没有指定歌单id, 那么仅将此首歌push到播放列表中
+				
+				if (this.playlist_id) {
+					let playlist_id = this.playlist_id;
+					$repeater.playlist.get_playlist_detail(playlist_id, (data)=> {
+						let playlist = data.playlist;
+						
+						let format_songs = [];
+						playlist.tracks.forEach((song)=> {
+							let format_song = {};
+							format_song.id = song.id;
+							format_song.name = song.name;
+							format_song.artists = song.ar;
+							format_song.album_name = song.al.name;
+							format_songs.push(format_song);
+						})
+						this.$store.commit('set_current_playlist', format_songs);
+					});
+				}
 				
 			},
 		},
