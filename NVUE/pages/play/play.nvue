@@ -17,7 +17,7 @@
 		<uni-transition :duration="300" :mode-class="mode_class" :styles="transfrom_class" :show="!show_lyric">
 			<view class="container" @tap="change_container()">
 				<view class="cover">
-					<image ref="cover_image" class="cover-image" resize="cover" :src="played.cover_image + '?param=300y300'"></image>
+					<image ref="cover_image" class="cover-image" resize="cover" :src="played.cover_image + '?param=400y400'"></image>
 				</view>
 				<view class="option-area">
 					<view class="icon-group">
@@ -365,9 +365,11 @@
 			},
 			next() {
 				console.log('下一曲');
+				this.$refs.playlist_drawer.next_song();
 			},
 			prev() {
 				console.log('上一曲');
+				this.$refs.playlist_drawer.prev_song();
 			}
 		},
 	}

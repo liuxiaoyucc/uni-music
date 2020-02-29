@@ -55,6 +55,42 @@
 			
 		},
 		methods: {
+			prev_song() {
+				let current_song_id = this.played.id;
+				let playlist = this.playlist;
+				
+				let prev_index = playlist.length - 1;
+				for (let i = 0; i < playlist.length; i++) {
+					if (current_song_id == playlist[i].id) {
+						if (i > 0) {
+							prev_index = i - 1;
+						}
+						break;
+					}
+				}
+				
+				let prev_song_id = playlist[prev_index].id;
+				this.play(prev_song_id);
+				
+			},
+			next_song() {
+				let current_song_id = this.played.id;
+				let playlist = this.playlist;
+				
+				let next_index = 0;
+				for (let i = 0; i < playlist.length; i++) {
+					if (current_song_id == playlist[i].id) {
+						if (i + 1 < playlist.length) {
+							next_index = i + 1;
+						}
+						break;
+					}
+				}
+				
+				let next_song_id = playlist[next_index].id;
+				this.play(next_song_id);
+				
+			},
 			play(song_id) {
 				
 				$repeater.song.get_song_detail(song_id, (data)=> {
