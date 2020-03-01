@@ -332,13 +332,7 @@
 			},
 			turn() {
 				//切换播放暂停状态
-				if (this.playing) {
-					$repeater.player.pause();
-					this.stop_rotate();
-				}else {
-					$repeater.player.start();
-				}
-				
+				$repeater.player.turn();
 			},
 			stop_rotate() {
 				

@@ -11,8 +11,8 @@
 				</view>
 			</view>
 			<list style="flex: 1;" show-scrollbar="false">
-				<cell class="song-cell" v-for="(song, index) in playlist" :key="index" @tap="play(song.id)">
-					<view style="flex-direction: row;align-items: center">
+				<cell class="song-cell" v-for="(song, index) in playlist" :key="index" @tap="play(song.id)" :ref="`song${song.id}`">
+					<view style="flex-direction: row;align-items: center"  >
 						<wyy-icon style="margin-right: 20rpx;" v-if="song.id == played.id" type="&#xe67f;" size="30" color="#FF0000" ></wyy-icon>
 						<text style="font-size: 26rpx;" :class="song.id == played.id ? 'active-song' : ''">{{song.name}}</text>
 						<text class="ar-text" :class="song.id == played.id ? 'active-song' : ''" >{{' - ' + song.artists[0].name}}</text>
@@ -30,6 +30,7 @@
 	import wyyIcon from '@/components/wyy-icon/wyy-icon.nvue';
 	
 	import $repeater from '@/utils/repeater.js';
+	const dom = weex.requireModule('dom')
 	export default {
 		components: {
 			uniPopUp,
@@ -56,91 +57,33 @@
 		},
 		methods: {
 			prev_song() {
-				let current_song_id = this.played.id;
-				let playlist = this.playlist;
-				
-				let prev_index = playlist.length - 1;
-				for (let i = 0; i < playlist.length; i++) {
-					if (current_song_id == playlist[i].id) {
-						if (i > 0) {
-							prev_index = i - 1;
-						}
-						break;
-					}
-				}
-				
-				let prev_song_id = playlist[prev_index].id;
-				this.play(prev_song_id);
-				
+				$repeater.player.prev((played)=> {
+					played && this.$store.commit('set_played', played);
+				})
 			},
 			next_song() {
-				let current_song_id = this.played.id;
-				let playlist = this.playlist;
-				
-				let next_index = 0;
-				for (let i = 0; i < playlist.length; i++) {
-					if (current_song_id == playlist[i].id) {
-						if (i + 1 < playlist.length) {
-							next_index = i + 1;
-						}
-						break;
-					}
-				}
-				
-				let next_song_id = playlist[next_index].id;
-				this.play(next_song_id);
-				
+				$repeater.player.next((played)=> {
+					played && this.$store.commit('set_played', played);
+				})
 			},
 			play(song_id) {
-				
-				$repeater.song.get_song_detail(song_id, (data)=> {
-					let song = data.songs[0];
-					let song_name = song.name;
-					let cover_image = song.al.picUrl;
-					
-					
-					let current_played = this.played;
-					let played_music_id = current_played.id;
-					
-					if (song_id == played_music_id) {
-						// 跳转播放详情页并播放
-						console.log('跳转');
-					}else {
-						$repeater.song.get_song_url(song_id, (res)=> {
-							let url = res.data[0].url;
-							
-							if (!url) {
-								$repeater.helper.toast('none', '亲爱的, 暂无该歌曲资源~', 3000, false, 'bottom');
-								return;
-							}
-							
-							let creators = song.ar;
-							let creator_str = '';
-							
-							for (let creator of creators) {
-								creator_str = creator_str + creator.name;
-							}
-							
-							let played = {
-								id: song_id,
-								url: url,
-								name: song_name,
-								creator: creator_str,
-								cover_image: cover_image,
-								// time: 0, //上次播放的位置
-							}
-							
-							this.$store.commit('set_played', played);
-							
-							$repeater.player.start();
-							//直接开始播放, 不用跳转
-							this.close_playlist();
-						});
-					}
-				});
+				$repeater.player.start(song_id, (played)=> {
+					played && this.$store.commit('set_played', played);
+					this.close_playlist();
+				})
 			},
 			change(e) {
 				console.log(e);
+				if (e.show) {
+					setTimeout(()=> {
+						let song_id = this.played.id;
+						const el = this.$refs[`song${song_id}`][0];
+						dom.scrollToElement(el, {
+							offset: 0,
+							animated: false
+						})
+					}, 100);
+				}
 			},
 			
 			close_playlist() {
@@ -152,6 +95,8 @@
 				this.$nextTick(() => {
 					this.$refs.showpopup.open();
 				})
+				
+				
 				
 			},
 		},

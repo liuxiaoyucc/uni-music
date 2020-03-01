@@ -76,6 +76,9 @@
 				});
 				player.addEventListener('ended', ()=> {
 					console.log('on ended');
+					PlayerHelper.next((played)=> {
+						played && this.$store.commit('set_played', played);
+					});
 					this.$store.commit('set_playing', false);
 				});
 				player.addEventListener('error', (e)=> {
