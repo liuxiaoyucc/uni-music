@@ -1,5 +1,7 @@
 function get(url, params, success_cb, failed_cb) {
 	
+	helper.toast('loading', '加载中...', 10000)
+	
 	let uri = config.HOST + url;
 
 	uni.request({
@@ -13,11 +15,16 @@ function get(url, params, success_cb, failed_cb) {
 		fail:(res) => {
 			failed_cb && failed_cb(res);
 		    console.log('request_fail:url:' + url + ' ; ' + 'errMsg:' + res.errMsg);
-		}    
+		},
+		complete: ()=> {
+			uni.hideToast();
+		}
 	});
 } 
 
 function post(url, params, success_cb, failed_cb) {
+	
+	helper.toast('loading', '加载中...', 10000)
 	
 	uni.request({
 		url: config.HOST + url, 
@@ -29,7 +36,10 @@ function post(url, params, success_cb, failed_cb) {
 		fail:(res) => {
 		    console.log('request_fail:url:' + url + ' ; ' + 'errMsg:' + res.errMsg);
 			failed_cb && failed_cb(res);
-		} 
+		},
+		complete: ()=> {
+			uni.hideToast();
+		}
 	})   
 }
 
@@ -45,6 +55,8 @@ function test() {
 
 
 import config from '../config/config.js';
+import helper from '../helper/helper.js';
+
 export default{
 	get,
 	post,
