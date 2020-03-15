@@ -17,8 +17,11 @@ API.USER_PLAYLIST = 'user/playlist'; // 获取用户歌单
 API.USER_LIKE_LIST = 'likelist'; // 获取用户喜欢的音乐列表
 API.LIKE = 'like'; // 喜欢某个歌曲
 
-//歌单
+// 歌单
 API.PLAYLIST_DETAIL = 'playlist/detail'; // 歌单详情
+
+// 专辑
+API.ALBUM_DETAIL = 'album'; //专辑详情
 
 // 歌曲
 API.SONG = 'song/url'; //获取歌曲url
@@ -28,6 +31,10 @@ API.SONG_DETAIL = 'song/detail'; //获取歌曲详情
 // 搜索
 API.HOT_SEARCH = 'search/hot/detail'; //获取热搜
 API.SEARCH = 'search'; //搜索
+
+
+// Other
+API.BANNER = 'banner'; // 发现页banner图
 
 export default {
 	systemInfo, 

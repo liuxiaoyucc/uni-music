@@ -126,7 +126,14 @@ PlayerHelper.start = function(song_id, cb) {
 		
 		if (song_id == played_music_id) {
 			// 跳转播放详情页并播放
-			console.log('跳转');
+			let player = get_player();
+			if (player.isPaused()) {
+				player.play(()=>{},(e)=> {
+					
+				});;
+			}
+			// this.turn();
+			Helper.to('../play/play');
 			return;
 		}
 		

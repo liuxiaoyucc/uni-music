@@ -94,7 +94,29 @@
 				}
 			}
 		}
-	],
+	    ,{
+            "path" : "pages/album/album",
+            "style" : {
+				"app-plus": {
+					"titleNView": {
+						"titleColor": "#FFFFFF",
+						"titleText": "专辑",
+				
+						"backgroundColor": "rgba(218, 45, 30, 1)",
+						"buttons": [{
+								"fontSrc": "/static/font/iconfont.ttf",
+								"text": "\ue655",
+								"width": "40px",
+								"fontSize": "24px",
+								"color": "#FFFFFF",
+								"background": "rgba(0,0,0,0)"
+							}
+						]
+					}
+				}
+			}
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "cloud music",

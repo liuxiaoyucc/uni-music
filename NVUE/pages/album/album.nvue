@@ -1,0 +1,244 @@
+<template>
+	<view class="page">
+		<list show-scrollbar="false" class="page-list" style="margin-bottom: 90rpx; width: 750rpx; flex: 1;">
+			<cell class="top wyy-main-color">
+				<view class="playlist_intro">
+					<view class="intro-left">
+						<image class="cover-image" :src="album.picUrl"></image>
+					</view>
+					<view class="intro-right">
+						<text class="name">{{album.name}}</text>
+						<view class="creator">
+							<text class="creator-nickname">{{album.artist.name}}</text>
+							<wyy-icon type="&#xe79b;" size="20" color="rgba(255,255,255,.6)" ></wyy-icon>
+						</view>
+						<view class="intro-footer">
+							<text class="description">{{album.description || ''}}</text>
+							<wyy-icon type="&#xe79b;" size="20" color="rgba(255,255,255,.6)" ></wyy-icon>
+						</view>
+					</view>
+				</view>
+				<view class="handle">
+					<div class="c-bar">
+						<wyy-icon type="&#xe668;" size="40" color="#FFFFFF" ></wyy-icon>
+						<text class="c-bar-name">评论</text>
+					</div>
+					<div class="c-bar">
+						<wyy-icon type="&#xe667;" size="40" color="#FFFFFF" ></wyy-icon>
+						<text class="c-bar-name">分享</text>
+					</div>
+					<div class="c-bar">
+						<wyy-icon type="&#xe666;" size="40" color="#FFFFFF" ></wyy-icon>
+						<text class="c-bar-name">下载</text>
+					</div>
+					<div class="c-bar">
+						<wyy-icon type="&#xe665;" size="40" color="#FFFFFF" ></wyy-icon>
+						<text class="c-bar-name">多选</text>
+					</div>
+				</view>
+			</cell>
+			
+			<header class="wyy-main-color">
+				<view class="top-bar">
+					<view class="icon">
+						<wyy-icon type="&#xe601;" size="40" color="#000000" ></wyy-icon>
+					</view>
+					<text class="top-bar-text">播放全部(共{{album.size}}首)</text>
+				</view>
+			</header>
+			
+			
+			<cell v-for="(song, index) in format_songs" :key="index" >
+				<song-card :song="song" :number="index"></song-card>
+			</cell>
+		</list>
+		
+		
+		<wyy-play v-if="played"></wyy-play>
+		
+	</view>
+</template>
+
+<script>
+	import wyyIcon from '../../components/wyy-icon/wyy-icon.nvue';
+	import wyyPlay from '@/components/wyy-play/wyy_play.nvue';
+	import songCard from '../../components/song_card.nvue';
+	
+	import $repeater from '@/utils/repeater.js';
+	export default {
+		components: {
+			wyyIcon,
+			wyyPlay,
+			songCard
+		},
+		data() {
+			return {
+				show_play: false,
+				album_id: '',
+				album: {
+					artist: {
+						name: '',
+					}
+				},
+				songs: [],
+			}
+		},
+		computed: {
+			played: function() {
+				return this.$store.state.played;
+			},
+			format_songs: function() {
+				
+				if (this.album.size) {
+					let format_songs = [];
+					this.songs.forEach((song)=> {
+						let format_song = {};
+						format_song.id = song.id;
+						format_song.name = song.name;
+						format_song.artists = song.ar;
+						format_song.album_name = song.al.name;
+						format_songs.push(format_song);
+					})
+					return format_songs;
+				}
+			}
+		},
+		onLoad(option) {
+			this.album_id = option.album_id;
+			
+			this.get_album_detail();
+			
+		},
+		onReady() {
+			
+		},
+		onShow() {
+			
+		},
+		beforeDestroy() {
+			
+		},
+		methods: {
+			get_album_detail() {
+				let album_id = this.album_id;
+				$repeater.album.detail(album_id, (data)=> {
+					let album = data.album;
+					
+					uni.setNavigationBarTitle({
+					    title: album.name
+					});
+					
+					this.album = album;
+					this.songs = data.songs;
+				});
+			}
+		}
+	}
+</script>
+
+<style>
+	@import '../../common/wyy.css';
+	.page {
+		flex: 1;
+	}
+	.top {
+		width: 750rpx;
+		padding: 50rpx 30rpx 0rpx 30rpx;
+		
+	}
+	.bottom {
+		width: 750rpx;
+		background-color: #FFFFFF;
+		border-top-left-radius: 25;
+		border-top-right-radius: 25;
+	}
+	
+	.background {
+		width: 750rpx;
+	}
+	.playlist_intro {
+		flex-direction: row;
+	}
+	.cover-image {
+		width: 230rpx;
+		height: 230rpx;
+		border-radius: 10rpx;
+	}
+	.intro-left {
+		padding-right: 30rpx;
+	}
+	.intro-right {
+		width: 430rpx;
+		padding-top: 5rpx;
+	}
+	.name {
+		color: #FFFFFF;
+		font-size: 30rpx;
+		font-weight: bold;
+	}
+	.creator {
+		flex-direction: row;
+		align-items: center;
+		margin-top: 20rpx;
+	}
+	.creator-headimg {
+		width: 50rpx;
+		height: 50rpx;
+		border-radius: 50;
+	}
+	.creator-nickname {
+		font-size: 20rpx;
+		color: rgba(255,255,255,.6);
+	}
+	.description {
+		font-size: 18rpx;
+		color: rgba(255,255,255,.5);
+		text-overflow: ellipsis;
+		width: 430rpx;
+		lines: 2;
+	}
+	.intro-footer {
+		flex-direction: row;
+		position: absolute;
+		left: 0;
+		bottom: 5rpx;
+		text-overflow: ellipsis;
+	}
+	.handle {
+		width: 690rpx;
+		height: 140rpx;
+		flex-direction: row;
+		
+		align-items: center;
+		justify-content: space-between;
+	}
+	.c-bar {
+		width: 150rpx;
+		padding: 10rpx 0;
+		flex-direction: column;
+		align-items: center;
+	}
+	.c-bar-name{
+		font-size: 18rpx;
+		color: #FFFFFF;
+		margin-top: 10rpx;
+	}
+	
+	.top-bar {
+		flex-direction: row;
+		align-items: center;
+		width: 750rpx;
+		height: 90rpx;
+		border-top-left-radius: 25;
+		border-top-right-radius: 25;
+		background-color: #FFFFFF;
+		
+	}
+	.icon {
+		padding: 0 30rpx;
+	}
+	.top-bar-text {
+		font-size: 26rpx;
+		color: #000000;
+	}
+</style>

@@ -8,6 +8,8 @@ import user from '../model/user.js';
 import playlist from '../model/playlist.js';
 import song from '../model/song.js';
 import search from '../model/search.js';
+import other from '../model/other.js';
+import album from '../model/album.js';
 
 export default{ 
 	config,
@@ -17,5 +19,7 @@ export default{
 	player,
 	storage,
 	song,
-	search
+	search,
+	other,
+	album
 }
