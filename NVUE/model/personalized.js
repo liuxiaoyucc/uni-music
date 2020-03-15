@@ -1,9 +1,9 @@
-let Other = {};
+let Personalized = {};
 
-Other.banner = function(cb) {
-	let url = config.API.BANNER;
-
-	request.get(url, {type: 1}, (res)=> {
+Personalized.playlist = function(cb, limit) {
+	let url = config.API.PERSONALIZED_PLAYLIST;
+	limit = limit || 10;
+	request.get(url, {limit: limit}, (res)=> {
 		let data = res.data
 		if (data.code == 200) {
 			cb && cb(data)
@@ -13,10 +13,8 @@ Other.banner = function(cb) {
 	})
 }
 
-// 需登陆后调用
-Other.recommend_resource = function(cb) {
-	let url = config.API.RECOMMEND_RESOURCE;
-	
+Personalized.newsong = function(cb) {
+	let url = config.API.PERSONALIZED_NEWSONG;
 	request.get(url, {}, (res)=> {
 		let data = res.data
 		if (data.code == 200) {
@@ -30,4 +28,4 @@ Other.recommend_resource = function(cb) {
 import config from '../config/config.js';
 import request from '../utils/request.js';
 
-module.exports = Other;
+module.exports = Personalized;

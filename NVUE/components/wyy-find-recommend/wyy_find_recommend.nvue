@@ -11,14 +11,14 @@
 		</div>
 
 		<div class="music-lists">
-			<div class="music-list" v-for="(musicList,mlIndex) in musicLists" :key="mlIndex">
-				<image class="ml-bg-image" resize="cover" :src="musicList.imageSrc"></image>
+			<div class="music-list" v-for="(playlist,mlIndex) in recommend_playlists" :key="mlIndex" @tap="to_playlist(playlist)">
+				<image class="ml-bg-image" resize="cover" :src="playlist.picUrl"></image>
 				<div class="music-list-header" v-if="showImageMask">
-					<text class="favorite-num">{{musicList.favoriteNum+'万'}}</text>
+					<text class="favorite-num">{{playlist.playCount}}</text>
 				</div>
 
 				<div class="music-list-footer">
-					<text class="list-name">{{musicList.name}}</text>
+					<text class="list-name">{{playlist.name}}</text>
 				</div>
 			</div>
 		</div>
@@ -30,6 +30,7 @@
 </template>
 
 <script>
+	import $repeater from '@/utils/repeater.js';
 	export default {
 
 		components: {
@@ -43,46 +44,25 @@
 		},
 		data() {
 			return {
-				musicLists: [{
-						name: "27摄氏度 · 百变女声 述说温柔难熬的日子总会过去",
-						imageSrc: "http://p2.music.126.net/k4Jf02PFkboURrSnx84KkQ==/109951164009635027.jpg?param=400y400",
-						favoriteNum: 113
-					},
-					{
-						name: "成年人治愈指南 | 难熬的日子总会过去",
-						imageSrc: "http://p2.music.126.net/1xMKMranfCMzqSYS18E0Qw==/109951164001836919.jpg?param=400y400",
-						favoriteNum: 537
-					},
-					{
-						name: "让耳朵进化  2019不可错过的音乐惊喜（1）",
-						imageSrc: "http://p2.music.126.net/4PoDd0MtSVQrgDtQDiYKng==/109951164000299153.jpg?param=400y400",
-						favoriteNum: 113
-					},
-					{
-						name: "别让垃圾快乐毁了你的生活",
-						imageSrc: "http://p1.music.126.net/MbnVK0CEGZNw4CBVW0P-fw==/6668538023616484.jpg?param=400y400",
-						favoriteNum: 113
-					},
-					{
-						name: "解困小调|| 春眠不觉晓 出来遛遛好",
-						imageSrc: "http://p2.music.126.net/jVQ9ADRPwR0ix_7yxNXbng==/109951163967498841.jpg?param=400y400",
-						favoriteNum: 113
-					},
-					{
-						name: "嫁给爱情的刘诗诗，消失了",
-						imageSrc: "http://p1.music.126.net/mkjJNz-ejeuTecN4lDf5jQ==/109951164010070190.jpg?param=400y400",
-						favoriteNum: 113
-					}
-				]
+				recommend_playlists: []
 			}
 		},
 		created() {
-
+			this.get_recommend_playlists();
 		},
 		watch: {
 
 		},
 		methods: {
+			to_playlist(playlist) {
+				$repeater.helper.to('/pages/playlist/playlist?playlist_id=' + playlist.id + '&cover_image=' + playlist.picUrl + '&name=' + playlist.name);
+			},
+			get_recommend_playlists() {
+				$repeater.personalized.playlist((res)=> {
+					console.log(res);
+					this.recommend_playlists = res.result;
+				}, 6)
+			},
 			toMusicList() {
 				console.log('toMusicList');
 			}

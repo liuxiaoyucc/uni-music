@@ -106,7 +106,6 @@
 			},
 			init_banner() {
 				$repeater.other.banner((res)=> {
-					console.log(res);
 					this.banners = res.banners;
 				});
 			},

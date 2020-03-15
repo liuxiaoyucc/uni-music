@@ -14,15 +14,21 @@
 		</div>
 		
 		<view class="slider">
-			<view class="frame" v-if="dIndex == titleIndex" v-for="(data,dIndex) in freshData" :key="dIndex">
-				<div class="music-lists">
-					<div class="music-list" v-for="(musicList,mlIndex) in data.data" :key="mlIndex">
-						<image class="ml-bg-image" resize="cover" :src="musicList.imageSrc"></image>
-						<div class="music-list-header" v-if="showImageMask">
-							<text class="favorite-num">{{musicList.favoriteNum+'万'}}</text>
-						</div>
+			<view class="frame">
+				<div class="music-lists" v-if="titleIndex == 0">
+					<div class="music-list" v-for="(album,a_index) in albums" :key="a_index" @tap="to_album(album.id)">
+						<image class="ml-bg-image" resize="cover" :src="album.picUrl"></image>
 						<div class="music-list-footer">
-							<text class="list-name">{{musicList.name}}</text>
+							<text class="list-name">{{album.name}}</text>
+						</div>
+					</div>
+				</div>
+				
+				<div class="music-lists" v-if="titleIndex == 1">
+					<div class="music-list" v-for="(song,s_index) in songs" :key="s_index" @tap="to_play(song.id)">
+						<image class="ml-bg-image" resize="cover" :src="song.picUrl"></image>
+						<div class="music-list-footer">
+							<text class="list-name">{{song.name}}</text>
 						</div>
 					</div>
 				</div>
@@ -33,21 +39,23 @@
 </template>
 
 <script>
+	import $repeater from '@/utils/repeater.js';
 	export default {
 
 		components: {
 
 		},
 		props: {
-			showImageMask: {
-				type: Boolean,
-				default: false
-			}
+			
 		},
 		data() {
 			return {
 				titleIndex:0,
 				imageInfo:[],
+				
+				albums: [],
+				songs: [],
+				
 				freshData: [{
 						title: "新碟",
 						handle:'更多新碟',
@@ -92,7 +100,7 @@
 			}
 		},
 		created() {
-
+			this.init();
 		},
 		watch: {
 			
@@ -101,8 +109,28 @@
 			
 		},
 		methods: {
-			toMusicList() {
-				
+			init() {
+				this.init_album();
+				this.init_song();
+			},
+			init_album() {
+				$repeater.top.album((res)=> {
+					this.albums = res.albums;
+				}, 3)
+			},
+			init_song() {
+				$repeater.personalized.newsong((res)=> {
+					this.songs = res.result.slice(0, 3);
+				})
+			},
+			to_play(song_id) {
+				$repeater.player.start(song_id, (played)=> {
+					played && this.$store.commit('set_played', played);
+					$repeater.helper.to('../play/play');
+				})
+			},
+			to_album(album_id) {
+				$repeater.helper.to('../album/album?album_id=' + album_id);
 			},
 			changeIndex(tIndex){
 				this.titleIndex = tIndex;

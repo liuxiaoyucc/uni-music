@@ -35,6 +35,14 @@ API.SEARCH = 'search'; //搜索
 
 // Other
 API.BANNER = 'banner'; // 发现页banner图
+API.RECOMMEND_RESOURCE = 'recommend/resource'; // 每日推荐歌单
+
+// 私人推荐
+API.PERSONALIZED_PLAYLIST = 'personalized'; // 推荐歌单
+API.PERSONALIZED_NEWSONG = 'personalized/newsong'; // 推荐新歌
+
+// 各类排行top
+API.TOP_ALBUM = 'top/album'; // 新碟上架
 
 export default {
 	systemInfo, 
