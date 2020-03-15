@@ -25,7 +25,7 @@
 				</div>
 				
 				<div class="music-lists" v-if="titleIndex == 1">
-					<div class="music-list" v-for="(song,s_index) in songs" :key="s_index" @tap="to_play(song.id)">
+					<div class="music-list" v-for="(song,s_index) in songs" :key="s_index" @tap="to_play(song.song)">
 						<image class="ml-bg-image" resize="cover" :src="song.picUrl"></image>
 						<div class="music-list-footer">
 							<text class="list-name">{{song.name}}</text>
@@ -123,11 +123,22 @@
 					this.songs = res.result.slice(0, 3);
 				})
 			},
-			to_play(song_id) {
+			to_play(song) {
+				let song_id = song.id
 				$repeater.player.start(song_id, (played)=> {
 					played && this.$store.commit('set_played', played);
+					this.update_current_playlist(song);
 					$repeater.helper.to('../play/play');
 				})
+			},
+			update_current_playlist(song) {
+				let format_song = {};
+				format_song.id = song.id;
+				format_song.name = song.name;
+				format_song.artists = song.artists;
+				format_song.album_name = song.album.name;
+				
+				this.$store.commit('push_current_playlist', format_song);
 			},
 			to_album(album_id) {
 				$repeater.helper.to('../album/album?album_id=' + album_id);

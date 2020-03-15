@@ -79,6 +79,16 @@
 						})
 						this.$store.commit('set_current_playlist', format_songs);
 					});
+				}else {
+					// 不存在playlist_id, 则直接将此歌曲插入到播放列表中
+					let song = this.song;
+					let format_song = {};
+					format_song.id = song.id;
+					format_song.name = song.name;
+					format_song.artists = song.artists;
+					format_song.album_name = song.album_name;
+					
+					this.$store.commit('push_current_playlist', format_song);
 				}
 				
 			},

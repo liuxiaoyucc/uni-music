@@ -113,7 +113,7 @@
 			banner_tap(obj) {
 				switch (obj.targetType){
 					case 1: //单曲
-						this.to_play(obj.targetId);
+						this.to_play(obj.song);
 						break;
 					case 10: //专辑
 						this.to_album(obj.targetId);
@@ -127,12 +127,23 @@
 						break;
 				}
 			},
-			to_play(song_id) {
+			to_play(song) {
+				console.log(song);
+				let song_id = song.id;
 				$repeater.player.start(song_id, (played)=> {
 					played && this.$store.commit('set_played', played);
-					
+					this.update_current_playlist(song);
 					$repeater.helper.to('../play/play');
 				})
+			},
+			update_current_playlist(song) {
+				let format_song = {};
+				format_song.id = song.id;
+				format_song.name = song.name;
+				format_song.artists = song.ar;
+				format_song.album_name = song.al.name;
+				
+				this.$store.commit('push_current_playlist', format_song);
 			},
 			to_album(album_id) {
 				$repeater.helper.to('../album/album?album_id=' + album_id);

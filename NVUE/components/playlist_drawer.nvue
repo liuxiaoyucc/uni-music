@@ -73,7 +73,7 @@
 				})
 			},
 			change(e) {
-				console.log(e);
+				// 这里暂时会报一个错误, 因为当前播放的歌曲, 不在播放列表中, 这个问题在将歌曲添加到列表中后会自动解决, 暂时不影响使用
 				if (e.show) {
 					setTimeout(()=> {
 						let song_id = this.played.id;
@@ -82,7 +82,7 @@
 							offset: 0,
 							animated: false
 						})
-					}, 100);
+					}, 300);
 				}
 			},
 			
