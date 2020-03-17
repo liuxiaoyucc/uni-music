@@ -56,6 +56,10 @@
 	background-color: rgba(0,0,0,0.05);
 	justify-content: space-between;
 }
+.video-play {
+	width: 700rpx;
+	height: 400rpx;
+}
 
 .title-left{
 	height: 90rpx;

@@ -44,6 +44,10 @@ API.PERSONALIZED_NEWSONG = 'personalized/newsong'; // 推荐新歌
 // 各类排行top
 API.TOP_ALBUM = 'top/album'; // 新碟上架
 
+// 视频
+API.VIDEO_LIST = 'video/group'; // 按分类获取视频列表, 需登录
+
+
 export default {
 	systemInfo, 
 	status_bar_height,

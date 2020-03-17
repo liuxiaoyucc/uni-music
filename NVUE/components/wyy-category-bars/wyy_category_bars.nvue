@@ -1,15 +1,16 @@
 <template>
 
 	<scroller class="category-bars" scroll-direction="horizontal">
-		<div class="c-bar" v-for="(bar,i) in bars" :key="i">
+		<view class="c-bar" v-for="(bar,i) in bars" :key="i" @tap="test">
 			<image class="c-bar-image" resize="cover" :src="bar.iconSrc"></image>
-			<div class="c-bar-text"><text class="c-bar-name">{{bar.name}}</text></div>
-		</div>
+			<view class="c-bar-text"><text class="c-bar-name">{{bar.name}}</text></view>
+		</view>
 	</scroller>
 
 </template>
 
 <script>
+	import $repeater from '@/utils/repeater.js';
 	export default {
 		props: {
 			bars: {
@@ -24,8 +25,8 @@
 			};
 		},
 		methods: {
-			testClick(i) {
-				console.log(i);
+			test() {
+				// $repeater.helper.to('../video/video');
 			}
 		},
 		created() {

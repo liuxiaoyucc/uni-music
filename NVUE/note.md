@@ -36,7 +36,10 @@ uniapp提供了过度动画组件uni-transition, 尝试一下
 
 11. uniapp的popup组件, 弹出时偶尔不显示动画
 
-
+12. v3下, 视频流组件有bug, 暂时搁置, 未找到原因啊啊啊啊啊啊, 莫名其妙
+```
+TypeError: undefined is not an object (evaluating 'n.attr.id')
+```
 ## TODO
 1. 使用plus的音频管理替代uni, 可以获取到播放状态
 2. 将playing放到哪里管理呢

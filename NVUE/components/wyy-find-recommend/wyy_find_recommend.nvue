@@ -59,7 +59,6 @@
 			},
 			get_recommend_playlists() {
 				$repeater.personalized.playlist((res)=> {
-					console.log(res);
 					this.recommend_playlists = res.result;
 				}, 6)
 			},

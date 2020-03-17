@@ -1,0 +1,76 @@
+<template>
+	<view class="box">
+		<video :src="src" :id="`video_${vid}`" class="video">
+			<cover-image class="img" :src="poster" v-if="!playing"></cover-image>
+		</video>
+	</view>
+</template>
+
+<script>
+	export default{ 
+		props:{
+			vid: {
+				type: String,
+				default: '',
+			},
+			src:{
+				type:String,
+				default:''
+			},
+			playing:{
+				type:Boolean,
+				default:false
+			},
+			poster:{ //视频封面的图片
+				type:String,
+				default:''
+			}
+		},
+		data(){
+			return{
+				
+			}
+		},
+		mounted() {
+			this.videoCtx = uni.createVideoContext(`video_${this.vid}`);
+		},
+		onReady() {
+			
+		},
+		methods:{
+			videoPlay(flag){
+				if(flag){
+					
+					this.videoCtx.play();
+				}else{
+					this.videoCtx.pause();
+					
+				}
+			},
+			
+			waiting(){
+				
+			}
+		},
+		watch:{
+			playing(newVal,oldVal){
+				this.videoPlay(newVal)
+			},
+		},
+		computed:{
+			
+		}
+	}
+</script>
+
+<style>
+	.video{
+		height: 422rpx;
+		width: 750rpx;
+	}
+	.img{
+		position: absolute;
+		height: 422rpx;
+		width: 750rpx;
+	}
+</style>

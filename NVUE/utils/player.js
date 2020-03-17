@@ -9,7 +9,7 @@ function get_player() {
 PlayerHelper.set_url = function(url) {
 	
 	url = url || Storage.get_played().url;
-	console.log('set_url:' + url);
+	// console.log('set_url:' + url);
 	let player = get_player();
 	player.setStyles({
 		src: url

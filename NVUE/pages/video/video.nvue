@@ -1,0 +1,128 @@
+<template>
+	<view class="page">
+		<list style="flex: 1;" @loadmore="load_more_video">
+			<cell>
+				<view :style="{ height: statusbar_height + 'px'}" style="background-color: #000000;"></view>
+				<view class="custom"></view> 
+			</cell>
+			<cell v-for="(video,index) in videos" :key="index" class="video-box" >
+				<view @appear="appear($event, index)" @disappear="disappear($event, index)">
+					<video-card :vid="video.id" class="video" :playing="playing_index == index" :src="video.src" :poster="video.cover_image" ></video-card>
+					<cover-view class="videoMask" v-if="playing_index != index"></cover-view>
+				</view>
+				
+				
+				<view class="video-info">
+					<view class="description" style="height: 90rpx; width: 750rpx; background-color: #FF0000;justify-content: center;padding-left: 10rpx;">
+						<text style="font-size: 26rpx; color: #FFFFFF;">Try Everything 励志, 治愈型混剪, 今天心情好好!</text>
+					</view>
+					<view class="author" style="height: 90rpx; width: 750rpx; background-color: #FFB400;justify-content: center;padding-left: 10rpx;">
+						
+					</view>
+				</view>
+			</cell>
+		</list>
+		
+	</view>
+</template>
+
+<script>
+	import videoCard from '@/components/video_card.nvue';
+	
+	import $repeater from '@/utils/repeater.js';
+	
+	export default {
+		components:{
+			videoCard
+		},
+		data() {
+			return {
+				playing_index: 0,
+				videos: [
+					{
+						id: 'video1', 
+						src: 'https://dcloud-img.oss-cn-hangzhou.aliyuncs.com/guide/uniapp/%E7%AC%AC1%E8%AE%B2%EF%BC%88uni-app%E4%BA%A7%E5%93%81%E4%BB%8B%E7%BB%8D%EF%BC%89-%20DCloud%E5%AE%98%E6%96%B9%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B@20181126.mp4',
+						playing: false,
+						cover_image: 'https://p2.music.126.net/7H_7dbSi9GDi9xHDGix4Gg==/109951164800893030.jpg',
+					},
+					{cover_image: 'https://p2.music.126.net/7H_7dbSi9GDi9xHDGix4Gg==/109951164800893030.jpg', playing: false, id: 'video2', src: 'https://dcloud-img.oss-cn-hangzhou.aliyuncs.com/guide/uniapp/%E7%AC%AC1%E8%AE%B2%EF%BC%88uni-app%E4%BA%A7%E5%93%81%E4%BB%8B%E7%BB%8D%EF%BC%89-%20DCloud%E5%AE%98%E6%96%B9%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B@20181126.mp4'},
+					{cover_image: 'https://p2.music.126.net/7H_7dbSi9GDi9xHDGix4Gg==/109951164800893030.jpg', playing: false, id: 'video3', src: 'https://dcloud-img.oss-cn-hangzhou.aliyuncs.com/guide/uniapp/%E7%AC%AC1%E8%AE%B2%EF%BC%88uni-app%E4%BA%A7%E5%93%81%E4%BB%8B%E7%BB%8D%EF%BC%89-%20DCloud%E5%AE%98%E6%96%B9%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B@20181126.mp4'},
+					{cover_image: 'https://p2.music.126.net/7H_7dbSi9GDi9xHDGix4Gg==/109951164800893030.jpg', playing: false, id: 'video4', src: 'https://dcloud-img.oss-cn-hangzhou.aliyuncs.com/guide/uniapp/%E7%AC%AC1%E8%AE%B2%EF%BC%88uni-app%E4%BA%A7%E5%93%81%E4%BB%8B%E7%BB%8D%EF%BC%89-%20DCloud%E5%AE%98%E6%96%B9%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B@20181126.mp4'},
+					{cover_image: 'https://p2.music.126.net/7H_7dbSi9GDi9xHDGix4Gg==/109951164800893030.jpg', playing: false, id: 'video5', src: 'https://dcloud-img.oss-cn-hangzhou.aliyuncs.com/guide/uniapp/%E7%AC%AC1%E8%AE%B2%EF%BC%88uni-app%E4%BA%A7%E5%93%81%E4%BB%8B%E7%BB%8D%EF%BC%89-%20DCloud%E5%AE%98%E6%96%B9%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B@20181126.mp4'},
+					{cover_image: 'https://p2.music.126.net/7H_7dbSi9GDi9xHDGix4Gg==/109951164800893030.jpg', playing: false, id: 'video6', src: 'https://dcloud-img.oss-cn-hangzhou.aliyuncs.com/guide/uniapp/%E7%AC%AC1%E8%AE%B2%EF%BC%88uni-app%E4%BA%A7%E5%93%81%E4%BB%8B%E7%BB%8D%EF%BC%89-%20DCloud%E5%AE%98%E6%96%B9%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B@20181126.mp4'},
+				],
+				
+			}
+		},
+		computed: {
+			statusbar_height() {
+				return $repeater.config.status_bar_height
+			}
+		},
+		watch:{
+			
+		},
+		beforeCreate() {
+			
+		},
+		created() {
+			
+		},
+		async mounted() {
+			
+		},
+		onHide(){
+			
+		},
+		
+		methods: {
+			
+			appear(e, index) {
+				if (e.direction == 'down' && this.playing_index - 1 == index ) {
+					this.playing_index --;
+					console.log('appear' + index);
+				}
+			},
+			disappear(e, index) {
+				if (e.direction == 'up' && this.playing_index == index) {
+					this.playing_index ++;
+				}
+			},
+			load_more_video() {
+				//触底加载更多视频
+				
+				// this.videos.push({cover_image: 'https://p2.music.126.net/7H_7dbSi9GDi9xHDGix4Gg==/109951164800893030.jpg', playing: false, id: 'video6', src: 'http://vodkgeyttp8.vod.126.net/cloudmusic/obj/core/1688065087/d506bd18c201b8b22553c5ad344046e4.mp4?wsSecret=b5a7a53d619671f630d30ea982499c19&wsTime=1584412900'});
+			},
+		},
+		
+	}
+</script>
+
+<style scoped>
+	.page{
+		background-color: #000;
+		flex: 1;
+	}
+	.custom{
+		height: 100rpx;
+		width: 750rpx;
+		background-color: #000;
+	}
+
+	.video-box{
+		
+		background-color: #000;
+	}
+	.video{
+		
+		width: 750rpx;
+	}
+	.videoMask{
+		position: absolute;
+		top: 0;
+		height: 422rpx;
+		width: 750rpx;
+		background-color:  rgba(0,0,0,0.7);
+	}
+	
+</style>

@@ -78,6 +78,7 @@
 			"style": {
 				"app-plus": {
 					"titleNView": {
+						"titleAlign": "left",
 						"titleColor": "#FFFFFF",
 						"titleText": "加载中...",
 
@@ -112,6 +113,22 @@
 								"background": "rgba(0,0,0,0)"
 							}
 						]
+					}
+				}
+			}
+        }
+        ,{
+            "path" : "pages/video/video",
+            "style" : {
+				"app-plus": {
+					"animationType": "fade-in",
+					"titleNView": {
+						// "type": "transparent",
+						"titleColor": "#FFFFFF",
+						"titleText": "精彩视频",
+						"backgroundColor": "rgba(0, 0, 0, .2)",
+						"titleAlign": "left",
+						"type": "float"
 					}
 				}
 			}

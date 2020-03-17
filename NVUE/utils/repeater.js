@@ -12,6 +12,7 @@ import other from '../model/other.js';
 import album from '../model/album.js';
 import personalized from '../model/personalized.js';
 import top from '../model/top.js';
+import video from '../model/video.js';
 
 export default{ 
 	config,
@@ -25,5 +26,6 @@ export default{
 	other,
 	album,
 	personalized,
-	top
+	top,
+	video
 }
