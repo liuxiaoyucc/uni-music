@@ -10,7 +10,7 @@
 					</view>
 				</cell>
 			</list>
-			<view v-else style="flex: 1;justify-content: center;">
+			<view v-else style="flex: 1;justify-content: center;" @tap="change_container()">
 				<text class="lyric-row-text">纯音乐, 请欣赏</text>
 			</view>
 		</uni-transition>
@@ -246,7 +246,7 @@
 			get_lyric() {
 				$repeater.song.get_lyric(this.played.id, (data)=> {
 					
-					if (data.nolyric) {
+					if (data.nolyric || !data.lrc.lyric) {
 						console.log('暂无歌词');
 						this.nolyric = true;
 						return;

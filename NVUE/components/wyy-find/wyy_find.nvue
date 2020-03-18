@@ -1,6 +1,6 @@
 <template>
 
-	<list>
+	<list style="flex: 1;">
 		<refresh class="wyy-main-color wyy-refresh" @refresh="onrefresh" @pullingdown="onpullingdown" :display="refreshDisplay">
 			<loading-indicator class="wyy-loading-indicator"></loading-indicator>
 		</refresh>
@@ -8,23 +8,48 @@
 		<cell>
 			<div class="find-slider">
 				<div class="wyy-main-color bg-slider"></div>
-				
-				<swiper class="slider" circular indicator-dots indicator-active-color="rgba(218, 45, 30, 1)" autoplay :interval="interval" :duration="duration">
+
+				<swiper class="slider" circular indicator-dots indicator-active-color="rgba(218, 45, 30, 1)" autoplay :interval="interval"
+				 :duration="duration">
 					<swiper-item class="frame" v-for="(banner, index) in banners" :key="index" @tap="banner_tap(banner)">
 						<image class="image" resize="cover" :src="banner.pic"></image>
 					</swiper-item>
 				</swiper>
-				
+
 			</div>
-
-			<wyy-category-bars :bars="categoryBars"></wyy-category-bars>
-
-			<wyy-find-recommend showImageMask=true></wyy-find-recommend>
-
-			<wyy-find-fresh></wyy-find-fresh>
-
-			<wyy-video-card></wyy-video-card>
 		</cell>
+		<cell>
+			<wyy-category-bars :bars="categoryBars"></wyy-category-bars>
+		</cell>
+
+		<cell>
+			<wyy-find-recommend showImageMask=true></wyy-find-recommend>
+		</cell>
+
+		<cell>
+			<wyy-find-fresh></wyy-find-fresh>
+		</cell>
+		
+		<cell>
+			<div class="line"></div>
+			<div class="header">
+				<div class="header-left">
+					<div class="header-name">
+						<text class="header-common">云村精选</text>
+					</div>
+				</div>
+				<div class="header-right" @tap="refresh_video">
+					<text class="header-handle">获取新内容</text>
+				</div>
+			</div>
+		</cell>
+		<cell v-for="(video,vIndex) in videos" :key="vIndex" v-if="video.type == 1">
+			<!-- 现在没有控制同时只播放一个视频, 需要自定义控制播放 -->
+			<wyy-video-card :video="video"></wyy-video-card>
+			<div class="line"></div>
+		</cell>
+
+
 
 		<loading class="wyy-loading" @loading="onloading" :display="loadinging ? 'show' : 'hide'">
 			<loading-indicator class="wyy-loading-indicator"></loading-indicator>
@@ -38,9 +63,9 @@
 	import wyyFindRecommend from '@/components/wyy-find-recommend/wyy_find_recommend.nvue';
 	import wyyFindFresh from '@/components/wyy-find-fresh/wyy_find_fresh.nvue';
 	import wyyVideoCard from '@/components/wyy-video-card/wyy_video_card.nvue';
-	
+
 	import $repeater from '@/utils/repeater.js';
-	
+
 	export default {
 		components: {
 			wyyCategoryBars,
@@ -60,10 +85,11 @@
 			return {
 				interval: 2000,
 				duration: 500,
-				
+
 				refreshing: false,
 				loadinging: false,
 				banners: [],
+				videos: [],
 				categoryBars: [{
 						name: "每日推荐",
 						id: "recommend",
@@ -100,28 +126,36 @@
 
 		},
 		methods: {
-			
+			refresh_video() {
+				this.init_videos();
+			},
 			init() {
 				this.init_banner();
+				this.init_videos();
 			},
 			init_banner() {
-				$repeater.other.banner((res)=> {
+				$repeater.other.banner((res) => {
 					this.banners = res.banners;
 				});
 			},
-			
+			init_videos() {
+				let type_id = 60100;
+				$repeater.video.list(type_id, (res)=> {
+					this.videos = res.datas;
+				})
+			},
 			banner_tap(obj) {
-				switch (obj.targetType){
+				switch (obj.targetType) {
 					case 1: //单曲
 						this.to_play(obj.song);
 						break;
 					case 10: //专辑
 						this.to_album(obj.targetId);
 						break;
-					// case 1004: //MV
-					// 	break;
-					// case 3000: //外链
-					// 	break;
+						// case 1004: //MV
+						// 	break;
+						// case 3000: //外链
+						// 	break;
 					default:
 						$repeater.helper.toast('none', '暂未处理该类型数据', 2000, false, 'bottom');
 						break;
@@ -130,7 +164,7 @@
 			to_play(song) {
 				console.log(song);
 				let song_id = song.id;
-				$repeater.player.start(song_id, (played)=> {
+				$repeater.player.start(song_id, (played) => {
 					played && this.$store.commit('set_played', played);
 					this.update_current_playlist(song);
 					$repeater.helper.to('../play/play');
@@ -142,7 +176,7 @@
 				format_song.name = song.name;
 				format_song.artists = song.ar;
 				format_song.album_name = song.al.name;
-				
+
 				this.$store.commit('push_current_playlist', format_song);
 			},
 			to_album(album_id) {
@@ -170,6 +204,6 @@
 </script>
 
 <style>
-@import '../../common/wyy.css';
-@import '../../components/wyy-find/wyy_find.css';
+	@import '../../common/wyy.css';
+	@import '../../components/wyy-find/wyy_find.css';
 </style>

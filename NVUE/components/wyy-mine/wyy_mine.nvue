@@ -12,8 +12,13 @@
 			<wyy-mine-fold :current_list="created_list" :number="subcount.createdPlaylistCount"></wyy-mine-fold>
 		</cell>
 		
-		<cell>
+		<cell v-if="favor_list.length > 0" >
 			<wyy-mine-fold :current_list="favor_list" musicListName="收藏的歌单" musicListType="favor" :number="subcount.subPlaylistCount"></wyy-mine-fold>
+		</cell>
+		
+		<cell v-if="favor_list.length == 0">
+			<view style="height: 100rpx;width: 750rpx;"></view>
+			<wyy-find-recommend  showImageMask=true></wyy-find-recommend>
 		</cell>
 	</list>
 	
@@ -23,7 +28,8 @@
 	import wyyCategoryBars from '@/components/wyy-category-bars/wyy_category_bars.nvue';
 	import wyyMineCell from '@/components/wyy-mine-cell/wyy_mine_cell.nvue';
 	import wyyMineFold from '@/components/wyy-mine-fold/wyy_mine_fold.nvue';
-
+	import wyyFindRecommend from '@/components/wyy-find-recommend/wyy_find_recommend.nvue';
+	
 	import $repeater from '@/utils/repeater.js';
 
 	export default {
@@ -31,6 +37,7 @@
 			wyyCategoryBars,
 			wyyMineCell,
 			wyyMineFold,
+			wyyFindRecommend
 		},
 		data() {
 			return {

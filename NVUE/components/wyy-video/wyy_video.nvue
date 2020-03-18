@@ -1,7 +1,12 @@
 <template>
-	<div>
-		video
-	</div>
+	<view style="flex: 1; justify-content: center; align-items: center;">
+		<image style="width: 500rpx; height: 500rpx;" mode="widthFix" src="../../static/qrcode.jpg"></image>
+		<text>
+			
+			
+			Scan to contact me...
+		</text>
+	</view>
 </template>
 
 <script>

@@ -1,84 +1,76 @@
 <template>
 	<div class="video">
-		<div class="top"></div>
-		<div class="header">
-			<div class="header-left">
-				<div class="header-name">
-					<text class="header-common">云村精选</text>
-				</div>
-			</div>
-			<div class="header-right">
-				<text class="header-handle">获取新内容</text>
-			</div>
-		</div>
+		
 
+		
+			<view class="video-card">
+				
+					<div class="video-info">
+						<video :page-gesture="false" class="video-play" :id="video.data.vid" :src="video.data.urlInfo.url" :poster="video.data.coverUrl">
+							<!-- 自定义封面需要自定义play键, 暂时简单处理 -->
+							<!-- <cover-image class="video-image" :src="video.data.coverUrl"></cover-image> -->
+						</video>
+						
+						
+						<div class="image-mask"></div>
+						<div class="video-title">
+							<div class="title-left">
+								<text class="video-name">{{video.data.title}}</text>
+							</div>
+							<div class="title-right">
+								<image class="avatar" :src="video.data.creator.avatarUrl"></image>
+							</div>
+						</div>
+					</div>
+					
+					<div class="card-footer">
+						<div class="footer-left">
+							<div class="like">
+								<image class="like-icon" src="../../static/rattle/like.png"></image>
+								<text class="like-num"> 701</text>
+							</div>
+							<div class="comment">
+								<image class="comment-icon" src="../../static/rattle/comment.png"></image>
+								<text class="comment-num"> 59</text>
+							</div>
+						</div>
+						<div class="footer-right">
+							<image class="more" src="../../static/rattle/more.png"></image>
+						</div>
+					</div>
+				
+			</view>
 
-		<div class="video-card" v-for="(video,vIndex) in videos" :key="vIndex" v-if="video.type == 1">
-			
-				<div class="video-info">
-					<video :page-gesture="false" class="video-play" :id="video.data.vid" :src="video.data.urlInfo.url" :poster="video.data.coverUrl"></video>
-					<!-- <image class="video-image" resize="cover" :src="video.data.coverUrl"></image> -->
-				
-					<div class="image-mask"></div>
-					<div class="video-title">
-						<div class="title-left">
-							<text class="video-name">{{video.data.title}}</text>
-						</div>
-						<div class="title-right">
-							<image class="avatar" :src="video.data.creator.avatarUrl"></image>
-						</div>
-					</div>
-				</div>
-				
-				<div class="card-footer">
-					<div class="footer-left">
-						<div class="like">
-							<image class="like-icon" src="../../static/rattle/like.png"></image>
-							<text class="like-num"> 701</text>
-						</div>
-						<div class="comment">
-							<image class="comment-icon" src="../../static/rattle/comment.png"></image>
-							<text class="comment-num"> 59</text>
-						</div>
-					</div>
-					<div class="footer-right">
-						<image class="more" src="../../static/rattle/more.png"></image>
-					</div>
-				</div>
-				<div class="top"></div>
-			
-		</div>
+		
 	</div>
 </template>
 
 <script>
-	import $repeater from '../../utils/repeater.js';
+	
 	export default {
 		components: {
 
 		},
 		props: {
-
+			video: {
+				type: Object,
+				default: {}
+			},
 		},
+		
 		data() {
 			return {
 				videos: []
 			}
 		},
 		created() {
-			this.init_videos();
+			
 		},
 		watch: {
 
 		},
 		methods: {
-			init_videos() {
-				let type_id = 60100;
-				$repeater.video.list(type_id, (res)=> {
-					
-					this.videos = res.datas;
-				})
-			}
+			
 		}
 
 	}

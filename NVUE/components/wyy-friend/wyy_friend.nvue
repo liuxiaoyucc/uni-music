@@ -1,7 +1,12 @@
 <template>
-	<div>
-		friend
-	</div>
+	<view style="flex: 1; justify-content: center; align-items: center;">
+		<image style="width: 500rpx; height: 500rpx;" mode="widthFix" src="../../static/qrcode.jpg"></image>
+		<text>
+			
+			
+			Hi! Nice to meet you!
+		</text>
+	</view>
 </template>
 
 <script>
