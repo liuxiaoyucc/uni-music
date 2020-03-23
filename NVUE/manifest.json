@@ -44,10 +44,12 @@
                     "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
                 ]
             },
-            "ios" : {},
+            "ios" : {
+                "UIBackgroundModes" : "audio"
+            },
             /* ios打包配置 */
             "sdkConfigs" : {
-                "ad" : null
+                "ad" : {}
             },
             "icons" : {
                 "android" : {
@@ -85,14 +87,32 @@
             },
             "splashscreen" : {
                 "android" : {
-                    "hdpi" : "",
-                    "xhdpi" : "",
-                    "xxhdpi" : ""
+                    "hdpi" : "static/run.png",
+                    "xhdpi" : "static/run.png",
+                    "xxhdpi" : "static/run.png"
+                },
+                "ios" : {
+                    "iphone" : {
+                        "portrait-896h@3x" : "static/run.png",
+                        "landscape-896h@3x" : "static/run.png",
+                        "portrait-896h@2x" : "static/run.png",
+                        "landscape-896h@2x" : "static/run.png",
+                        "iphonex" : "static/run.png",
+                        "retina55" : "static/run.png",
+                        "iphonexl" : "static/run.png",
+                        "retina55l" : "static/run.png",
+                        "retina47" : "static/run.png",
+                        "retina47l" : "static/run.png",
+                        "retina40" : "static/run.png",
+                        "retina40l" : "static/run.png",
+                        "retina35" : "static/run.png"
+                    }
                 }
             }
         },
         "splashscreen" : {
-            "waiting" : true
+            "waiting" : true,
+            "alwaysShowBeforeRender" : true
         }
     },
     /* SDK配置 */

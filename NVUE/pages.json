@@ -37,7 +37,38 @@
 		}, {
 			"path": "pages/login/login",
 			"style": {
-				"navigationBarTitleText": "登录"
+				"navigationBarTitleText": "登录",
+				"titleNView": false
+			}
+		}, {
+			"path": "pages/login/phone",
+			"style": {
+				"navigationBarTitleText": "手机号登录",
+				"titleNView": {
+					"titleAlign": "left",
+					"backgroundColor": "#FF0000",
+					"titleColor": "#FFFFFF"
+				}
+			}
+		}, {
+			"path": "pages/login/password",
+			"style": {
+				"navigationBarTitleText": "手机号登录",
+				"titleNView": {
+					"titleAlign": "left",
+					"backgroundColor": "#FF0000",
+					"titleColor": "#FFFFFF"
+				}
+			}
+		}, {
+			"path": "pages/login/short_message",
+			"style": {
+				"navigationBarTitleText": "手机号验证",
+				"titleNView": {
+					"titleAlign": "left",
+					"backgroundColor": "#FF0000",
+					"titleColor": "#FFFFFF"
+				}
 			}
 		}
 

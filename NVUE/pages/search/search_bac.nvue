@@ -1,0 +1,215 @@
+<template>
+	<view class="page">
+		<!-- 搜索页 -->
+		<list v-if="!show_result" show-scrollbar="false" class="content search-page">
+			<cell class="title" v-if="false">
+				<text class="title-text">历史记录</text>
+			</cell>
+			<cell class="search-history"></cell>
+			<cell class="title">
+				<text class="title-text">热搜榜</text>
+			</cell>
+			<cell class="hot-item" v-for="(item, index) in hot_list" :key="index" @tap="hot_search(item)">
+				<view class="hot-item-index">
+					<text class="index-text">{{index + 1}}</text>
+				</view>
+				<view class="hot-info">
+					<text class="key_word">{{item.searchWord}}</text>
+					<text class="description">{{item.content}}</text>
+				</view>
+			</cell>
+		</list>
+		<!-- 搜索页END -->
+		
+		<!-- 搜索结果页 -->
+		<view v-else class="content result-page">
+			<scroll-view class="scroll-bar-view" :scroll="false" :scroll-x="true" :show-scrollbar="false">
+				<view class="scroll-bar" >
+					<view class="bar-name" v-for="(item, bar_index) in result_bars" :key="bar_index" @tap="on_tab_tap(bar_index)">
+						<text :class="current_bar_index == bar_index ? 'active-bar' : ''" class="bar-name-text">{{item.name}}</text>
+					</view>
+				</view>
+			</scroll-view>
+			
+			<swiper class="bar-box" :current="current_bar_index" skip-hidden-item-layout @change="tab_changed">
+				<swiper-item v-for="(page, index) in result_bars" :key="index" style="background-color: #00B26A;">
+					<text>{{page.name}}</text>
+				</swiper-item>
+			</swiper>
+		</view>
+		
+		<!-- 搜索结果页END -->
+		
+		<wyy-play v-if="played"></wyy-play>
+	</view>
+</template>
+
+<script>
+	import wyyPlay from '@/components/wyy-play/wyy_play.nvue';
+	import $repeater from '@/utils/repeater.js';
+	
+	export default {
+		components: {
+			wyyPlay
+		},
+		data() {
+			return {
+				hot_list: [],
+				show_result: false,
+				result_bars: [
+					{id: 1018, name: '综合'},
+					{id: 1, name: '单曲'},
+					{id: 1014, name: '视频'},
+					{id: 100, name: '歌手'},
+					{id: 10, name: '专辑'},
+					{id: 1000, name: '歌单'},
+					{id: 1009, name: '主播电台'},
+					{id: 1002, name: '用户'},
+				],
+				current_bar_index: 0,
+			}
+		},
+		computed: {
+			played: function() {
+				return this.$store.state.played;
+			},
+		},
+		onBackPress() {
+			// 如果当前显示的是搜索结果页, 则拦截返回事件, 并关闭结果页
+			if (this.show_result) {
+				this.close_result_page();
+				return true;
+			}
+		},
+		created() {
+			uni.$on('search', this.search);
+			this.get_hot_list()
+		},
+		beforeDestroy() {
+			uni.$off('search');
+		},
+		methods: {
+			on_tab_tap(index) {
+				this.switch_tab(index);
+			},
+			tab_changed(e) {
+				this.switch_tab(e.detail.current);
+			},
+			switch_tab(index) {
+				this.current_bar_index = index;
+			},
+			hot_search(hot) {
+				this.search(hot.searchWord);
+			},
+			on_search(e) {
+				this.search(e.keyword)
+			},
+			search(keyword) {
+				console.log(keyword);
+				this.open_result_page();
+				
+				$repeater.search.search(keyword, 10, 0, (data)=> {
+					console.log(data);
+				});
+			},
+			close_result_page() {
+				this.show_result = false; //关闭结果页
+			},
+			open_result_page() {
+				this.show_result = true; //打开结果页
+			},
+			
+			get_hot_list() {
+				$repeater.search.get_hot_list((data)=> {
+					
+					let hot_list = data.data;
+					//部分介绍结尾可能有换行符\n,需要去掉不然会扰乱样式
+					hot_list.forEach((item)=> {
+						item.content = item.content.trim();
+					})
+					this.hot_list = hot_list;
+				});
+			}
+		}
+	}
+</script>
+
+<style>
+	.page{
+		flex: 1;
+	}
+	.title-text {
+		font-size: 24rpx;
+		font-weight: bold;
+		color: #000000;
+	}
+	.title {
+		height: 80rpx;
+		width: 750rpx;
+		padding: 0 30rpx;
+		justify-content: center;
+	}
+	.content {
+		margin-bottom: 90rpx; 
+		width: 750rpx; 
+		flex: 1;
+	}
+	.hot-item {
+		width: 750rpx;
+		height: 100rpx;
+		flex-direction: row;
+	}
+	.hot-item:active {
+		background-color: rgba(0,0,0,0.1);
+	}
+	.hot-item-index {
+		justify-content: center;
+		align-items: center;
+		width: 100rpx;
+	}
+	.index-text {
+		font-size: 26rpx;
+		color: rgba(0,0,0,0.3);
+	}
+	.hot-info {
+		width: 650rpx;
+		height: 100rpx;
+		justify-content: center;
+	}
+	.key_word {
+		font-size: 26rpx;
+	}
+	.description {
+		font-size: 18rpx;
+		color: rgba(0,0,0,0.3);
+		margin-top: 10rpx;
+	}
+	.scroll-bar-view {
+		width: 750rpx; height: 70rpx; flex-direction: row;
+		background-color: rgba(218, 45, 30, 1);
+	}
+	.scroll-bar {
+		flex-direction: row;
+	}
+	.bar-name {
+		justify-content: center;
+		align-items: center;
+		width: 135rpx;
+	}
+	.bar-name:active {
+		background-color: rgba(0, 0, 0, .1);
+	}
+	.bar-name-text {
+		font-size: 26rpx;
+		color: rgba(255, 255, 255, .6);
+	}
+	.active-bar {
+		font-size: 26rpx;
+		font-weight: bold;
+		color: #FFFFFF;
+	}
+	.bar-box {
+		flex: 1;
+		background-color: #0A98D5;
+	}
+</style>

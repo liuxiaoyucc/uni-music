@@ -1,5 +1,21 @@
 let User = {};
 
+User.check_phone = function(phone, cb) {
+	let url = config.API.CHECK_PHONE;
+	let params = {
+		phone: phone
+	}
+	
+	request.get(url, params, (res)=> {
+		
+		if (res.statusCode == 200) {
+			cb && cb(res.data)
+		}else {
+			console.log('failed');
+		}
+	})
+}
+
 //登陆
 User.login = function(phone, password, cb) {
 	let url = config.API.CELLPHONE_LOGIN;
@@ -7,7 +23,7 @@ User.login = function(phone, password, cb) {
 		phone: phone,
 		password: password
 	}
-	console.log(params);
+	
 	request.post(url, params, (res)=> {
 		if (res.data) {
 			let data = res.data

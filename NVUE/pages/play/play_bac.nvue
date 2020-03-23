@@ -1,0 +1,383 @@
+<template>
+	<view class="page">
+		
+		<view class="container blue" v-if="show_lyric" >
+			<view class="adjust-row"></view>
+			<list class="lyric-list" show-scrollbar="false" @tap="change_container()">
+				<cell class="top-area"></cell>
+				<cell v-for="(row, index) in lyric" :key="index">
+					
+					<view v-if="row[1]" class="lyric-row">
+						<text class="lyric-row-text">{{row[1]}}</text>
+					</view>
+				</cell>
+				
+				<cell class="bottom-area"></cell>
+				
+			</list>
+		</view>
+		<view class="container red" v-else @tap="change_container()">
+			<view class="cover">
+				<image ref="cover_image" class="cover-image" resize="cover" :src="played.cover_image"></image>
+			</view>
+			<view class="option-area">
+				<view class="icon-group">
+					<view class="icon-area">
+						<wyy-icon type="&#xe67a;" size="40" color="#FFFFFF" ></wyy-icon>
+					</view>
+					<view class="icon-area">
+						<wyy-icon type="&#xe666;" size="40" color="#FFFFFF" ></wyy-icon>
+					</view>
+					
+					<view class="icon-area">
+						<wyy-icon type="&#xe668;" size="40" color="#FFFFFF" ></wyy-icon>
+					</view>
+					<view class="icon-area">
+						<wyy-icon type="&#xe67d;" size="40" color="#FFFFFF" ></wyy-icon>
+					</view>
+					
+				</view>
+			</view>
+		</view>
+		
+		<view class="footer">
+			
+			<view class="slider-view">
+				<view class="current_time">
+					<text class="time-text">{{position_show}}</text>
+				</view>
+				
+				<slider @change="alider_change" @changing="slider_changing" class="slider" :min="0" :max="duration" :value="current_position" activeColor="rgba(255,255,255,.7)" backgroundColor="rgba(255,255,255,.4)" block-color="#FFFFFF" block-size="18" />
+				
+				<view class="end_time">
+					<text class="time-text grey-time-text">{{duration_show}}</text>
+				</view>
+			</view>
+			
+			<view class="handle-area">
+				<view class="icon-group">
+					<view class="icon-area loop">
+						<wyy-icon type="&#xe676;" size="40" color="#FFFFFF" ></wyy-icon>
+						<!-- <wyy-icon type="&#xe674;" size="40" color="#FFFFFF" ></wyy-icon>
+						<wyy-icon type="&#xe678;" size="40" color="#FFFFFF" ></wyy-icon> -->
+					</view>
+					<view class="icon-area switch">
+						<wyy-icon type="&#xe66f;" size="40" color="#FFFFFF" ></wyy-icon>
+					</view>
+					
+					<view class="icon-area turn" @tap="turn()">
+						<wyy-icon :type="playing ? '&#xe672;' : '&#xe673;'" size="100" color="#FFFFFF" ></wyy-icon>
+					</view>
+					<view class="icon-area switch">
+						<wyy-icon type="&#xe622;" size="50" color="#FFFFFF" ></wyy-icon>
+					</view>
+					<view class="icon-area list-menu">
+						<wyy-icon type="&#xe671;" size="40" color="#FFFFFF" ></wyy-icon>
+					</view>
+					
+				</view>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	import wyyIcon from '../../components/wyy-icon/wyy-icon.nvue';
+	
+	import $repeater from '@/utils/repeater.js';
+	
+	const animation = weex.requireModule('animation');
+	
+	export default {
+		components: {
+			wyyIcon
+		},
+		data() {
+			return {
+				statusbar_height: $repeater.config.status_bar_height,
+				duration: $repeater.player.get_duration().toFixed(0), //音频总长度单位s
+				current_position: $repeater.player.get_position().toFixed(0), //当前播放位置
+				
+				timer: '', //计时器
+				animation_timer: '',
+				dragging: false, //
+				show_lyric: false, //是否显示歌词
+				
+				lyric: '',
+			};
+		},
+		computed: {
+			position_show() {
+				let minute = parseInt(this.current_position / 60);
+				let second = this.current_position % 60;
+				if (minute < 10) {
+					minute = '0' + minute;
+				}
+				if (second < 10) {
+					second = '0' + second;
+				}
+				return minute + ':' + second;
+			},
+			duration_show() {
+				let minute = parseInt(this.duration / 60);
+				let second = this.duration % 60;
+				if (minute < 10) {
+					minute = '0' + minute;
+				}
+				if (second < 10) {
+					second = '0' + second;
+				}
+				return minute + ':' + second;
+			},
+			playing() {
+				return this.$store.state.playing;
+			},
+			played() {
+				return this.$store.state.played;
+			}
+		},
+		created() {
+			this.init_timer();
+			this.set_title(this.played.name);
+			this.get_lyric();
+		},
+		onReady() {
+			this.init_cover_rotate();
+		},
+		methods: {
+			get_lyric() {
+				$repeater.song.get_lyric(this.played.id, (data)=> {
+					let lyric = data.lrc.lyric;
+					
+					let lines = lyric.split('\n');
+					
+					let new_lyric = [];
+					lines.forEach((line)=> {
+						let new_line = [];
+						if (!line) {
+							return
+						}
+						//哈哈哈,正则没写明白
+						
+						let pattern =/\[\S*\]/g;
+						let time = line.match(pattern)[0];
+						let line_lyric = line.replace(time, '');
+						
+						time = time.replace(/\[/, '');
+						time = time.replace(/\]/, '');
+						
+						new_line[0] = time;
+						new_line[1] = line_lyric;
+						new_lyric.push(new_line);
+					})
+					console.log(JSON.stringify(new_lyric));
+					this.lyric = new_lyric;
+				});
+			},
+			change_container() {
+				console.log(11111);
+				this.show_lyric = !this.show_lyric;
+			},
+			init_cover_rotate() {
+				
+				let cover_image = this.$refs.cover_image;
+				
+				let deg = 0;
+				let degree = deg+'deg';
+				
+				this.animation_timer = setInterval(()=> {
+					if (this.playing) {
+						deg += 20; //步进值
+					}
+					
+					degree = deg+ 'deg';
+					animation.transition(cover_image, {
+						styles: {
+							transform: 'rotate('+degree+')',
+							transformOrigin: 'center center'
+						},
+						duration: 1400, //ms
+						timingFunction: 'linear',
+						delay: 0 //ms
+					},  ()=> {
+						
+						
+					})
+				}, 1400);
+				
+			},
+			set_title(title) {
+				uni.setNavigationBarTitle({
+				    title: title
+				});
+			},
+			slider_changing(e) {
+				this.dragging = true;
+				this.current_position = e.detail.value;
+			},
+			alider_change(e) {
+				console.log(e);
+				let position = e.detail.value;
+				$repeater.player.seek_to(position);
+				this.dragging = false;
+			},
+			turn() {
+				//切换播放暂停状态
+				if (this.playing) {
+					$repeater.player.pause();
+					this.stop_rotate();
+				}else {
+					$repeater.player.start();
+				}
+				
+			},
+			stop_rotate() {
+				
+			},
+			init_timer() {
+				
+				if (this.timer) {
+					clearInterval(this.timer);
+					this.timer = '';
+				}
+				this.timer = setInterval(()=> {
+					
+					if (!this.dragging) {
+						this.current_position = $repeater.player.get_position().toFixed(0)
+					}
+				}, 1000);
+			},
+			next() {
+				
+			},
+			previous() {
+				
+			}
+		},
+	}
+</script>
+
+<style>
+	.red {
+		background-color: #FF0000;
+	}
+	.blue {
+		
+	}
+	.page {
+		flex: 1;
+		background-color: rgba(218, 45, 30, 1);
+	}
+	.header {
+		
+	}
+	.container {
+		flex: 1;
+		
+	}
+	.cover {
+		flex: 1;
+		justify-content: center;
+		align-items: center;
+	}
+	.cover-image {
+		width: 480rpx;
+		height: 480rpx;
+		border-radius: 1000;
+	}
+	.footer {
+		height: 200rpx;
+		width: 750rpx;
+		
+		
+		align-items: center;
+		
+	}
+	
+	.slider-view {
+		width: 750rpx;
+		height: 50rpx;
+		flex-direction: row;
+		
+		justify-content: center;
+		align-items: center;
+	}
+	.slider {
+		width: 630rpx;
+		margin-left: 10rpx;
+		
+	}
+	.current_time {
+		width: 55rpx;
+		
+		align-items: flex-end;
+	}
+	.end_time {
+		width: 55rpx;
+		
+	}
+	.time-text {
+		color: #FFFFFF;
+		font-size: 16rpx;
+	}
+	.grey-time-text {
+		color: rgba(255,255,255,.3);
+	}
+	.option-area {
+		width: 750rpx;
+		
+		align-items: center;
+		padding: 20rpx 30rpx 10rpx 30rpx;
+	}
+	.handle-area {
+		width: 750rpx;
+		
+		align-items: center;
+		padding: 20rpx 30rpx 30rpx 30rpx;
+	}
+	.icon-group {
+		width: 600rpx;
+		height: 90rpx;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+	}
+	.icon-area {
+		width: 120rpx;
+		height: 90rpx;
+		justify-content: center;
+		align-items: center;
+	}
+	
+	.lyric-row {
+		width: 750rpx;
+		height: 65rpx;
+		
+		justify-content: center;
+		align-items: center;
+	}
+	.lyric-row-text{
+		font-size: 26rpx;
+		color: rgba(255,255,255,.8);
+	}
+	.lyric-list {
+		flex: 1;
+		width: 750rpx;
+	}
+	.top-area {
+		height: 600rpx;
+		width: 750rpx;
+		background-color: #00B26A;
+	}
+	.bottom-area {
+		height: 600rpx;
+		width: 750rpx;
+	}
+	.adjust-row {
+		position: absolute;
+		top: 600rpx;
+		width: 750rpx;
+		height: 65rpx;
+		background-color: #2C405A;
+	}
+</style>

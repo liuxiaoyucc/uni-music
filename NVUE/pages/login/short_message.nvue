@@ -1,0 +1,15 @@
+<template>
+	<view class="page">
+		这里发送手机验证码
+	</view>
+</template>
+
+<script>
+	export default {
+		
+	}
+</script>
+
+<style>
+
+</style>

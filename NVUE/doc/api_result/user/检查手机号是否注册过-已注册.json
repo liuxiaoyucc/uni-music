@@ -1,0 +1,28 @@
+{
+	"data": {
+		"exist": 1,
+		"nickname": "大熊BlGBEAR",
+		"hasPassword": true,
+		"code": 200
+	},
+	"statusCode": 200,
+	"header": {
+		"Access-Control-Allow-Methods": "PUT,POST,GET,DELETE,OPTIONS",
+		"X-Powered-By": "Express",
+		"X-Android-Selected-Protocol": "http/1.1",
+		"X-Android-Response-Source": "NETWORK 200",
+		"Access-Control-Allow-Credentials": "true",
+		"Access-Control-Allow-Headers": "X-Requested-With,Content-Type",
+		"Connection": "keep-alive",
+		"X-Android-Sent-Millis": "1584975395113",
+		"cache-control": "max-age=120",
+		"_": "HTTP/1.1 200 OK",
+		"Content-Type": "application/json; charset=utf-8",
+		"Date": "Mon, 23 Mar 2020 14:56:36 GMT",
+		"Content-Length": "68",
+		"ETag": "W/\"44-XvqLgHM8z7TMnqn4i7LFkiJ2hkQ\"",
+		"Access-Control-Allow-Origin": "*",
+		"X-Android-Received-Millis": "1584975395188"
+	},
+	"errMsg": "request:ok"
+}

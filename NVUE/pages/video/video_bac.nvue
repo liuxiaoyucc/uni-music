@@ -1,0 +1,168 @@
+<template>
+	<view class="page">
+		<list style="flex: 1;">
+			<cell style="height: 135rpx;width: 750rpx;"></cell>
+			<cell v-for="(video, index) in videos" :key="index">
+				<video @tap="tap_video" initial-time="0" class="video" :id="video.id" :src="video.src" :controls="disable"
+				 :show-center-play-btn="disable">
+
+					<cover-view class="controls" @tap="invaild_tap" v-if="controls">
+						<image v-if="show_cover_image" class="cover-image" src="https://p2.music.126.net/7H_7dbSi9GDi9xHDGix4Gg==/109951164800893030.jpg"></image>
+
+
+						<view v-if="playing" @tap="pause($event)">
+							<wyy-icon type="&#xe768;" size="80" color="rgba(255,255,255,.6)"></wyy-icon>
+						</view>
+						<view v-else @tap="play($event)">
+							<wyy-icon type="&#xe601;" size="80" color="rgba(255,255,255,.6)"></wyy-icon>
+						</view>
+
+						<view class="footer-controls">
+
+						</view>
+
+					</cover-view>
+
+				</video>
+				<view class="video-info">
+					<view class="description" style="height: 90rpx; width: 750rpx; background-color: #000000;justify-content: center;padding-left: 10rpx;">
+						<text style="font-size: 26rpx; color: #FFFFFF;">Try Everything 励志, 治愈型混剪, 今天心情好好!</text>
+					</view>
+					<view class="author" style="height: 90rpx; width: 750rpx; background-color: #000000;justify-content: center;padding-left: 10rpx;">
+						
+					</view>
+				</view>
+			</cell>
+			
+		</list>
+	</view>
+</template>
+
+<script>
+	import wyyIcon from '@/components/wyy-icon/wyy-icon.nvue';
+	export default {
+		components: {
+			wyyIcon
+		},
+		data() {
+			return {
+				videoContext: {}, //视频对象
+				
+				active_index: 1,
+				playing: false,
+				controls: true,
+				show_cover_image: true,
+				disable: false,
+				
+				videos: [
+					{id: 'video1', src: 'http://vodkgeyttp8.vod.126.net/cloudmusic/obj/core/1688076688/681cfdc88a356e9b9d8e2ad309ce7bba.mp4?wsSecret=03cb6c315f7018185ebccc914e2650b5&wsTime=1584347049'},
+					{id: 'video2', src: 'http://vodkgeyttp8.vod.126.net/cloudmusic/obj/core/1688065087/d506bd18c201b8b22553c5ad344046e4.mp4?wsSecret=de23d791bd7777dfa18342a8f3cdc30d&wsTime=1584351306'},
+					{id: 'video3', src: 'http://vodkgeyttp8.vod.126.net/cloudmusic/obj/core/1688251949/51b508538ae9b2033403a82f7f83d63c.mp4?wsSecret=9caf80e6c16d4427ef557ea097161c9d&wsTime=1584353707'},
+					{id: 'video4', src: 'http://vodkgeyttp8.vod.126.net/cloudmusic/obj/core/1688142685/5eaac8e41e0f22c04dfe4a52eabf2c92.mp4?wsSecret=ebb9d6bd126c050df9d839248fd73cc1&wsTime=1584353718'},
+					{id: 'video5', src: 'http://vodkgeyttp8.vod.126.net/cloudmusic/obj/core/1688417955/77d983ed824d7492d392868b1eb7d05b.mp4?wsSecret=35ce313000205fb51bb8ff64e3e95e83&wsTime=1584353728'},
+					{id: 'video6', src: 'http://vodkgeyttp8.vod.126.net/cloudmusic/obj/core/1688111796/9ad79a0e1a049a527906e5623c323ead.mp4?wsSecret=ffe3710762757a05ae37c26d52cabeff&wsTime=1584353737'},
+				],
+			}
+		},
+		created() {
+
+		},
+		onReady() {
+			
+		},
+		methods: {
+
+			invaild_tap() {
+
+			},
+			play(event) {
+				event && event.stopPropagation();
+				
+				let active_index = this.active_index;
+				let active_id = this.videos[active_index].id
+				this.videoContext = uni.createVideoContext(active_id);
+				
+				this.videoContext.play();
+				
+				this.hide_controls();
+				
+				this.show_cover_image = false;
+				this.playing = true;
+				
+				// uni.showToast({
+				// 	title: '开始播放',
+				// 	icon: 'none'
+				// });
+			},
+			pause(event) {
+				console.log(this.videoContext);
+				event && event.stopPropagation();
+				console.log(1);
+				this.videoContext.pause();
+				console.log(2);
+				this.show_controls();
+				
+				this.playing = false;
+			},
+			show_controls() {
+				this.controls = true;
+			},
+			hide_controls() {
+				this.controls = false;
+			},
+			video_appear(e) {
+				console.log(e);
+			},
+			video_disappear(e) {
+				this.pause();
+				this.show_cover_image = true;
+			},
+			tap_video(e) {
+				
+				if (this.controls && !this.show_cover_image) {
+					this.hide_controls()
+				} else {
+					this.show_controls()
+				}
+			},
+			on_error(e) {
+				console.log(e);
+			}
+		}
+	}
+</script>
+
+<style>
+	.page {
+		background-color: #000000;
+		flex: 1;
+	}
+
+	.footer-controls {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		height: 60rpx;
+		width: 750rpx;
+		background-color: rgba(0,0,0,.2);
+	}
+
+	.cover-image {
+		width: 750rpx;
+		height: 422rpx;
+		position: absolute;
+	}
+
+	.controls {
+		width: 750rpx;
+		height: 422rpx;
+		background-color: rgba(0, 0, 0, .6);
+		justify-content: center;
+		align-items: center;
+	}
+
+	.video {
+		width: 750rpx;
+		height: 422rpx;
+	}
+</style>

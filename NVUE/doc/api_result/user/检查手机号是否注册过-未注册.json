@@ -1,0 +1,30 @@
+{
+	"data": {
+		"exist": -1,
+		"nickname": null,
+		"hasPassword": false,
+		"code": 200
+	},
+	"statusCode": 200,
+	"header": {
+		"etag": "W/\"3b-gZsQCfBRCUO1947zbGTyPFZYEHk\"",
+		"apicache-version": "1.5.3",
+		"content-type": "application/json; charset=utf-8",
+		"X-Android-Selected-Protocol": "http/1.1",
+		"X-Android-Response-Source": "NETWORK 200",
+		"Connection": "keep-alive",
+		"X-Android-Sent-Millis": "1584975326610",
+		"_": "HTTP/1.1 200 OK",
+		"access-control-allow-headers": "X-Requested-With,Content-Type",
+		"cache-control": "max-age=63",
+		"apicache-store": "memory",
+		"access-control-allow-methods": "PUT,POST,GET,DELETE,OPTIONS",
+		"content-length": "59",
+		"Date": "Mon, 23 Mar 2020 14:55:27 GMT",
+		"x-powered-by": "Express",
+		"access-control-allow-origin": "*",
+		"X-Android-Received-Millis": "1584975326649",
+		"access-control-allow-credentials": "true"
+	},
+	"errMsg": "request:ok"
+}

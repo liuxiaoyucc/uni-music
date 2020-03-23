@@ -1,0 +1,90 @@
+<template>
+	<view class="page">
+		<view class="tip">
+			<text class="tip-text">未注册手机号登录后将自动创建账号</text>
+		</view>
+		<input @input="phone_input" v-model="phone" type="number" class="input" placeholder="请输入手机号" />
+		<view class="line"></view>
+		<button @tap="next_step" size="mini" type="warn" class="next-button">下一步</button>
+	</view>
+</template>
+
+<script>
+	import $repeater from '../../utils/repeater.js';
+	export default {
+		data() {
+			return {
+				phone: '',
+			}
+		},
+		methods: {
+
+			phone_input(event) {
+				this.phone = event.detail.value;
+			},
+
+			init() {
+				this.phone = '';
+			},
+
+			next_step() {
+				// 检查该手机号是否注册过, 如果注册过直接跳转输入密码, 没有注册过则走短信验证码
+				let phone = this.phone;
+				console.log(phone);
+				$repeater.user.check_phone(phone, (res) => {
+					console.log(res);
+					if (res.exist == 1) {
+						$repeater.helper.to('./password?phone=' + phone);
+					} else if (res.exist == -1) {
+						$repeater.helper.to('./short_message?phone=' + phone);
+						setTimeout(function() {
+							$repeater.helper.toast('none', '手机号未注册', 2000, false, 'bottom');
+						}, 0);
+					} else {
+						setTimeout(function() {
+							$repeater.helper.toast('none', res.msg, 2000, false, 'bottom');
+						}, 0);
+					}
+				});
+			}
+
+		}
+	}
+</script>
+
+<style>
+	.page {
+		flex: 1;
+		padding: 50rpx 30rpx;
+	}
+
+	.input {
+		height: 80rpx;
+		margin-top: 50rpx;
+
+		font-size: 28rpx;
+		background-color: #FFFFFF;
+	}
+
+	.next-button {
+		margin-top: 80rpx;
+		width: 690rpx;
+		border-radius: 50rpx;
+		background-color: #FF0000;
+		border-color: #FF0000;
+		height: 70rpx;
+
+
+	}
+
+	.line {
+		height: 1rpx;
+		width: 690rpx;
+		background-color: rgba(0, 0, 0, .3);
+	}
+
+	.tip-text {
+		font-size: 20rpx;
+		color: rgba(0, 0, 0, .5);
+	}
+</style>
