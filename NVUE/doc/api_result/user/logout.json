@@ -1,0 +1,26 @@
+{
+	"data": {
+		"code": 200
+	},
+	"statusCode": 200,
+	"header": {
+		"Access-Control-Allow-Methods": "PUT,POST,GET,DELETE,OPTIONS",
+		"X-Powered-By": "Express",
+		"X-Android-Selected-Protocol": "http/1.1",
+		"Set-Cookie": "[MUSIC_U=\"\"; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/, __remember_me=\"\"; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/, __csrf=\"\"; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/, MUSIC_U=\"\"; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/, __remember_me=\"\"; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/, __csrf=\"\"; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/]",
+		"X-Android-Response-Source": "NETWORK 200",
+		"Access-Control-Allow-Credentials": "true",
+		"Access-Control-Allow-Headers": "X-Requested-With,Content-Type",
+		"Connection": "keep-alive",
+		"X-Android-Sent-Millis": "1585057744410",
+		"cache-control": "max-age=120",
+		"_": "HTTP/1.1 200 OK",
+		"Content-Type": "application/json; charset=utf-8",
+		"Date": "Tue, 24 Mar 2020 13:49:05 GMT",
+		"Content-Length": "12",
+		"ETag": "W/\"c-QETVAhUYmmve97quvZif9EL6tqM\"",
+		"X-Android-Received-Millis": "1585057744473",
+		"Access-Control-Allow-Origin": "*"
+	},
+	"errMsg": "request:ok"
+}

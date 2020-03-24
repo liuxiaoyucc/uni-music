@@ -49,6 +49,13 @@ const store = new Vuex.Store({
 			state.uid = '';
 			state.user_info = {};
 			state.subcount = {}; // 各种计数
+			state.likelist = [];
+			state.current_playlist = [];
+			Storage.set_is_login(false);
+		},
+		login(state, uid) {
+			state.uid = uid;
+			Storage.set_is_login(true);
 		}
 	}
 })

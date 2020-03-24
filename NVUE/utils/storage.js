@@ -3,7 +3,17 @@
 let Storage = {}
 
 const LATEST_PLAYED = 'latest_played'; //最后一个播放记录
-const CURRENT_PLAYLIST = 'current_playlist';
+const CURRENT_PLAYLIST = 'current_playlist'; // 当前播放列表
+const IS_LOGIN = 'is_login'; // 登录状态
+
+Storage.is_login = function() {
+	return get(IS_LOGIN);
+}
+
+Storage.set_is_login = function(v) {
+	set(IS_LOGIN, v);
+	return;
+}
 
 Storage.get_played = function() {
 	return get(LATEST_PLAYED);

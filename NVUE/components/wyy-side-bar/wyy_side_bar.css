@@ -1,13 +1,16 @@
+.placeholder {
+	height: 100rpx;
+}
 .personal-details{
 	padding: 0 30rpx;
 }
 .line{
 	height: 1;
-	margin: 0 30rpx;
 	background-color: rgba(0,0,0,.1);
+
 }
 .sidebar{
-	padding-top: 100rpx;
+	flex: 1;
 }
 .contain{
 	/* padding: 0 30rpx; */
@@ -90,4 +93,26 @@
 .cell-icon{
 	width: 45rpx;
 	height: 45rpx;
+}
+
+
+.footer {
+	height: 80rpx;
+	flex-direction: row;
+	padding: 0 30rpx;
+	align-items: center;
+}
+.turn_account {
+	flex: 1;justify-content: center;align-items: center;
+	height: 80rpx;
+}
+.quit {
+	flex: 1;justify-content: center;align-items: center;
+	height: 80rpx;
+}
+.turn_account:active {
+	background-color: rgba(0,0,0,0.1);
+}
+.quit:active {
+	background-color: rgba(0,0,0,0.1);
 }

@@ -26,20 +26,20 @@
 			check_login() {
 				$repeater.user.check_login((user_status)=> {
 					console.log(user_status);
-					if (!user_status) { // 未登录
-						
-						setTimeout(function() {
-							uni.redirectTo({
-								url: '../login/login',
-							});
-						}, 1500);
-					}else { // 已登录
+					if (user_status && $repeater.storage.is_login()) { // 已登录
 						let uid = user_status.profile.userId;
-						this.$store.commit('set_uid', uid)
+						this.$store.commit('set_uid', uid);
 						
 						setTimeout(function() {
 							uni.redirectTo({
 								url: '../index/index',
+							});
+						}, 1500);
+						
+					}else { // 未登录
+						setTimeout(function() {
+							uni.redirectTo({
+								url: '../login/login',
 							});
 						}, 1500);
 					}

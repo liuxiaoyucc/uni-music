@@ -24,7 +24,7 @@ User.login = function(phone, password, cb) {
 		password: password
 	}
 	
-	request.post(url, params, (res)=> {
+	request.get(url, params, (res)=> {
 		if (res.data) {
 			let data = res.data
 			if (data.code == 200) {
@@ -38,6 +38,20 @@ User.login = function(phone, password, cb) {
 			}
 		}else {
 			console.log(res);
+		}
+	})
+}
+
+User.logout = function(cb) {
+	let url = config.API.LOGOUT;
+
+	
+	request.get(url, {}, (res)=> {
+		
+		if (res.statusCode == 200) {
+			cb && cb(res.data)
+		}else {
+			console.log('failed');
 		}
 	})
 }
@@ -127,9 +141,10 @@ User.like = function(music_id, like, cb) {
 
 //获取用户状态
 function get_status(cb) {
+	let ts = new Date().getTime();
 	let url = config.API.LOGIN_STATUS;
 	
-	request.post(url, {}, (res)=> {
+	request.get(url, {timestamp: ts}, (res)=> {
 		let data = res.data;
 		
 		if (data && data.code == 200) {
