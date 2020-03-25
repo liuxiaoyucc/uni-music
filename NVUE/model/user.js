@@ -56,6 +56,20 @@ User.logout = function(cb) {
 	})
 }
 
+User.send_captcha = function(phone, cb) {
+	let url = config.API.SEND_CAPTCHA;
+	
+	
+	request.post(url, {phone: phone}, (res)=> {
+		
+		if (res.statusCode == 200) {
+			cb && cb(res.data)
+		}else {
+			console.log('failed');
+		}
+	})
+}
+
 //登录检查
 User.check_login = function(cb) {
 	

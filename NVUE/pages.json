@@ -61,7 +61,7 @@
 				}
 			}
 		}, {
-			"path": "pages/login/short_message",
+			"path": "pages/login/captcha",
 			"style": {
 				"navigationBarTitleText": "手机号验证",
 				"titleNView": {

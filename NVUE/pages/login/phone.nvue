@@ -36,7 +36,7 @@
 					if (res.exist == 1) {
 						$repeater.helper.to('./password?phone=' + phone);
 					} else if (res.exist == -1) {
-						$repeater.helper.to('./short_message?phone=' + phone);
+						$repeater.helper.to('./captcha?phone=' + phone);
 						setTimeout(function() {
 							$repeater.helper.toast('none', '手机号未注册', 2000, false, 'bottom');
 						}, 0);

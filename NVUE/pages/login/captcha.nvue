@@ -1,0 +1,133 @@
+<template>
+	<view class="page">
+		<view class="tip">
+			<view class="title">
+				<text class="title-text">验证码已发送至</text>
+			</view>
+			<view class="phone">
+				<text class="phone-text">{{format_phone}}</text>
+			</view>
+		</view>
+		
+		<view class="captcha" @tap="to_focus">
+			<view class="item" style="align-items: center;" v-for="(v, k) in captcha_obj" :key="k">
+				<text class="number" style="font-size: 32rpx;height: 50rpx;">{{v}}</text>
+				<view class="bottom_line" :class="v?'line-active' : ''" style=""></view>
+			</view>
+		</view>
+		
+		<input @input="captcha_input" @blur="on_blur" maxlength="4" :focus="focus" v-model="captcha" type="number" class="input" />
+	</view>
+</template>
+
+<script>
+	import $repeater from '../../utils/repeater.js';
+	export default {
+		data() {
+			return {
+				focus: true,
+				phone: '',
+				captcha: '',
+				captcha_obj: {
+					one: '',
+					two: '',
+					three: '',
+					four: '',
+				}
+			}
+		},
+		computed: {
+			format_phone() {
+				let phone = this.phone;
+				if (phone.length == 11) {
+					return this.phone.substr(0,3) + "****" + this.phone.substr(7);
+				}
+				
+			}
+		},
+		watch: {
+			captcha(value) {
+				
+				this.captcha_obj.one = value.substr(0, 1);
+				this.captcha_obj.two = value.substr(1, 1);
+				this.captcha_obj.three = value.substr(2, 1);
+				this.captcha_obj.four = value.substr(3, 1);
+				if (value.length == 4) {
+					this.check_captcha()
+				}
+			}
+		},
+		onLoad(options) {
+			if (options.phone) {
+				this.phone = options.phone;
+				// this.send_captcha();
+			}
+		},
+		methods: {
+			check_captcha() {
+				console.log(this.captcha);
+			},
+			to_focus() {
+				this.focus = true;
+			},
+
+			on_blur() {
+				this.focus = false;
+			},
+			captcha_input(event) {
+				this.captcha = event.detail.value;
+			},
+			send_captcha() {
+				let phone = this.phone;
+				$repeater.user.send_captcha(phone, (res)=> {
+					if (res.code == 200) {
+						$repeater.helper.toast('none', '验证码已发送', 3000, false, 'bottom');
+					}else {
+						$repeater.helper.toast('none', '发送失败, 请重试', 4000, false, 'bottom');
+					}
+				});
+			}
+		}
+	}
+</script>
+
+<style>
+	.page {
+		flex: 1;
+		padding-top: 100rpx;
+	}
+	.tip {
+		width: 750rpx;
+		height: 100rpx;
+		padding: 0 30rpx;
+		justify-content: space-between;
+	}
+	.title-text {
+		font-size: 30rpx;
+		line-height: 50rpx;
+	}
+	.phone-text {
+		line-height: 50rpx;
+		font-size: 24rpx;
+		color: rgba(0, 0, 0, .5);
+	}
+	.captcha {
+		height: 300rpx;
+		width: 750rpx;
+		
+		padding: 100rpx 150rpx;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+	.bottom_line {
+		width: 90rpx;height: 5rpx;background-color: rgba(0,0,0,.3);
+	}
+	.line-active {
+		background-color: #000000;
+	}
+	.input {
+		position: absolute;
+		top: -9999rpx;
+		left: -9999rpx;
+	}
+</style>
