@@ -1,0 +1,26 @@
+{
+	"data": {
+		"code": 400,
+		"message": "发送验证码超过限制:每个手机号一天只能发5条验证码"
+	},
+	"statusCode": 400,
+	"header": {
+		"Access-Control-Allow-Methods": "PUT,POST,GET,DELETE,OPTIONS",
+		"X-Powered-By": "Express",
+		"X-Android-Selected-Protocol": "http/1.1",
+		"X-Android-Response-Source": "NETWORK 400",
+		"Access-Control-Allow-Credentials": "true",
+		"Access-Control-Allow-Headers": "X-Requested-With,Content-Type",
+		"Connection": "keep-alive",
+		"X-Android-Sent-Millis": "1585321461020",
+		"cache-control": "no-cache, no-store, must-revalidate",
+		"_": "HTTP/1.1 400 Bad Request",
+		"Content-Type": "application/json; charset=utf-8",
+		"Date": "Fri, 27 Mar 2020 15:04:21 GMT",
+		"Content-Length": "96",
+		"ETag": "W/\"60-2BA+3vZv2M6hMTN3b9JwYzpBS6w\"",
+		"Access-Control-Allow-Origin": "*",
+		"X-Android-Received-Millis": "1585321461064"
+	},
+	"errMsg": "request:ok"
+}

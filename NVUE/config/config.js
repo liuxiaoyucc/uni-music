@@ -12,7 +12,8 @@ API.LOGIN_STATUS = 'login/status'; // 登陆状态
 API.CHECK_PHONE = 'cellphone/existence/check'; // 检查手机号是否注册过
 API.LOGOUT = 'logout'; // 登出
 API.SEND_CAPTCHA = 'captcha/sent'; // 发送短信验证码
-
+API.VERIFY_CAPTCHA = 'captcha/verify'; // 核实验证码
+API.PHONE_REG = 'register/cellphone'; // 手机号注册
 //用户
 API.SUBCOUNT = 'user/subcount'; // 用户的歌单，收藏，mv, dj 数量
 API.USER_DETAIL = 'user/detail'; // 获取用户详情

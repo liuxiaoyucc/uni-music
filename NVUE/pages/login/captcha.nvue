@@ -60,12 +60,25 @@
 		onLoad(options) {
 			if (options.phone) {
 				this.phone = options.phone;
-				// this.send_captcha();
+				this.send_captcha();
 			}
 		},
 		methods: {
 			check_captcha() {
-				console.log(this.captcha);
+				let phone = this.phone;
+				let captcha = this.captcha;
+				$repeater.user.verify_captcha(phone, captcha, (res)=> {
+					console.log(res);
+					if (res.code == 200) {
+						// 验证码正确, 跳转至注册/修改密码页面
+						$repeater.helper.to('./password?captcha=' + captcha + '&phone=' + phone + '&from=reg');
+					}else {
+						setTimeout(function() {
+							$repeater.helper.to('./password?captcha=' + captcha + '&phone=' + phone + '&from=reg');
+							$repeater.helper.toast('none', '验证码错误', 4000, false, 'bottom');
+						}, 10);
+					}
+				});
 			},
 			to_focus() {
 				this.focus = true;
@@ -83,7 +96,9 @@
 					if (res.code == 200) {
 						$repeater.helper.toast('none', '验证码已发送', 3000, false, 'bottom');
 					}else {
-						$repeater.helper.toast('none', '发送失败, 请重试', 4000, false, 'bottom');
+						setTimeout(function() {
+							$repeater.helper.toast('none', res.message, 4000, false, 'bottom');
+						}, 10);
 					}
 				});
 			}

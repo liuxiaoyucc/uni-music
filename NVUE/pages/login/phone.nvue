@@ -34,7 +34,7 @@
 				$repeater.user.check_phone(phone, (res) => {
 					console.log(res);
 					if (res.exist == 1) {
-						$repeater.helper.to('./password?phone=' + phone);
+						$repeater.helper.to('./password?phone=' + phone + '&from=login');
 					} else if (res.exist == -1) {
 						$repeater.helper.to('./captcha?phone=' + phone);
 						setTimeout(function() {

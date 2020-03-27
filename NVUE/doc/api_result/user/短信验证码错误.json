@@ -1,0 +1,26 @@
+{
+	"data": {
+		"message": "验证码错误",
+		"code": 503
+	},
+	"statusCode": 503,
+	"header": {
+		"Access-Control-Allow-Methods": "PUT,POST,GET,DELETE,OPTIONS",
+		"X-Powered-By": "Express",
+		"X-Android-Selected-Protocol": "http/1.1",
+		"X-Android-Response-Source": "NETWORK 503",
+		"Access-Control-Allow-Credentials": "true",
+		"Access-Control-Allow-Headers": "X-Requested-With,Content-Type",
+		"Connection": "keep-alive",
+		"X-Android-Sent-Millis": "1585320633306",
+		"cache-control": "no-cache, no-store, must-revalidate",
+		"_": "HTTP/1.1 503 Service Unavailable",
+		"Content-Type": "application/json; charset=utf-8",
+		"Date": "Fri, 27 Mar 2020 14:50:33 GMT",
+		"Content-Length": "40",
+		"ETag": "W/\"28-emnPrZVPd+ArjCQ8qraedGWqjAg\"",
+		"Access-Control-Allow-Origin": "*",
+		"X-Android-Received-Millis": "1585320633359"
+	},
+	"errMsg": "request:ok"
+}

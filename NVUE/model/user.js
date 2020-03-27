@@ -41,6 +41,19 @@ User.login = function(phone, password, cb) {
 		}
 	})
 }
+User.reg = function(phone, password, captcha, cb) {
+	let url = config.API.PHONE_REG;
+	let params = {
+		phone: phone,
+		password: password,
+		captcha: captcha
+	}
+	
+	request.post(url, params, (res)=> {
+		console.log(res);
+		cb && cb(res.data)
+	})
+}
 
 User.logout = function(cb) {
 	let url = config.API.LOGOUT;
@@ -61,12 +74,20 @@ User.send_captcha = function(phone, cb) {
 	
 	
 	request.post(url, {phone: phone}, (res)=> {
-		
-		if (res.statusCode == 200) {
-			cb && cb(res.data)
-		}else {
-			console.log('failed');
-		}
+		console.log(res);
+		cb && cb(res.data)
+	})
+}
+User.verify_captcha = function(phone, captcha, cb) {
+	let url = config.API.VERIFY_CAPTCHA;
+	let params = {
+		phone: phone,
+		captcha: captcha
+	}
+	
+	request.get(url, params, (res)=> {
+		console.log(res);
+		cb && cb(res.data)
 	})
 }
 
