@@ -25,10 +25,10 @@
 					"subNVues": [{
 						"id": "search_nav_bar",
 						"path": "subNVue/search_nav_bar",
-						
+
 						"style": {
 							"position": "dock",
-							"dock":"top",
+							"dock": "top",
 							"height": "130rpx"
 						}
 					}]
@@ -64,6 +64,16 @@
 			"path": "pages/login/captcha",
 			"style": {
 				"navigationBarTitleText": "手机号验证",
+				"titleNView": {
+					"titleAlign": "left",
+					"backgroundColor": "#FF0000",
+					"titleColor": "#FFFFFF"
+				}
+			}
+		}, {
+			"path": "pages/login/nickname",
+			"style": {
+				"navigationBarTitleText": "昵称",
 				"titleNView": {
 					"titleAlign": "left",
 					"backgroundColor": "#FF0000",
@@ -125,32 +135,29 @@
 					}
 				}
 			}
-		}
-	    ,{
-            "path" : "pages/album/album",
-            "style" : {
+		}, {
+			"path": "pages/album/album",
+			"style": {
 				"app-plus": {
 					"titleNView": {
 						"titleColor": "#FFFFFF",
 						"titleText": "专辑",
-				
+
 						"backgroundColor": "rgba(218, 45, 30, 1)",
 						"buttons": [{
-								"fontSrc": "/static/font/iconfont.ttf",
-								"text": "\ue655",
-								"width": "40px",
-								"fontSize": "24px",
-								"color": "#FFFFFF",
-								"background": "rgba(0,0,0,0)"
-							}
-						]
+							"fontSrc": "/static/font/iconfont.ttf",
+							"text": "\ue655",
+							"width": "40px",
+							"fontSize": "24px",
+							"color": "#FFFFFF",
+							"background": "rgba(0,0,0,0)"
+						}]
 					}
 				}
 			}
-        }
-        ,{
-            "path" : "pages/video/video",
-            "style" : {
+		}, {
+			"path": "pages/video/video",
+			"style": {
 				"app-plus": {
 					"animationType": "fade-in",
 					"titleNView": {
@@ -163,8 +170,8 @@
 					}
 				}
 			}
-        }
-    ],
+		}
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "cloud music",

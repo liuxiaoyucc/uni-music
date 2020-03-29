@@ -57,10 +57,10 @@
 			
 			<view class="handle-area">
 				<view class="icon-group">
-					<view class="icon-area loop">
-						<wyy-icon type="&#xe676;" size="40" color="#FFFFFF" ></wyy-icon>
-						<!-- <wyy-icon type="&#xe674;" size="40" color="#FFFFFF" ></wyy-icon>
-						<wyy-icon type="&#xe678;" size="40" color="#FFFFFF" ></wyy-icon> -->
+					<view class="icon-area loop" @tap="change_play_mode">
+						<wyy-icon v-if="play_mode == 'random'" type="&#xe676;" size="40" color="#FFFFFF" ></wyy-icon>
+						<wyy-icon v-if="play_mode == 'sequence'" type="&#xe674;" size="40" color="#FFFFFF" ></wyy-icon>
+						<wyy-icon v-if="play_mode == 'single'" type="&#xe678;" size="40" color="#FFFFFF" ></wyy-icon>
 					</view>
 					<view class="icon-area prev" @tap="prev()">
 						<wyy-icon type="&#xe66f;" size="40" color="#FFFFFF" ></wyy-icon>
@@ -115,7 +115,6 @@
 				lyric: [],
 				active_lyric_row_index: 0,
 				
-				
 				mode_class: ['fade'],
 				transfrom_class: {
 					'position': 'fixed',
@@ -159,6 +158,9 @@
 			},
 			islike() {
 				return this.$store.state.likelist.includes(this.played.id);
+			},
+			play_mode() {
+				return this.$store.state.play_mode;
 			}
 		},
 		watch: {
@@ -189,6 +191,14 @@
 			},
 			open_playlist() {
 				this.$refs.playlist_drawer.open_playlist();
+			},
+			change_play_mode() {
+				let mode_list = ['single', 'sequence', 'random'];
+				let current_mode = this.play_mode;
+				let index = mode_list.indexOf(current_mode);
+				let next_index = index + 1 > 2 ? 0 : index + 1;
+				let next_mode = mode_list[next_index];
+				this.$store.commit('set_play_mode', next_mode);
 			},
 			like(event) {
 				event.stopPropagation();

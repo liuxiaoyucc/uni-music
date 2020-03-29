@@ -28,6 +28,12 @@
 			console.log('App Hide')
 		},
 		methods: {
+			init_play_mode() {
+				let current_play_mode = Storage.get_play_mode();
+				if (current_play_mode) {
+					this.$store.commit('set_play_mode', current_play_mode);
+				}
+			},
 			init_current_playlist() {
 				let current_playlist = Storage.get_current_playlist();
 				if (current_playlist) {

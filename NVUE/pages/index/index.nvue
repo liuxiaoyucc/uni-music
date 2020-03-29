@@ -1,8 +1,8 @@
 <template>
-	<div class="tabs wyy-bg-color" style="padding-bottom: 90rpx;">
-		
+	<view class="tabs wyy-bg-color" style="">
 		<view :style="{ height: statusbar_height + 'px'}" style="background-color: rgba(218, 45, 30, 1);;"></view>
-		<div class="sub_page">
+		
+		<view class="sub_page">
 			<view class="left-bar" @tap="show_side_drawer">
 				<image class="menu-icon" src="/static/menu.png"></image>
 			</view>
@@ -14,23 +14,25 @@
 			<view class="right-bar" @tap="search">
 				<image class="search-icon" src="/static/search.png"></image>
 			</view>
-		</div>
+		</view>
 		
+		<scroll-view style="flex: 1;">	
+			<swiper :current="tab_index" class="swiper-box" @change="change_tab">
+				<swiper-item class="swiper-item">
+					<wyy-mine></wyy-mine>
+				</swiper-item>
+				<swiper-item class="swiper-item">
+					<wyy-find></wyy-find>
+				</swiper-item>
+				<swiper-item class="swiper-item">
+					<wyy-friend></wyy-friend>
+				</swiper-item>
+				<swiper-item class="swiper-item">
+					<wyy-video></wyy-video>
+				</swiper-item>
+			</swiper>
+		</scroll-view>
 		
-		<swiper :current="tab_index" class="swiper-box" @change="change_tab">
-			<swiper-item class="swiper-item">
-				<wyy-mine></wyy-mine>
-			</swiper-item>
-			<swiper-item class="swiper-item">
-				<wyy-find></wyy-find>
-			</swiper-item>
-			<swiper-item class="swiper-item">
-				<wyy-friend></wyy-friend>
-			</swiper-item>
-			<swiper-item class="swiper-item">
-				<wyy-video></wyy-video>
-			</swiper-item>
-		</swiper>
 		
 		
 		<wyy-play v-if="played"></wyy-play>
@@ -38,7 +40,7 @@
 		<uni-drawer :visible="show_sidebar" mode="left" @close="close_side_drawer('left')">
 			<wyy-side-bar></wyy-side-bar>
 		</uni-drawer>
-	</div>
+	</view>
 </template>
 
 <script>
@@ -149,12 +151,7 @@
 	@import '../../common/wyy.css';
 	.tabs {
 		flex: 1;
-		flex-direction: column;
-		overflow: hidden;
 		background-color: #F8F8F8;
-		/* #ifdef MP-ALIPAY || MP-BAIDU */
-		height: 100vh;
-		/* #endif */
 	}
 
 	.swiper-box {

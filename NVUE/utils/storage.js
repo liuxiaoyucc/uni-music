@@ -5,6 +5,7 @@ let Storage = {}
 const LATEST_PLAYED = 'latest_played'; //最后一个播放记录
 const CURRENT_PLAYLIST = 'current_playlist'; // 当前播放列表
 const IS_LOGIN = 'is_login'; // 登录状态
+const PLAY_MODE = 'play_mode';
 
 Storage.is_login = function() {
 	return get(IS_LOGIN);
@@ -29,6 +30,15 @@ Storage.get_current_playlist = function() {
 
 Storage.set_current_playlist = function(v) {
 	set(CURRENT_PLAYLIST, v);
+	return;
+}
+
+Storage.get_play_mode = function() {
+	return get(PLAY_MODE);
+}
+
+Storage.set_play_mode = function(v) {
+	set(PLAY_MODE, v);
 	return;
 }
 

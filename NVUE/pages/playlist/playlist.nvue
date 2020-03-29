@@ -1,6 +1,6 @@
 <template>
 	<view class="page">
-		<list show-scrollbar="false" class="page-list" style="margin-bottom: 90rpx; width: 750rpx; flex: 1;">
+		<list show-scrollbar="false" class="page-list" style="width: 750rpx; flex: 1;">
 			<cell class="top wyy-main-color">
 				<view class="playlist_intro">
 					<view class="intro-left">

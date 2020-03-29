@@ -118,6 +118,7 @@ PlayerHelper.start = function(song_id, cb) {
 	let played = Storage.get_played();
 	
 	Song.get_song_detail(song_id, (data)=> {
+		console.log(data);
 		let song = data.songs[0];
 		let song_name = song.name;
 		let cover_image = song.al.picUrl;
@@ -138,10 +139,13 @@ PlayerHelper.start = function(song_id, cb) {
 		}
 		
 		Song.get_song_url(song_id, (res)=> {
+			console.log(res);
 			let url = res.data[0].url;
 			
 			if (!url) {
-				Helper.toast('none', '亲爱的, 暂无该歌曲资源~', 3000, false, 'bottom');
+				setTimeout(function() {
+					Helper.toast('none', '亲爱的, 暂无该歌曲资源~', 3000, false, 'bottom');
+				}, 10);
 				return;
 			}
 			

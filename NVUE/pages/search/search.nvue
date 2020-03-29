@@ -1,99 +1,102 @@
 <template>
 	<view class="page">
-		<!-- 搜索页 -->
-		<uni-transition :duration="200" :mode-class="mode_class" :styles="transfrom_class" :show="!show_result">
-			<list v-if="!show_result" show-scrollbar="false" class="content search-page">
-				<cell class="title" v-if="false">
-					<text class="title-text">历史记录</text>
-				</cell>
-				<cell class="search-history"></cell>
-				<cell class="title">
-					<text class="title-text">热搜榜</text>
-				</cell>
-				<cell class="hot-item" v-for="(item, index) in hot_list" :key="index" @tap="hot_search(item)">
-					<view class="hot-item-index">
-						<text class="index-text">{{index + 1}}</text>
-					</view>
-					<view class="hot-info">
-						<text class="key_word">{{item.searchWord}}</text>
-						<text class="description">{{item.content}}</text>
-					</view>
-				</cell>
-			</list>
-		</uni-transition>
-		
-		<!-- 搜索页END -->
-		
-		<!-- 搜索结果页 -->
-		<uni-transition :duration="200" :mode-class="mode_class" :styles="transfrom_class" :show="show_result">
-			
-			<view class="content result-page">
-				<scroll-view scroll-with-animation="true" class="scroll-bar-view" :scroll="false" :scroll-x="true" :show-scrollbar="false" :scroll-into-view="current_scroll_into">
-					<view class="scroll-bar" >
-						<view class="bar-name" v-for="(item, bar_index) in result_bars" :key="bar_index" @tap="on_tab_tap(bar_index)" :id="item.id">
-							<text :class="current_bar_index == bar_index ? 'active-bar' : ''" class="bar-name-text">{{item.name}}</text>
+		<view style="flex: 1;">
+			<uni-transition :duration="200" :mode-class="mode_class" :styles="transfrom_class" :show="!show_result">
+				<list v-if="!show_result" show-scrollbar="false" class="content search-page">
+					<cell class="title" v-if="false">
+						<text class="title-text">历史记录</text>
+					</cell>
+					<cell class="search-history"></cell>
+					<cell class="title">
+						<text class="title-text">热搜榜</text>
+					</cell>
+					<cell class="hot-item" v-for="(item, index) in hot_list" :key="index" @tap="hot_search(item)">
+						<view class="hot-item-index">
+							<text class="index-text">{{index + 1}}</text>
 						</view>
-					</view>
-				</scroll-view>
+						<view class="hot-info">
+							<text class="key_word">{{item.searchWord}}</text>
+							<text class="description">{{item.content}}</text>
+						</view>
+					</cell>
+				</list>
+			</uni-transition>
+			
+			<!-- 搜索页END -->
+			
+			<!-- 搜索结果页 -->
+			<uni-transition :duration="200" :mode-class="mode_class" :styles="transfrom_class" :show="show_result">
 				
-				<swiper class="bar-box" :current="current_bar_index" skip-hidden-item-layout @change="tab_changed">
-					<swiper-item v-for="(page, index) in result_bars" :key="index" >
-
-						<!-- 综合 -->
-						<list v-if="page.id == 1018" show-scrollbar="false" style="flex: 1;">
-							<cell v-for="(value, key, t_index) in comprehensive_data" :key="t_index">
-								<view v-if="key == 'song'">
-									<view class="title">
-										<text class="title-text">单曲</text>
+				<view class="content result-page">
+					<scroll-view scroll-with-animation="true" class="scroll-bar-view" :scroll="false" :scroll-x="true" :show-scrollbar="false" :scroll-into-view="current_scroll_into">
+						<view class="scroll-bar" >
+							<view class="bar-name" v-for="(item, bar_index) in result_bars" :key="bar_index" @tap="on_tab_tap(bar_index)" :id="item.id">
+								<text :class="current_bar_index == bar_index ? 'active-bar' : ''" class="bar-name-text">{{item.name}}</text>
+							</view>
+						</view>
+					</scroll-view>
+					
+					<swiper class="bar-box" :current="current_bar_index" skip-hidden-item-layout @change="tab_changed">
+						<swiper-item v-for="(page, index) in result_bars" :key="index" >
+			
+							<!-- 综合 -->
+							<list v-if="page.id == 1018" show-scrollbar="false" style="flex: 1;">
+								<cell v-for="(value, key, t_index) in comprehensive_data" :key="t_index">
+									<view v-if="key == 'song'">
+										<view class="title">
+											<text class="title-text">单曲</text>
+										</view>
+										
+										<song-card :show_number="false"  v-for="(song, s_index) in value.songs" :song="song" :key="s_index"></song-card>
+										
+									</view>
+									<view v-if="key == 'playList'">
+										<view class="title">
+											<text class="title-text">歌单</text>
+										</view>
+										<playlist-card v-for="(playlist, p_index) in value.playLists" :key="p_index" :playlist="playlist"></playlist-card>
 									</view>
 									
-									<song-card :show_number="false"  v-for="(song, s_index) in value.songs" :song="song" :key="s_index"></song-card>
-									
-								</view>
-								<view v-if="key == 'playList'">
-									<view class="title">
-										<text class="title-text">歌单</text>
-									</view>
-									<playlist-card v-for="(playlist, p_index) in value.playLists" :key="p_index" :playlist="playlist"></playlist-card>
-								</view>
-								
-							</cell>
-						</list>
-						<!-- 综合END -->
-						
-						<!-- 单曲 -->
-						<list show-scrollbar="false" style="flex: 1;" v-else-if="page.id == 1">
-							<cell class="top-bar">
-								<view class="icon">
-									<wyy-icon type="&#xe601;" size="40" color="#000000" ></wyy-icon>
-								</view>
-								<text class="top-bar-text">播放全部</text>
-							</cell>
-							<cell v-for="(song, s_index) in songs_data" :key="s_index">
-								<song-card :show_number="false" :song="song"></song-card>
-							</cell>
+								</cell>
+							</list>
+							<!-- 综合END -->
 							
-						</list>
-						<!-- 单曲END -->
-						
-						<!-- 歌单 -->
-						<list show-scrollbar="false" style="flex: 1;" v-else-if="page.id == 1000">
-							<cell v-for="(playlist, p_index) in playlist_data" :key="p_index">
-								<playlist-card :playlist="playlist"></playlist-card>
-							</cell>
-						</list>
-						<!-- 歌单END -->
-						
-						<list v-else>
-							<cell>
-								未完成
-							</cell>
-						</list>
-						
-					</swiper-item>
-				</swiper>
-			</view>
-		</uni-transition>
+							<!-- 单曲 -->
+							<list show-scrollbar="false" style="flex: 1;" v-else-if="page.id == 1">
+								<cell class="top-bar">
+									<view class="icon">
+										<wyy-icon type="&#xe601;" size="40" color="#000000" ></wyy-icon>
+									</view>
+									<text class="top-bar-text">播放全部</text>
+								</cell>
+								<cell v-for="(song, s_index) in songs_data" :key="s_index">
+									<song-card :show_number="false" :song="song"></song-card>
+								</cell>
+								
+							</list>
+							<!-- 单曲END -->
+							
+							<!-- 歌单 -->
+							<list show-scrollbar="false" style="flex: 1;" v-else-if="page.id == 1000">
+								<cell v-for="(playlist, p_index) in playlist_data" :key="p_index">
+									<playlist-card :playlist="playlist"></playlist-card>
+								</cell>
+							</list>
+							<!-- 歌单END -->
+							
+							<list v-else>
+								<cell>
+									未完成
+								</cell>
+							</list>
+							
+						</swiper-item>
+					</swiper>
+				</view>
+			</uni-transition>
+		</view>
+		<!-- 搜索页 -->
+		
 		
 		
 		

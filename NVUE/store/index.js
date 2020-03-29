@@ -7,6 +7,7 @@ const store = new Vuex.Store({
 		played: '', 
 		playing: false, // 全局播放状态
 		
+		play_mode: 'sequence', //single, random, sequence 
 		uid: '', //网易云用户id
 		user_info: {}, // 网易云用户详情
 		subcount: {}, // 各种计数
@@ -56,6 +57,10 @@ const store = new Vuex.Store({
 		login(state, uid) {
 			state.uid = uid;
 			Storage.set_is_login(true);
+		},
+		set_play_mode(state, mode) {
+			state.play_mode = mode;
+			Storage.set_play_mode(state.play_mode);
 		}
 	}
 })

@@ -77,9 +77,9 @@
 		border-top-style: solid;
 		flex-direction: row;
 		background-color: #FFFFFF;
-		position: fixed;
+		/* position: fixed;
 		bottom: 0;
-		left: 0;
+		left: 0; */
 	}
 	.play:active {
 		background-color: rgba(0,0,0,0.1);
