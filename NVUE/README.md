@@ -5,6 +5,10 @@
 此项目前端使用[uniapp](https://uniapp.dcloud.io/)框架
 服务端使用自建的[NeteaseCloudMusicApi](https://github.com/Binaryify/NeteaseCloudMusicApi)
 
+github: [liuxiaoyucc/cloudmusic](https://github.com/liuxiaoyucc/cloudmusic/tree/master/NVUE)
+
+__欢迎Star 🌟🌟🌟, 如果遇到问题或建议请提Issue__
+
 #### Run
 
 * 渲染引擎: weex
@@ -20,7 +24,8 @@ __请确保你的HbuilderX版本在2.5.1以上__
 
 - [x] 测试账号登录
 - [x] 真实账号登录
-- [ ] 手机验证码注册
+- [x] 手机验证码注册
+- [x] 账号切换, 退出
 
 - [x] 获取用户详情
 - [x] 获取登录状态
@@ -34,9 +39,11 @@ __请确保你的HbuilderX版本在2.5.1以上__
 - [x] 视频播放
 - [x] 首页推荐
 
+
 #### Thanks
 
 * [NeteaseCloudMusicApi](https://github.com/Binaryify/NeteaseCloudMusicApi)
+
 
 #### 已完成部分截图
 
