@@ -9,6 +9,7 @@ github: [liuxiaoyucc/cloudmusic](https://github.com/liuxiaoyucc/cloudmusic/tree/
 
 __欢迎Star 🌟🌟🌟, 如果遇到问题或建议请提Issue__
 
+
 #### Run
 
 * 渲染引擎: weex
@@ -44,6 +45,9 @@ __请确保你的HbuilderX版本在2.5.1以上__
 
 * [NeteaseCloudMusicApi](https://github.com/Binaryify/NeteaseCloudMusicApi)
 
+#### Donate
+
+<img title="WechatPay" src="https://user-images.githubusercontent.com/33248133/77929014-bf3be800-72db-11ea-8997-2c8d8ca0cd54.jpg" width='200px'><img title="AliPay" src="https://user-images.githubusercontent.com/33248133/77929088-d8dd2f80-72db-11ea-84f9-7e52329df279.jpg" width='200px'>
 
 #### 已完成部分截图
 
