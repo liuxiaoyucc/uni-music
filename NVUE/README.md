@@ -20,7 +20,9 @@ __请确保你的HbuilderX版本在2.5.1以上__
 
 将NVUE目录拖入HbuilderX中运行到手机或模拟器
 
-
+#### 体验
+ * 安卓版apk下载体验 [安卓版apk下载](http://pulsating.cn/download/cloudmusic/__UNI__112FF25_0331095014_1.0.0.apk)
+直接使用已注册过网易云音乐的手机号及密码登录
 #### 已完成功能
 
 - [x] 测试账号登录
