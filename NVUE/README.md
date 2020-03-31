@@ -6,6 +6,7 @@
 服务端使用自建的[NeteaseCloudMusicApi](https://github.com/Binaryify/NeteaseCloudMusicApi)
 
 github: [liuxiaoyucc/cloudmusic](https://github.com/liuxiaoyucc/cloudmusic/tree/master/NVUE)
+dcloud插件市场: [liuxiaoyucc/cloudmusic](https://ext.dcloud.net.cn/plugin?id=1535)
 
 __欢迎Star 🌟🌟🌟, 如果遇到问题或建议请提Issue__
 
@@ -18,13 +19,18 @@ __欢迎Star 🌟🌟🌟, 如果遇到问题或建议请提Issue__
 
 __请确保你的HbuilderX版本在2.5.1以上__
 
-将NVUE目录拖入HbuilderX中运行到手机或模拟器
+__目前仅支持APP端运行, 如有其他端需求请自己修改, 有任何问题可以在issues区和微信互相交流__
 
+__将NVUE目录拖入HbuilderX中运行到手机或模拟器__
 
-#### 体验
- 
- __建议自己搭建服务端, 搭建好之后修改config.js中的HOST地址为你自己的服务地址即可使用__
- 
+__建议自己搭建服务端, 搭建好之后修改本项目config.js中的HOST地址为你自己的服务地址即可__
+
+__本项目登录及注册流程可供参考, 但是最终登录的是服务端提供的测试账号, 这里并非是项目bug__
+
+__本项目仅限学习交流使用, 不得用于商业用途, 如作他用所承受的法律责任一概与作者无关__
+
+__安卓版apk下载体验 [cloudmusic安卓版apk](http://pulsating.cn/download/cloudmusic/__UNI__112FF25_0331095014_1.0.0.apk)__
+
 #### 已完成功能
 
 - [x] 测试账号登录
