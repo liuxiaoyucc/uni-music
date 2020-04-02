@@ -1,16 +1,15 @@
 <template>
 	<div class="cells">
-		<div class="cell" v-for="(item,i) in items" :key="i">
+		<div class="cell">
 			<div class="cell-left">
-				<wyy-icon :type="item.icon" size="50" color="#000000" ></wyy-icon>
+				<wyy-icon :type="icon" size="50" color="#000000" ></wyy-icon>
 			</div>
 			<div class="cell-right">
-				<text class="cell-name">{{item.name}}</text>
-				<text class="number"> {{item.number ? '(' + item.number + ')' : ''}}</text>
+				<text class="cell-name">{{title}}</text>
+				<text class="number"> {{tip ? '(' + tip + ')' : ''}}</text>
 			</div>
 		</div>
 		
-		<div class="top"></div>
 	</div>
 </template>
 
@@ -26,10 +25,23 @@
 			
 		},
 		props: {
-			items: {
-				type: Array,
-				default: []
+			icon: {
+				type: String,
+				default: ''
 			},
+			title: {
+				type: String,
+				default: '',
+			},
+			tip: {
+				type: String,
+				default: '',
+			},
+			right_icon: {
+				type: String,
+				default: '',
+			},
+
 		},
 	}
 </script>

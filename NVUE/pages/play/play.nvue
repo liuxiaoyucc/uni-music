@@ -24,7 +24,7 @@
 						<view class="icon-area" @tap="like($event)">
 							<wyy-icon :type="islike ? '&#xe679;' : '&#xe67a;'" size="40" :color="islike ? '#FF0000' : '#FFFFFF'" ></wyy-icon>
 						</view>
-						<view class="icon-area">
+						<view class="icon-area" @tap="download($event)">
 							<wyy-icon type="&#xe666;" size="40" color="#FFFFFF" ></wyy-icon>
 						</view>
 						
@@ -374,6 +374,9 @@
 			prev() {
 				console.log('上一曲');
 				this.$refs.playlist_drawer.prev_song();
+			},
+			download() {
+				
 			}
 		},
 	}

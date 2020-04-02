@@ -5,7 +5,22 @@
 		</cell>
 		
 		<cell>
-			<wyy-mine-cell :items="common_list"></wyy-mine-cell>
+			<wyy-mine-cell title="本地音乐" icon="&#xe9d5;" @click="to_local_music"></wyy-mine-cell>
+		</cell>
+		<cell>
+			<wyy-mine-cell title="最近播放" icon="&#xe61c;" ></wyy-mine-cell>
+		</cell>
+		<cell>
+			<wyy-mine-cell title="下载管理" icon="&#xe666;"></wyy-mine-cell>
+		</cell>
+		<cell>
+			<wyy-mine-cell title="我的电台" icon="&#xe633;" :tip="subcount.djRadioCount"></wyy-mine-cell>
+		</cell>
+		<cell>
+			<wyy-mine-cell title="我的收藏" icon="&#xe68a;" :tip="subcount.artistCount + subcount.mvCount"></wyy-mine-cell>
+		</cell>
+		<cell>
+			<div class="line"></div>
 		</cell>
 		
 		<cell>
@@ -94,18 +109,7 @@
 			}
 		},
 		computed:{
-			common_list: function() {
-				
-				let subcount = this.subcount;
-				
-				return [
-					{name: '本地音乐', icon: '&#xe9d5;', number: '', src: '../../static/rattle/mine/local-music.png'},
-					{name: '最近播放', icon: '&#xe61c;', number: '', src: '../../static/rattle/mine/recently-played.png'},
-					{name: '下载管理', icon: '&#xe666;', number: '', src: '../../static/rattle/mine/download.png'},
-					{name: '我的电台', icon: '&#xe633;', number: subcount.djRadioCount, src: '../../static/rattle/mine/radio.png'},
-					{name: '我的收藏', icon: '&#xe68a;', number: subcount.artistCount + subcount.mvCount, src: '../../static/rattle/mine/collect.png'},
-				]
-			},
+			
 			subcount: function() {
 				return this.$store.state.subcount;
 			},
@@ -120,6 +124,9 @@
 			this.get_playlist();
 		},
 		methods:{
+			to_local_music() {
+				
+			},
 			get_playlist() {
 				$repeater.user.get_playlist(this.uid, (data)=> {
 					let playlist = data.playlist;

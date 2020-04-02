@@ -1,3 +1,9 @@
 .mine {
 	width: 750rpx;
 }
+
+.line {
+	width: 750rpx;
+	height: 13rpx;
+	background-color: rgba(0, 0, 0, 0.05);
+}
