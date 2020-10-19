@@ -1,6 +1,7 @@
-# CloudMusic
+# uniMusic
 
 #### Description
+uni-app音乐播放器, 页面参照网易云音乐
 
 此项目前端使用[uniapp](https://uniapp.dcloud.io/)框架
 服务端使用自建的[NeteaseCloudMusicApi](https://github.com/Binaryify/NeteaseCloudMusicApi)
@@ -67,3 +68,8 @@ __安卓版apk下载体验 [cloudmusic安卓版apk](http://pulsating.cn/download
 <img title="发现" src="https://user-images.githubusercontent.com/33248133/74756187-2747e900-52af-11ea-8e79-e0801dff8532.png" width='50%'><img title="我的" src="https://user-images.githubusercontent.com/33248133/74756184-26af5280-52af-11ea-8cb4-a50e91ab4cd4.png" width='50%'>
 <img title="播放列表" src="https://user-images.githubusercontent.com/33248133/75563546-7d721480-5a85-11ea-9256-d7f5b6fe6ad8.png" width='50%'><img title="搜索, 热搜" src="https://user-images.githubusercontent.com/33248133/75563542-7ba85100-5a85-11ea-8929-f8e50bf46fa1.jpg" width='50%'>
 <img title="搜索结果" src="https://user-images.githubusercontent.com/33248133/75563553-7f3bd800-5a85-11ea-96d0-0809e96d1478.png" width='50%'>
+
+
+#### End
+* 联系方式: 别忘了备注哦
+<img title="find" src="https://user-images.githubusercontent.com/33248133/64149976-d9067100-ce59-11e9-9b0c-89125d6a513d.jpg" width='30%'>
