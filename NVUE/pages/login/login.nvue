@@ -6,43 +6,40 @@
 </template>
 
 <script>
-	import $repeater from '@/utils/repeater.js';
-	export default {
-		data() {
-			return {
-				
-			}
-		},
-		methods: {
-			login_by_phone() {
-				$repeater.helper.to('./phone');
-			}
+import $repeater from '@/utils/repeater.js'
+export default {
+	data() {
+		return {}
+	},
+	methods: {
+		login_by_phone() {
+			$repeater.helper.to('./phone')
 		}
 	}
+}
 </script>
 
 <style>
-	.page {
-		flex: 1;
-		background-color: #FF0000;
-	}
-	
-	.login-button {
-		position: absolute;
-		width: 550rpx;
-		border-radius: 50rpx;
-		bottom: 200rpx;
-		height: 80rpx;
-		left: 100rpx;
-		background-color: #FFFFFF;
-	}
-	.logo {
-		position: absolute;
-		top: 300rpx;
-		left: 315rpx;
-		border-radius: 50;
-		width: 120rpx;
-		height: 120rpx;
-	}
-	
+.page {
+	flex: 1;
+	background-color: #ff0000;
+}
+
+.login-button {
+	position: absolute;
+	width: 550rpx;
+	border-radius: 50rpx;
+	bottom: 200rpx;
+	height: 80rpx;
+	left: 100rpx;
+	background-color: #ffffff;
+}
+.logo {
+	position: absolute;
+	top: 300rpx;
+	left: 315rpx;
+	border-radius: 50;
+	width: 120rpx;
+	height: 120rpx;
+}
 </style>

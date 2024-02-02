@@ -1,22 +1,30 @@
 <template>
 	<view class="tabs wyy-bg-color" style="">
-		<view :style="{ height: statusbar_height + 'px'}" style="background-color: rgba(218, 45, 30, 1);;"></view>
-		
+		<view :style="{ height: statusbar_height + 'px' }" style="background-color: rgba(218, 45, 30, 1)"></view>
+
 		<view class="sub_page">
 			<view class="left-bar" @tap="show_side_drawer">
 				<image class="menu-icon" src="/static/menu.png"></image>
 			</view>
 			<view id="tab-bar" class="scroll-h">
-				<view class="tab-item" v-for="(tab,index) in tabBars" :key="tab.id" :id="tab.id" :data-current="index" @click="ontabtap(index)">
-					<text class="uni-tab-item-title" :class="tab_index==index ? 'uni-tab-item-title-active' : ''">{{tab.name}}</text>
+				<view
+					class="tab-item"
+					v-for="(tab, index) in tabBars"
+					:key="tab.id"
+					:id="tab.id"
+					:data-current="index"
+					@click="ontabtap(index)">
+					<text class="uni-tab-item-title" :class="tab_index == index ? 'uni-tab-item-title-active' : ''">{{
+						tab.name
+					}}</text>
 				</view>
 			</view>
 			<view class="right-bar" @tap="search">
 				<image class="search-icon" src="/static/search.png"></image>
 			</view>
 		</view>
-		
-		<scroll-view style="flex: 1;">	
+
+		<scroll-view style="flex: 1">
 			<swiper :current="tab_index" class="swiper-box" @change="change_tab">
 				<swiper-item class="swiper-item">
 					<wyy-mine></wyy-mine>
@@ -32,9 +40,7 @@
 				</swiper-item>
 			</swiper>
 		</scroll-view>
-		
-		
-		
+
 		<wyy-play v-if="played"></wyy-play>
 
 		<uni-drawer :visible="show_sidebar" mode="left" @close="close_side_drawer('left')">
@@ -44,181 +50,170 @@
 </template>
 
 <script>
-	import wyySideBar from '@/components/wyy-side-bar/wyy_side_bar.nvue';
-	import wyyFind from '@/components/wyy-find/wyy_find.nvue';
-	import wyyMine from '@/components/wyy-mine/wyy_mine.nvue';
-	import wyyFriend from '@/components/wyy-friend/wyy_friend.nvue';
-	import wyyVideo from '@/components/wyy-video/wyy_video.nvue';
+import wyySideBar from '@/components/wyy-side-bar/wyy_side_bar.nvue'
+import wyyFind from '@/components/wyy-find/wyy_find.nvue'
+import wyyMine from '@/components/wyy-mine/wyy_mine.nvue'
+import wyyFriend from '@/components/wyy-friend/wyy_friend.nvue'
+import wyyVideo from '@/components/wyy-video/wyy_video.nvue'
 
-	import uniDrawer from '@/components/uni-drawer/uni-drawer.vue';
-	
-	import wyyPlay from '@/components/wyy-play/wyy_play.nvue';
-	
-	import $repeater from '@/utils/repeater.js';
+import uniDrawer from '@/components/uni-drawer/uni-drawer.vue'
 
-	export default {
-		components: {
-			wyySideBar,
-			wyyFind,
-			wyyMine,
-			wyyFriend,
-			wyyVideo,
-			uniDrawer,
-			
-			wyyPlay
+import wyyPlay from '@/components/wyy-play/wyy_play.nvue'
+
+import $repeater from '@/utils/repeater.js'
+
+export default {
+	components: {
+		wyySideBar,
+		wyyFind,
+		wyyMine,
+		wyyFriend,
+		wyyVideo,
+		uniDrawer,
+
+		wyyPlay
+	},
+	data() {
+		return {
+			show_play: false,
+
+			show_sidebar: false,
+
+			tab_index: 0,
+			tabBars: [
+				{ name: '我的', id: 'mine' },
+				{ name: '发现', id: 'find' },
+				{ name: '朋友', id: 'friends' },
+				{ name: '视频', id: 'video' }
+			]
+		}
+	},
+	computed: {
+		played: function () {
+			return this.$store.state.played
 		},
-		data() {
-			return {
-				show_play: false,
-				
-				show_sidebar: false,
-				
-				tab_index: 0,
-				tabBars: [
-					{name: '我的', id: 'mine'},
-					{name: '发现', id: 'find'},
-					{name: '朋友', id: 'friends'},
-					{name: '视频', id: 'video'},
-				],
-				
-			}
+		statusbar_height() {
+			return $repeater.config.status_bar_height
+		}
+	},
+	watch: {
+		tab_index: function (val, old_val) {}
+	},
+	onBackPress() {
+		$repeater.helper.backgrounder()
+	},
+
+	created() {
+		this.init_user()
+	},
+	onShow() {},
+	onUnload() {},
+	methods: {
+		search() {
+			$repeater.helper.to('../search/search')
 		},
-		computed: {
-			played: function() {
-				return this.$store.state.played;
-			},
-			statusbar_height() {
-				return $repeater.config.status_bar_height
-			}
+		init_user() {
+			let uid = this.$store.state.uid
+			$repeater.user.get_user_detail(uid, (user_info) => {
+				this.$store.commit('set_user_info', user_info)
+			})
+			$repeater.user.get_subcount((data) => {
+				this.$store.commit('set_subcount', data)
+			})
+			$repeater.user.get_likelist(uid, (data) => {
+				this.$store.commit('set_likelist', data.ids)
+			})
 		},
-		watch: {
-			tab_index: function(val, old_val) {
-				
-			}
+		ontabtap(index) {
+			this.change_tab_index(index)
 		},
-		onBackPress() {
-			$repeater.helper.backgrounder();
+		show_side_drawer() {
+			this.show_sidebar = true
 		},
-		
-		created() {
-			this.init_user();
+		close_side_drawer() {
+			this.show_sidebar = false
 		},
-		onShow() {
-			
+		change_tab(e) {
+			let index = e.target.current || e.detail.current
+			this.change_tab_index(index)
 		},
-		onUnload() {
-			
-		},
-		methods: {
-			search() {
-				$repeater.helper.to('../search/search')
-			},
-			init_user() {
-				let uid = this.$store.state.uid;
-				$repeater.user.get_user_detail(uid, (user_info)=> {
-					this.$store.commit('set_user_info', user_info)
-				});
-				$repeater.user.get_subcount((data)=> {
-					this.$store.commit('set_subcount', data);
-				});
-				$repeater.user.get_likelist(uid, (data)=> {
-					this.$store.commit('set_likelist', data.ids);
-				});
-			},
-			ontabtap(index) {
-				this.change_tab_index(index);
-			},
-			show_side_drawer() {
-				this.show_sidebar = true;
-			},
-			close_side_drawer() {
-				this.show_sidebar = false;
-			},
-			change_tab(e) {
-				
-				let index = e.target.current || e.detail.current;
-				this.change_tab_index(index);
-			},
-			change_tab_index(index) {
-				
-				this.tab_index = index;
-			}
+		change_tab_index(index) {
+			this.tab_index = index
 		}
 	}
+}
 </script>
 
 <style>
-	@import '../../common/wyy.css';
-	.tabs {
-		flex: 1;
-		background-color: #F8F8F8;
-	}
+@import '../../common/wyy.css';
+.tabs {
+	flex: 1;
+	background-color: #f8f8f8;
+}
 
-	.swiper-box {
-		flex: 1;
-	}
+.swiper-box {
+	flex: 1;
+}
 
-	.sub_page {
-		flex-direction: row;
-		justify-content: space-between;
-		background-color: rgba(218, 45, 30, 1);
-	}
+.sub_page {
+	flex-direction: row;
+	justify-content: space-between;
+	background-color: rgba(218, 45, 30, 1);
+}
 
+.scroll-h {
+	background-color: rgba(218, 45, 30, 1);
+	width: 550rpx;
+	height: 80rpx;
+	flex-direction: row;
+	justify-content: center;
+}
 
-	.scroll-h {
-		background-color: rgba(218, 45, 30, 1);
-		width: 550rpx;
-		height: 80rpx;
-		flex-direction: row;
-		justify-content: center;
-	}
+.uni-tab-item-title {
+	color: #ffffff;
+	font-size: 26rpx;
+	height: 80rpx;
+	line-height: 80rpx;
+	flex-wrap: nowrap;
+	/* #ifndef APP-PLUS */
+	white-space: nowrap;
+	/* #endif */
+}
 
+.uni-tab-item-title-active {
+	color: #ffffff;
+	font-weight: 600;
+	font-size: 32rpx;
+}
 
-	.uni-tab-item-title {
-		color: #FFFFFF;
-		font-size: 26rpx;
-		height: 80rpx;
-		line-height: 80rpx;
-		flex-wrap: nowrap;
-		/* #ifndef APP-PLUS */
-		white-space: nowrap;
-		/* #endif */
-	}
+.tab-item {
+	justify-content: center;
+	align-items: center;
+	margin: 0 10rpx;
+	width: 100rpx;
+}
 
-	.uni-tab-item-title-active {
-		color: #FFFFFF;
-		font-weight: 600;
-		font-size: 32rpx;
-	}
+.left-bar {
+	width: 100rpx;
+	height: 80rpx;
+	justify-content: center;
+	align-items: center;
+}
 
-	.tab-item {
-		justify-content: center;
-		align-items: center;
-		margin: 0 10rpx;
-		width: 100rpx;
-	}
+.right-bar {
+	width: 100rpx;
+	height: 80rpx;
+	justify-content: center;
+	align-items: center;
+}
 
-	.left-bar {
-		width: 100rpx;
-		height: 80rpx;
-		justify-content: center;
-		align-items: center;
-	}
+.menu-icon {
+	width: 35rpx;
+	height: 35rpx;
+}
 
-	.right-bar {
-		width: 100rpx;
-		height: 80rpx;
-		justify-content: center;
-		align-items: center;
-	}
-
-	.menu-icon {
-		width: 35rpx;
-		height: 35rpx;
-	}
-
-	.search-icon {
-		width: 35rpx;
-		height: 35rpx;
-	}
+.search-icon {
+	width: 35rpx;
+	height: 35rpx;
+}
 </style>
